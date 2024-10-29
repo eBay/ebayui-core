@@ -3,12 +3,36 @@ import { type TableSort } from "../component";
 class {
     declare state: {
         sorted: Record<string, TableSort>;
+        data: typeof data;
     };
     onCreate() {
-        this.state = { sorted: {} };
+        this.state = { sorted: {}, data };
     }
     onSort(event: { sorted: Record<string, TableSort> }, ...params: any) {
         this.state.sorted = event.sorted;
+        this.state.data.sort((a, b) => {
+            if (this.state.sorted.listPriceCol === "asc") {
+                return (
+                    Number(a.listPrice.substring(1)) -
+                    Number(b.listPrice.substring(1))
+                );
+            } else if (this.state.sorted.listPriceCol === "desc") {
+                return (
+                    Number(b.listPrice.substring(1)) -
+                    Number(a.listPrice.substring(1))
+                );
+            } else if (this.state.sorted.quantityCol === "asc") {
+                return (
+                    Number(a.quantityAvailable) - Number(b.quantityAvailable)
+                );
+            } else if (this.state.sorted.quantityCol === "desc") {
+                return (
+                    Number(b.quantityAvailable) - Number(a.quantityAvailable)
+                );
+            }
+            return 0;
+        });
+        this.setStateDirty("data");
         this.emit("sort", event, ...params);
     }
 }
@@ -51,24 +75,7 @@ class {
     <@header name="deliveryCol">
         Delivery
     </@header>
-    <for|r| of=data.sort((a, b) => {
-        if (state.sorted.listPriceCol === "asc") {
-            return (
-                Number(a.listPrice.substring(1)) -
-                Number(b.listPrice.substring(1))
-            );
-        } else if (state.sorted.listPriceCol === "desc") {
-            return (
-                Number(b.listPrice.substring(1)) -
-                Number(a.listPrice.substring(1))
-            );
-        } else if (state.sorted.quantityCol === "asc") {
-            return Number(a.quantityAvailable) - Number(b.quantityAvailable);
-        } else if (state.sorted.quantityCol === "desc") {
-            return Number(b.quantityAvailable) - Number(a.quantityAvailable);
-        }
-        return 0;
-    })>
+    <for|r| of=state.data>
         <@row>
             <@cell>${r.seller}</@cell>
             <@cell>${r.item.title}</@cell>
