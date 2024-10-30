@@ -233,7 +233,7 @@ Standard.args = {
             src: "https://ir.ebaystatic.com/cr/v/c1/ebayui/video/v1/playlist.mpd",
             type: "dash",
         },
-    ]
+    ],
 };
 Standard.parameters = {
     docs: {
@@ -261,8 +261,8 @@ ios.args = {
     shakaConfig: {
         streaming: {
             lowLatencyMode: true,
-        }
-    }
+        },
+    },
 };
 
 ios.parameters = {

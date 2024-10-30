@@ -1,5 +1,33 @@
 # eBayUI-Core Changelog
 
+## 14.4.0
+
+### Minor Changes
+
+- [#2289](https://github.com/eBay/ebayui-core/pull/2289) [`c32467f`](https://github.com/eBay/ebayui-core/commit/c32467fd9e1262582beaa5c54ce3bb247f551b70) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Add ebay-file-preview-card and ebay-file-preview-card-group
+
+- [#2308](https://github.com/eBay/ebayui-core/pull/2308) [`6bd3dee`](https://github.com/eBay/ebayui-core/commit/6bd3deeb9f260860a2b682aae26f4784561ee230) Thanks [@agliga](https://github.com/agliga)! - feat(ebay-table): support column type layout and icon-action
+
+- [#2308](https://github.com/eBay/ebayui-core/pull/2308) [`5ad8039`](https://github.com/eBay/ebayui-core/commit/5ad8039ce493de56a739d38433b5474faa7ce327) Thanks [@agliga](https://github.com/agliga)! - fix(combobox): remove role-description attribute
+
+- [#2308](https://github.com/eBay/ebayui-core/pull/2308) [`8e95e94`](https://github.com/eBay/ebayui-core/commit/8e95e94f6bb508e50baf05365b40850d27f889d1) Thanks [@agliga](https://github.com/agliga)! - Add ebay-file-input
+
+- [#2308](https://github.com/eBay/ebayui-core/pull/2308) [`e2f71a3`](https://github.com/eBay/ebayui-core/commit/e2f71a34beeb687f0ddf1b45b9f77a463a7c6f31) Thanks [@agliga](https://github.com/agliga)! - feat(ebay-table): ebay-table base component with density attribute
+
+- [#2291](https://github.com/eBay/ebayui-core/pull/2291) [`a23c4ec`](https://github.com/eBay/ebayui-core/commit/a23c4ecb58d0887f3be2b7996e6efbda5dbccfa7) Thanks [@bill-min](https://github.com/bill-min)! - feat(ebay-table): suppport column sorting
+
+- [#2308](https://github.com/eBay/ebayui-core/pull/2308) [`dc1460b`](https://github.com/eBay/ebayui-core/commit/dc1460b151d6894f97c21803789f641fc4d1979b) Thanks [@agliga](https://github.com/agliga)! - feat(ebay-table): adding support for selection mode
+
+### Patch Changes
+
+- [#2308](https://github.com/eBay/ebayui-core/pull/2308) [`6cdc7f1`](https://github.com/eBay/ebayui-core/commit/6cdc7f11211a126a70243d69cf597087462fef67) Thanks [@agliga](https://github.com/agliga)! - Fix clearing behavior for calendar and date-textbox
+
+- [#2308](https://github.com/eBay/ebayui-core/pull/2308) [`7e82613`](https://github.com/eBay/ebayui-core/commit/7e8261332d8b39ddafc62bd7a837339a94bd49bf) Thanks [@agliga](https://github.com/agliga)! - Update TS
+
+- [#2310](https://github.com/eBay/ebayui-core/pull/2310) [`11532a6`](https://github.com/eBay/ebayui-core/commit/11532a681defc8585e900566def3b452e8893c19) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Update types to encourage modern attr tag syntax
+
+- [#2306](https://github.com/eBay/ebayui-core/pull/2306) [`047647b`](https://github.com/eBay/ebayui-core/commit/047647bf1c410daf5516912519e7db368f2bc61a) Thanks [@JereMIbq1995](https://github.com/JereMIbq1995)! - ebay-video: shaka config can now be added as input
+
 ## 14.3.0
 
 ### Minor Changes
