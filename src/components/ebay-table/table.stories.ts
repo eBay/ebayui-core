@@ -15,7 +15,7 @@ import sortClientSideTemplate from "./examples/sort-client-side.marko";
 import sortClientSideCode from "./examples/sort-client-side.marko?raw";
 
 export default {
-    title: "data-display/table",
+    title: "data-display/ebay-table",
     component: table,
     parameters: {
         docs: {

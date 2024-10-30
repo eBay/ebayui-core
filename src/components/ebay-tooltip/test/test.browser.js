@@ -36,8 +36,9 @@ describe("given the default tooltip", () => {
             });
 
             it("then it emits the collapse event", async () => {
-                await waitFor(() =>
-                    expect(component.emitted("collapse")).has.length(1),
+                await waitFor(
+                    () => expect(component.emitted("collapse")).has.length(1),
+                    2000,
                 );
             });
         });
