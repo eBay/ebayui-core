@@ -73,6 +73,7 @@ interface VideoInput extends Omit<Marko.Input<"video">, `on${string}`> {
     "on-pause"?: (event: PlayPauseEvent) => void;
     "on-volume-change"?: (event: VolumeEvent) => void;
     "on-load-error"?: (err: Error) => void;
+    "shaka-config"?: any;
 }
 
 export interface Input extends WithNormalizedProps<VideoInput> {}
@@ -314,6 +315,7 @@ class Video extends Marko.Component<Input, State> {
 
         // eslint-disable-next-line no-undef,new-cap
         this.player = new shaka.Player(this.video);
+        this.player.configure(this.input.shakaConfig || {});
         this._attach();
 
         this._loadSrc();
