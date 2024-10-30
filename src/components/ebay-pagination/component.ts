@@ -27,7 +27,7 @@ export interface Item
 }
 
 interface PaginationInput extends Omit<Marko.Input<"nav">, `on${string}`> {
-    items?: Marko.AttrTag<Item>[];
+    items?: Marko.AttrTag<Item>;
     variant?: "show-range" | "show-last" | "overflow";
     "a11y-current-text"?: AttrString;
     "a11y-previous-text"?: AttrString;
