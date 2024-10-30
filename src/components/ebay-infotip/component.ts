@@ -11,10 +11,12 @@ interface InfotipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     placement?: TooltipBaseInput["placement"];
     disabled?: boolean;
     icon?: Marko.AttrTag<{ renderBody: Marko.Renderable }>;
-    heading?: Marko.Input<"span"> & {
-        as?: keyof Marko.NativeTags;
-        renderBody?: Marko.Renderable;
-    } & Iterable<any>;
+    heading?: Marko.AttrTag<
+        Marko.Input<"span"> & {
+            as?: keyof Marko.NativeTags;
+            renderBody?: Marko.Renderable;
+        }
+    >;
     "no-flip"?: TooltipBaseInput["no-flip"];
     "not-inline"?: TooltipBaseInput["not-inline"];
     "no-shift"?: TooltipBaseInput["no-shift"];
