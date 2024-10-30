@@ -89,6 +89,11 @@ export default {
             description:
                 "True/False to keep or remove volume slider. Default is False",
         },
+        shakaConfig: {
+            description:
+                "The Shaka player [configuration object](https://shaka-player-demo.appspot.com/docs/api/tutorial-config.html). This allows users to control Shaka player.",
+            control: { type: "object" },
+        },
 
         source: {
             name: "@source",
@@ -228,7 +233,7 @@ Standard.args = {
             src: "https://ir.ebaystatic.com/cr/v/c1/ebayui/video/v1/playlist.mpd",
             type: "dash",
         },
-    ],
+    ]
 };
 Standard.parameters = {
     docs: {
@@ -253,6 +258,11 @@ ios.args = {
             type: "dash",
         },
     ],
+    shakaConfig: {
+        streaming: {
+            lowLatencyMode: true,
+        }
+    }
 };
 
 ios.parameters = {

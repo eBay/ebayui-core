@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, it, expect } from "vitest";
+import { afterEach, beforeEach, describe, it, expect, vi } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup, waitFor } from "@marko/testing-library";
 import * as stories from "../tooltip.stories";
@@ -14,7 +14,12 @@ const renderBodyText = "View options";
 
 describe("given the default tooltip", () => {
     beforeEach(async () => {
+        vi.useFakeTimers();
         component = await render(Standard);
+    });
+
+    afterEach(() => {
+        vi.useRealTimers();
     });
 
     describe("when the host element is hovered", () => {
@@ -29,21 +34,21 @@ describe("given the default tooltip", () => {
         });
 
         describe("when the host element loses hover", () => {
-            beforeEach(async () => {
+            it("then it emits the collapse event", async () => {
                 await fireEvent.mouseLeave(
                     component.getByText(renderBodyText).parentElement,
                 );
-            });
 
-            it("then it emits the collapse event", async () => {
-                await waitFor(() =>
-                    expect(component.emitted("collapse")).has.length(1),
+                await vi.advanceTimersByTimeAsync(500);
+                await waitFor(
+                    () => expect(component.emitted("collapse")).has.length(1),
+                    2000,
                 );
             });
         });
 
         describe("when the escape key is pressed", () => {
-            beforeEach(async () => {
+            it("then it emits the collapse event", async () => {
                 await fireEvent.keyDown(
                     component.getByText(renderBodyText).parentElement,
                     {
@@ -51,9 +56,7 @@ describe("given the default tooltip", () => {
                         keyCode: 27,
                     },
                 );
-            });
 
-            it("then it emits the collapse event", async () => {
                 await waitFor(() =>
                     expect(component.emitted("collapse")).has.length(1),
                 );

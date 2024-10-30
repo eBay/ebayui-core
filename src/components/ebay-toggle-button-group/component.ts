@@ -11,7 +11,7 @@ export interface ToggleButtonGroupEvent {
 
 interface ToggleButtonGroupInput
     extends Omit<Marko.Input<"span">, `on${string}`> {
-    buttons?: Marko.RepeatableAttrTag<Omit<ToggleButtonInput, `on${string}`>>;
+    buttons?: Marko.AttrTag<Omit<ToggleButtonInput, `on${string}`>>;
     variant?: "checkbox" | "radio" | "radio-toggle";
     "a11y-text"?: string;
     "a11y-label-id"?: string;

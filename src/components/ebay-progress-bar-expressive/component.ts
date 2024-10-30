@@ -17,7 +17,7 @@ interface Message {
 interface ProgressBarExpressiveInput
     extends Omit<Marko.Input<"div">, `on${string}`> {
     "a11y-text"?: AttrString;
-    messages?: Marko.AttrTag<Message>[];
+    messages?: Marko.AttrTag<Message>;
     size?: "medium" | "large";
 }
 
@@ -61,8 +61,8 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
         clearTimeout(this.timeouts.showMessage);
     }
 
-    initializeMessageRotation(messages?: Marko.AttrTag<Message>[]) {
-        const messageCount = messages?.length || 0;
+    initializeMessageRotation(messages?: Marko.AttrTag<Message>) {
+        const messageCount = [...(messages || [])].length;
 
         if (messageCount > 0) {
             // Ensure next message index is in new message array bounds
@@ -119,8 +119,9 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
     /**
      * Display a message and queue the next one
      */
-    showMessage(messages = this.input.messages, extraDelay = 0) {
-        if (messages) {
+    showMessage(messageTags = this.input.messages, extraDelay = 0) {
+        const messages = [...(messageTags || [])];
+        if (messageTags) {
             const messageCount = messages.length;
             if (messageCount > 1) {
                 const currentIndex = this.state.nextMessageIndex;

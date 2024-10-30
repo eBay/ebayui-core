@@ -16,7 +16,7 @@ export interface Tab extends Marko.Input<"li"> {
 
 static interface FakeTabsInput extends Omit<Marko.Input<"div">, `on${string}`> {
     "selected-index"?: number;
-    tabs?: Marko.RepeatableAttrTag<Tab>;
+    tabs?: Marko.AttrTag<Tab>;
     "tab-matches-current-url"?: boolean;
 }
 

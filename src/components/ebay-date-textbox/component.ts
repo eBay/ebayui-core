@@ -20,7 +20,7 @@ interface DateTextboxInput {
     rangeEnd?: Date | number | string;
     locale?: string;
     range?: boolean;
-    textbox?: Marko.RepeatableAttrTag<TextboxInput>;
+    textbox?: Marko.AttrTag<TextboxInput>;
     todayISO?: Date | number | string;
     disabled?: boolean;
     "disable-before"?: Date | number | string;
@@ -87,7 +87,7 @@ class DateTextbox extends Marko.Component<Input, State> {
         if (input.value !== undefined) {
             this.state.firstSelected = dateArgToISO(input.value);
         }
-        if (input.rangeEnd) {
+        if (input.rangeEnd !== undefined) {
             this.state.secondSelected = dateArgToISO(input.rangeEnd);
         }
         if (!input.range) {

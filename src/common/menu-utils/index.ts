@@ -8,7 +8,7 @@ export interface MenuItem extends Omit<Marko.Input<"button">, `on${string}`> {
 }
 
 export interface BaseMenuInput {
-    items?: Marko.RepeatableAttrTag<MenuItem> | [Marko.AttrTag<MenuItem>];
+    items?: Marko.AttrTag<MenuItem>;
     type?: string;
 }
 
@@ -26,7 +26,7 @@ export class MenuUtils<
     State extends MenuState,
 > extends Component<Input, State> {
     declare type?: string;
-    declare items: Extract<Input["items"], any[]>[number][];
+    declare items: MenuItem[];
 
     isRadio() {
         return this.type === "radio";
