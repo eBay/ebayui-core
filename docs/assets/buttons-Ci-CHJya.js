@@ -1,3 +1,0 @@
-import{ag as t,ah as i}from"./chunk-NUUEMKO5-DRH9tMgz.js";import{u as r}from"./index-BuI40nQW.js";import"./iframe-BnHO5QX6.js";import"../sb-preview/runtime.js";import"./_commonjsHelpers-Cpj98o6Y.js";import"./_commonjs-dynamic-modules-TDtrdbi3.js";import"./index-Cef7vbu6.js";import"./index-DrFu-skq.js";function e(n){const o={h1:"h1",p:"p",...r(),...n.components};return t.jsxs(t.Fragment,{children:[t.jsx(i,{title:"buttons/Overview"}),`
-`,t.jsx(o.h1,{id:"button-components",children:"Button Components"}),`
-`,t.jsx(o.p,{children:"All components that are triggered by a button are contained within this category."})]})}function d(n={}){const{wrapper:o}={...r(),...n.components};return o?t.jsx(o,{...n,children:t.jsx(e,{...n})}):e(n)}export{d as default};

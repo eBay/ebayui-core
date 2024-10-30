@@ -1,0 +1,20 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "14.3.0"
+  },
+  "changesets": [
+    "cool-zebras-think",
+    "eighty-icons-buy",
+    "fair-students-hunt",
+    "fluffy-mirrors-complain",
+    "green-fans-occur",
+    "polite-cats-rest",
+    "polite-rocks-exist",
+    "rude-donkeys-turn",
+    "seven-adults-help",
+    "seven-ravens-confess",
+    "weak-lemons-dance"
+  ]
+}
