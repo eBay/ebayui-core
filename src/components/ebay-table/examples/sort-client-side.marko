@@ -10,7 +10,7 @@ class {
     }
     onSort(event: { sorted: Record<string, TableSort> }, ...params: any) {
         this.state.sorted = event.sorted;
-        this.state.data.sort((a, b) => {
+        this.state.data = [...data].sort((a, b) => {
             if (this.state.sorted.listPriceCol === "asc") {
                 return (
                     Number(a.listPrice.substring(1)) -
@@ -32,7 +32,6 @@ class {
             }
             return 0;
         });
-        this.setStateDirty("data");
         this.emit("sort", event, ...params);
     }
 }
