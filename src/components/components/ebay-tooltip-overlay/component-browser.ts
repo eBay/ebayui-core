@@ -8,7 +8,7 @@ interface TooltipOverlayInput {
     "style-right"?: string;
     "style-bottom"?: string;
     heading?: Marko.Input<"span"> & {
-        as?: Marko.NativeTags;
+        as?: keyof Marko.NativeTags;
         renderBody?: Marko.Body;
     } & Iterable<any>;
     id?: string;

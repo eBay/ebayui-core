@@ -12,7 +12,7 @@ interface InfotipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     disabled?: boolean;
     icon?: Marko.AttrTag<{ renderBody: Marko.Renderable }>;
     heading?: Marko.Input<"span"> & {
-        as?: Marko.NativeTags;
+        as?: keyof Marko.NativeTags;
         renderBody?: Marko.Renderable;
     } & Iterable<any>;
     "no-flip"?: TooltipBaseInput["no-flip"];
