@@ -42,9 +42,19 @@ $ const {
                     $ const {
                         columnType = "normal",
                         class: thClass,
+                        name = `${headerIndex}`,
+                        sort,
                         renderBody,
+                        href,
                         ...thInput
                     } = header;
+                    $ const sortOrder = state.sorted[name];
+                    $ let ariaSort: Marko.AriaAttributes["aria-sort"];
+                    $ if (sortOrder === "asc") {
+                        ariaSort = "ascending";
+                    } else if (sortOrder === "desc") {
+                        ariaSort = "descending";
+                    }
                     <th
                         ...processHtmlAttributes(thInput)
                         class=[
@@ -56,8 +66,36 @@ $ const {
                                 `table-cell--${header.columnType}`,
                             thClass,
                         ]
+                        aria-sort=ariaSort
                     >
-                        <${renderBody}/>
+                        $ let sortEleAttr = {};
+                        $ if (href) {
+                            sortEleAttr = { href };
+                        } else if (sortOrder) {
+                            sortEleAttr = {
+                                type: "button",
+                                "aria-pressed":
+                                    sortOrder !== "none" ? "true" : "false",
+                            };
+                        }
+                        <${href ? "a" : sortOrder ? "button" : null}
+                            ...sortEleAttr
+                            on-click(href ? undefined : "sortColumn", name)
+                        >
+                            <${renderBody}/>
+                            <if(sortOrder)>
+                                ${" "}
+                                <if(sortOrder === "asc")>
+                                    <ebay-sort-down-12-icon/>
+                                </if>
+                                <else-if(sortOrder === "desc")>
+                                    <ebay-sort-up-12-icon/>
+                                </else-if>
+                                <else>
+                                    <ebay-sort-12-icon/>
+                                </else>
+                            </if>
+                        </>
                     </th>
                 </for>
             </tr>
@@ -66,7 +104,7 @@ $ const {
             <for|row, rowIndex| of=rows || []>
                 $ const {
                     cell: cells,
-                    name = rowIndex,
+                    name = `${rowIndex}`,
                     selected,
                     ...trInput
                 } = row;

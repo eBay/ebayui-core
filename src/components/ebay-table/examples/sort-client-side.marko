@@ -1,0 +1,99 @@
+import data from "./data.json";
+import { type TableSort } from "../component";
+class {
+    declare state: {
+        sorted: Record<string, TableSort>;
+        data: typeof data;
+    };
+    onCreate() {
+        this.state = { sorted: {}, data };
+    }
+    onSort(event: { sorted: Record<string, TableSort> }, ...params: any) {
+        this.state.sorted = event.sorted;
+        this.state.data = [...data].sort((a, b) => {
+            if (this.state.sorted.listPriceCol === "asc") {
+                return (
+                    Number(a.listPrice.substring(1)) -
+                    Number(b.listPrice.substring(1))
+                );
+            } else if (this.state.sorted.listPriceCol === "desc") {
+                return (
+                    Number(b.listPrice.substring(1)) -
+                    Number(a.listPrice.substring(1))
+                );
+            } else if (this.state.sorted.quantityCol === "asc") {
+                return (
+                    Number(a.quantityAvailable) - Number(b.quantityAvailable)
+                );
+            } else if (this.state.sorted.quantityCol === "desc") {
+                return (
+                    Number(b.quantityAvailable) - Number(a.quantityAvailable)
+                );
+            }
+            return 0;
+        });
+        this.emit("sort", event, ...params);
+    }
+}
+<ebay-table on-sort("onSort") ...input>
+    <@header name="sellerCol" column-type="row-header">
+        Seller
+    </@header>
+    <@header name="itemCol">
+        Item
+    </@header>
+    <@header name="statusCol">
+        Status
+    </@header>
+    <@header
+        name="listPriceCol"
+        column-type="numeric"
+        sort=(state.sorted.listPriceCol || "none")
+    >
+        List Price
+    </@header>
+    <@header
+        name="quantityCol"
+        column-type="numeric"
+        sort=(state.sorted.quantityCol || "none")
+    >
+        Quantity Available
+    </@header>
+    <@header name="orderCol">
+        Orders
+    </@header>
+    <@header name="watchersCol" column-type="numeric">
+        Watchers
+    </@header>
+    <@header name="protectionCol" column-type="numeric">
+        Protection
+    </@header>
+    <@header name="shippingCol">
+        Shipping
+    </@header>
+    <@header name="deliveryCol">
+        Delivery
+    </@header>
+    <for|r| of=state.data>
+        <@row>
+            <@cell>${r.seller}</@cell>
+            <@cell>${r.item.title}</@cell>
+            <@cell>
+                <ebay-signal status=r.statusType as any>
+                    ${r.status}
+                </ebay-signal>
+            </@cell>
+            <@cell>${r.listPrice}</@cell>
+            <@cell>${r.quantityAvailable}</@cell>
+            <@cell>
+                <a href="https://ebay.com">
+                    ${r.orders.number}
+                </a>
+            </@cell>
+            <@cell>${r.watchers}</@cell>
+            <@cell>${r.protection}</@cell>
+            <@cell>${r.shipping}</@cell>
+            <@cell>${r.delivery}</@cell>
+        </@row>
+    </for>
+</ebay-table>

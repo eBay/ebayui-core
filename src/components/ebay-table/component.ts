@@ -1,10 +1,13 @@
-import { AttrTriState } from "marko/tags-html";
+import { AttrString, AttrTriState } from "marko/tags-html";
 import { WithNormalizedProps } from "../../global";
 import { CheckboxEvent } from "../ebay-checkbox/component-browser";
 
-type TableColRowName = string | number;
+export type TableSort = "asc" | "desc" | "none";
 export interface TableHeader extends Omit<Marko.Input<"th">, `on${string}`> {
     columnType?: "normal" | "numeric" | "row-header" | "layout" | "icon-action";
+    name?: string;
+    sort?: TableSort | boolean;
+    href?: AttrString;
     renderBody: Marko.Body;
 }
 export interface TableCell
@@ -12,7 +15,7 @@ export interface TableCell
     renderBody: Marko.Body;
 }
 export interface TableRow extends Omit<Marko.Input<"tr">, `on${string}`> {
-    name?: TableColRowName;
+    name?: string;
     selected?: boolean;
     cell: Marko.AttrTag<TableCell>;
 }
@@ -25,14 +28,16 @@ export interface TableInput extends Omit<Marko.Input<"div">, `on${string}`> {
     "a11y-select-all-text"?: string;
     "a11y-select-row-text"?: string;
     "on-select"?: (event: {
-        selected: Record<TableColRowName, boolean>;
+        selected: Record<string, boolean>;
         allSelected?: AttrTriState;
     }) => void;
+    "on-sort"?: (event: { sorted: Record<string, TableSort> }) => void;
 }
 export interface Input extends WithNormalizedProps<TableInput> {}
 
 interface State {
-    selected: Record<TableColRowName, boolean>;
+    selected: Record<string, boolean>;
+    sorted: Record<string, TableSort | undefined>;
     allSelected: AttrTriState;
 }
 
@@ -40,6 +45,7 @@ export default class EbayTable extends Marko.Component<Input, State> {
     onCreate() {
         this.state = {
             selected: {},
+            sorted: {},
             allSelected: "false",
         };
     }
@@ -47,10 +53,11 @@ export default class EbayTable extends Marko.Component<Input, State> {
     onInput(input: Input) {
         this.state.selected = this.getSelectedRowStateFromInput(input);
         this.state.allSelected = this.getAllSelectedState(input);
+        this.state.sorted = this.getSortedColStateFromInput(input);
     }
 
     getSelectedRowStateFromInput(input: Input) {
-        const selected: Record<TableColRowName, boolean> = {};
+        const selected: Record<string, boolean> = {};
         if (input.row) {
             for (const [i, row] of Object.entries([...input.row])) {
                 const name = row.name || i;
@@ -58,6 +65,19 @@ export default class EbayTable extends Marko.Component<Input, State> {
             }
         }
         return selected;
+    }
+
+    getSortedColStateFromInput(input: Input) {
+        const sorted: Record<string, TableSort> = {};
+        for (const [i, header] of Object.entries([...input.header])) {
+            const name = header.name || i;
+            if (header.sort === true) {
+                sorted[name] = "none";
+            } else if (header.sort) {
+                sorted[name] = header.sort;
+            }
+        }
+        return sorted;
     }
 
     getAllSelectedState(input: Input): AttrTriState {
@@ -88,7 +108,7 @@ export default class EbayTable extends Marko.Component<Input, State> {
                 acc[name || i] = allSelected !== "true";
                 return acc;
             },
-            {} as Record<TableColRowName, boolean>,
+            {} as Record<string, boolean>,
         );
         this.state.allSelected = allSelected !== "true" ? "true" : "false";
         this.emit("select", {
@@ -97,12 +117,34 @@ export default class EbayTable extends Marko.Component<Input, State> {
         });
     }
 
-    rowSelect(name: TableColRowName, { checked }: CheckboxEvent) {
+    rowSelect(name: string, { checked }: CheckboxEvent) {
         this.state.selected[name] = checked;
         this.setStateDirty("selected");
         this.state.allSelected = this.getAllSelectedState(this.input);
         this.emit("select", {
             selected: this.state.selected,
         });
+    }
+
+    sortColumn(name: string) {
+        const sortTo: Record<TableSort, TableSort> = {
+            asc: "desc",
+            desc: "none",
+            none: "asc",
+        };
+        const currSort = this.state.sorted[name];
+        if (currSort) {
+            const nextSort = sortTo[currSort];
+            this.state.sorted = Object.keys(this.state.sorted).reduce(
+                (acc, key) => {
+                    acc[key] = key === name ? nextSort : "none";
+                    return acc;
+                },
+                {} as Record<string, TableSort>,
+            );
+            this.emit("sort", {
+                sorted: { [name]: nextSort },
+            });
+        }
     }
 }
