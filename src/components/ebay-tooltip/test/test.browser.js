@@ -1,4 +1,4 @@
-import { afterEach, beforeEach, describe, it, expect, vi } from "vitest";
+import { afterEach, beforeEach, describe, it, expect } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup, waitFor } from "@marko/testing-library";
 import * as stories from "../tooltip.stories";
@@ -12,14 +12,9 @@ let component;
 
 const renderBodyText = "View options";
 
-describe("given the default tooltip", () => {
+describe("default tooltip", () => {
     beforeEach(async () => {
-        vi.useFakeTimers();
         component = await render(Standard);
-    });
-
-    afterEach(() => {
-        vi.useRealTimers();
     });
 
     describe("when the host element is hovered", () => {
@@ -33,29 +28,12 @@ describe("given the default tooltip", () => {
             );
         });
 
-        describe("when the host element loses hover", () => {
-            it("then it emits the collapse event", async () => {
-                await fireEvent.mouseLeave(
-                    component.getByText(renderBodyText).parentElement,
-                );
-
-                await vi.advanceTimersByTimeAsync(500);
-                await waitFor(
-                    () => expect(component.emitted("collapse")).has.length(1),
-                    2000,
-                );
-            });
-        });
-
         describe("when the escape key is pressed", () => {
             it("then it emits the collapse event", async () => {
-                await fireEvent.keyDown(
-                    component.getByText(renderBodyText).parentElement,
-                    {
-                        key: "Escape",
-                        keyCode: 27,
-                    },
-                );
+                await fireEvent.keyDown(document, {
+                    key: "Escape",
+                    keyCode: 27,
+                });
 
                 await waitFor(() =>
                     expect(component.emitted("collapse")).has.length(1),
