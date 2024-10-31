@@ -306,25 +306,6 @@ class AreaChart extends Marko.Component<Input> {
                     points: this.points,
                 } as TooltipInput);
             },
-            // formatter: function (this) {
-            //     if (!this || !this.points) return "";
-            //     let s = `<b>${Highcharts.dateFormat("%b %e, %Y", this.x as number)}</b>`;
-            //     this.points.forEach(function (context) {
-            //         const label = context.point.label;
-            //         s += `<div class='ebay-area-chart__tooltip-value'><span>${context.series.name}</span><span>${label}</span></div>`;
-            //     });
-
-            //     // Add total for stacked series
-            //     if (this.points.length > 1) {
-            //         let total = this.points.reduce(
-            //             (acc, curr) => acc + (curr.y ?? 0),
-            //             0,
-            //         );
-            //         s += `<div style="display: flex;justify-content: space-between;gap: var(--spacing-200)"><span>Total</span><span>${yLabelFormatter(total)}</span></div>`;
-            //     }
-
-            //     return s;
-            // },
             // positioner: function (
             //     this: Highcharts.Tooltip,
             //     labelWidth: number,
