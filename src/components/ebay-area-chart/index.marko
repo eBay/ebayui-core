@@ -8,13 +8,9 @@ $ const {
     xLabelFormatter,
     yLabelFormatter,
     highchartOptions,
-    // xAxisLabelFormat,
-    // yAxisLabels,
-    // xAxisPositioner,
-    // yAxisPositioner,
     ...restInput
 } = input;
 
-<div ...processHtmlAttributes(restInput) class=[input.class, "ebay-area-chart"]>
+<div ...processHtmlAttributes(restInput) class=[inputClass, "ebay-area-chart"]>
     <div id=component.getContainerId() class="ebay-area-chart__container"/>
 </div>

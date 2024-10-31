@@ -32,30 +32,20 @@ export default {
             description:
                 "The series is an array of one to five arrays of point objects, each point contains an `x`, `y`, and `label`. `x` is an epoch/unix time code, `y` is a numeric value, `label` is what is displayed for the `y` value in the tool tip",
         },
-        xAxisLabelFormat: {
-            type: { name: "string", required: false },
+        highchartOptions: {
+            type: { name: "object", required: false },
             description:
-                "Used to modify the display of the x-axis labels. Accepts a string like `{value:%Y-%m-%d}`. Refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for available format keys",
-            table: {
-                defaultValue: {
-                    summary: "{value:%b %e}",
-                },
-            },
+                "A highcharts options object that will be merged with the default options",
         },
-        xAxisPositioner: {
+        xLabelFormatter: {
             type: { name: "function", required: false },
             description:
-                "A custom function that returns an array of epoch/unix time values where x-axis labels will be displayed. You can access `this.dataMin` and `this.dataMax` from the function to help determine positions.",
+                "A function that will be used to format the x-axis labels. Provides the value and a date formatter function. By default is formatted as `MMM dd`. Refer to https://api.highcharts.com/class-reference/Highcharts.Time#dateFormat for available format keys",
         },
-        yAxisLabels: {
-            type: { name: "array", required: false },
-            description:
-                "An array of labels to use on the y-axis. Use in conjunction with yAxisPositioner. Make sure the length of the yAxisLabels match the length of the positions array returned by the yAxisPositioner function",
-        },
-        yAxisPositioner: {
+        yLabelFormatter: {
             type: { name: "function", required: false },
             description:
-                "A custom function that returns an array of numeric values where y-axis labels will be displayed. You can access `this.dataMin` and `this.dataMax` from the function to help determine positions",
+                "A function that will be used to format the y-axis labels. By default is formatted as USD currency.",
         },
         class: {
             type: { name: "string", require: false },
@@ -138,6 +128,41 @@ FiveSeries.parameters = {
     docs: {
         source: {
             code: tagToString("bar-chart", FiveSeries.args),
+        },
+    },
+};
+
+export const WithYLabelFormat = Template.bind({});
+WithYLabelFormat.args = {
+    title: "Five series sample area chart",
+    description:
+        "this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5",
+    series: sampleSeriesData,
+    yLabelFormatter: (value) => `${value}`,
+};
+WithYLabelFormat.parameters = {
+    docs: {
+        source: {
+            code: tagToString("bar-chart", WithYLabelFormat.args),
+        },
+    },
+};
+
+export const WithXLabelFormat = Template.bind({});
+WithXLabelFormat.args = {
+    title: "Five series sample area chart",
+    description:
+        "this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5",
+    series: sampleSeriesData,
+    xLabelFormatter: (value, dateFormat) => {
+        return dateFormat("%A", value);
+    },
+};
+
+WithXLabelFormat.parameters = {
+    docs: {
+        source: {
+            code: tagToString("bar-chart", WithXLabelFormat.args),
         },
     },
 };

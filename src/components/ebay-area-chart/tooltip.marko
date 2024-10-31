@@ -1,0 +1,19 @@
+export interface Input {
+    date: string;
+    points: any[];
+    total: string;
+}
+
+<b>${input.date}</b>
+<for|pts| of=input.points || []>
+    <div style='display:flex;justify-content:space-between;gap:var(--spacing-200);width:100%;'>
+        <span>${pts.point.series.name}</span>
+        <span>${pts.point.label}</span>
+    </div>
+</for>
+<if(input.total)>
+    <div style='display:flex;justify-content:space-between;gap:var(--spacing-200);width:100%;'>
+        <span>Total</span>
+        <span>${input.total}</span>
+    </div>
+</if>
