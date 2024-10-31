@@ -8,6 +8,7 @@ coverage
 .coverage
 .karma
 dist
+_site
 *.browser.json
 *.marko.js
 .browser-refresh
