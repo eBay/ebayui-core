@@ -1,0 +1,18 @@
+class {}
+<ebay-list on-button-click("emit", "button-click")>
+    <@item as="button">
+        Item 1
+    </@item>
+    <@item as="a" href="https://www.ebay.com">
+        Item 2
+        <@trailing>
+            <ebay-chevron-right-16-icon/>
+        </@trailing>
+    </@item>
+    <@item id:scoped="switch-item">
+        Item 3
+        <@trailing>
+            <ebay-switch aria-labelledby:scoped="switch-item"/>
+        </@trailing>
+    </@item>
+</ebay-list>

@@ -11,6 +11,6 @@ Date textbox component, used as an alternative method for entering dates instead
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/dialogs-ebay-date-textbox)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/dialogs-ebay-date-textbox)
+-   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-date-textbox--documentation)
+-   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/form-input-ebay-date-textbox--documentation)
 -   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-date-textbox/examples)

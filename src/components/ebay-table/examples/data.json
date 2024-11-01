@@ -1,0 +1,122 @@
+[
+    {
+        "seller": "Nintendo",
+        "item": {
+            "title": "Nintendo Switch Brand New Gaming System with Four Controllers",
+            "subtitle": "SKU : A43BTR5678 • Quantity : 1",
+            "titleShort": "Switch",
+            "image": {
+                "url": "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/shoes.jpeg",
+                "alt": "Nintendo Switch"
+            }
+        },
+        "status": "Ready to Ship",
+        "statusType": "recent",
+        "listPrice": "$287.96",
+        "quantityAvailable": "300",
+        "orders": {
+            "number": "00-10542-89507",
+            "quantity": 100
+        },
+        "watchers": "95",
+        "protection": "$17.99",
+        "shipping": "FREE",
+        "delivery": "4/1 - 4/5"
+    },
+    {
+        "seller": "Nintendo",
+        "item": {
+            "title": "Nintendo SNES Brand New Gaming System with Four Controllers",
+            "subtitle": "SKU : A43BTR5678 • Quantity : 1",
+            "titleShort": "SNES",
+            "image": {
+                "url": "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/shoes.jpeg",
+                "alt": "Nintendo Switch"
+            }
+        },
+        "status": "Ready to Ship",
+        "statusType": "recent",
+        "listPrice": "$89.85",
+        "quantityAvailable": "45",
+        "orders": {
+            "number": "00-10542-89507",
+            "quantity": 200
+        },
+        "watchers": "5",
+        "protection": "$18.95",
+        "shipping": "FREE",
+        "delivery": "4/11 - 4/15"
+    },
+    {
+        "seller": "Microsoft",
+        "item": {
+            "title": "Microsoft XBOX 360 Brand New Gaming System with Four Controllers",
+            "subtitle": "SKU : A43BTR5678 • Quantity : 1",
+            "titleShort": "XBOX 360",
+            "image": {
+                "url": "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/shoes.jpeg",
+                "alt": "Microsoft XBOX"
+            }
+        },
+        "status": "Backorder",
+        "statusType": "time-sensitive",
+        "listPrice": "$499.99",
+        "quantityAvailable": "345",
+        "orders": {
+            "number": "00-10542-89507",
+            "quantity": 100
+        },
+        "watchers": "205",
+        "protection": "$17.99",
+        "shipping": "FREE",
+        "delivery": "4/17 - 4/25"
+    },
+    {
+        "seller": "Microsoft",
+        "item": {
+            "title": "Microsoft XBOX One Brand New Gaming System with Four Controllers",
+            "subtitle": "SKU : A43BTR5678 • Quantity : 1",
+            "titleShort": "XBOX One",
+            "image": {
+                "url": "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/shoes.jpeg",
+                "alt": "Microsoft XBOX"
+            }
+        },
+        "status": "Preparing",
+        "statusType": "neutral",
+        "listPrice": "$499.99",
+        "quantityAvailable": "399",
+        "orders": {
+            "number": "00-10542-89507",
+            "quantity": 100
+        },
+        "watchers": "305",
+        "protection": "$27.99",
+        "shipping": "FREE",
+        "delivery": "4/9 - 4/11"
+    },
+    {
+        "seller": "Sony",
+        "item": {
+            "title": "Sony Playstation 5 Brand New Gaming System with Four Controllers",
+            "subtitle": "SKU : A43BTR5678 • Quantity : 1",
+            "titleShort": "Playstation 5",
+            "image": {
+                "url": "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/shoes.jpeg",
+                "alt": "Sony Playstation 5"
+            }
+        },
+        "status": "Restocking",
+        "statusType": "trustworthy",
+        "listPrice": "$519.99",
+        "quantityAvailable": "205",
+        "orders": {
+            "number": "00-10542-89507",
+            "quantity": 100
+        },
+        "watchers": "199",
+        "protection": "$29.99",
+        "shipping": "FREE",
+        "delivery": "4/11 - 4/15"
+    }
+]

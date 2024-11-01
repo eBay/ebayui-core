@@ -4,7 +4,7 @@ import Expander from "makeup-expander";
 import { scroll } from "../../common/element-scroll";
 import * as eventUtils from "../../common/event-utils";
 import safeRegex from "../../common/build-safe-regex";
-import type { AttrClass, AttrString } from "marko/tags-html";
+import type { AttrClass } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 
 export interface ComboboxOption {
@@ -31,8 +31,7 @@ interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
         htmlAttributes?: Record<string, unknown>;
         renderBody?: Marko.Body;
     };
-    options?: Marko.RepeatableAttrTag<ComboboxOption>;
-    roledescription?: AttrString;
+    options?: Marko.AttrTag<ComboboxOption>;
     "chevron-size"?: "large";
     "on-focus"?: (event: ComboboxEvent) => void;
     "on-button-click"?: (event: { originalEvent: MouseEvent }) => void;

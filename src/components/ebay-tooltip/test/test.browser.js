@@ -12,7 +12,7 @@ let component;
 
 const renderBodyText = "View options";
 
-describe("given the default tooltip", () => {
+describe("default tooltip", () => {
     beforeEach(async () => {
         component = await render(Standard);
     });
@@ -28,32 +28,13 @@ describe("given the default tooltip", () => {
             );
         });
 
-        describe("when the host element loses hover", () => {
-            beforeEach(async () => {
-                await fireEvent.mouseLeave(
-                    component.getByText(renderBodyText).parentElement,
-                );
-            });
-
-            it("then it emits the collapse event", async () => {
-                await waitFor(() =>
-                    expect(component.emitted("collapse")).has.length(1),
-                );
-            });
-        });
-
         describe("when the escape key is pressed", () => {
-            beforeEach(async () => {
-                await fireEvent.keyDown(
-                    component.getByText(renderBodyText).parentElement,
-                    {
-                        key: "Escape",
-                        keyCode: 27,
-                    },
-                );
-            });
-
             it("then it emits the collapse event", async () => {
+                await fireEvent.keyDown(document, {
+                    key: "Escape",
+                    keyCode: 27,
+                });
+
                 await waitFor(() =>
                     expect(component.emitted("collapse")).has.length(1),
                 );

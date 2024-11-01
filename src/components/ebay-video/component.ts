@@ -58,14 +58,14 @@ interface VideoInput extends Omit<Marko.Input<"video">, `on${string}`> {
     action?: "play" | "pause";
     "volume-slider"?: boolean;
     tracks?: any[];
-    sources: Marko.AttrTag<Marko.Input<"source">>[];
+    sources: Marko.AttrTag<Marko.Input<"source">>;
     "report-text"?: AttrString;
     "spinner-timeout"?: number;
     "cdn-url"?: string;
     "css-url"?: string;
     version?: string;
     thumbnail?: string;
-    track?: Marko.AttrTag<Marko.Input<"track">>[];
+    track?: Marko.AttrTag<Marko.Input<"track">>;
     "error-text"?: AttrString;
     "a11y-play-text"?: AttrString;
     "a11y-load-text"?: AttrString;
@@ -73,6 +73,7 @@ interface VideoInput extends Omit<Marko.Input<"video">, `on${string}`> {
     "on-pause"?: (event: PlayPauseEvent) => void;
     "on-volume-change"?: (event: VolumeEvent) => void;
     "on-load-error"?: (err: Error) => void;
+    "shaka-config"?: any;
 }
 
 export interface Input extends WithNormalizedProps<VideoInput> {}
@@ -232,9 +233,10 @@ class Video extends Marko.Component<Input, State> {
 
     _loadSrc(index?: number) {
         const currentIndex = index || 0;
-        const src = this.input.sources[currentIndex];
+        const sources = [...this.input.sources];
+        const src = sources[currentIndex];
         let nextIndex: number;
-        if (src && this.input.sources.length > currentIndex + 1) {
+        if (src && sources.length > currentIndex + 1) {
             nextIndex = currentIndex + 1;
         }
 
@@ -314,6 +316,7 @@ class Video extends Marko.Component<Input, State> {
 
         // eslint-disable-next-line no-undef,new-cap
         this.player = new shaka.Player(this.video);
+        this.player.configure(this.input.shakaConfig || {});
         this._attach();
 
         this._loadSrc();

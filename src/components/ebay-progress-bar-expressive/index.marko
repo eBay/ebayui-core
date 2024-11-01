@@ -3,10 +3,12 @@ import { useReducedMotion } from "./component";
 $ const {
     a11yText = "Loading...",
     class: inputClass,
-    messages,
+    messages: rawMessages = [],
     size,
     ...htmlInput
 } = input;
+
+$ const messages = [...rawMessages];
 
 <div
     ...processHtmlAttributes(htmlInput)

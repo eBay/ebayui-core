@@ -20,6 +20,6 @@ export default [
         },
     },
     {
-        ignores: ["_cdn/", "**/docs/**", "dist/", "static/", "**/*.marko.js"],
+        ignores: ["_cdn/", "**/docs/**", "dist/", "static/", "_site", "**/*.marko.js"],
     },
 ];

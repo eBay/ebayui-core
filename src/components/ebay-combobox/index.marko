@@ -9,11 +9,6 @@ $ const {
     borderless,
     autocomplete,
     options,
-    roledescription = `Use up and down arrow keys to navigate options.${
-        component.autocomplete === "none"
-            ? ""
-            : " Options change based on text input"
-    }`,
     floatingLabel,
     listSelection,
     expanded,
@@ -72,7 +67,6 @@ $ var id = inputId || component.getElId("input");
             disabled=disabled
             value=state.currentValue
             aria-autocomplete=component.autocomplete
-            aria-roledescription=roledescription
             aria-haspopup="listbox"
             autocomplete="off"
             aria-expanded="false"

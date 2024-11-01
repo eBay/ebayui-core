@@ -6,15 +6,15 @@ export interface Step extends Omit<Marko.Input<"div">, `on${string}` | "title"> 
     current?: boolean;
     a11yText?: string;
     title?: Omit<Marko.Input<"h4">, `on${string}`> & {
-        as?: Marko.NativeTags;
+        as?: keyof Marko.NativeTags;
     }
 }
 
 static interface ProgressStepperInput extends Omit<Marko.Input<"div">, `on${string}`> {
     direction?: "row" | "column";
-    step?: Marko.AttrTag<Step>[];
+    step?: Marko.AttrTag<Step>;
     "default-state"?: "complete" | "upcoming" | "attention" | "current";
-    "a11y-heading-tag"?: Marko.NativeTags;
+    "a11y-heading-tag"?: keyof Marko.NativeTags;
     "a11y-heading-text"?: AttrString;
     "auto-paragraph"?: boolean;
 }

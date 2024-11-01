@@ -1,8 +1,5 @@
-<p>
-    <a href="https://travis-ci.org/eBay/ebayui-core"><img src="https://api.travis-ci.org/eBay/ebayui-core.svg?branch=master" alt="Build Status" /></a>
-    <a href='https://coveralls.io/github/eBay/ebayui-core?branch=master'><img src='https://coveralls.io/repos/eBay/ebayui-core/badge.svg?branch=master&service=github' alt='Coverage Status' /></a>
-    <a alt='BrowserStack status' href="https://automate.browserstack.com/public-build/Ry9hKzYrbzFaZDRhaVVURy9FMEg3VWhPRGxpaVlZSDNQWExYSXRUNFZEST0tLUtoQWxxOFBkMlFOVjRhUk0rN21IY2c9PQ==--0a38773d707add060a28097f5f014c7bcfcc60a1"><img src='https://automate.browserstack.com/badge.svg?badge_key=Ry9hKzYrbzFaZDRhaVVURy9FMEg3VWhPRGxpaVlZSDNQWExYSXRUNFZEST0tLUtoQWxxOFBkMlFOVjRhUk0rN21IY2c9PQ==--0a38773d707add060a28097f5f014c7bcfcc60a1'/></a>
-</p>
+[![eBay UI CI](https://github.com/eBay/ebayui-core/actions/workflows/node.js.yml/badge.svg?branch=master)](https://github.com/eBay/ebayui-core/actions/workflows/node.js.yml)
+[![Coverage Status](https://coveralls.io/repos/github/eBay/ebayui-core/badge.svg?branch=master)](https://coveralls.io/github/eBay/ebayui-core?branch=master)
 
 # eBayUI Core
 
@@ -70,6 +67,7 @@ Each layer does its bit to enforce and enhance accessibility. We consider this l
 -   [`ebay-infotip`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-infotip)
 -   [`ebay-inline-notice`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-inline-notice)
 -   [`ebay-lightbox-dialog`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-lightbox-dialog)
+-   [`ebay-list`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-list)
 -   [`ebay-listbox-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-listbox-button)
 -   [`ebay-menu`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu)
 -   [`ebay-menu-button`](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-menu-button)

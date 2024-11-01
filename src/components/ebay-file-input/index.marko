@@ -1,0 +1,64 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+$ const {
+    header,
+    class: inputClass,
+    subheader,
+    renderBody,
+    ...htmlInput
+} = input;
+
+<div class=["file-input", inputClass]>
+    <div class=["file-input__container", state.dragging && "file-input___container--dragged-over"]>
+        <div class="file-input__upload-icon">
+            <ebay-upload-24-icon/>
+        </div>
+        <div class="file-input__content">
+            <if(header)>
+                $ const {
+                    as: headerAs,
+                    class: headerClass,
+                    renderBody,
+                    ...headerHtmlInput
+                } = header;
+                <${headerAs || "span"}
+                    class=["file-input__content-header", headerClass]
+                    ...processHtmlAttributes(headerHtmlInput)
+                    id=header.id
+                >
+                    <${header.renderBody}/>
+                </>
+            </if>
+            <if(subheader)>
+                $ const {
+                    class: subheaderClass,
+                    renderBody,
+                    ...subheaderHtmlInput
+                } = subheader;
+                <span
+                    class=["file-input__content-subheader", subheaderClass]
+                    ...processHtmlAttributes(subheaderHtmlInput)
+                >
+                    <${subheader.renderBody}/>
+                </span>
+            </if>
+            <if(renderBody)>
+                <label for:scoped="input">
+                    <span class="file-input__content-cta">
+                        <${renderBody}/>
+                    </span>
+                </label>
+            </if>
+        </div>
+    </div>
+    <input
+        type="file"
+        class="file-input__input"
+        id:scoped="input"
+        ...processHtmlAttributes(htmlInput)
+        on-change("handleFileChange")
+        on-dragenter("handleDragOver")
+        on-dragover("handleDragOver")
+        on-dragleave("handleDragLeave")
+        on-drop("handleDragLeave")
+    >
+</div>

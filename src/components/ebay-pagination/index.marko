@@ -4,7 +4,7 @@ import type { Item } from './component';
 
 $ const {
     class: inputClass,
-    items: baseItems = [],
+    items: rawItems = [],
     a11yCurrentText = 'Results Pagination - Page 1',
     a11yPreviousText = 'Previous page',
     a11yNextText = 'Next page',
@@ -16,6 +16,7 @@ static var ignoredItemAttributes = ['current', 'disabled'];
 static function isItemHidden(index: number, range: {start: number, end: number, dotsIndex: number, leadingDotsIndex: number}) {
     return (index < range.start || index > range.end) && (range.dotsIndex !== index && range.leadingDotsIndex - 1 !== index);
 }
+$ const baseItems = [...rawItems];
 $ var lastItemIndex = baseItems.length - 1;
 $ var prevItem = (baseItems[0] && baseItems[0].type === 'previous' && baseItems[0]) || disabledItem;
 $ {
