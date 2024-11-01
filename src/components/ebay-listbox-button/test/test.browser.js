@@ -157,6 +157,13 @@ describe("given the listbox is in an expanded state", () => {
                 .has.property("selected")
                 .and.is.deep.equal([options[1].value]);
         });
+
+        it("then it has collapsed the listbox", () => {
+            expect(component.getByRole("button")).toHaveAttribute(
+                "aria-expanded",
+                "false",
+            );
+        });
     });
 
     describe("when the down arrow key is pressed", () => {
