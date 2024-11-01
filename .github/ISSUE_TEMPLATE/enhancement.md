@@ -1,6 +1,6 @@
 ---
 name: "🔧 Enhancement Request"
-description: Request changes to existing pattern or component
+about: Request changes to existing pattern or component
 title: "<existing component name>: <issue title>"
 labels: ["type: enhancement", "needs triage"]
 ---
