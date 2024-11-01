@@ -47,6 +47,11 @@ export default {
             description:
                 "A function that will be used to format the y-axis labels. By default is formatted as USD currency.",
         },
+        areaType: {
+            type: { name: "string", required: false },
+            description:
+                "The type of area chart to display. By default is `spline`. Options are `spline` and `area`",
+        },
         class: {
             type: { name: "string", require: false },
             description:
@@ -134,7 +139,7 @@ FiveSeries.parameters = {
 
 export const WithYLabelFormat = Template.bind({});
 WithYLabelFormat.args = {
-    title: "Five series sample area chart",
+    title: "Custom y-axis label format",
     description:
         "this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5",
     series: sampleSeriesData,
@@ -150,7 +155,7 @@ WithYLabelFormat.parameters = {
 
 export const WithXLabelFormat = Template.bind({});
 WithXLabelFormat.args = {
-    title: "Five series sample area chart",
+    title: "Custom x-axis label format",
     description:
         "this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5",
     series: sampleSeriesData,
@@ -163,6 +168,23 @@ WithXLabelFormat.parameters = {
     docs: {
         source: {
             code: tagToString("bar-chart", WithXLabelFormat.args),
+        },
+    },
+};
+
+export const NonSpline = Template.bind({});
+NonSpline.args = {
+    title: "Area chart with non-spline type",
+    description:
+        "this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5",
+    series: sampleSeriesData.slice(0, 1),
+    areaType: "area",
+};
+
+NonSpline.parameters = {
+    docs: {
+        source: {
+            code: tagToString("bar-chart", NonSpline.args),
         },
     },
 };

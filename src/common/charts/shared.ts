@@ -110,4 +110,25 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
         });
 
         return colors.map((color: any) => color.lineColor);
+    },
+    setSeriesMarkerStyles = function (series: Highcharts.PlotAreaOptions[]) {
+        series.forEach((s, i) => {
+            s.zIndex = series.length - i;
+            s.marker = {
+                symbol: "circle",
+                lineWidth: 1,
+                fillColor: "black",
+                lineColor: "white",
+                states: {
+                    hover: {
+                        animation: { duration: 0 },
+                        radius: 4,
+                        lineWidth: 2,
+                    },
+                    normal: {
+                        animation: false,
+                    },
+                },
+            };
+        });
     };

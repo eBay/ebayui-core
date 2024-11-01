@@ -11,13 +11,13 @@ import {
     tooltipShadows,
     setSeriesColors,
     colorMapping,
+    setSeriesMarkerStyles,
 } from "../../common/charts/shared";
 import { ebayLegend } from "../../common/charts/legend";
 import type { WithNormalizedProps } from "../../global";
 import tooltipTemplate from "./tooltip.marko";
 import type { Input as TooltipInput } from "./tooltip.marko";
 import type HighchartsTypes from "highcharts";
-
 declare const Highcharts: typeof HighchartsTypes;
 
 // Extend highcharts series data with a label property
@@ -37,6 +37,7 @@ interface AreaChartInput extends Omit<Marko.Input<"div">, `on${string}`> {
         dateFormat: typeof Highcharts.dateFormat,
     ) => string;
     yLabelFormatter?: (value: string | number) => string;
+    areaType?: "areaspline" | "area";
     "cdn-highcharts"?: string;
     "cdn-highcharts-accessibility"?: string;
     "cdn-highcharts-pattern-fill"?: string;
@@ -96,38 +97,24 @@ class AreaChart extends Marko.Component<Input> {
         return `ebay-bar-chart-${this.id}`;
     }
 
+    /**
+     * Initialize the highchart extensions
+     */
     _initializeHighchartExtensions() {
         // add custom legend wrapper function
         ebayLegend(Highcharts);
     }
 
+    /**
+     * Set up the chart with the input data and configuration options.
+     */
     _setupCharts() {
         // check if a single series was passed in for series and if so add it to a new array
         const series = Array.isArray(this.input.series)
             ? this.input.series
             : [this.input.series];
 
-        // update the zIndex of each series object so they render in the correct order
-        // and configure the markers that are displayed on hover
-        series.forEach((s, i) => {
-            s.zIndex = series.length - i;
-            s.marker = {
-                symbol: "circle",
-                lineWidth: 1,
-                fillColor: "black",
-                lineColor: "white",
-                states: {
-                    hover: {
-                        animation: { duration: 0 },
-                        radius: 4,
-                        lineWidth: 2,
-                    },
-                    normal: {
-                        animation: false,
-                    },
-                },
-            };
-        });
+        setSeriesMarkerStyles(series);
 
         setSeriesColors(series);
 
@@ -136,7 +123,7 @@ class AreaChart extends Marko.Component<Input> {
             chart: this.getChartConfig(),
             colors: colorMapping,
             xAxis: this.getXAxisConfig(),
-            yAxis: this.getYAxisConfig(series),
+            yAxis: this.getYAxisConfig(),
             legend: this.getLegendConfig(),
             tooltip: this.getTooltipConfig(),
             plotOptions: this.getPlotOptions(),
@@ -152,8 +139,9 @@ class AreaChart extends Marko.Component<Input> {
         );
     }
 
-    // Default formatter for the y-axis labels
-    // This function will format the y-axis labels as compact USD currency
+    /**
+     * Default format function for the yAxis labels
+     */
     _yLabelFormatter(value: number | string) {
         if (typeof value === "string") {
             value = parseFloat(value);
@@ -166,7 +154,11 @@ class AreaChart extends Marko.Component<Input> {
         }).format(value);
     }
 
-    // Deep merge two Highcharts config objects
+    /**
+     * Merge the source Highcharts config into the target Highcharts config
+     * 
+     * Allows for custom overrides of ebay default Highcharts configuration settings
+     */
     _mergeConfigs(
         source: { [key: string]: any },
         target: { [key: string]: any },
@@ -182,31 +174,39 @@ class AreaChart extends Marko.Component<Input> {
         return target;
     }
 
+    /**
+     * Get the title configuration for the chart
+     */
     getTitleConfig(): Highcharts.TitleOptions {
         return {
             text: this.input.title,
             align: "left",
             useHTML: true,
             style: {
-                // styles are set in JS since they are rendered in the SVG
                 fontSize: "18px",
                 fontWeight: "700",
             },
         };
     }
 
+    /**
+     * Get the chart configuration for the chart
+     */
     getChartConfig(): Highcharts.ChartOptions {
+        const type = this.input.areaType ?? "areaspline";
         return {
-            type: "areaspline",
+            type,
             animation: false,
             backgroundColor: backgroundColor,
             style: {
-                // styles are set in JS since they are rendered in the SVG
                 fontFamily: chartFontFamily,
             },
         };
     }
 
+    /**
+     * Get the xAxis configuration for the chart
+     */
     getXAxisConfig(): Highcharts.XAxisOptions {
         const xLabelFormatter = this.input.xLabelFormatter;
         return {
@@ -236,9 +236,10 @@ class AreaChart extends Marko.Component<Input> {
         };
     }
 
-    getYAxisConfig(
-        series: Highcharts.SeriesAreaOptions[],
-    ): Highcharts.YAxisOptions {
+    /**
+     * Get the yAxis configuration for the chart
+     */
+    getYAxisConfig(): Highcharts.YAxisOptions {
         // Formatter function for the yAxis labels
         const yLabelFormatter =
             this.input.yLabelFormatter ?? this._yLabelFormatter;
@@ -262,6 +263,9 @@ class AreaChart extends Marko.Component<Input> {
         };
     }
 
+    /**
+     * Get the legend configuration for the chart
+     */
     getLegendConfig(): Highcharts.LegendOptions {
         return {
             // If only a single series is provided do not display the legend
@@ -285,6 +289,9 @@ class AreaChart extends Marko.Component<Input> {
         };
     }
 
+    /**
+     * Get the tooltip configuration for the chart
+     */
     getTooltipConfig(): Highcharts.TooltipOptions {
         const yLabelFormatter =
             this.input.yLabelFormatter ?? this._yLabelFormatter;
@@ -294,46 +301,22 @@ class AreaChart extends Marko.Component<Input> {
                     "%b %e, %Y",
                     this.x as number,
                 );
-                const total = yLabelFormatter(
-                    this.points?.reduce(
-                        (acc, curr) => acc + (curr.y ?? 0),
-                        0,
-                    ) || 0,
-                );
+
+                // Display formatted total, only if there are more than one points
+                const total =
+                    (this.points?.length ?? 0) > 1 &&
+                    yLabelFormatter(
+                        this.points?.reduce(
+                            (acc, curr) => acc + (curr.y ?? 0),
+                            0,
+                        ) || 0,
+                    );
                 return tooltipTemplate.renderToString({
                     date,
                     total,
                     points: this.points,
                 } as TooltipInput);
             },
-            // positioner: function (
-            //     this: Highcharts.Tooltip,
-            //     labelWidth: number,
-            //     labelHeight: number,
-            //     point: Highcharts.TooltipPositionerPointObject,
-            // ): Highcharts.PositionObject {
-            //     // This code positions the tooltop centered above the stack of series data points
-            //     // By default, the tooltip is positioned to the left/right and centered vertically on the current series point
-            //     // Loop over each series[].data[], find closest one that matches plotX
-            //     const plotX = point.plotX || 0;
-            //     const points = component.chartRef.series.map((s) =>
-            //         s.data.find((p) => {
-            //             return Math.round(p?.plotX || 0) === plotX;
-            //         }),
-            //     );
-            //     // Find closest plotY value relative to the top of the chart
-            //     const minY = Math.min(...points.map((p) => p?.plotY || 0));
-            //     const chartPosition = this.chart.pointer.getChartPosition();
-            //     const distance = 32;
-            //     const x = plotX + chartPosition.left - labelWidth / 2;
-            //     const y =
-            //         chartPosition.top +
-            //         this.chart.plotTop +
-            //         minY -
-            //         labelHeight -
-            //         distance;
-            //     return { x, y };
-            // },
             useHTML: true,
             backgroundColor: tooltipBackgroundColor,
             borderWidth: 0,
@@ -348,7 +331,11 @@ class AreaChart extends Marko.Component<Input> {
         };
     }
 
+    /**
+     * Get the plot options configuration for the chart
+     */
     getPlotOptions(): Highcharts.PlotOptions {
+        const type = this.input.areaType ?? "areaspline";
         return {
             series: {
                 accessibility: {
@@ -365,7 +352,7 @@ class AreaChart extends Marko.Component<Input> {
                     animation: { duration: 0 },
                 },
             },
-            areaspline: {
+            [type]: {
                 className: "ebay-area-chart",
                 lineWidth: 1,
             },
@@ -373,7 +360,7 @@ class AreaChart extends Marko.Component<Input> {
     }
 
     onDestroy() {
-        this.chartRef.destroy();
+        this.chartRef?.destroy();
     }
 }
 

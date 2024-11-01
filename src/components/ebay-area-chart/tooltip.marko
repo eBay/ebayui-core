@@ -1,19 +1,29 @@
+import type HighchartsTypes from "highcharts";
 export interface Input {
     date: string;
-    points: any[];
+    points: HighchartsTypes.TooltipFormatterContextObject[] | undefined;
     total: string;
 }
 
 <b>${input.date}</b>
-<for|pts| of=input.points || []>
-    <div style='display:flex;justify-content:space-between;gap:var(--spacing-200);width:100%;'>
-        <span>${pts.point.series.name}</span>
-        <span>${pts.point.label}</span>
+<for|points| of=input.points || []>
+    <div class="ebay-area-chart__tooltip-value">
+        <span>${points.point.series.name}</span>
+        <span>${points.point.label}</span>
     </div>
 </for>
 <if(input.total)>
-    <div style='display:flex;justify-content:space-between;gap:var(--spacing-200);width:100%;'>
+    <div class="ebay-area-chart__tooltip-value">
         <span>Total</span>
         <span>${input.total}</span>
     </div>
 </if>
+
+style.less {
+    .ebay-area-chart__tooltip-value {
+        display: flex;
+        justify-content: space-between;
+        gap: var(--spacing-100);
+        width: 100%;
+    }
+}
