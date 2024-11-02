@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.4.1
+
+### Patch Changes
+
+- [#2315](https://github.com/eBay/ebayui-core/pull/2315) [`d53c7f6`](https://github.com/eBay/ebayui-core/commit/d53c7f6df4081796667c576c8a95b0a70cd364fe) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Fix collapseOnSelect
+
 ## 14.4.0
 
 ### Minor Changes
