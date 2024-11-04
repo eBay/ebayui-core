@@ -1,4 +1,4 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import mixedImplementationComponent from "./examples/mixed-implementation.marko";
@@ -6,15 +6,17 @@ import WithLabelTemplate from "./examples/with-label.marko";
 import DisabledTemplate from "./examples/disabled-with-label.marko";
 import WithLabelCode from "./examples/with-label.marko?raw";
 import DisabledCode from "./examples/disabled-with-label.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: {
         ...args,
-        renderBody: args.renderBody
-            ? (out) => {
+        renderBody: (args.renderBody
+            ? (out: any) => {
                   out.html(args.renderBody);
               }
-            : null,
+            : null) as any,
     },
 });
 
@@ -81,7 +83,7 @@ export default {
     },
 };
 
-export const WithLabel = (args) => ({
+export const WithLabel: Story<Input> = (args) => ({
     input: args,
     component: WithLabelTemplate,
 });
@@ -94,7 +96,7 @@ WithLabel.parameters = {
     },
 };
 
-export const Disabled = (args) => ({
+export const Disabled: Story<Input> = (args) => ({
     input: args,
     component: DisabledTemplate,
 });
@@ -107,7 +109,7 @@ Disabled.parameters = {
     },
 };
 
-export const mixedImplementation = Template.bind({});
+export const mixedImplementation: any = Template.bind({});
 mixedImplementation.component = mixedImplementationComponent;
 
 export const Isolated = Template.bind({});

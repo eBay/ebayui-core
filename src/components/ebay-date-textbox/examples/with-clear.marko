@@ -1,24 +1,37 @@
+export interface Input {
+    range?: boolean;
+}
+
 class {
+    declare state: {
+        value?: string;
+        rangeEnd?: string;
+    }
     onCreate() {
         this.state = {
-            value: null,
+            value: undefined,
             rangeEnd: undefined
         };
     }
 
-    handleChange({ selected, rangeStart, rangeEnd }) {
-        if (selected) {
-            this.state.value = selected;
+    handleChange(e: { selected: string | null }
+            | { rangeStart: string | null; rangeEnd: string | null }) {
+        if ("selected" in e && e.selected) {
+            this.state.value = e.selected;
         } else {
-            this.state.value = rangeStart;
-            this.state.rangeEnd = rangeEnd;
+            if ("rangeStart" in e && e.rangeStart) {
+                this.state.value = e.rangeStart;
+            }
+            if ("rangeEnd" in e && e.rangeEnd) {
+                this.state.rangeEnd = e.rangeEnd;
+            }
         }
     }
 
     clear() {
-        this.state.value = null;
+        this.state.value = undefined;
         if (this.input.range) {
-            this.state.rangeEnd = null;
+            this.state.rangeEnd = undefined;
         }
     }
 }

@@ -8,16 +8,16 @@ class {
     onCreate() {
         this.state = { current: 0 };
     }
-    handlePrev(e) {
+    handlePrev() {
         this.state.current = Math.max(this.state.current - 1, 0);
-        this.emit("previous", e);
+        this.emit("previous", ...arguments);
     }
-    handleNext(e) {
+    handleNext() {
         this.state.current = Math.min(this.state.current + 1, SIZE);
-        this.emit("next", e);
+        this.emit("next", ...arguments);
     }
-    handleSelect({ index }, e) {
-        this.state.current = index;
+    handleSelect(e: { index: number }) {
+        this.state.current = e.index;
         this.emit("select", e);
     }
 }

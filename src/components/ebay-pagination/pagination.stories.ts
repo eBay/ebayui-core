@@ -1,11 +1,13 @@
-import { addRenderBodies } from "../../../.storybook/utils";
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import interactiveTemplate from "./examples/buttons-interactive.marko";
 import interactiveCode from "./examples/buttons-interactive.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -178,7 +180,7 @@ Links.args = {
             href: "#",
             disabled: true,
         },
-    ],
+    ] as any,
 };
 Links.parameters = {
     docs: {
@@ -232,7 +234,7 @@ Buttons.args = {
             type: "next",
             disabled: true,
         },
-    ],
+    ] as any,
 };
 Buttons.parameters = {
     docs: {
@@ -242,7 +244,7 @@ Buttons.parameters = {
     },
 };
 
-export const Interactive = (args) => ({
+export const Interactive: Story<Input> = (args) => ({
     component: interactiveTemplate,
     input: addRenderBodies(args),
 });

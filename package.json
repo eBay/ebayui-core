@@ -51,7 +51,9 @@
         "marko.json",
         "package-lock.json",
         "*.browser.json",
-        "marketplace.json"
+        "marketplace.json",
+        "!**/{,*.}stories.*",
+        "!**/{,*.}stories-ignore.*"
     ],
     "license": "MIT",
     "repository": {

@@ -29,7 +29,12 @@
     Open Dialog
 </ebay-button>
 class {
-    onInput(input) {
+    declare state: {
+        open: boolean;
+    };
+    onInput(input: {
+        open: boolean;
+    }) {
         this.state = { open: input.open };
     }
     onCreate() {
@@ -38,8 +43,8 @@ class {
     openDialog() {
         this.state.open = true;
     }
-    closeDialog(e) {
+    closeDialog() {
         this.state.open = false;
-        this.emit("close", e);
+        this.emit("close", ...arguments);
     }
 }

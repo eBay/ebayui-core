@@ -1,15 +1,17 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { Story } from "@storybook/marko";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: {
         ...args,
-        renderBody: args.renderBody
-            ? (out) => {
+        renderBody: (args.renderBody
+            ? (out: any) => {
                   out.html(args.renderBody);
               }
-            : null,
+            : null) as any,
     },
 });
 
@@ -233,7 +235,7 @@ Standard.args = {
             src: "https://ir.ebaystatic.com/cr/v/c1/ebayui/video/v1/playlist.mpd",
             type: "dash",
         },
-    ],
+    ] as any,
 };
 Standard.parameters = {
     docs: {
@@ -257,7 +259,7 @@ ios.args = {
             src: "https://ir.ebaystatic.com/cr/v/c1/ebayui/video/v1/playlist.mpd",
             type: "dash",
         },
-    ],
+    ] as any,
     shakaConfig: {
         streaming: {
             lowLatencyMode: true,
@@ -284,7 +286,7 @@ mp4.args = {
         {
             src: "https://ir.ebaystatic.com/cr/v/c1/ebayui/video/v1/video.mp4",
         },
-    ],
+    ] as any,
 };
 mp4.parameters = {
     docs: {

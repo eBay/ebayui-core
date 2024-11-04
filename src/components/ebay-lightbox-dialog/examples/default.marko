@@ -1,4 +1,5 @@
 export interface Input {
+    open: boolean;
     header: {
         renderBody: Marko.Body;
     }
@@ -11,6 +12,9 @@ $ const {
 } = input;
 
 class {
+    declare state: {
+        open: boolean
+    }
     onInput(input: Input) {
         this.state = { open: input.open };
     }
@@ -20,9 +24,9 @@ class {
     openDialog() {
         this.state.open = true;
     }
-    closeDialog(e) {
+    closeDialog() {
         this.state.open = false;
-        this.emit("close", e);
+        this.emit("close", ...arguments);
     }
 }
 

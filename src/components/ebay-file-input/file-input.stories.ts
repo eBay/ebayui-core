@@ -1,5 +1,3 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
 import Readme from "./README.md";
 import component from "./index.marko";
 import DefaultTemplate from "./examples/default.marko";
@@ -8,10 +6,8 @@ import WithPreviewCardsTemplate from "./examples/with-preview-cards.marko";
 import WithPreviewCardsCode from "./examples/with-preview-cards.marko?raw";
 import WithMockUploadsTemplate from "./examples/with-mock-uploads.marko";
 import WithMockUploadsCode from "./examples/with-mock-uploads.marko?raw";
-
-const Template = (args) => ({
-    input: addRenderBodies(args),
-});
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
 export default {
     title: "form input/ebay-file-input",
@@ -57,7 +53,7 @@ export default {
     },
 };
 
-export const Default = (args) => ({
+export const Default: Story<Input> = (args) => ({
     input: args,
     component: DefaultTemplate,
 });
@@ -73,7 +69,7 @@ Default.parameters = {
     },
 };
 
-export const WithPreviewCards = (args) => ({
+export const WithPreviewCards: Story<Input> = (args) => ({
     input: args,
     component: WithPreviewCardsTemplate,
 });
@@ -89,7 +85,7 @@ WithPreviewCards.parameters = {
     },
 };
 
-export const WithMockUploads = (args) => ({
+export const WithMockUploads: Story<Input> = (args) => ({
     input: args,
     component: WithMockUploadsTemplate,
 });

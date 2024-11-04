@@ -1,4 +1,4 @@
-import { buildExtensionTemplate } from "../../../.storybook/utils";
+import { buildExtensionTemplate } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import DefaultTemplate from "./examples/default.marko";

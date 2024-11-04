@@ -1,4 +1,4 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Checkbox from "./index.marko";
 import GroupTemplate from "./examples/group.marko";
@@ -7,8 +7,10 @@ import DisabledTemplate from "./examples/DisabledWithLabel.marko";
 import GroupCode from "./examples/group.marko?raw";
 import WithLabelCode from "./examples/WithLabel.marko?raw";
 import DisabledCode from "./examples/DisabledWithLabel.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component-browser";
 
-const Template = (args) => ({ input: args });
+const Template: Story<Input> = (args) => ({ input: args });
 
 export default {
     title: "form input/ebay-checkbox",
@@ -88,7 +90,7 @@ export default {
     },
 };
 
-export const WithLabel = (args) => ({
+export const WithLabel: Story<Input> = (args) => ({
     input: args,
     component: WithLabelTemplate,
 });
@@ -104,7 +106,7 @@ WithLabel.parameters = {
     },
 };
 
-export const Disabled = (args) => ({
+export const Disabled: Story<Input> = (args) => ({
     input: args,
     component: DisabledTemplate,
 });
@@ -120,7 +122,7 @@ Disabled.parameters = {
     },
 };
 
-export const Group = (args) => ({
+export const Group: Story<Input> = (args) => ({
     input: args,
     component: GroupTemplate,
 });

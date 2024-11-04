@@ -1,7 +1,7 @@
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
+} from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./examples/default.marko";
 import code from "./examples/default.marko?raw";
@@ -11,8 +11,10 @@ import WithPrevButtonTemplate from "./examples/with-prev-button.marko";
 import WithPrevButtonCode from "./examples/with-prev-button.marko?raw";
 import WithFooterTemplate from "./examples/with-footer.marko";
 import WithFooterCode from "./examples/with-footer.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./index.marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -174,7 +176,7 @@ Default.args = {
     a11yCloseText: "Close dialog",
     a11yMinimizeText: "Minimize Dialog",
     a11yMaximizeText: "Maximize Dialog",
-};
+} as any;
 
 Default.parameters = {
     docs: {
@@ -202,7 +204,7 @@ Expressive.args = {
     bannerImgPosition: "top",
     a11yMinimizeText: "Minimize Dialog",
     a11yMaximizeText: "Maximize Dialog",
-};
+} as any;
 
 Expressive.parameters = {
     docs: {

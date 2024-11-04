@@ -1,4 +1,5 @@
 export interface Input {
+    open?: boolean;
     renderBody?: Marko.Body;
     header: {
         renderBody?: Marko.Body;
@@ -38,18 +39,21 @@ $ const {
 
 <ebay-button on-click('openDialog')>Open Confirm Dialog</ebay-button>
 class {
-    onInput(input) {
+    declare state: {
+        open?: boolean;
+    }
+    onInput(input: Input) {
         this.state = { open: input.open };
     }
     openDialog() {
         this.state.open = true;
     }
-    closeDialog(ev) {
+    closeDialog() {
         this.state.open = false;
-        this.emit('reject', ev);
+        this.emit('reject', ...arguments);
     }
-    success(ev) {
+    success() {
         this.state.open = false;
-        this.emit('confirm', ev);
+        this.emit('confirm', ...arguments);
     }
 }

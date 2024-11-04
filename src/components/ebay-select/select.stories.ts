@@ -1,4 +1,4 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import WithLabelTemplate from "./examples/external-label.marko";
@@ -7,15 +7,17 @@ import DisabledTemplate from "./examples/disabled-with-label.marko";
 import WithLabelCode from "./examples/external-label.marko?raw";
 import InFormCode from "./examples/in-form.marko";
 import DisabledCode from "./examples/disabled-with-label.marko";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: {
         ...args,
-        renderBody: args.renderBody
-            ? (out) => {
+        renderBody: (args.renderBody
+            ? (out: any) => {
                   out.html(args.renderBody);
               }
-            : null,
+            : null) as any,
     },
 });
 
@@ -110,7 +112,7 @@ Floating.args = {
             text: "option 3",
             value: "option 3",
         },
-    ],
+    ] as any,
 };
 Floating.parameters = {
     docs: {
@@ -122,7 +124,7 @@ Floating.parameters = {
     },
 };
 
-export const ExternalLabel = (args) => ({
+export const ExternalLabel: Story<Input> = (args) => ({
     input: args,
     component: WithLabelTemplate,
 });
@@ -153,10 +155,10 @@ ExternalLabel.args = {
             text: "option 3",
             value: "option 3",
         },
-    ],
+    ] as any,
 };
 
-export const Disabled = (args) => ({
+export const Disabled: Story<Input> = (args) => ({
     input: args,
     component: DisabledTemplate,
 });
@@ -169,7 +171,7 @@ Disabled.parameters = {
     },
 };
 
-export const InForm = (args) => ({
+export const InForm: Story<Input> = (args) => ({
     input: args,
     component: InFormTemplate,
 });

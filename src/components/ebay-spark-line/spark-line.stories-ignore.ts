@@ -1,10 +1,12 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import * as sampleData from "./examples/data.json";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -46,7 +48,7 @@ Basic.parameters = {
 };
 
 export const Positive = Template.bind({});
-Positive.args = sampleData.positive;
+Positive.args = sampleData.positive as any;
 
 Positive.parameters = {
     docs: {
@@ -57,7 +59,7 @@ Positive.parameters = {
 };
 
 export const Negative = Template.bind({});
-Negative.args = sampleData.negative;
+Negative.args = sampleData.negative as any;
 
 Negative.parameters = {
     docs: {
