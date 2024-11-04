@@ -1,14 +1,13 @@
 import data from "./data.json";
-import type { TableSort } from "../component";
 import type { Input as TableInput } from "<ebay-table>";
 class {
     declare state: {
-        sorted: Record<string, TableSort>;
+        sorted: Record<string, "asc" | "desc" | "none">;
     };
     onCreate() {
         this.state = { sorted: { sellerCol: "asc" } };
     }
-    onSort: TableInput["on-sort"] = (event: { sorted: Record<string, TableSort> }) => {
+    onSort: TableInput["on-sort"] = (event) => {
         this.state.sorted = event.sorted;
         this.emit("sort", event);
     }
