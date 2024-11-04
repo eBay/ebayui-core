@@ -1,3 +1,5 @@
+import type { Input as ConfirmDialogInput } from "<ebay-confirm-dialog>";
+
 export interface Input {
     open?: boolean;
     renderBody?: Marko.Body;
@@ -48,12 +50,12 @@ class {
     openDialog() {
         this.state.open = true;
     }
-    closeDialog() {
+    closeDialog: ConfirmDialogInput["on-reject"] = (e: Event) => {
         this.state.open = false;
-        this.emit('reject', ...arguments);
+        this.emit('reject', e);
     }
-    success() {
+    success: ConfirmDialogInput["on-confirm"] = (e) => {
         this.state.open = false;
-        this.emit('confirm', ...arguments);
+        this.emit('confirm', e);
     }
 }

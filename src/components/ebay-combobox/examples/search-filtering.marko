@@ -1,5 +1,6 @@
 import countryList from "./data.json";
 import type { AttrStringOrNumber, AttrClass } from "marko/tags-html";
+import type { Input as ComboboxInput } from "<ebay-combobox>";
 class {
     declare state: {
         options: Array<{
@@ -53,8 +54,8 @@ class {
             }, 500);
         });
     }
-    selected() {
-        console.log("selected", ...arguments);
+    selected: ComboboxInput["on-select"] = (e) => {
+        console.log("selected", e);
     }
 }
 

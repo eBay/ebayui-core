@@ -43,8 +43,8 @@ class {
     openDialog() {
         this.state.open = true;
     }
-    closeDialog() {
+    closeDialog(e: Event) {
         this.state.open = false;
-        this.emit("close", ...arguments);
+        this.emit("close", e);
     }
 }

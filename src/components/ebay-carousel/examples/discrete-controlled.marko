@@ -1,3 +1,5 @@
+import type { Input as CarouselInput } from "<ebay-carousel>";
+
 export interface Input {
     items: number;
     index: number;
@@ -18,7 +20,7 @@ class {
             index: 0
         }
     }
-    onMove({visibleIndexes}: {visibleIndexes: number[]}) {
+    onMove: CarouselInput["on-move"] = ({visibleIndexes}) => {
         this.state.index = visibleIndexes[0];
     }
 }

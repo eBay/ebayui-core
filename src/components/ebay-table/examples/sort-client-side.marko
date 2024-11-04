@@ -1,5 +1,6 @@
 import data from "./data.json";
-import { type TableSort } from "../component";
+import { TableSort } from "../component";
+import type { Input as TableInput } from "<ebay-table>";
 class {
     declare state: {
         sorted: Record<string, TableSort>;
@@ -8,7 +9,7 @@ class {
     onCreate() {
         this.state = { sorted: {}, data };
     }
-    onSort(event: { sorted: Record<string, TableSort> }, ...params: any) {
+    onSort: TableInput["on-sort"] = (event: { sorted: Record<string, TableSort> }) => {
         this.state.sorted = event.sorted;
         this.state.data = [...data].sort((a, b) => {
             if (this.state.sorted.listPriceCol === "asc") {
@@ -32,7 +33,7 @@ class {
             }
             return 0;
         });
-        this.emit("sort", event, ...params);
+        this.emit("sort", event);
     }
 }
 <ebay-table on-sort("onSort") ...input>
