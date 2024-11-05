@@ -83,12 +83,6 @@ exports[`dialog > passes through additional html attributes 1`] = `
       <!--F/-->
       <!--F/-->
     </div>
-    <div
-      class="lightbox-dialog__footer"
-    >
-      <!--F#20-->
-      <!--F/-->
-    </div>
   </div>
 </div>
 `;
@@ -176,12 +170,6 @@ exports[`dialog > passes through additional html attributes 2`] = `
       <!--F/-->
       <!--F/-->
     </div>
-    <div
-      class="lightbox-dialog__footer"
-    >
-      <!--F#20-->
-      <!--F/-->
-    </div>
   </div>
 </div>
 `;
@@ -252,9 +240,6 @@ exports[`dialog > renders basic version 1`] = `
           [36m</a>[39m
         [36m</p>[39m
       [36m</div>[39m
-      [36m<div[39m
-        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
-      [36m/>[39m
     [36m</div>[39m
   [36m</div>[39m
   [36m<button[39m
@@ -337,9 +322,6 @@ exports[`dialog > renders expressive version 1`] = `
           [36m</a>[39m
         [36m</p>[39m
       [36m</div>[39m
-      [36m<div[39m
-        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
-      [36m/>[39m
     [36m</div>[39m
   [36m</div>[39m
   [36m<button[39m
@@ -417,9 +399,6 @@ exports[`dialog > renders in open state 1`] = `
           [36m</a>[39m
         [36m</p>[39m
       [36m</div>[39m
-      [36m<div[39m
-        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
-      [36m/>[39m
     [36m</div>[39m
   [36m</div>[39m
   [36m<button[39m
@@ -584,9 +563,6 @@ exports[`dialog > renders size=large 1`] = `
           [36m</a>[39m
         [36m</p>[39m
       [36m</div>[39m
-      [36m<div[39m
-        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
-      [36m/>[39m
     [36m</div>[39m
   [36m</div>[39m
   [36m<button[39m
@@ -665,9 +641,6 @@ exports[`dialog > renders size=narrow 1`] = `
           [36m</a>[39m
         [36m</p>[39m
       [36m</div>[39m
-      [36m<div[39m
-        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
-      [36m/>[39m
     [36m</div>[39m
   [36m</div>[39m
   [36m<button[39m
@@ -746,9 +719,6 @@ exports[`dialog > renders size=wide 1`] = `
           [36m</a>[39m
         [36m</p>[39m
       [36m</div>[39m
-      [36m<div[39m
-        [33mclass[39m=[32m"lightbox-dialog__footer"[39m
-      [36m/>[39m
     [36m</div>[39m
   [36m</div>[39m
   [36m<button[39m
