@@ -1,17 +1,19 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import FieldsetTemplate from "./examples/fieldset.marko";
 import FieldsetCode from "./examples/fieldset.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: {
         ...args,
-        renderBody: args.renderBody
-            ? (out) => {
+        renderBody: (args.renderBody
+            ? (out: any) => {
                   out.html(args.renderBody);
               }
-            : null,
+            : null) as any,
     },
 });
 
@@ -94,7 +96,7 @@ Isolated.parameters = {
     },
 };
 
-export const Fieldset = (args) => ({
+export const Fieldset: Story<Input> = (args) => ({
     input: args,
     component: FieldsetTemplate,
 });

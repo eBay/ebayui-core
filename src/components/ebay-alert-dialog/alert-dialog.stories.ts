@@ -1,9 +1,11 @@
-import { addRenderBodies } from "../../../.storybook/utils";
+import { Story } from "@storybook/marko";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./examples/default.marko";
+import type { Input } from "./index.marko";
 import code from "./examples/default.marko?raw";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -87,7 +89,7 @@ Default.args = {
         renderBody: `OK`,
     },
     renderBody: `You must acknowledge this alert to continue.`,
-};
+} as any;
 Default.parameters = {
     docs: {
         source: {

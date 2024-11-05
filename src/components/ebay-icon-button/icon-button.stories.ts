@@ -1,9 +1,11 @@
-import { addRenderBodies } from "../../../.storybook/utils";
+import { Story } from "@storybook/marko";
+import { addRenderBodies } from "../../common/storybook/utils";
 import component from "./examples/icon-button.marko";
 import code from "./examples/icon-button.marko?raw";
 import Readme from "./README.md";
+import { Input } from "./component-browser";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 // const Template = args =({ input: withRenderBody(args) })

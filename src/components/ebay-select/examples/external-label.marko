@@ -1,11 +1,21 @@
+export interface Input {
+    options: Array<{
+        value: string,
+        text: string
+    }>;
+}
+
 class {
+    declare state: {
+        selected: number | null
+    }
     onCreate() {
         this.state = {
             selected: null
         }
     }
 
-    handleChange({ index }) {
+    handleChange({ index }: { index: number }) {
         this.state.selected = index;
     }
 }

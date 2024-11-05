@@ -1,8 +1,9 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import badge from "./index.marko";
+import { Story } from "@storybook/marko";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import badge, { type Input } from "./index.marko";
 import Readme from "./README.md";
 
-const Template = (args) => ({ input: args });
+const Template: Story<Input> = (args) => ({ input: args });
 
 export default {
     title: "graphics & icons/ebay-badge",

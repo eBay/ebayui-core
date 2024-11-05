@@ -10,6 +10,7 @@ export interface MenuItem extends Omit<Marko.Input<"button">, `on${string}`> {
 export interface BaseMenuInput {
     items?: Marko.AttrTag<MenuItem>;
     type?: string;
+    separator?: Marko.AttrTag<{}>;
 }
 
 export interface MenuState {

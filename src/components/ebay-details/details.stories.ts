@@ -1,13 +1,15 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { Story } from "@storybook/marko";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Details from "./index.marko";
+import type { Input } from "./component-browser";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: {
         ...args,
-        renderBody(out) {
+        renderBody: function(out: any) {
             out.html(args.renderBody);
-        },
+        } as any,
     },
 });
 
@@ -86,7 +88,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    renderBody: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    renderBody: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.` as any,
     text: "Show me the details!",
     size: "regular",
     open: false,

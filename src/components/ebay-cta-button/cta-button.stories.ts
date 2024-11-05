@@ -1,13 +1,14 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { Story } from "@storybook/marko";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
-import Cta from "./index.marko";
+import Cta, { type Input } from "./index.marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: {
         ...args,
-        renderBody(out) {
+        renderBody: function(out: any) {
             out.html(args.renderBody);
-        },
+        } as any,
     },
 });
 
@@ -50,7 +51,7 @@ Standard.args = {
     renderBody: "CTA button",
     href: "http://www.ebay.com",
     size: "regular",
-};
+} as any;
 
 Standard.parameters = {
     docs: {

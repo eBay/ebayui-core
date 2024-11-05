@@ -1,13 +1,15 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { Story } from "@storybook/marko";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import component from "./index.marko";
 import Readme from "./README.md";
+import type { Input } from "./component-browser";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: {
         ...args,
-        renderBody(out) {
+        renderBody: function(out: any) {
             out.html(args.renderBody);
-        },
+        } as any,
     },
 });
 
@@ -88,7 +90,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    renderBody: "Fake-Link",
+    renderBody: "Fake-Link" as any,
     disabled: false,
 };
 

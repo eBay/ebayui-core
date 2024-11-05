@@ -1,8 +1,8 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
+} from "../../common/storybook/utils";
 import Readme from "./README.md";
 import component from "./index.marko";
 import withIconsTemplate from "./examples/icons.marko";
@@ -15,8 +15,10 @@ import externalLabelTemplate from "./examples/externalLabel.marko";
 import externalLabelCode from "./examples/externalLabel.marko?raw";
 import columnsTemplate from "./examples/columns.marko";
 import columnsCode from "./examples/columns.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -116,7 +118,7 @@ Default.args = {
         { renderBody: "Button 4" },
         { renderBody: "Button 5" },
         { renderBody: "Button 6" },
-    ],
+    ] as any,
 };
 
 Default.parameters = {

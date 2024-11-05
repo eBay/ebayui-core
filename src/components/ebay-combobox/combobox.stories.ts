@@ -1,14 +1,16 @@
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
-import { tagToString } from "../../../.storybook/storybook-code-source";
+} from "../../common/storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Combobox from "./index.marko";
+import type { Input } from "./component";
 import SearchFilteringTemplate from "./examples/search-filtering.marko";
 import SearchFilteringTemplateCode from "./examples/search-filtering.marko?raw";
+import { Story } from "@storybook/marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -172,7 +174,7 @@ FloatingLabel.args = {
         { text: "Basic Offer 4" },
     ],
     floatingLabel: "Default Label",
-};
+} as any;
 FloatingLabel.parameters = {
     docs: {
         source: {
@@ -200,7 +202,7 @@ Isolated.args = {
         { text: "Basic Offer 3", value: "5" },
         { text: "Basic Offer 4", value: "6" },
     ],
-};
+} as any;
 Isolated.parameters = {
     docs: {
         source: {

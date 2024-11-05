@@ -14,12 +14,15 @@ $ const titles = ["Option 1", "Option 2", "Option 3"];
 </div>
 
 class {
+    declare state: {
+        pressed: number[]
+    };
     onCreate() {
         this.state = {
             pressed: [],
         };
     }
-    handleChange({ pressed }) {
+    handleChange({ pressed }: { pressed: number[] }) {
         this.state.pressed = pressed;
     }
     clearSelection() {

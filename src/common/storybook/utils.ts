@@ -1,4 +1,4 @@
-function addRenderBodies(input: any) {
+function addRenderBodies(input: any): any {
     if (input && typeof input === "object") {
         if (Array.isArray(input)) {
             return input.map(addRenderBodies);

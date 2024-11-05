@@ -1,14 +1,16 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
+} from "../../common/storybook/utils";
 import avatar from "./index.marko";
 import Readme from "./README.md";
 import imageTemplate from "./examples/image.marko";
 import imageTemplateCode from "./examples/image.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./index.marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 

@@ -1,16 +1,18 @@
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
-import { tagToString } from "../../../.storybook/storybook-code-source";
+} from "../../common/storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
+import type { Input } from "./component";
 import WithLinksTemplate from "./examples/links.marko";
 import WithLinksTemplateCode from "./examples/links.marko?raw";
 import WithSpecificLinksTemplate from "./examples/linkMap.marko";
 import WithSpecificLinksTemplateCode from "./examples/linkMap.marko?raw";
+import { Story } from "@storybook/marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 

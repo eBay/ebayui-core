@@ -1,10 +1,12 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import sampleSeriesData from "./examples/data.json";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -64,12 +66,12 @@ export const Standard = Template.bind({});
 Standard.args = {
     title: "Single series sample area chart",
     description: "this chart displays 30 days of sample values",
-    series: sampleSeriesData.slice(0, 1),
+    series: sampleSeriesData.slice(0, 1) as Highcharts.SeriesAreaOptions[],
 };
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString("bar-chart", Standard.args),
+            code: tagToString("ebay-area-chart", Standard.args),
         },
     },
 };
@@ -79,12 +81,12 @@ TwoSeries.args = {
     title: "Two series sample area chart",
     description:
         "this chart displays 30 days of values for sample1 and sample2",
-    series: sampleSeriesData.slice(0, 2),
+    series: sampleSeriesData.slice(0, 2) as Highcharts.SeriesAreaOptions[],
 };
 TwoSeries.parameters = {
     docs: {
         source: {
-            code: tagToString("bar-chart", TwoSeries.args),
+            code: tagToString("ebay-area-chart", TwoSeries.args),
         },
     },
 };
@@ -94,15 +96,12 @@ ThreeSeries.args = {
     title: "Three series sample area chart",
     description:
         "this chart displays 30 days of values for sample1, sample2 and sample3",
-    series: sampleSeriesData.slice(0, 3),
-    highchartOptions: {
-        title: { text: "override!" },
-    },
+    series: sampleSeriesData.slice(0, 3) as Highcharts.SeriesAreaOptions[],
 };
 ThreeSeries.parameters = {
     docs: {
         source: {
-            code: tagToString("bar-chart", ThreeSeries.args),
+            code: tagToString("ebay-area-chart", ThreeSeries.args),
         },
     },
 };
@@ -112,12 +111,12 @@ FourSeries.args = {
     title: "Four series sample area chart",
     description:
         "this chart displays 30 days of values for sample1, sample2, sample3, and sample4",
-    series: sampleSeriesData.slice(0, 4),
+    series: sampleSeriesData.slice(0, 4) as Highcharts.SeriesAreaOptions[],
 };
 FourSeries.parameters = {
     docs: {
         source: {
-            code: tagToString("bar-chart", FourSeries.args),
+            code: tagToString("ebay-area-chart", FourSeries.args),
         },
     },
 };
@@ -127,12 +126,12 @@ FiveSeries.args = {
     title: "Five series sample area chart",
     description:
         "this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5",
-    series: sampleSeriesData,
+    series: sampleSeriesData as Highcharts.SeriesAreaOptions[],
 };
 FiveSeries.parameters = {
     docs: {
         source: {
-            code: tagToString("bar-chart", FiveSeries.args),
+            code: tagToString("ebay-area-chart", FiveSeries.args),
         },
     },
 };
@@ -142,13 +141,13 @@ WithYLabelFormat.args = {
     title: "Custom y-axis label format",
     description:
         "this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5",
-    series: sampleSeriesData,
+    series: sampleSeriesData as Highcharts.SeriesAreaOptions[],
     yLabelFormatter: (value) => `${value}`,
 };
 WithYLabelFormat.parameters = {
     docs: {
         source: {
-            code: tagToString("bar-chart", WithYLabelFormat.args),
+            code: tagToString("ebay-area-chart", WithYLabelFormat.args),
         },
     },
 };
@@ -158,8 +157,11 @@ WithXLabelFormat.args = {
     title: "Custom x-axis label format",
     description:
         "this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5",
-    series: sampleSeriesData,
+    series: sampleSeriesData as Highcharts.SeriesAreaOptions[],
     xLabelFormatter: (value, dateFormat) => {
+        if (typeof value !== "number") {
+            return value;
+        }
         return dateFormat("%A", value);
     },
 };
@@ -167,7 +169,7 @@ WithXLabelFormat.args = {
 WithXLabelFormat.parameters = {
     docs: {
         source: {
-            code: tagToString("bar-chart", WithXLabelFormat.args),
+            code: tagToString("ebay-area-chart", WithXLabelFormat.args),
         },
     },
 };
@@ -177,14 +179,14 @@ NonSpline.args = {
     title: "Area chart with non-spline type",
     description:
         "this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5",
-    series: sampleSeriesData.slice(0, 1),
+    series: sampleSeriesData.slice(0, 1) as Highcharts.SeriesAreaOptions[],
     areaType: "area",
 };
 
 NonSpline.parameters = {
     docs: {
         source: {
-            code: tagToString("bar-chart", NonSpline.args),
+            code: tagToString("ebay-area-chart", NonSpline.args),
         },
     },
 };

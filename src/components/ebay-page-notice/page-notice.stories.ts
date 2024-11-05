@@ -1,13 +1,15 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import withAction from "./examples/with-action.marko";
 import withActionCode from "./examples/with-action.marko?raw";
 import withDismiss from "./examples/with-dismiss.marko";
 import withDismissCode from "./examples/with-dismiss.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -118,7 +120,7 @@ Basic.args = {
         &amp;
         <a href='#'>Security code</a>
     </p>`,
-};
+} as any;
 Basic.parameters = {
     docs: {
         source: {
@@ -127,7 +129,7 @@ Basic.parameters = {
     },
 };
 
-export const WithAction = (args) => ({
+export const WithAction: Story<Input> = (args) => ({
     input: args,
     component: withAction,
 });
@@ -137,7 +139,7 @@ WithAction.args = {
     a11yDismissText: "",
     status: null,
     icon: null,
-};
+} as any;
 
 WithAction.parameters = {
     docs: {
@@ -147,7 +149,7 @@ WithAction.parameters = {
     },
 };
 
-export const WithDismiss = (args) => ({
+export const WithDismiss: Story<Input> = (args) => ({
     input: args,
     component: withDismiss,
 });
@@ -158,7 +160,7 @@ WithDismiss.args = {
     a11yDismissText: "Dismiss Notice",
     status: "information",
     icon: null,
-};
+} as any;
 
 WithDismiss.parameters = {
     docs: {

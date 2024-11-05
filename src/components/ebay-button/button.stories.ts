@@ -1,14 +1,15 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
-import button from "./index.marko";
+} from "../../common/storybook/utils";
+import button, { type Input } from "./index.marko";
 import Readme from "./README.md";
 import ExpandButtonTemplate from "./examples/expand-button.marko";
 import ExpandButtonTemplateCode from "./examples/expand-button.marko?raw";
+import { Story } from "@storybook/marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 // const Template = args =({ input: withRenderBody(args) })
@@ -211,7 +212,7 @@ Standard.args = {
     transparent: false,
     fixedHeight: false,
     truncate: false,
-};
+} as any;
 
 Standard.parameters = {
     docs: {

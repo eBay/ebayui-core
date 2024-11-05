@@ -80,8 +80,7 @@ exports[`skeleton > renders tile 1`] = `
         [33mclass[39m=[32m"skeleton__image custom-image"[39m
       [36m/>[39m
       [36m<div[39m
-        [33mclass[39m=[32m"skeleton__text skeleton__text--multiline"[39m
-        [33mlarge[39m=[32m""[39m
+        [33mclass[39m=[32m"skeleton__text skeleton__text--multiline skeleton__text--large"[39m
       [36m/>[39m
     [36m</div>[39m
   [36m</div>[39m

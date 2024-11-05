@@ -1,8 +1,8 @@
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
-import { tagToString } from "../../../.storybook/storybook-code-source";
+} from "../../common/storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import LocalizedTemplate from "./examples/localized.marko";
@@ -11,8 +11,10 @@ import WithClearTemplate from "./examples/with-clear.marko";
 import WithClearTemplateCode from "./examples/with-clear.marko?raw";
 import InField from "./examples/in-field.marko";
 import InFieldCode from "./examples/in-field.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 

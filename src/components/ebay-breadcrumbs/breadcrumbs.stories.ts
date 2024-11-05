@@ -1,5 +1,5 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Component from "./index.marko";
 import breadcrumb2 from "./examples/last-page-as-current.marko";
 import breadcrumb3 from "./examples/last-page-as-parent.marko";
@@ -9,10 +9,11 @@ import breadcrumb2Code from "./examples/last-page-as-current.marko?raw";
 import breadcrumb3Code from "./examples/last-page-as-parent.marko?raw";
 import breadcrumb4Code from "./examples/page-custom-attrs.marko?raw";
 import breadcrumb5Code from "./examples/buttons.marko?raw";
-
+import type { Input } from "./component";
 import Readme from "./README.md";
+import { Story } from "@storybook/marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -93,7 +94,7 @@ heading.args = {
             href: "https://www.ebay.com/b/Smart-Watch-Bands/182068/bn_16565906",
             renderBody: "Smart Watch Bands",
         },
-    ],
+    ] as any,
 };
 
 heading.parameters = {
