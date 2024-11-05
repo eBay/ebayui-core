@@ -168,9 +168,6 @@ Default.args = {
     header: {
         renderBody: `Heading Text`,
     },
-    footer: {
-        renderBody: "",
-    },
     a11yCloseText: "Close dialog",
     a11yMinimizeText: "Minimize Dialog",
     a11yMaximizeText: "Maximize Dialog",
@@ -193,9 +190,6 @@ export const Expressive = Template.bind({});
 Expressive.args = {
     header: {
         renderBody: `Heading Text`,
-    },
-    footer: {
-        renderBody: "",
     },
     bannerImgSrc:
         "http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/mountain.jpeg",

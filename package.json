@@ -1,12 +1,12 @@
 {
     "name": "@ebay/ebayui-core",
-    "version": "14.4.0",
+    "version": "14.4.1",
     "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
     "scripts": {
         "installMarkoV5": "npm i marko@5 @marko/compiler@5 --force",
         "installMarkoV4": "npm remove @marko/compiler && npm i marko@4 --force",
         "prepublishOnly": "node scripts/postpublish && node scripts/prepublish",
-        "version": " npm run importSVG && prettier . --write --log-level=warn && npm run build:readme && git add -A src && changeset version && npm i --package-lock-only",
+        "version": "npm run importSVG && prettier . --write --log-level=warn && npm run build:readme && git add -A src && changeset version && npm i --package-lock-only",
         "postpublish": "node scripts/postpublish",
         "start": "storybook dev -p 6006",
         "start:prod": "NODE_ENV=production npm start",

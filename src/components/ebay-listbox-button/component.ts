@@ -52,7 +52,7 @@ class ListboxButton extends Marko.Component<Input, State> {
     }
 
     handleListboxChange(event: ChangeEvent) {
-        if (this.input.collapseOnSelect === false) {
+        if (this.input.collapseOnSelect !== false) {
             this._expander.expanded = false;
         }
         const selectedIndex = event.index;
