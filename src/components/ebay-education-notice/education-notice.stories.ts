@@ -1,8 +1,8 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
+} from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import withFooter from "./examples/with-footer.marko";
@@ -14,8 +14,10 @@ import ProminentIconTemplateCode from "./examples/prominent-icon.marko?raw";
 
 import withDismiss from "./examples/with-dismiss.marko";
 import withDismissCode from "./examples/with-dismiss.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -113,7 +115,7 @@ Default.args = {
         renderBody: "Education notice title",
     },
     renderBody: "<p>Education notice info. Things you need to know.</p>",
-};
+} as any;
 Default.parameters = {
     docs: {
         source: {

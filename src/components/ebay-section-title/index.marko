@@ -8,7 +8,7 @@ static interface SectionTitleInput extends Omit<Marko.Input<"div">, `on${string}
     href?: string;
     subtitle?: Marko.AttrTag<Omit<Marko.Input<"span">, `on${string}`>>;
     info?: Marko.AttrTag<Omit<Marko.Input<"div">, `on${string}`>>;
-    overflow?: Omit<Marko.Input<"div">, `on${string}`>;
+    overflow?: Marko.AttrTag<Omit<Marko.Input<"div">, `on${string}`>>;
 }
 
 export interface Input extends WithNormalizedProps<SectionTitleInput> {}

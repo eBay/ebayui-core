@@ -1,9 +1,11 @@
-import { addRenderBodies } from "../../../.storybook/utils";
+import { Story } from "@storybook/marko";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Confirm from "./examples/default.marko";
 import code from "./examples/default.marko?raw";
+import type { Input } from "./index.marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -118,7 +120,7 @@ Default.args = {
         renderBody: `Cancel`,
     },
     renderBody: `You will permanently lose this address.`,
-};
+} as any;
 Default.parameters = {
     docs: {
         source: {

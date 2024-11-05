@@ -1,25 +1,10 @@
 import Readme from "./README.md";
 import component from "./index.marko";
-import {
-    addRenderBodies,
-    buildExtensionTemplate,
-} from "../../../.storybook/utils";
-
+import { buildExtensionTemplate } from "../../common/storybook/utils";
 import defaultTemplate from "./examples/default.marko";
 import defaultTemplateCode from "./examples/default.marko?raw";
 import withActionTemplate from "./examples/action.marko";
 import withActionTemplateCode from "./examples/action.marko?raw";
-
-const Template = (args) => ({
-    input: {
-        ...args,
-        renderBody: args.renderBody
-            ? (out) => {
-                  out.html(args.renderBody);
-              }
-            : null,
-    },
-});
 
 export default {
     title: "dialogs/ebay-snackbar-dialog",

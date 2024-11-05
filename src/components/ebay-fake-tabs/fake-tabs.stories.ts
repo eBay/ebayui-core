@@ -1,9 +1,10 @@
-import { addRenderBodies } from "../../../.storybook/utils";
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
-import Component from "./index.marko";
+import Component, { type Input } from "./index.marko";
+import { Story } from "@storybook/marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -61,7 +62,7 @@ Standard.args = {
         },
     ],
     renderBody: `Lorum ipsom dolor`,
-};
+} as any;
 Standard.parameters = {
     docs: {
         source: {

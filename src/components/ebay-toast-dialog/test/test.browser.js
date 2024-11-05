@@ -9,9 +9,9 @@ import {
     expect,
 } from "vitest";
 import { composeStories } from "@storybook/marko";
-import { addRenderBodies } from "../../../../.storybook/utils";
 import { fastAnimations } from "../../../common/test-utils/browser";
 import * as stories from "../toast-dialog.stories"; // import all stories from the stories file
+import { addRenderBodies } from "../../../common/storybook/utils";
 const { Default } = composeStories(stories);
 
 beforeAll(() => fastAnimations.start());

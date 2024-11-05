@@ -1,5 +1,5 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
 
@@ -7,8 +7,10 @@ import WithAttrTagsTemplate from "./examples/with-attr-tags.marko";
 import WithAttrTagsCode from "./examples/with-attr-tags.marko?raw";
 
 import { data } from "./examples/data.json";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -187,7 +189,7 @@ NoMetrics.args = {
     highchartsDescription: "Donut chart description",
 };
 
-export const WithAttributeTags = (args) => ({
+export const WithAttributeTags: Story<Input> = (args) => ({
     input: args,
     component: WithAttrTagsTemplate,
 });

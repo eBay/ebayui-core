@@ -1,17 +1,18 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { Story } from "@storybook/marko";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import fixed from "./examples/all.marko";
 import code from "./examples/all.marko?raw";
-import component from "./index.marko";
+import component, { type Input } from "./index.marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: {
         ...args,
-        renderBody: args.renderBody
-            ? (out) => {
+        renderBody: (args.renderBody
+            ? (out: any) => {
                   out.html(args.renderBody);
               }
-            : null,
+            : null) as any,
     },
 });
 
@@ -51,7 +52,7 @@ DynamicStars.parameters = {
     },
 };
 
-export const FixedStars = (args) => ({
+export const FixedStars: Story<Input> = (args) => ({
     input: args,
     component: fixed,
 });

@@ -1,4 +1,3 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import StaticTemplate from "./examples/static.marko";
@@ -7,17 +6,8 @@ import InteractiveTemplate from "./examples/interactive.marko";
 import InteractiveTemplateCode from "./examples/interactive.marko?raw";
 import WithSeparatorTemplate from "./examples/with-separator.marko";
 import WithSeparatorTemplateCode from "./examples/with-separator.marko?raw";
-
-const Template = (args) => ({
-    input: {
-        ...args,
-        renderBody: args.renderBody
-            ? (out) => {
-                  out.html(args.renderBody);
-              }
-            : null,
-    },
-});
+import { Story } from "@storybook/marko";
+import type { Input } from "./component-browser";
 
 export default {
     title: "building blocks/ebay list",
@@ -81,7 +71,7 @@ export default {
     },
 };
 
-export const Static = (args) => ({
+export const Static: Story<Input> = (args) => ({
     input: args,
     component: StaticTemplate,
 });
@@ -94,7 +84,7 @@ Static.parameters = {
     },
 };
 
-export const Interactive = (args) => ({
+export const Interactive: Story<Input> = (args) => ({
     input: args,
     component: InteractiveTemplate,
 });
@@ -107,7 +97,7 @@ Interactive.parameters = {
     },
 };
 
-export const WithSeparator = (args) => ({
+export const WithSeparator: Story<Input> = (args) => ({
     input: args,
     component: WithSeparatorTemplate,
 });

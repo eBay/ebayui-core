@@ -1,4 +1,4 @@
-import type { FileInputEvent } from "../component-browser";
+import type { FileInputEvent } from "../component";
 static async function mockFetch() {
     await new Promise((resolve) => setTimeout(resolve, Math.random() * 5000));
     return `https://fakeurl.com/${Math.random().toString(36).substring(7)}`;

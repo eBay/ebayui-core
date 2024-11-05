@@ -1,4 +1,4 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import WithLabelTemplate from "./examples/external-label.marko";
@@ -17,15 +17,17 @@ import WithBothIconsCode from "./examples/both-icons.marko?raw";
 import WithPostfixIconCode from "./examples/postfix-icon.marko?raw";
 import WithPrefixIconCode from "./examples/prefix-icon.marko?raw";
 import FullyDecoratedCode from "./examples/fully-decorated.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component-browser";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: {
         ...args,
-        renderBody: args.renderBody
-            ? (out) => {
+        renderBody: (args.renderBody
+            ? (out: any) => {
                   out.html(args.renderBody);
               }
-            : null,
+            : null) as any,
     },
 });
 
@@ -228,7 +230,7 @@ export default {
     },
 };
 
-export const WithLabel = (args) => ({
+export const WithLabel: Story<Input> = (args) => ({
     input: args,
     component: WithLabelTemplate,
 });
@@ -241,7 +243,7 @@ WithLabel.parameters = {
     },
 };
 
-export const Disabled = (args) => ({
+export const Disabled: Story<Input> = (args) => ({
     input: args,
     component: DisabledTemplate,
 });
@@ -254,7 +256,7 @@ Disabled.parameters = {
     },
 };
 
-export const FloatingLabel = (args) => ({
+export const FloatingLabel: Story<Input> = (args) => ({
     input: args,
     component: FloatingLabelTemplate,
 });
@@ -267,7 +269,7 @@ FloatingLabel.parameters = {
     },
 };
 
-export const FloatingLabelAutocomplete = (args) => ({
+export const FloatingLabelAutocomplete: Story<Input> = (args) => ({
     input: args,
     component: FloatingLabelAutocompleteTemplate,
 });
@@ -290,7 +292,7 @@ Isolated.parameters = {
     },
 };
 
-export const PrefixIcon = (args) => ({
+export const PrefixIcon: Story<Input> = (args) => ({
     input: args,
     component: WithPrefixIcon,
 });
@@ -303,7 +305,7 @@ PrefixIcon.parameters = {
     },
 };
 
-export const PostfixIcon = (args) => ({
+export const PostfixIcon: Story<Input> = (args) => ({
     input: args,
     component: WithPostfixIcon,
 });
@@ -316,7 +318,7 @@ PostfixIcon.parameters = {
     },
 };
 
-export const BothIcons = (args) => ({
+export const BothIcons: Story<Input> = (args) => ({
     input: args,
     component: WithBothIcons,
 });
@@ -329,7 +331,7 @@ BothIcons.parameters = {
     },
 };
 
-export const FullyDecorated = (args) => ({
+export const FullyDecorated: Story<Input> = (args) => ({
     input: args,
     component: FullyDecoratedTemplate,
 });

@@ -1,14 +1,16 @@
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
-import { tagToString } from "../../../.storybook/storybook-code-source";
+} from "../../common/storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import WithDescriptionTemplate from "./examples/with-description.marko";
 import WithDescriptionTemplateCode from "./examples/with-description.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -96,7 +98,7 @@ Standard.args = {
             value: "3",
             text: "Option 3",
         },
-    ],
+    ] as any,
 };
 Standard.parameters = {
     docs: {

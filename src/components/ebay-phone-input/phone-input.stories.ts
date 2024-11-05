@@ -1,18 +1,10 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import {
-    addRenderBodies,
-    buildExtensionTemplate,
-} from "../../../.storybook/utils";
+import { buildExtensionTemplate } from "../../common/storybook/utils";
 import button from "./index.marko";
 import Readme from "./README.md";
 import DefaultTemplate from "./examples/default.marko";
 import DefaultTemplateCode from "./examples/default.marko?raw";
 import LocalizationTemplate from "./examples/localization.marko";
 import LocalizationTemplateCode from "./examples/localization.marko?raw";
-
-const Template = (args) => ({
-    input: addRenderBodies(args),
-});
 
 export default {
     title: "form input/ebay-phone-input",

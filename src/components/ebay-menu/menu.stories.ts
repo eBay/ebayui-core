@@ -1,8 +1,8 @@
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
-import { tagToString } from "../../../.storybook/storybook-code-source";
+} from "../../common/storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import BadgedTemplate from "./examples/badged.marko";
@@ -13,8 +13,10 @@ import TypeaheadTemplate from "./examples/typeahead.marko";
 import TypeaheadTemplateCode from "./examples/typeahead.marko?raw";
 import SeparatorTemplate from "./examples/separator.marko";
 import SeparatorTemplateCode from "./examples/separator.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -121,7 +123,7 @@ Default.args = {
         {
             renderBody: `item 3`,
         },
-    ],
+    ] as any,
 };
 Default.parameters = {
     docs: {

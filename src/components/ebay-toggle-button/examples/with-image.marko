@@ -1,3 +1,9 @@
+export interface Input {
+    src: string,
+    alt: string,
+    fillPlacement: string
+}
+
 $ const { src, alt, fillPlacement, ...buttonInput } = input
 <ebay-toggle-button layoutType="list" ...buttonInput onToggle("emit", "toggle")>
     Title

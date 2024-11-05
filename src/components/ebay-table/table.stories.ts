@@ -1,4 +1,4 @@
-import { buildExtensionTemplate } from "../../../.storybook/utils";
+import { buildExtensionTemplate } from "../../common/storybook/utils";
 import table from "./index.marko";
 import Readme from "./README.md";
 import defaultTemplate from "./examples/default.marko";
@@ -128,7 +128,7 @@ export default {
             },
         },
     },
-};
+} ;
 
 export const Default = buildExtensionTemplate(defaultTemplate, defaultCode);
 export const TableDensity = buildExtensionTemplate(

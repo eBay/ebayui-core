@@ -1,9 +1,6 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
 import {
-    addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
-
+} from "../../common/storybook/utils";
 import carousel from "./index.marko";
 import Readme from "./README.md";
 import continiousTemplate from "./examples/continuous.marko";

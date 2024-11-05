@@ -9,9 +9,9 @@ import {
 } from "vitest";
 import { composeStories } from "@storybook/marko";
 import { render, fireEvent, waitFor, cleanup } from "@marko/testing-library";
-import { addRenderBodies } from "../../../../.storybook/utils";
 import { fastAnimations } from "../../../common/test-utils/browser";
 import * as stories from "../lightbox-dialog.stories"; // import all stories from the stories file
+import { addRenderBodies } from "../../../common/storybook/utils";
 const { Default, WithPrevButton } = composeStories(stories);
 
 beforeAll(() => fastAnimations.start());

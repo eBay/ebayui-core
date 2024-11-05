@@ -1,9 +1,11 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
+import type { Input } from "./component";
 import sampleSeriesData from "./examples/data.json";
-const Template = (args) => ({
+import { Story } from "@storybook/marko";
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -75,7 +77,7 @@ export default {
     },
 };
 
-function getSeriesData(series, days) {
+function getSeriesData(series: number, days: number): any {
     return sampleSeriesData.slice(0, series).map((s) => ({
         ...s,
         data: s.data.slice(0, days),

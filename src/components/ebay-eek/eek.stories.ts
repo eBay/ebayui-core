@@ -1,6 +1,6 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
-import eek from "./index.marko";
+import eek, { type Input } from "./index.marko";
 import example1 from "./examples/A+++.marko";
 import example2 from "./examples/A++.marko";
 import example3 from "./examples/A+.marko";
@@ -11,6 +11,7 @@ import example2Code from "./examples/A++.marko?raw";
 import example3Code from "./examples/A+.marko?raw";
 import example4Code from "./examples/A.marko?raw";
 import example5Code from "./examples/invalid.marko?raw";
+import { Story } from "@storybook/marko";
 
 export default {
     title: "graphics & icons/ebay-eek",
@@ -39,7 +40,7 @@ export default {
     },
 };
 
-export const Default = (args) => ({ input: args });
+export const Default: Story<Input> = (args) => ({ input: args });
 Default.args = {
     max: "A+++",
     min: "E",
