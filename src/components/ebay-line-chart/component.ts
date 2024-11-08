@@ -1,4 +1,4 @@
-import { CDNLoader } from "../../common/cdn";
+import { load as highChartsLoad } from "@internal/highcharts";
 import {
     chartFontFamily,
     backgroundColor,
@@ -50,22 +50,11 @@ const pointSize = 6; // controls the size of the plot point markers on lines
 
 class LineChart extends Marko.Component<Input> {
     declare axisTicksLength: number;
-    declare cdnLoader: CDNLoader;
     declare chartRef: Highcharts.Chart;
     declare tickValues: number[];
 
     onCreate() {
         this.axisTicksLength = -1;
-
-        this.cdnLoader = new CDNLoader(this as any, {
-            stagger: true,
-            key: "highcharts",
-            types: ["src", "src"],
-            files: ["highcharts.js", "accessibility.js"],
-            setLoading: () => {},
-            handleError: this.handleError.bind(this),
-            handleSuccess: this.handleSuccess.bind(this),
-        });
     }
 
     handleError(err: Error) {
@@ -76,15 +65,14 @@ class LineChart extends Marko.Component<Input> {
     }
 
     onMount() {
-        this.cdnLoader
-            .setOverrides(
-                [
-                    this.input.cdnHighcharts,
-                    this.input.cdnHighchartsAccessibility,
-                ] as string[],
-                this.input.version,
-            )
-            .mount();
+        highChartsLoad()
+            .then(([highcharts]: any) => {
+                window.Highcharts = highcharts.default;
+                this.handleSuccess();
+            })
+            .catch((e: Error) => {
+                this.handleError(e);
+            });
     }
 
     onInput(input: Input) {

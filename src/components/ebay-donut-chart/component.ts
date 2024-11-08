@@ -1,4 +1,4 @@
-import { CDNLoader } from "../../common/cdn";
+import { load as highChartsLoad } from "@internal/highcharts";
 import {
     chartFontFamily,
     backgroundColor,
@@ -32,21 +32,7 @@ interface DonutChartInput
 export interface Input extends WithNormalizedProps<DonutChartInput> {}
 
 class DonutChart extends Marko.Component<Input> {
-    declare cdnLoader: CDNLoader;
     declare chartRef: Highcharts.Chart;
-
-    onCreate() {
-        // Set up the CDN loader for Highcharts
-        this.cdnLoader = new CDNLoader(this as any, {
-            stagger: true,
-            key: "highcharts",
-            types: ["src", "src"],
-            files: ["highcharts.js", "accessibility.js", "pattern-fill.js"],
-            setLoading: () => {},
-            handleError: this.handleError.bind(this),
-            handleSuccess: this.handleSuccess.bind(this),
-        });
-    }
 
     // Handle CDN Loader errors
     handleError(err: Error) {
@@ -60,16 +46,14 @@ class DonutChart extends Marko.Component<Input> {
     }
 
     onMount() {
-        this.cdnLoader
-            .setOverrides(
-                [
-                    this.input.cdnHighcharts,
-                    this.input.cdnHighchartsAccessibility,
-                    this.input.cdnHighchartsPatternFill,
-                ] as string[],
-                this.input.version ?? "11.4.0",
-            )
-            .mount();
+        highChartsLoad()
+            .then(([highcharts]: any) => {
+                window.Highcharts = highcharts.default;
+                this.handleSuccess();
+            })
+            .catch((e: Error) => {
+                this.handleError(e);
+            });
     }
 
     /**
