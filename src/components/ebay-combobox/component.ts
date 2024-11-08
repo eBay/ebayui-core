@@ -27,7 +27,7 @@ interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
     autocomplete?: "list" | "none";
     "list-selection"?: "manual" | "automatic";
     "floating-label"?: boolean;
-    "viewAllOptions"?: boolean;
+    viewAllOptions?: boolean;
     button?: Marko.Input<"button"> & Marko.AttrTag<{
         htmlAttributes?: Record<string, unknown>;
         renderBody?: Marko.Body;
@@ -50,7 +50,6 @@ export interface Input extends WithNormalizedProps<ComboboxInput> {}
 
 interface State {
     currentValue: Input["value"];
-    viewAllOptions: boolean;
 }
 
 export default class Combobox extends Marko.Component<Input, State> {
@@ -226,7 +225,6 @@ export default class Combobox extends Marko.Component<Input, State> {
         this.lastValue = input.value;
         this.state = {
             currentValue: this.lastValue,
-            viewAllOptions:  input.viewAllOptions ?? true,
         };
         if (this.expander) {
             this.expandedChange = input.expanded !== this.expanded;
@@ -349,7 +347,10 @@ export default class Combobox extends Marko.Component<Input, State> {
     }
 
     _getVisibleOptions() {
-        if (this.autocomplete === "none" || this.state.viewAllOptions) {
+        if (
+            this.autocomplete === "none" ||
+            (this.input.viewAllOptions ?? true)
+        ) {
             return [...(this.input.options ?? [])];
         }
 
