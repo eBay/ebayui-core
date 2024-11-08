@@ -1,9 +1,6 @@
 import { AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
-
-export const useReducedMotion =
-    typeof window !== "undefined" &&
-    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+import { useReducedMotion } from "../../common/dom";
 
 export const messageDurationStandard = 1500;
 export const messageDurationReducedMotionMultiplier = 1.5;
