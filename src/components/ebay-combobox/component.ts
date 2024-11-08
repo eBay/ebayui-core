@@ -27,7 +27,7 @@ interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
     autocomplete?: "list" | "none";
     "list-selection"?: "manual" | "automatic";
     "floating-label"?: boolean;
-    viewAllOptions?: boolean;
+    "view-all-options"?: boolean;
     button?: Marko.Input<"button"> & Marko.AttrTag<{
         htmlAttributes?: Record<string, unknown>;
         renderBody?: Marko.Body;
