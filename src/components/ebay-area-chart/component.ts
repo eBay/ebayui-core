@@ -31,13 +31,14 @@ interface AreaChartInput extends Omit<Marko.Input<"div">, `on${string}`> {
     title?: Highcharts.TitleOptions["text"];
     description?: Highcharts.SeriesAccessibilityOptionsObject["description"];
     series: Highcharts.SeriesAreaOptions | Highcharts.SeriesAreaOptions[];
-    highchartOptions?: Highcharts.Options;
+    tooltipValueFormatter?: (value: string | number) => string;
     xLabelFormatter?: (
         value: string | number,
         dateFormat: typeof Highcharts.dateFormat,
     ) => string;
     yLabelFormatter?: (value: string | number) => string;
     areaType?: "areaspline" | "area";
+    highchartOptions?: Highcharts.Options;
     "cdn-highcharts"?: string;
     "cdn-highcharts-accessibility"?: string;
     "cdn-highcharts-pattern-fill"?: string;
@@ -140,6 +141,19 @@ class AreaChart extends Marko.Component<Input> {
     }
 
     /**
+     * Default format function for the tooltip values
+     */
+    _tooltipValueFormatter(value: number | string) {
+        if (typeof value === "string") {
+            value = parseFloat(value);
+        }
+        return Intl.NumberFormat("en-US", {
+            style: "currency",
+            currency: "USD",
+        }).format(value);
+    }
+
+    /**
      * Default format function for the yAxis labels
      */
     _yLabelFormatter(value: number | string) {
@@ -156,7 +170,7 @@ class AreaChart extends Marko.Component<Input> {
 
     /**
      * Merge the source Highcharts config into the target Highcharts config
-     * 
+     *
      * Allows for custom overrides of ebay default Highcharts configuration settings
      */
     _mergeConfigs(
@@ -293,8 +307,8 @@ class AreaChart extends Marko.Component<Input> {
      * Get the tooltip configuration for the chart
      */
     getTooltipConfig(): Highcharts.TooltipOptions {
-        const yLabelFormatter =
-            this.input.yLabelFormatter ?? this._yLabelFormatter;
+        const tooltipValueFormatter =
+            this.input.tooltipValueFormatter ?? this._tooltipValueFormatter;
         return {
             formatter: function (this) {
                 const date = Highcharts.dateFormat(
@@ -303,18 +317,16 @@ class AreaChart extends Marko.Component<Input> {
                 );
 
                 // Display formatted total, only if there are more than one points
-                const total =
-                    (this.points?.length ?? 0) > 1 &&
-                    yLabelFormatter(
-                        this.points?.reduce(
-                            (acc, curr) => acc + (curr.y ?? 0),
-                            0,
-                        ) || 0,
-                    );
+                const total = this.points && this.points.length > 1 && this.points.reduce(
+                    (acc, curr) => acc + ((curr.y ?? 0) * 100),
+                    0,
+                ) / 100;
+
                 return tooltipTemplate.renderToString({
                     date,
-                    total,
+                    total: total || 0,
                     points: this.points,
+                    valueFormatter: tooltipValueFormatter,
                 } as TooltipInput);
             },
             useHTML: true,

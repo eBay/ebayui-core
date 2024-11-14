@@ -2,20 +2,26 @@ import type HighchartsTypes from "highcharts";
 export interface Input {
     date: string;
     points: HighchartsTypes.TooltipFormatterContextObject[] | undefined;
-    total: string;
+    total: number;
+    valueFormatter: (value: number | string) => string;
 }
 
 <b>${input.date}</b>
 <for|points| of=input.points || []>
     <div class="ebay-area-chart__tooltip-value">
         <span>${points.point.series.name}</span>
-        <span>${points.point.label}</span>
+        <if(points.point.label)>
+            <span>${points.point.label}</span>
+        </if>
+        <else-if(points.point.y != null)>
+            <span>${input.valueFormatter(points.point.y)}</span>
+        </else-if>
     </div>
 </for>
 <if(input.total)>
     <div class="ebay-area-chart__tooltip-value">
         <span>Total</span>
-        <span>${input.total}</span>
+        <span>${input.valueFormatter(input.total)}</span>
     </div>
 </if>
 

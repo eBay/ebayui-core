@@ -10,6 +10,17 @@ const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
+const seriesDataWithoutLabels = sampleSeriesData.map((series) => {
+    const { data, ...rest } = series;
+    return {
+        ...rest,
+        data: data.map((point) => {
+            const { label, ...rest } = point;
+            return rest;
+        }),
+    };
+})
+
 export default {
     title: "charts/ebay-area-chart",
     component: Component,
@@ -48,6 +59,11 @@ export default {
             type: { name: "function", required: false },
             description:
                 "A function that will be used to format the y-axis labels. By default is formatted as USD currency.",
+        },
+        tooltipValueFormatter: {
+            type: { name: "function", required: false },
+            description:
+                "A function that will be used to format the tooltip series values and total. By default is formatted as USD currency.",
         },
         areaType: {
             type: { name: "string", required: false },
@@ -136,18 +152,19 @@ FiveSeries.parameters = {
     },
 };
 
-export const WithYLabelFormat = Template.bind({});
-WithYLabelFormat.args = {
-    title: "Custom y-axis label format",
+export const WithUnitlessYFormat = Template.bind({});
+WithUnitlessYFormat.args = {
+    title: "Custom y-axis label and tooltip value format",
     description:
         "this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5",
-    series: sampleSeriesData as Highcharts.SeriesAreaOptions[],
+    series: seriesDataWithoutLabels as Highcharts.SeriesAreaOptions[],
     yLabelFormatter: (value) => `${value}`,
+    tooltipValueFormatter: (value) => `${value}`,
 };
-WithYLabelFormat.parameters = {
+WithUnitlessYFormat.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-area-chart", WithYLabelFormat.args),
+            code: tagToString("ebay-area-chart", WithUnitlessYFormat.args),
         },
     },
 };
@@ -187,6 +204,20 @@ NonSpline.parameters = {
     docs: {
         source: {
             code: tagToString("ebay-area-chart", NonSpline.args),
+        },
+    },
+};
+
+export const CustomHighchartOptions = Template.bind({});
+CustomHighchartOptions.args = {
+    title: "Custom highchart options",
+    description:
+        "this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5",
+    series: sampleSeriesData.slice(0, 1) as Highcharts.SeriesAreaOptions[],
+    highchartOptions: {
+        yAxis: {
+            ceiling: 45000,
+            tickAmount: 4,
         },
     },
 };
