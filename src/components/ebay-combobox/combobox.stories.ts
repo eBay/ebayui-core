@@ -55,6 +55,11 @@ export default {
             description:
                 "default is `automatic`; available values are `automatic`, `manual`. If set to automatic will automatically fill in the input with the currently highlighted item when using the up/down keys.",
         },
+        viewAllOptions: {
+            type: "boolean",
+            control: { type: "boolean" },
+            description: "Filters listbox options based on user input",
+        },
         "floating-label": {
             control: { type: "text" },
             description:
