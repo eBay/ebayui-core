@@ -57,8 +57,12 @@ class AreaChart extends Marko.Component<Input> {
 
     onMount() {
         highChartsLoad()
-            .then(([highcharts]: any) => {
+            .then(([highcharts, accessibility, patternFill]: any) => {
                 window.Highcharts = highcharts.default;
+                accessibility.default(window.Highcharts);
+
+                patternFill.default(window.Highcharts);
+
                 this.handleSuccess();
             })
             .catch((e: Error) => {
