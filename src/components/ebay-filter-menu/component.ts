@@ -34,16 +34,23 @@ interface FilterMenuInput
             "a11y-footer-text"?: AttrString;
         }
     >;
+    "search-header-placeholder-text"?: string;
+    "a11y-search-header-clear-text"?: string;
     "render-body"?: Marko.Body;
     "on-footer-click"?: (event: FilterMenuEvent) => void;
     "on-form-submit"?: (event: FilterMenuEvent) => void;
     "on-change"?: (event: FilterMenuEvent) => void;
     "on-keydown"?: (event: FilterMenuEvent) => void;
+    "on-search-change"?: (value: string) => void;
 }
 
 export interface Input extends WithNormalizedProps<FilterMenuInput> {}
 
-export default class extends MenuUtils<Input, MenuState> {
+export interface State extends MenuState {
+    searchTerm?: string;
+}
+
+export default class extends MenuUtils<Input, State> {
     declare _rovingTabIndex: ReturnType<typeof createLinear>;
     declare lastTabIndexPosition: number;
 
@@ -54,6 +61,16 @@ export default class extends MenuUtils<Input, MenuState> {
     resetIndex() {
         this._rovingTabIndex.index = 0;
         this.lastTabIndexPosition = 0;
+    }
+
+    handleSearch(e: InputEvent) {
+        this.state.searchTerm = (e.target as HTMLInputElement).value;
+        this.emit("search-change", this.state.searchTerm);
+    }
+
+    clearSearch() {
+        this.state.searchTerm = "";
+        this.emit("search-change", this.state.searchTerm);
     }
 
     handleRadioClick(index: number, ev: RadioEvent, itemEl: Element) {
@@ -102,7 +119,10 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     onInput(input: Input) {
-        this.state = super.getInputState(input);
+        this.state = {
+            ...super.getInputState(input),
+            searchTerm: this.state ? this.state.searchTerm : "",
+        };
     }
 
     onMount() {
@@ -158,7 +178,7 @@ export default class extends MenuUtils<Input, MenuState> {
                 autoInit: this.lastTabIndexPosition || "interactive",
             });
 
-            scrollKeyPreventer.add(this.getEl("container"));
+            scrollKeyPreventer.add(this.getEl("menu"));
         }
     }
 
@@ -167,7 +187,7 @@ export default class extends MenuUtils<Input, MenuState> {
             this.lastTabIndexPosition = this._rovingTabIndex.index;
             this._rovingTabIndex.destroy();
             this._rovingTabIndex = undefined;
-            scrollKeyPreventer.remove(this.getEl("container"));
+            scrollKeyPreventer.remove(this.getEl("menu"));
         }
     }
 }

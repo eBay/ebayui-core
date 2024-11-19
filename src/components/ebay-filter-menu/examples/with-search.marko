@@ -1,0 +1,31 @@
+import countries from "./data.json";
+class {
+    declare state: {
+        searchTerm: string;
+    };
+
+    onCreate() {
+        this.state = {
+            searchTerm: "",
+        };
+    }
+
+    handleSearchChange(value: string) {
+        this.state.searchTerm = value.toLowerCase();
+    }
+}
+
+<ebay-filter-menu
+    search-header-placeholder-text="Search"
+    a11y-search-header-clear-text="Clear"
+    on-search-change("handleSearchChange")
+    ...input
+>
+    <for|{ name, code }| of=countries>
+        <if(name.toLowerCase().includes(state.searchTerm))>
+            <@item value=code>
+                ${name}
+            </@item>
+        </if>
+    </for>
+</ebay-filter-menu>
