@@ -38,12 +38,13 @@ $ var isForm = variant === "form";
                 aria-owns:scoped="search-items"
                 on-input("handleSearch")
             >
-            <button
+            <ebay-button
+                priority="none"
                 on-click("clearSearch")
                 aria-label=a11ySearchHeaderClearText
             >
                 <ebay-clear-20-icon/>
-            </button>
+            </ebay-button>
         </div>
     </if>
     <${isForm && "form"}
