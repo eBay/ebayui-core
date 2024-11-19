@@ -13,6 +13,8 @@ $ const {
     formAction,
     formMethod,
     items,
+    searchHeaderPlaceholderText,
+    a11ySearchHeaderClearText,
     type: inputType,
     ...htmlInput
 } = input;
@@ -46,10 +48,13 @@ $ const {
         formMethod=formMethod
         footerText=footerText
         a11yFooterText=a11yFooterText
+        searchHeaderPlaceholderText=searchHeaderPlaceholderText
+        a11ySearchHeaderClearText=a11ySearchHeaderClearText
         on-keydown("handleMenuKeydown")
         on-change("handleMenuChange")
         on-form-submit("handleFormSubmit")
-        on-footer-click("handleFooterButtonClick")>
+        on-footer-click("handleFooterButtonClick")
+        on-search-change("emit", "search-change")>
         <for|item, i| of=(items || [])>
             <@item ...item checked=component.isChecked(i)/>
         </for>
