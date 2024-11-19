@@ -47,11 +47,11 @@ class DonutChart extends Marko.Component<Input> {
 
     onMount() {
         highChartsLoad()
-            .then(([highcharts, accessibility, patternFill]: any) => {
-                window.Highcharts = highcharts.default;
-                accessibility.default(window.Highcharts);
+            .then(({ highcharts, accessibility, patternFill }: any) => {
+                window.Highcharts = highcharts;
+                accessibility(window.Highcharts);
 
-                patternFill.default(window.Highcharts);
+                patternFill(window.Highcharts);
 
                 this.handleSuccess();
             })

@@ -1,11 +1,9 @@
 import type EbayVideo from "./component";
 
-declare const shaka: any;
-
 /* eslint-disable no-undef,new-cap */
 // Have to contain in order to not execute until shaka is downloaded
 function getElements(self: EbayVideo) {
-    const Report = class extends shaka.ui.Element {
+    const Report = class extends self.shaka.ui.Element {
         constructor(parent: HTMLElement, controls: any, text: string) {
             super(parent, controls);
 
@@ -37,12 +35,12 @@ function getElements(self: EbayVideo) {
         }
     };
 
-    const TextSelection = shaka.ui.TextSelection;
+    const TextSelection = self.shaka.ui.TextSelection;
 
     TextSelection.Factory = class {
         /** @override */
         create(rootElement: HTMLElement, controls: any) {
-            return new shaka.ui.TextSelection(rootElement, controls);
+            return new self.shaka.ui.TextSelection(rootElement, controls);
         }
     };
 
