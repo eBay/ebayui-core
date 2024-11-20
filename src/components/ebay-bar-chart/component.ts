@@ -62,12 +62,7 @@ class BarChart extends Marko.Component<Input> {
 
     onMount() {
         highChartsLoad()
-            .then(([highcharts, accessibility, patternFill]: any) => {
-                window.Highcharts = highcharts.default;
-                accessibility.default(window.Highcharts);
-
-                patternFill.default(window.Highcharts);
-
+            .then(() => {
                 this.handleSuccess();
             })
             .catch((e: Error) => {
