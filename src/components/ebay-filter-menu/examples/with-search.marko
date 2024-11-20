@@ -1,17 +1,34 @@
 import countries from "./data.json";
+import type { Input as FilterMenuInput } from "<ebay-filter-menu>";
 class {
     declare state: {
-        searchTerm: string;
+        checkedCodes: { [code: string]: boolean };
+        visibleCountries: typeof countries;
     };
 
     onCreate() {
         this.state = {
-            searchTerm: "",
+            checkedCodes: {},
+            visibleCountries: countries,
         };
     }
 
     handleSearchChange(value: string) {
-        this.state.searchTerm = value.toLowerCase();
+        const searchTerm = value.toLowerCase();
+        this.state.visibleCountries = countries.filter(({ name }) =>
+            name.toLowerCase().includes(searchTerm),
+        );
+    }
+
+    handleChange({
+        index,
+        currentChecked,
+    }: Parameters<NonNullable<FilterMenuInput["on-change"]>>[0]) {
+        if (index === undefined) return;
+        this.state.checkedCodes = {
+            ...this.state.checkedCodes,
+            [this.state.visibleCountries[index].code]: !!currentChecked,
+        };
     }
 }
 
@@ -19,13 +36,12 @@ class {
     search-header-placeholder-text="Search"
     a11y-search-header-clear-text="Clear"
     on-search-change("handleSearchChange")
+    on-change("handleChange")
     ...input
 >
-    <for|{ name, code }| of=countries>
-        <if(name.toLowerCase().includes(state.searchTerm))>
-            <@item value=code>
-                ${name}
-            </@item>
-        </if>
+    <for|{ name, code }| of=state.visibleCountries>
+        <@item value=code checked=state.checkedCodes[code]>
+            ${name}
+        </@item>
     </for>
 </ebay-filter-menu>
