@@ -34,8 +34,9 @@ interface FilterMenuInput
             "a11y-footer-text"?: AttrString;
         }
     >;
-    "search-header-placeholder-text"?: string;
-    "a11y-search-header-clear-text"?: string;
+    "search-header-value"?: string;
+    "search-header-placeholder-text"?: AttrString;
+    "a11y-search-header-clear-text"?: AttrString;
     "render-body"?: Marko.Body;
     "on-footer-click"?: (event: FilterMenuEvent) => void;
     "on-form-submit"?: (event: FilterMenuEvent) => void;
@@ -121,7 +122,12 @@ export default class extends MenuUtils<Input, State> {
     onInput(input: Input) {
         this.state = {
             ...super.getInputState(input),
-            searchTerm: this.state ? this.state.searchTerm : "",
+            searchTerm:
+                input.searchHeaderValue !== undefined
+                    ? input.searchHeaderValue
+                    : this.state
+                      ? this.state.searchTerm
+                      : "",
         };
     }
 

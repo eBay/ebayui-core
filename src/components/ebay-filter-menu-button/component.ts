@@ -34,8 +34,9 @@ interface FilterMenuButtonInput
     "form-method"?: string;
     disabled?: boolean;
     "a11y-text"?: AttrString;
-    "search-header-placeholder-text"?: string;
-    "a11y-search-header-clear-text"?: string;
+    "search-header-value"?: string;
+    "search-header-placeholder-text"?: AttrString;
+    "a11y-search-header-clear-text"?: AttrString;
     "on-expand"?: () => void;
     "on-change"?: (event: FilterMenuButtonEvent) => void;
     "on-collapse"?: (event: FilterMenuButtonEvent) => void;

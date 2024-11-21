@@ -52,6 +52,11 @@ export default {
             control: { type: "text" },
             description: "forms `method` attribute",
         },
+        searchHeaderValue: {
+            control: { type: "text" },
+            description:
+                "optional value override for the input in the search header",
+        },
         searchHeaderPlaceholderText: {
             control: { type: "text" },
             description:
