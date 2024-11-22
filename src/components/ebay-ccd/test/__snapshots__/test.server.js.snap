@@ -288,7 +288,7 @@ exports[`ccd > renders ccd with charger included and usbpd 1`] = `
 exports[`ccd > renders ccd with charger not included 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
-    [33maria-label[39m=[32m"Chargernot  included. 1000 - 2000 watts. "[39m
+    [33maria-label[39m=[32m"Charger not  included. 1000 - 2000 watts. "[39m
     [33mclass[39m=[32m"ccd"[39m
     [33mrole[39m=[32m"figure"[39m
   [36m>[39m

@@ -8,7 +8,7 @@
     "@max": "string",
     "@min": "string",
     "@charger-icon": {
-        "enum": ["none", "included", "notIncluded"]
+        "enum": ["included", "not-included"]
     },
     "@units": "string",
     "@secondary-type": {

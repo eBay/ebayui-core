@@ -1,6 +1,6 @@
 import Readme from "./README.md";
 import { buildExtensionTemplate } from "../../common/storybook/utils";
-import ccd  from "./index.marko";
+import ccd from "./index.marko";
 import DefaultTemplate from "./examples/default.marko";
 import DefaultTemplateCode from "./examples/default.marko?raw";
 
@@ -26,7 +26,7 @@ export default {
         },
         chargerIcon: {
             control: { type: "select" },
-            options: ["none", "included", "notIncluded"],
+            options: [undefined, "included", "not-included"],
             description:
                 "Toggles the charger icon visible or if its included or not",
             table: {

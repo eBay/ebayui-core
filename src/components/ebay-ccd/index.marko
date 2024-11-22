@@ -1,10 +1,9 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 import type { WithNormalizedProps } from "../../global";
-
 static interface CCDInput extends Omit<Marko.Input<"div">, `on${string}`> {
     max?: string;
     min?: string;
-    "charger-icon"?: string;
+    "charger-icon"?: "included" | "not-included";
     units?: string;
     "secondary-type"?: string;
     "secondary-text"?: string;
@@ -17,7 +16,7 @@ $ const {
     class: inputClass,
     style,
     a11yText,
-    chargerIcon = "none",
+    chargerIcon,
     units = "W",
     a11yUnits = "watts",
     max,
@@ -30,22 +29,21 @@ $ (input as any).toJSON = noop;
 
 $ const hasFastCharging = secondaryType === "usbpd";
 
-$ const noIcon = chargerIcon !== "included" && chargerIcon !== "notIncluded";
-$ const hasCharger = chargerIcon === "included";
-$ const chargerA11yText = noIcon ? "" : `Charger${hasCharger ? " " : "not "} included.`;
-
 <div
     ...processHtmlAttributes(htmlInput)
     role="figure"
     style=style
-    aria-label=a11yText ||
-    `${chargerA11yText} ${min} - ${max} ${a11yUnits}. ${hasFastCharging ? secondaryText : ""}`
+    aria-label=a11yText || `${
+        chargerIcon
+            ? `Charger ${chargerIcon === "included" ? "" : "not "} included.`
+            : ""
+        } ${min} - ${max} ${a11yUnits}. ${hasFastCharging ? secondaryText : ""}`
     class=["ccd", inputClass]
 >
-    <if(hasCharger)>
+    <if(chargerIcon === "included")>
         <ebay-ccd-charger-included-icon class="ccd__charger-icon"/>
     </if>
-    <else-if(!noIcon)>
+    <else-if(chargerIcon === "not-included")>
         <ebay-ccd-charger-not-included-icon class="ccd__charger-icon"/>
     </else-if>
     <div class="ccd__description-figure">

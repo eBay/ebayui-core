@@ -16,7 +16,7 @@ describe("ccd", () => {
     });
 
     it("renders ccd with charger not included", async () => {
-        await htmlSnap(Default, { chargerIcon: "notIncluded" });
+        await htmlSnap(Default, { chargerIcon: "not-included" });
     });
 
     it("renders ccd with usbpd included", async () => {
