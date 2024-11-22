@@ -1,0 +1,21 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@max": "string",
+    "@min": "string",
+    "@charger-icon": {
+        "enum": ["included", "not-included"]
+    },
+    "@units": "string",
+    "@secondary-type": {
+        "enum": ["none", "usbpd"]
+    },
+    "@secondary-text": "string",
+    "@a11y-units": "string",
+    "@a11y-text": "string",
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-ccd)"
+}
