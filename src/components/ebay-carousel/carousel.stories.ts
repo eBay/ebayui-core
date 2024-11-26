@@ -1,6 +1,4 @@
-import {
-    buildExtensionTemplate,
-} from "../../common/storybook/utils";
+import { buildExtensionTemplate } from "../../common/storybook/utils";
 import carousel from "./index.marko";
 import Readme from "./README.md";
 import continiousTemplate from "./examples/continuous.marko";

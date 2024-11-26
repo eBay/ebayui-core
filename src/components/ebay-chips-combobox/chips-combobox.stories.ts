@@ -6,7 +6,6 @@ import DefaultCode from "./examples/default.marko?raw";
 import SelectedTemplate from "./examples/selected.marko";
 import SelectedCode from "./examples/selected.marko?raw";
 
-
 export default {
     title: "form input/ebay-chips-combobox",
     component: Combobox,

@@ -1,0 +1,15 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "14.4.1"
+  },
+  "changesets": [
+    "famous-peas-own",
+    "great-ants-watch",
+    "mighty-buckets-tan",
+    "plenty-drinks-sniff",
+    "plenty-tips-perform",
+    "sixty-bananas-kick"
+  ]
+}

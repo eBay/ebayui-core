@@ -128,7 +128,7 @@ export default {
             },
         },
     },
-} ;
+};
 
 export const Default = buildExtensionTemplate(defaultTemplate, defaultCode);
 export const TableDensity = buildExtensionTemplate(
