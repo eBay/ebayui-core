@@ -1,8 +1,8 @@
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
-import { tagToString } from "../../../.storybook/storybook-code-source";
+} from "../../common/storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import ItemMatchesTemplate from "./examples/item-matches-url.marko";
@@ -11,8 +11,10 @@ import SpritesTemplate from "./examples/sprites.marko";
 import SpritesTemplateCode from "./examples/sprites.marko?raw";
 import SeparatorTemplate from "./examples/separator.marko";
 import SeparatorTemplateCode from "./examples/separator.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -142,7 +144,7 @@ Standard.args = {
             renderBody: `item 3`,
             href: "https://www.ebay.com",
         },
-    ],
+    ] as any,
 };
 Standard.parameters = {
     docs: {

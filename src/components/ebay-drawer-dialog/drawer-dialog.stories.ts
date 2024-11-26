@@ -1,9 +1,11 @@
-import { addRenderBodies } from "../../../.storybook/utils";
+import { Story } from "@storybook/marko";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./examples/default.marko";
 import code from "./examples/default.marko?raw";
 import withFooter from "./examples/withFooter.marko";
 import withFooterCode from "./examples/withFooter.marko?raw";
+import type { Input } from "./component";
 
 export default {
     title: "dialogs/ebay-drawer-dialog",
@@ -124,7 +126,7 @@ export default {
     },
 };
 
-export const Standard = (args) => ({
+export const Standard: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 Standard.args = {
@@ -134,7 +136,7 @@ Standard.args = {
     renderBody: `Body Content`,
     a11yMinimizeText: "Minimize Drawer",
     a11yMaximizeText: "Maximize Drawer",
-};
+} as any;
 Standard.parameters = {
     docs: {
         source: {
@@ -143,7 +145,7 @@ Standard.parameters = {
     },
 };
 
-export const WithFooter = (args) => ({
+export const WithFooter: Story<Input> = (args) => ({
     component: withFooter,
     input: addRenderBodies(args),
 });
@@ -154,7 +156,7 @@ WithFooter.args = {
     renderBody: `Body Content`,
     a11yMinimizeText: "Minimize Drawer",
     a11yMaximizeText: "Maximize Drawer",
-};
+} as any;
 WithFooter.parameters = {
     docs: {
         source: {

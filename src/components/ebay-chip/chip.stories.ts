@@ -1,9 +1,10 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { Story } from "@storybook/marko";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
-import Component from "./index.marko";
+import Component, { type Input } from "./index.marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -43,8 +44,8 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    renderBody: "chip text",
-};
+    renderBody: "chip text" as any,
+} ;
 Default.parameters = {
     docs: {
         source: {
@@ -55,7 +56,7 @@ Default.parameters = {
 
 export const WithDelete = Template.bind({});
 WithDelete.args = {
-    renderBody: "chip text",
+    renderBody: "chip text" as any,
     a11yDeleteButtonText: "Delete",
 };
 WithDelete.parameters = {

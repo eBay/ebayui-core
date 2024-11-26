@@ -1,9 +1,10 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { Story } from "@storybook/marko";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import component from "./index.marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -104,7 +105,7 @@ Default.args = {
         {
             file: { ...frogImage },
         },
-    ],
+    ] as any,
 };
 
 export const ManyCards = Template.bind({});
@@ -113,5 +114,5 @@ ManyCards.args = {
     deleteText: "Delete",
     card: [...Array(35)].map(() => ({
         file: { ...frogImage },
-    })),
+    })) as any,
 };

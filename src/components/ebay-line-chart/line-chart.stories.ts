@@ -1,10 +1,12 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import sampleSeriesData from "./examples/data.json";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -109,7 +111,7 @@ Standard.args = {
         {
             data: sampleSeriesData[0].data,
         },
-    ],
+    ] as any,
     title: "standard line graph with single series",
     description: "sample line graph description",
 };
@@ -130,7 +132,7 @@ TrendAutoPositive.args = {
     trend: true,
     title: "positive trend graph",
     description: "standard line graph with single series the tend set to true",
-};
+} as any;
 
 TrendAutoPositive.parameters = {
     docs: {
@@ -144,7 +146,7 @@ export const TrendSetPositive = Template.bind({});
 TrendSetPositive.args = {
     series: {
         data: sampleSeriesData[3].data,
-    },
+    } as any,
     trend: "positive",
     title: "forced positive trend graph",
     description:
@@ -167,7 +169,7 @@ TrendAutoNegative.args = {
     trend: true,
     title: "negative trend graph",
     description: "standard line graph with single series the tend set to true",
-};
+} as any;
 
 TrendAutoNegative.parameters = {
     docs: {
@@ -181,7 +183,7 @@ export const TrendSetNegative = Template.bind({});
 TrendSetNegative.args = {
     series: {
         data: sampleSeriesData[1].data,
-    },
+    } as any,
     trend: "negative",
     title: "forced negative trend graph",
     description:
@@ -200,7 +202,7 @@ export const TrendSetNeutral = Template.bind({});
 TrendSetNeutral.args = {
     series: {
         data: sampleSeriesData[0].data,
-    },
+    } as any,
     trend: "neutral",
 };
 
@@ -222,7 +224,7 @@ TwoSeries.args = {
             data: sampleSeriesData[1].data,
         },
     ],
-};
+} as any;
 
 TwoSeries.parameters = {
     docs: {
@@ -243,7 +245,7 @@ TwoSeriesWithPlotPoints.args = {
         },
     ],
     plotPoints: true,
-};
+} as any;
 
 TwoSeriesWithPlotPoints.parameters = {
     docs: {
@@ -266,7 +268,7 @@ ThreeSeries.args = {
             data: sampleSeriesData[2].data,
         },
     ],
-};
+} as any;
 
 ThreeSeries.parameters = {
     docs: {
@@ -290,7 +292,7 @@ ThreeSeriesWithPlotPoints.args = {
         },
     ],
     plotPoints: true,
-};
+} as any;
 
 ThreeSeriesWithPlotPoints.parameters = {
     docs: {
@@ -316,7 +318,7 @@ FourSeries.args = {
             data: sampleSeriesData[3].data,
         },
     ],
-};
+} as any;
 
 FourSeries.parameters = {
     docs: {
@@ -343,7 +345,7 @@ FourSeriesWithPlotPoints.args = {
         },
     ],
     plotPoints: true,
-};
+} as any;
 
 FourSeriesWithPlotPoints.parameters = {
     docs: {
@@ -372,7 +374,7 @@ FiveSeries.args = {
             data: sampleSeriesData[4].data,
         },
     ],
-};
+} as any;
 
 FiveSeries.parameters = {
     docs: {
@@ -402,7 +404,7 @@ FiveSeriesWithPlotPoints.args = {
         },
     ],
     plotPoints: true,
-};
+} as any;
 
 FiveSeriesWithPlotPoints.parameters = {
     docs: {

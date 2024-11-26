@@ -1,13 +1,14 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
-import Component from "./index.marko";
+import Component, { type Input } from "./index.marko";
 import overflowComponent from "./examples/overflow.marko";
 import overflowComponentCode from "./examples/overflow.marko?raw";
 import buttonSeeAllComponent from "./examples/save-see-all.marko";
 import buttonSeeAllComponentCode from "./examples/save-see-all.marko?raw";
+import { Story } from "@storybook/marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -73,8 +74,8 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    title: { renderBody: `Todays Best Deals` },
-    subtitle: { renderBody: `with free shipping!` },
+    title: { renderBody: `Todays Best Deals` } as any,
+    subtitle: { renderBody: `with free shipping!` } as any,
 };
 
 Standard.parameters = {

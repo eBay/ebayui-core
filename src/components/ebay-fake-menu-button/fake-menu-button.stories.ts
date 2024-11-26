@@ -1,8 +1,8 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
+} from "../../common/storybook/utils";
 import Readme from "./README.md";
 import IconTemplate from "./examples/icon-with-text.marko";
 import IconTemplateCode from "./examples/icon-with-text.marko?raw";
@@ -12,8 +12,10 @@ import SeparatorTemplate from "./examples/separator.marko";
 import SeparatorTemplateCode from "./examples/separator.marko?raw";
 
 import Component from "./index.marko";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -211,7 +213,7 @@ Standard.args = {
             renderBody: `item 3`,
             href: "https://www.ebay.com",
         },
-    ],
+    ] as any,
     text: `eBay Menu`,
 };
 Standard.parameters = {

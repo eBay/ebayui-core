@@ -848,7 +848,6 @@ exports[`menu > renders with sprites version 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"menu"[39m
-    [33mtext[39m=[32m"Country"[39m
   [36m>[39m
     [36m<div[39m
       [33mclass[39m=[32m"menu__items"[39m
@@ -1123,7 +1122,6 @@ exports[`menu > renders with typeahead 1`] = `
   [36m</h4>[39m
   [36m<span[39m
     [33mclass[39m=[32m"menu"[39m
-    [33mtext[39m=[32m"Button"[39m
   [36m>[39m
     [36m<div[39m
       [33mclass[39m=[32m"menu__items"[39m

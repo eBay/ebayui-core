@@ -1,14 +1,15 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
-import button from "./index.marko";
+} from "../../common/storybook/utils";
+import button, { type Input } from "./index.marko";
 import Readme from "./README.md";
 import WithIconsTemplate from "./examples/with-icons.marko";
 import WithIconsTemplateCode from "./examples/with-icons.marko?raw";
+import { Story } from "@storybook/marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -95,7 +96,7 @@ Default.args = {
             renderBody: `Q4`,
             value: "quarter4",
         },
-    ],
+    ] as any,
 };
 
 Default.parameters = {

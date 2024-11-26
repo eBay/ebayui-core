@@ -1,3 +1,5 @@
+import type { Input as PaginationInput } from "<ebay-pagination>";
+
 static const SIZE = 15;
 
 class {
@@ -8,16 +10,16 @@ class {
     onCreate() {
         this.state = { current: 0 };
     }
-    handlePrev(e) {
+    handlePrev: PaginationInput["on-previous"] = (e) => {
         this.state.current = Math.max(this.state.current - 1, 0);
         this.emit("previous", e);
     }
-    handleNext(e) {
+    handleNext: PaginationInput["on-next"] = (e) => {
         this.state.current = Math.min(this.state.current + 1, SIZE);
         this.emit("next", e);
     }
-    handleSelect({ index }, e) {
-        this.state.current = index;
+    handleSelect(e: { index: number }) {
+        this.state.current = e.index;
         this.emit("select", e);
     }
 }

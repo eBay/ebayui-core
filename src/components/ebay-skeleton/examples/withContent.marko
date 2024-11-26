@@ -1,11 +1,17 @@
 class {
+    declare state: {
+        isLoading: boolean;
+        data: string | null;
+        error?: unknown;
+    };
     onCreate() {
         this.state = {
             isLoading: true,
             data: null,
+            error: undefined,
         };
     }
-    async getData() {
+    async getData(): Promise<string> {
         return new Promise((resolve, reject) => {
             setTimeout(() => resolve("Button"), 2000);
         });

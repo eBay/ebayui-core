@@ -1,9 +1,11 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { Story } from "@storybook/marko";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import button from "./index.marko";
 import Readme from "./README.md";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
     // input: {
     //     ...args,
@@ -207,7 +209,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    renderBody: "Button",
+    renderBody: "Button" as any,
     a11yMenuText: "Menu",
     items: [
         {
@@ -219,7 +221,7 @@ Standard.args = {
         {
             renderBody: `item 3`,
         },
-    ],
+    ] as any,
 };
 
 Standard.parameters = {

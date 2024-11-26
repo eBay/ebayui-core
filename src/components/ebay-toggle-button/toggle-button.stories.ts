@@ -1,5 +1,5 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import component from "./index.marko";
 import WithIconTemplate from "./examples/with-icon.marko";
@@ -8,8 +8,10 @@ import WithImageTemplate from "./examples/with-image.marko";
 import WithImageCode from "./examples/with-image.marko?raw";
 import MultilineSubtitleTemplate from "./examples/multiline-subtitle.marko";
 import MultilineSubtitleCode from "./examples/multiline-subtitle.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -108,7 +110,7 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    renderBody: "Title",
+    renderBody: "Title" as any,
 };
 
 Default.parameters = {
@@ -119,7 +121,7 @@ Default.parameters = {
     },
 };
 
-export const WithIcon = (args) => ({
+export const WithIcon: Story<Input> = (args) => ({
     input: args,
     component: WithIconTemplate,
 });
@@ -132,7 +134,7 @@ WithIcon.parameters = {
     },
 };
 
-export const WithImage = (args) => ({
+export const WithImage: Story<Input> = (args) => ({
     input: args,
     component: WithImageTemplate,
 });
@@ -140,7 +142,7 @@ WithImage.args = {
     layoutType: "gallery",
     src: "https://cloudfront.slrlounge.com/wp-content/uploads/2012/07/01-SLRLounge-Holding-Standing-Wrong.jpg",
     fillPlacement: "top",
-};
+} as any;
 WithImage.parameters = {
     docs: {
         source: {
@@ -149,7 +151,7 @@ WithImage.parameters = {
     },
 };
 
-export const MultilineSubtitle = (args) => ({
+export const MultilineSubtitle: Story<Input> = (args) => ({
     input: args,
     component: MultilineSubtitleTemplate,
 });

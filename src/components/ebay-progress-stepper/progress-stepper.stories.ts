@@ -1,9 +1,10 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { Story } from "@storybook/marko";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
-import Component from "./index.marko";
+import Component, { type Input } from "./index.marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -118,7 +119,7 @@ InProgress.args = {
             title: { renderBody: "Delivered" },
             renderBody: "July 6th",
         },
-    ],
+    ] as any,
     a11yHeadingTag: "",
     a11yHeadingText: "Shipment progress",
 };
@@ -153,7 +154,7 @@ Blocked.args = {
             title: { renderBody: "Delivered" },
             renderBody: "July 6th",
         },
-    ],
+    ] as any,
     defaultState: "attention",
     a11yHeadingTag: "",
     a11yHeadingText: "Shipment progress, shipment is blocked",

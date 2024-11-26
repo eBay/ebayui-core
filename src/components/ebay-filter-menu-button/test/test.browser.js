@@ -3,7 +3,7 @@ import { composeStories } from "@storybook/marko";
 import { render, fireEvent, cleanup } from "@marko/testing-library";
 import * as stories from "../filter-menu-button.stories";
 import { pressKey } from "../../../common/test-utils/browser";
-import { addRenderBodies } from "../../../../.storybook/utils";
+import { addRenderBodies } from "../../../common/storybook/utils";
 
 const { Default, WithFooter } = composeStories(stories);
 

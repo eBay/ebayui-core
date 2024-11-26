@@ -24,7 +24,6 @@ export interface Input {
 <ebay-carousel
     imageTreatment="matte"
     ...input
-    on-carousel-update("emit", "carousel-update")
     on-move("emit", "move")
     on-next("emit", "next")
     on-previous("emit", "previous")
@@ -48,10 +47,10 @@ export interface Input {
     <@item>
         <img aria-label="photo 6" src="http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/wide-cat.jpeg">
     </@item>
-    <@item style={ width: 400 } class="demo-card">
+    <@item style={ width: "400px" } class="demo-card">
         Additional Item
     </@item>
-    <@item style={ width: 400 } class="demo-card">
+    <@item style={ width: "400px" } class="demo-card">
         Additional Item 2
     </@item>
 </ebay-carousel>

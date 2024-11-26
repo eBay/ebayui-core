@@ -1,7 +1,8 @@
+import { Story } from "@storybook/marko";
 import Readme from "./README.md";
 import fixed from "./examples/all.marko";
 import code from "./examples/all.marko?raw";
-import component from "./index.marko";
+import component, { type Input } from "./index.marko";
 
 export default {
     title: "graphics & icons/ebay-flag",
@@ -20,7 +21,7 @@ export default {
         },
     },
 };
-export const Default = (args) => ({
+export const Default: Story<Input> = (args) => ({
     input: args,
     component: fixed,
 });

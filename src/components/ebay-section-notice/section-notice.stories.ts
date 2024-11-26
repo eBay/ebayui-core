@@ -1,18 +1,18 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
+} from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import withAction from "./examples/with-action.marko";
 import withActionCode from "./examples/with-action.marko?raw";
-import withIcon from "./examples/with-icon.marko";
-import withIconCode from "./examples/with-icon.marko?raw";
 import withDismiss from "./examples/with-dismiss.marko";
 import withDismissCode from "./examples/with-dismiss.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -106,7 +106,7 @@ Basic.args = {
     a11yText: "attention",
     status: "attention",
     a11yRoleDescription: "Notice",
-    renderBody: "<p>Section notice info. Things you need to know.</p>",
+    renderBody: "<p>Section notice info. Things you need to know.</p>" as any,
 };
 Basic.parameters = {
     docs: {
@@ -123,8 +123,8 @@ WithTitle.args = {
     a11yRoleDescription: "Notice",
     title: {
         renderBody: "Section notice title",
-    },
-    renderBody: "<p>Section notice info. Things you need to know.</p>",
+    } as any,
+    renderBody: "<p>Section notice info. Things you need to know.</p>" as any,
 };
 
 WithTitle.parameters = {

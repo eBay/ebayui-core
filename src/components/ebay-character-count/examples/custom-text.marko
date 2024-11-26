@@ -1,4 +1,8 @@
-$ const { max = 120, clippedText } = input;
+export interface Input {
+    max?: number;
+}
+
+$ const { max = 120 } = input;
 
 <span class="field">
     <label class="field__label field__label--stacked" for="my-input">
@@ -28,6 +32,11 @@ $ const { max = 120, clippedText } = input;
     </div>
 </span>
 class {
+    declare state: {
+        inputValue: string;
+        inputAriaLive: Marko.AriaAttributes["aria-live"];
+        charCount: number;
+    };
     onCreate() {
         this.state = {
             inputValue: "",
@@ -35,12 +44,20 @@ class {
             charCount: 0
         };
     }
-    onTextChange({ originalEvent: e }) {
-        this.state.inputValue = e.target.value;
+    onTextChange({ value }: { value: string }) {
+        this.state.inputValue = value;
     }
-    onCharCountChange({ count, inputAriaLive }) {
-        this.state.inputAriaLive = inputAriaLive;
-        this.state.charCount = count;
-        this.emit('change', {count, inputAriaLive})
+    onCharCountChange(e?: {
+        count: number;
+        inputAriaLive: Marko.AriaAttributes["aria-live"];
+    }) {
+        if (e) {
+            this.state.inputAriaLive = e.inputAriaLive;
+            this.state.charCount = e.count;
+            this.emit("change", {
+                count: e.count,
+                inputAriaLive: e.inputAriaLive,
+            });
+        }
     }
 }

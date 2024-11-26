@@ -1,10 +1,12 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import sampleSeriesData from "./examples/data.json";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -70,7 +72,7 @@ export const Standard = Template.bind({});
 Standard.args = {
     title: "Single series sample area chart",
     description: "this chart displays 30 days of sample values",
-    series: sampleSeriesData.slice(0, 1),
+    series: sampleSeriesData.slice(0, 1) as any,
 };
 Standard.parameters = {
     docs: {
@@ -85,7 +87,7 @@ TwoSeries.args = {
     title: "Two series sample area chart",
     description:
         "this chart displays 30 days of values for sample1 and sample2",
-    series: sampleSeriesData.slice(0, 2),
+    series: sampleSeriesData.slice(0, 2) as any,
 };
 TwoSeries.parameters = {
     docs: {
@@ -100,7 +102,7 @@ ThreeSeries.args = {
     title: "Three series sample area chart",
     description:
         "this chart displays 30 days of values for sample1, sample2 and sample3",
-    series: sampleSeriesData.slice(0, 3),
+    series: sampleSeriesData.slice(0, 3) as any,
 };
 ThreeSeries.parameters = {
     docs: {
@@ -115,7 +117,7 @@ FourSeries.args = {
     title: "Four series sample area chart",
     description:
         "this chart displays 30 days of values for sample1, sample2, sample3, and sample4",
-    series: sampleSeriesData.slice(0, 4),
+    series: sampleSeriesData.slice(0, 4) as any,
 };
 FourSeries.parameters = {
     docs: {
@@ -130,7 +132,7 @@ FiveSeries.args = {
     title: "Five series sample area chart",
     description:
         "this chart displays 30 days of values for sample1, sample2, sample3, sample4, and sample5",
-    series: sampleSeriesData,
+    series: sampleSeriesData as any,
 };
 FiveSeries.parameters = {
     docs: {

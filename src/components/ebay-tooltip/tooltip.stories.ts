@@ -1,11 +1,13 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import buttonComponent from "./examples/icon-button-host.marko";
 import code from "./examples/icon-button-host.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -120,7 +122,7 @@ Standard.args = {
     content: {
         renderBody: `<p>Use Access Key 'S' to display settings.</p>`,
     },
-};
+} as any;
 
 Standard.parameters = {
     docs: {
@@ -130,9 +132,9 @@ Standard.parameters = {
     },
 };
 
-export const buttonHost = (args) => ({
+export const buttonHost: Story<Input> = (args, context) => ({
     // eslint-disable-next-line new-cap
-    input: Template(args).input,
+    input: Template(args, context).input,
     component: buttonComponent,
 });
 buttonHost.parameters = { controls: { exclude: /./ } };

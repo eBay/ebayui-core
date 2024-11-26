@@ -1,9 +1,16 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
-import { addRenderBodies } from "../../../.storybook/utils";
+import { Story } from "@storybook/marko";
+import { tagToString } from "../../common/storybook/storybook-code-source";
+import {
+    addRenderBodies,
+    buildExtensionTemplate,
+} from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
+import type { Input } from "./component";
+import WithSearchTemplate from "./examples/with-search.marko";
+import WithSearchCode from "./examples/with-search.marko?raw";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -61,6 +68,20 @@ export default {
                 category: "@attribute tags",
             },
         },
+        searchHeaderValue: {
+            control: { type: "text" },
+            description:
+                "optional value override for the input in the search header",
+        },
+        searchHeaderPlaceholderText: {
+            control: { type: "text" },
+            description:
+                "enables the search header and populates placeholder text. `a11y-search-header-clear-text` is required if this is enabled.",
+        },
+        a11ySearchHeaderClearText: {
+            control: { type: "text" },
+            description: "a11y text for the search header clear button",
+        },
         formName: {
             control: { type: "text" },
             description: "forms `name` attribute",
@@ -89,6 +110,12 @@ export default {
             control: { type: "text" },
             description:
                 "the items value (returned in emitted events when checked)",
+        },
+        footer: {
+            name: "@footer",
+            table: {
+                category: "@attribute tags",
+            },
         },
         onCollapse: {
             action: "on-collapse",
@@ -120,7 +147,7 @@ export default {
                 },
             },
         },
-        footerClick: {
+        "onFooter-click": {
             action: "on-footer-click",
             description: "Triggered on footer clicked",
             table: {
@@ -130,7 +157,7 @@ export default {
                 },
             },
         },
-        formSubmit: {
+        "onForm-submit": {
             action: "on-form-submit",
             description:
                 'when using `variant="form"`, and form is submitted (emits current checked state)',
@@ -141,10 +168,14 @@ export default {
                 },
             },
         },
-        footer: {
-            name: "@footer",
+        "onSearch-change": {
+            action: "on-search-change",
+            description: "Triggered when the search input updates",
             table: {
-                category: "@attribute tags",
+                category: "Events",
+                defaultValue: {
+                    summary: "{ checked, originalEvent }",
+                },
             },
         },
     },
@@ -168,7 +199,7 @@ Default.args = {
         },
     ],
     a11yText: "filter menu button a11y text",
-};
+} as any;
 Default.parameters = {
     docs: {
         source: {
@@ -199,7 +230,7 @@ WithFooter.args = {
         renderBody: "Apply",
         a11yFooterText: "footer button a11y text",
     },
-};
+} as any;
 WithFooter.parameters = {
     docs: {
         source: {
@@ -207,3 +238,9 @@ WithFooter.parameters = {
         },
     },
 };
+
+export const WithSearch = buildExtensionTemplate(
+    WithSearchTemplate,
+    WithSearchCode,
+    {},
+);

@@ -1,14 +1,16 @@
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
-import { tagToString } from "../../../.storybook/storybook-code-source";
+} from "../../common/storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Combobox from "./index.marko";
+import type { Input } from "./component";
 import SearchFilteringTemplate from "./examples/search-filtering.marko";
 import SearchFilteringTemplateCode from "./examples/search-filtering.marko?raw";
+import { Story } from "@storybook/marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -52,6 +54,11 @@ export default {
             control: { type: "text" },
             description:
                 "default is `automatic`; available values are `automatic`, `manual`. If set to automatic will automatically fill in the input with the currently highlighted item when using the up/down keys.",
+        },
+        viewAllOptions: {
+            type: "boolean",
+            control: { type: "boolean" },
+            description: "Filters listbox options based on user input",
         },
         "floating-label": {
             control: { type: "text" },
@@ -172,7 +179,7 @@ FloatingLabel.args = {
         { text: "Basic Offer 4" },
     ],
     floatingLabel: "Default Label",
-};
+} as any;
 FloatingLabel.parameters = {
     docs: {
         source: {
@@ -200,7 +207,7 @@ Isolated.args = {
         { text: "Basic Offer 3", value: "5" },
         { text: "Basic Offer 4", value: "6" },
     ],
-};
+} as any;
 Isolated.parameters = {
     docs: {
         source: {

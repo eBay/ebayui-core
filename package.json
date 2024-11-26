@@ -51,7 +51,9 @@
         "marko.json",
         "package-lock.json",
         "*.browser.json",
-        "marketplace.json"
+        "marketplace.json",
+        "!**/{,*.}stories.*",
+        "!**/{,*.}stories-ignore.*"
     ],
     "license": "MIT",
     "repository": {
@@ -76,7 +78,7 @@
         "@commitlint/cli": "^19",
         "@commitlint/config-conventional": "^19",
         "@ebay/browserslist-config": "^2.10.0",
-        "@ebay/skin": "~18.4.0",
+        "@ebay/skin": "~18.5.0",
         "@google/model-viewer": "3.5.0",
         "@marko/compiler": "^5.37.23",
         "@marko/prettyprint": "^3.0.1",

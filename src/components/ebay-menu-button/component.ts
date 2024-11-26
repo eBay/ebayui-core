@@ -35,9 +35,9 @@ interface MenuButtonInput
     disabled?: boolean;
     split?: string;
     "no-toggle-icon"?: boolean;
-    label?: {
+    label?: Marko.AttrTag<{
         renderBody?: Marko.Body;
-    };
+    }>;
     "prefix-label"?: AttrString;
     icon?: Marko.AttrTag<{ renderBody?: Marko.Body }>;
     text?: AttrString;

@@ -1,10 +1,12 @@
-import { addRenderBodies } from "../../../.storybook/utils";
+import { addRenderBodies } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Component from "./index.marko";
 import example1 from "./examples/default.marko?raw";
 import withFooterCode from "./examples/withFooter.marko?raw";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -144,7 +146,7 @@ Standard.args = {
         renderBody: `<p>This new feature was added.</p>`,
     },
     a11yCloseText: "close",
-};
+} as any;
 Standard.parameters = {
     docs: {
         source: {
@@ -175,7 +177,7 @@ withFooter.args = {
         renderBody:
             '<button class="fake-link">Back</button><button class="btn btn--primary">Next</button>',
     },
-};
+} as any;
 withFooter.parameters = {
     docs: {
         source: {

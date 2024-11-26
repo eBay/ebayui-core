@@ -1,9 +1,11 @@
-import { addRenderBodies } from "../../../.storybook/utils";
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { addRenderBodies } from "../../common/storybook/utils";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import Readme from "./README.md";
 import Component from "./index.marko";
+import { Story } from "@storybook/marko";
+import type { Input } from "./component";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -65,7 +67,7 @@ Standard.args = {
         {
             renderBody: `panel three`,
         },
-    ],
+    ] as any,
     tabs: [
         {
             renderBody: `Tab 1`,
@@ -76,7 +78,7 @@ Standard.args = {
         {
             renderBody: `Tab 3`,
         },
-    ],
+    ] as any,
 };
 Standard.parameters = {
     docs: {

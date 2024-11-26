@@ -1,8 +1,4 @@
-import {
-    addRenderBodies,
-    buildExtensionTemplate,
-} from "../../../.storybook/utils";
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { buildExtensionTemplate } from "../../common/storybook/utils";
 import Readme from "./README.md";
 import Combobox from "./index.marko";
 import DefaultTemplate from "./examples/default.marko";
@@ -10,9 +6,6 @@ import DefaultCode from "./examples/default.marko?raw";
 import SelectedTemplate from "./examples/selected.marko";
 import SelectedCode from "./examples/selected.marko?raw";
 
-const Template = (args) => ({
-    input: addRenderBodies(args),
-});
 
 export default {
     title: "form input/ebay-chips-combobox",

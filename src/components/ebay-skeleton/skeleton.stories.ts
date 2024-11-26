@@ -1,9 +1,9 @@
-import { tagToString } from "../../../.storybook/storybook-code-source";
+import { tagToString } from "../../common/storybook/storybook-code-source";
 import {
     addRenderBodies,
     buildExtensionTemplate,
-} from "../../../.storybook/utils";
-import Component from "./index.marko";
+} from "../../common/storybook/utils";
+import Component, { type Input } from "./index.marko";
 import Readme from "./README.md";
 import avatarTemplate from "./examples/avatar.marko";
 import avatarCode from "./examples/avatar.marko?raw";
@@ -25,8 +25,9 @@ import withContentTemplate from "./examples/withContent.marko";
 import withContentCode from "./examples/withContent.marko?raw";
 import compositeTemplate from "./examples/composite.marko";
 import compositeCode from "./examples/composite.marko?raw";
+import { Story } from "@storybook/marko";
 
-const Template = (args) => ({
+const Template: Story<Input> = (args) => ({
     input: addRenderBodies(args),
 });
 
@@ -82,7 +83,7 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
     style: "width: 220px",
-    renderBody: `<div class="skeleton__textbox" />`,
+    renderBody: `<div class="skeleton__textbox" />` as any,
 };
 Default.parameters = {
     docs: {
