@@ -28,10 +28,11 @@ interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
     "list-selection"?: "manual" | "automatic";
     "floating-label"?: boolean;
     "view-all-options"?: boolean;
-    button?: Marko.Input<"button"> & Marko.AttrTag<{
-        htmlAttributes?: Record<string, unknown>;
-        renderBody?: Marko.Body;
-    }>;
+    button?: Marko.Input<"button"> &
+        Marko.AttrTag<{
+            htmlAttributes?: Record<string, unknown>;
+            renderBody?: Marko.Body;
+        }>;
     options?: Marko.AttrTag<ComboboxOption>;
     "chevron-size"?: "large";
     "on-focus"?: (event: ComboboxEvent) => void;
