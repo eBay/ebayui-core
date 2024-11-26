@@ -20,7 +20,9 @@ interface DialogBaseInput extends Omit<Marko.Input<"div">, `on${string}`> {
     "close-button-text"?: AttrString;
     "close-button-class"?: AttrClass;
     "a11y-close-text"?: AttrString;
-    "close-button"?: Marko.Renderable | Marko.AttrTag<{ renderBody: Marko.Body }>;
+    "close-button"?:
+        | Marko.Renderable
+        | Marko.AttrTag<{ renderBody: Marko.Body }>;
     "is-modal"?: boolean;
     "ignore-escape"?: boolean;
     "window-type"?: string;

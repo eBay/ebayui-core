@@ -6,7 +6,7 @@ import { processHtmlAttributes } from "../../common/html-attributes";
 import { onScrollDebounced as onScroll } from "./utils/on-scroll-debounced";
 import { scrollTransition } from "./utils/scroll-transition";
 import type { WithNormalizedProps } from "../../global";
-import  { useReducedMotion } from "../../common/dom";
+import { useReducedMotion } from "../../common/dom";
 
 type Direction = typeof LEFT | typeof RIGHT;
 // Used for carousel slide direction.
@@ -519,7 +519,7 @@ class Carousel extends Marko.Component<Input, State> {
         this.skipScrolling = false;
 
         // If user had reduced motion turned on in OS settings, pause autoplay.
-        if(useReducedMotion) {
+        if (useReducedMotion) {
             this.state.paused = true;
         }
 

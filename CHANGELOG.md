@@ -1,5 +1,23 @@
 # eBayUI-Core Changelog
 
+## 14.5.0-next.0
+
+### Minor Changes
+
+- [#2330](https://github.com/eBay/ebayui-core/pull/2330) [`9ebb7c9`](https://github.com/eBay/ebayui-core/commit/9ebb7c92885b3beef4266639513297e8af74cdd0) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Search header for filter menu & filter menu button
+
+- [#2320](https://github.com/eBay/ebayui-core/pull/2320) [`73ff807`](https://github.com/eBay/ebayui-core/commit/73ff807fa1d9989ece78b9c5482d40b4351e2f49) Thanks [@saiponnada](https://github.com/saiponnada)! - fix(combobox): added viewAllOptions control
+
+- [#2319](https://github.com/eBay/ebayui-core/pull/2319) [`a41ae29`](https://github.com/eBay/ebayui-core/commit/a41ae2928ea9301a6bda8ca5dbce835519777b99) Thanks [@saiponnada](https://github.com/saiponnada)! - feat(carousel): respect reduced-motion during autoplay
+
+- [#2327](https://github.com/eBay/ebayui-core/pull/2327) [`30b5859`](https://github.com/eBay/ebayui-core/commit/30b58590f04f3ef65a96f6026b182b8947e9c964) Thanks [@agliga](https://github.com/agliga)! - ebay-ccd: new component
+
+### Patch Changes
+
+- [#2324](https://github.com/eBay/ebayui-core/pull/2324) [`60ebb19`](https://github.com/eBay/ebayui-core/commit/60ebb196d8dc0f1a2bf443d62c1dedab33987a61) Thanks [@UDAY556](https://github.com/UDAY556)! - Added localization for ebay-video component
+
+- [#2312](https://github.com/eBay/ebayui-core/pull/2312) [`c006353`](https://github.com/eBay/ebayui-core/commit/c00635390b9c302cce10135d2f59b6a22c298019) Thanks [@mikehobi](https://github.com/mikehobi)! - refactor(storybook/examples): fully migrate stories and examples to typescript
+
 ## 14.4.1
 
 ### Patch Changes

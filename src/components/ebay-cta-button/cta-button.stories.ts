@@ -6,7 +6,7 @@ import Cta, { type Input } from "./index.marko";
 const Template: Story<Input> = (args) => ({
     input: {
         ...args,
-        renderBody: function(out: any) {
+        renderBody: function (out: any) {
             out.html(args.renderBody);
         } as any,
     },
