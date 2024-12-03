@@ -1,0 +1,24 @@
+{
+    "attribute-groups": ["html-attributes"],
+    "@*": {
+        "targetProperty": null,
+        "type": "expression"
+    },
+    "@html-attributes": "expression",
+    "@size": {
+        "enum": ["regular", "large"]
+    },
+    "@as": "string",
+    "@auto-collapse": "boolean",
+    "@a11y-role-description": "string",
+    "@items <item>[]": {
+        "attribute-groups": ["html-attributes"],
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression",
+        "@text": "string"
+    },
+    "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-accordion)"
+}

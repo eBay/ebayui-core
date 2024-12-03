@@ -1,4 +1,4 @@
-import { processHtmlAttributes } from "../../common/html-attributes"
+import { processHtmlAttributes } from "../../common/html-attributes";
 
 static function noop() {}
 
@@ -9,6 +9,7 @@ $ const {
     size,
     text,
     renderBody,
+    layout,
     as: inputAs,
     ...htmlInput
 } = input;
@@ -29,10 +30,16 @@ $ (input as any).toJSON = noop;
     ]>
         <span class="details__label">${text}</span>
         <span class="details__icon" hidden>
-            <ebay-chevron-down-16-icon/>
+            <if(layout === "accordion")>
+                <ebay-add-16-icon class="details__expand"/>
+                <ebay-remove-16-icon class="details__collapse"/>
+            </if>
+            <else>
+                <ebay-chevron-down-16-icon/>
+            </else>
         </span>
     </summary>
-    <${inputAs || "div"}>
+    <${inputAs || "div"} class=layout === "accordion" && "details__content">
         <${renderBody}/>
     </>
 </details>

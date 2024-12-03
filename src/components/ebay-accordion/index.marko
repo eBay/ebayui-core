@@ -1,0 +1,33 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+
+static function noop() {}
+
+$ const {
+    class: inputClass,
+    size,
+    items,
+    autoCollapse,
+    a11yRoleDescription,
+    ...htmlInput
+} = input;
+
+$ (input as any).toJSON = noop;
+
+<ul
+    ...processHtmlAttributes(htmlInput)
+    class=["accordion", size === "large" && "accordion--large", inputClass]
+    aria-roledescription=(a11yRoleDescription ?? "accordion")
+    key="accordion-root"
+>
+    <for|item, i| of=items || []>
+        <li>
+            <ebay-details
+                ...item
+                layout="accordion"
+                on-toggle("handleToggle")
+            >
+                ${item.renderBody}
+            </ebay-details>
+        </li>
+    </for>
+</ul>

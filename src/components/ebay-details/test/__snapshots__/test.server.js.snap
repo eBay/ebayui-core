@@ -20,15 +20,15 @@ exports[`details > passes through additional html attributes 1`] = `
       class="details__icon"
       hidden=""
     >
-      <!--M#s0-3-0-->
+      <!--M#s0-5-0-->
       <svg
         aria-hidden="true"
         class="icon icon--16"
-        data-marko-key="@svg s0-3-0"
+        data-marko-key="@svg s0-5-0"
         focusable="false"
       >
         <defs
-          data-marko-key="@defs s0-3-0"
+          data-marko-key="@defs s0-5-0"
         >
           <symbol
             id="icon-chevron-down-16"
@@ -47,7 +47,7 @@ exports[`details > passes through additional html attributes 1`] = `
     </span>
   </summary>
   <div
-    data-marko-key="4 s0"
+    data-marko-key="6 s0"
   />
 </details>
 `;
@@ -72,15 +72,15 @@ exports[`details > passes through additional html attributes 2`] = `
       class="details__icon"
       hidden=""
     >
-      <!--M#s0-3-0-->
+      <!--M#s0-5-0-->
       <svg
         aria-hidden="true"
         class="icon icon--16"
-        data-marko-key="@svg s0-3-0"
+        data-marko-key="@svg s0-5-0"
         focusable="false"
       >
         <defs
-          data-marko-key="@defs s0-3-0"
+          data-marko-key="@defs s0-5-0"
         >
           <symbol
             id="icon-chevron-down-16"
@@ -99,7 +99,7 @@ exports[`details > passes through additional html attributes 2`] = `
     </span>
   </summary>
   <div
-    data-marko-key="4 s0"
+    data-marko-key="6 s0"
   />
 </details>
 `;
@@ -126,11 +126,11 @@ exports[`details > renders as div version 1`] = `
         [36m<svg[39m
           [33maria-hidden[39m=[32m"true"[39m
           [33mclass[39m=[32m"icon icon--16"[39m
-          [33mdata-marko-key[39m=[32m"@svg s0-3-0"[39m
+          [33mdata-marko-key[39m=[32m"@svg s0-5-0"[39m
           [33mfocusable[39m=[32m"false"[39m
         [36m>[39m
           [36m<defs[39m
-            [33mdata-marko-key[39m=[32m"@defs s0-3-0"[39m
+            [33mdata-marko-key[39m=[32m"@defs s0-5-0"[39m
           [36m>[39m
             [36m<symbol[39m
               [33mid[39m=[32m"icon-chevron-down-16"[39m
@@ -148,7 +148,7 @@ exports[`details > renders as div version 1`] = `
       [36m</span>[39m
     [36m</summary>[39m
     [36m<div[39m
-      [33mdata-marko-key[39m=[32m"4 s0"[39m
+      [33mdata-marko-key[39m=[32m"6 s0"[39m
     [36m>[39m
       [0mbody content[0m
     [36m</div>[39m
@@ -178,11 +178,11 @@ exports[`details > renders basic version 1`] = `
         [36m<svg[39m
           [33maria-hidden[39m=[32m"true"[39m
           [33mclass[39m=[32m"icon icon--16"[39m
-          [33mdata-marko-key[39m=[32m"@svg s0-3-0"[39m
+          [33mdata-marko-key[39m=[32m"@svg s0-5-0"[39m
           [33mfocusable[39m=[32m"false"[39m
         [36m>[39m
           [36m<defs[39m
-            [33mdata-marko-key[39m=[32m"@defs s0-3-0"[39m
+            [33mdata-marko-key[39m=[32m"@defs s0-5-0"[39m
           [36m>[39m
             [36m<symbol[39m
               [33mid[39m=[32m"icon-chevron-down-16"[39m
@@ -200,7 +200,7 @@ exports[`details > renders basic version 1`] = `
       [36m</span>[39m
     [36m</summary>[39m
     [36m<div[39m
-      [33mdata-marko-key[39m=[32m"4 s0"[39m
+      [33mdata-marko-key[39m=[32m"6 s0"[39m
     [36m>[39m
       [0mbody content[0m
     [36m</div>[39m
@@ -230,11 +230,11 @@ exports[`details > renders center version 1`] = `
         [36m<svg[39m
           [33maria-hidden[39m=[32m"true"[39m
           [33mclass[39m=[32m"icon icon--16"[39m
-          [33mdata-marko-key[39m=[32m"@svg s0-3-0"[39m
+          [33mdata-marko-key[39m=[32m"@svg s0-5-0"[39m
           [33mfocusable[39m=[32m"false"[39m
         [36m>[39m
           [36m<defs[39m
-            [33mdata-marko-key[39m=[32m"@defs s0-3-0"[39m
+            [33mdata-marko-key[39m=[32m"@defs s0-5-0"[39m
           [36m>[39m
             [36m<symbol[39m
               [33mid[39m=[32m"icon-chevron-down-16"[39m
@@ -252,7 +252,7 @@ exports[`details > renders center version 1`] = `
       [36m</span>[39m
     [36m</summary>[39m
     [36m<div[39m
-      [33mdata-marko-key[39m=[32m"4 s0"[39m
+      [33mdata-marko-key[39m=[32m"6 s0"[39m
     [36m>[39m
       [0mbody content[0m
     [36m</div>[39m
@@ -282,11 +282,11 @@ exports[`details > renders in open state 1`] = `
         [36m<svg[39m
           [33maria-hidden[39m=[32m"true"[39m
           [33mclass[39m=[32m"icon icon--16"[39m
-          [33mdata-marko-key[39m=[32m"@svg s0-3-0"[39m
+          [33mdata-marko-key[39m=[32m"@svg s0-5-0"[39m
           [33mfocusable[39m=[32m"false"[39m
         [36m>[39m
           [36m<defs[39m
-            [33mdata-marko-key[39m=[32m"@defs s0-3-0"[39m
+            [33mdata-marko-key[39m=[32m"@defs s0-5-0"[39m
           [36m>[39m
             [36m<symbol[39m
               [33mid[39m=[32m"icon-chevron-down-16"[39m
@@ -304,7 +304,7 @@ exports[`details > renders in open state 1`] = `
       [36m</span>[39m
     [36m</summary>[39m
     [36m<div[39m
-      [33mdata-marko-key[39m=[32m"4 s0"[39m
+      [33mdata-marko-key[39m=[32m"6 s0"[39m
     [36m>[39m
       [0mbody content[0m
     [36m</div>[39m
@@ -334,11 +334,11 @@ exports[`details > renders small version 1`] = `
         [36m<svg[39m
           [33maria-hidden[39m=[32m"true"[39m
           [33mclass[39m=[32m"icon icon--16"[39m
-          [33mdata-marko-key[39m=[32m"@svg s0-3-0"[39m
+          [33mdata-marko-key[39m=[32m"@svg s0-5-0"[39m
           [33mfocusable[39m=[32m"false"[39m
         [36m>[39m
           [36m<defs[39m
-            [33mdata-marko-key[39m=[32m"@defs s0-3-0"[39m
+            [33mdata-marko-key[39m=[32m"@defs s0-5-0"[39m
           [36m>[39m
             [36m<symbol[39m
               [33mid[39m=[32m"icon-chevron-down-16"[39m
@@ -356,7 +356,7 @@ exports[`details > renders small version 1`] = `
       [36m</span>[39m
     [36m</summary>[39m
     [36m<div[39m
-      [33mdata-marko-key[39m=[32m"4 s0"[39m
+      [33mdata-marko-key[39m=[32m"6 s0"[39m
     [36m>[39m
       [0mbody content[0m
     [36m</div>[39m
