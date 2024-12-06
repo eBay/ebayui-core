@@ -14,6 +14,9 @@ $ const {
     type,
     ariaLabel,
     ariaLabelledby,
+    searchHeaderValue,
+    searchHeaderPlaceholderText,
+    a11ySearchHeaderClearText,
     ...htmlInput
 } = input;
 $ var isRadio = type === "radio";
@@ -22,10 +25,29 @@ $ var baseClass = classPrefix || "filter-menu";
 $ var isForm = variant === "form";
 <span
     ...processHtmlAttributes(htmlInput)
-    key="container"
     class=[classPrefix ? `${baseClass}__menu` : baseClass, inputClass]
     style=style
 >
+    <if(searchHeaderPlaceholderText)>
+        <div class="filter-menu__header">
+            <ebay-search-16-icon/>
+            <input
+                type="text"
+                value=state.searchTerm
+                class="filter-menu__search"
+                placeholder=searchHeaderPlaceholderText
+                aria-owns:scoped="search-items"
+                on-input("handleSearch")
+            >
+            <ebay-button
+                priority="none"
+                on-click("clearSearch")
+                aria-label=a11ySearchHeaderClearText
+            >
+                <ebay-clear-20-icon/>
+            </ebay-button>
+        </div>
+    </if>
     <${isForm && "form"}
         name=formName
         action=formAction
@@ -35,6 +57,7 @@ $ var isForm = variant === "form";
         <div
             key="menu"
             class=`${baseClass}__items`
+            id:scoped=searchHeaderPlaceholderText && "search-items"
             role=!isForm && "menu"
             aria-label=ariaLabel
             aria-labelledby=ariaLabelledby

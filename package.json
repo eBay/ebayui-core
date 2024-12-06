@@ -1,6 +1,6 @@
 {
     "name": "@ebay/ebayui-core",
-    "version": "14.4.1",
+    "version": "14.5.0",
     "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
     "keywords": [
         "marko-components"
@@ -100,7 +100,7 @@
         "@commitlint/cli": "^19",
         "@commitlint/config-conventional": "^19",
         "@ebay/browserslist-config": "^2.10.0",
-        "@ebay/skin": "~18.4.0",
+        "@ebay/skin": "~18.5.0",
         "@marko/compiler": "^5.37.23",
         "@marko/prettyprint": "^3.0.1",
         "@marko/testing-library": "^6",

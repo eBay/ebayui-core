@@ -239,6 +239,34 @@ describe("given the combobox with 3 items and 2 selected", () => {
     }
 });
 
+describe("given the combobox with 6 items and view all options false", () => {
+    beforeEach(async () => {
+        component = await render(Isolated, {
+            value: Isolated.args.options[2].text,
+            viewAllOptions: false,
+        });
+    });
+
+    describe("when the input receives focus", () => {
+        beforeEach(async () => {
+            await fireEvent.focus(component.getByRole("combobox"));
+        });
+
+        it("then it should expand the combobox", () => {
+            expect(component.getByRole("combobox")).toHaveAttribute(
+                "aria-expanded",
+                "true",
+            );
+        });
+
+        it("then should show filtered options with first one active", () => {
+            const options = component.getAllByRole("option");
+            expect(options.length).to.equal(4);
+            expect(options[0]).toHaveClass("combobox__option--active");
+        });
+    });
+});
+
 describe("given the combobox with 3 items set to manual selection", () => {
     beforeEach(async () => {
         component = await render(Isolated, {

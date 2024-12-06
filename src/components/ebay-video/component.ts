@@ -260,6 +260,13 @@ class Video extends Marko.Component<Input, State> {
             this.input.reportText || "",
         );
 
+        if (document?.documentElement?.lang) {
+            this.ui
+                .getControls()
+                .getLocalization()
+                .changeLocale([document.documentElement.lang]);
+        }
+
         // eslint-disable-next-line no-undef,new-cap
         this.shaka.ui.Controls.registerElement(
             "report",

@@ -1,0 +1,564 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ccd > passes through additional html attributes 1`] = `
+<div
+  aria-label=" 1000 - 2000 watts. "
+  class="ccd class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="figure"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="ccd__description-figure"
+  >
+    <!--M#s0-0-4-0-->
+    <svg
+      aria-hidden="true"
+      class="ccd__top-icon icon icon--ccd-top"
+      data-marko-key="@svg s0-0-4-0"
+      focusable="false"
+    >
+      <defs
+        data-marko-key="@defs s0-0-4-0"
+      >
+        <symbol
+          fill="none"
+          id="icon-ccd-top"
+          viewBox="0 0 35 25"
+        >
+          <path
+            d="M0.5 25V13.5H34.5V25"
+            stroke-width="1"
+          />
+          <path
+            d="M6.5 13V0.5H10.5V13"
+            stroke-width="1"
+          />
+          <path
+            d="M24.5 13V0.5H28.5V13"
+            stroke-width="1"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-ccd-top"
+      />
+    </svg>
+    <!--M/-->
+    <div
+      class="ccd__body"
+    >
+      <div>
+        1000 - 2000
+      </div>
+      <div>
+        W
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ccd > passes through additional html attributes 2`] = `
+<div
+  aria-label=" 1000 - 2000 watts. "
+  class="ccd class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="figure"
+  style="color:red"
+  type="number"
+>
+  <div
+    class="ccd__description-figure"
+  >
+    <!--M#s0-0-4-0-->
+    <svg
+      aria-hidden="true"
+      class="ccd__top-icon icon icon--ccd-top"
+      data-marko-key="@svg s0-0-4-0"
+      focusable="false"
+    >
+      <defs
+        data-marko-key="@defs s0-0-4-0"
+      >
+        <symbol
+          fill="none"
+          id="icon-ccd-top"
+          viewBox="0 0 35 25"
+        >
+          <path
+            d="M0.5 25V13.5H34.5V25"
+            stroke-width="1"
+          />
+          <path
+            d="M6.5 13V0.5H10.5V13"
+            stroke-width="1"
+          />
+          <path
+            d="M24.5 13V0.5H28.5V13"
+            stroke-width="1"
+          />
+        </symbol>
+      </defs>
+      <use
+        href="#icon-ccd-top"
+      />
+    </svg>
+    <!--M/-->
+    <div
+      class="ccd__body"
+    >
+      <div>
+        1000 - 2000
+      </div>
+      <div>
+        W
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ccd > renders ccd with charger included 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-label[39m=[32m"Charger  included. 1000 - 2000 watts. "[39m
+    [33mclass[39m=[32m"ccd"[39m
+    [33mrole[39m=[32m"figure"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"ccd__charger-icon icon icon--ccd-charger-included"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-0-1-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs[39m
+        [33mdata-marko-key[39m=[32m"@defs s0-0-1-0"[39m
+      [36m>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-ccd-charger-included"[39m
+          [33mviewBox[39m=[32m"0 0 58 78"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33mclip-rule[39m=[32m"evenodd"[39m
+            [33md[39m=[32m"M0 0h58v78H0V0Zm1 1v76h56V1H1Zm7 28.75c0-.966.784-1.75 1.75-1.75H15V18h5V8h4v10h10V8h4v10h5v10h5.25c.967 0 1.75.784 1.75 1.75v38.5A1.75 1.75 0 0 1 48.25 70H9.75A1.75 1.75 0 0 1 8 68.25v-38.5ZM23 18V9h-2v9h2Zm14 0h-2V9h2v9Zm5 10v-9H16v9h26ZM9.75 29a.75.75 0 0 0-.75.75v38.5c0 .414.336.75.75.75h38.5a.75.75 0 0 0 .75-.75v-38.5a.75.75 0 0 0-.75-.75H9.75Z"[39m
+            [33mfill-rule[39m=[32m"evenodd"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-ccd-charger-included"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"ccd__description-figure"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"ccd__top-icon icon icon--ccd-top"[39m
+        [33mdata-marko-key[39m=[32m"@svg s0-0-4-0"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs[39m
+          [33mdata-marko-key[39m=[32m"@defs s0-0-4-0"[39m
+        [36m>[39m
+          [36m<symbol[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mid[39m=[32m"icon-ccd-top"[39m
+            [33mviewBox[39m=[32m"0 0 35 25"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M0.5 25V13.5H34.5V25"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M6.5 13V0.5H10.5V13"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M24.5 13V0.5H28.5V13"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-ccd-top"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"ccd__body"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [0m1000 - 2000[0m
+        [36m</div>[39m
+        [36m<div>[39m
+          [0mW[0m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ccd > renders ccd with charger included and usbpd 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-label[39m=[32m"Charger  included. 1000 - 2000 watts. "[39m
+    [33mclass[39m=[32m"ccd"[39m
+    [33mrole[39m=[32m"figure"[39m
+    [33msecondary[39m=[32m"usbpd"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"ccd__charger-icon icon icon--ccd-charger-included"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-0-1-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs[39m
+        [33mdata-marko-key[39m=[32m"@defs s0-0-1-0"[39m
+      [36m>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-ccd-charger-included"[39m
+          [33mviewBox[39m=[32m"0 0 58 78"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33mclip-rule[39m=[32m"evenodd"[39m
+            [33md[39m=[32m"M0 0h58v78H0V0Zm1 1v76h56V1H1Zm7 28.75c0-.966.784-1.75 1.75-1.75H15V18h5V8h4v10h10V8h4v10h5v10h5.25c.967 0 1.75.784 1.75 1.75v38.5A1.75 1.75 0 0 1 48.25 70H9.75A1.75 1.75 0 0 1 8 68.25v-38.5ZM23 18V9h-2v9h2Zm14 0h-2V9h2v9Zm5 10v-9H16v9h26ZM9.75 29a.75.75 0 0 0-.75.75v38.5c0 .414.336.75.75.75h38.5a.75.75 0 0 0 .75-.75v-38.5a.75.75 0 0 0-.75-.75H9.75Z"[39m
+            [33mfill-rule[39m=[32m"evenodd"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-ccd-charger-included"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"ccd__description-figure"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"ccd__top-icon icon icon--ccd-top"[39m
+        [33mdata-marko-key[39m=[32m"@svg s0-0-4-0"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs[39m
+          [33mdata-marko-key[39m=[32m"@defs s0-0-4-0"[39m
+        [36m>[39m
+          [36m<symbol[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mid[39m=[32m"icon-ccd-top"[39m
+            [33mviewBox[39m=[32m"0 0 35 25"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M0.5 25V13.5H34.5V25"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M6.5 13V0.5H10.5V13"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M24.5 13V0.5H28.5V13"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-ccd-top"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"ccd__body"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [0m1000 - 2000[0m
+        [36m</div>[39m
+        [36m<div>[39m
+          [0mW[0m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ccd > renders ccd with charger not included 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-label[39m=[32m"Charger not  included. 1000 - 2000 watts. "[39m
+    [33mclass[39m=[32m"ccd"[39m
+    [33mrole[39m=[32m"figure"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"ccd__charger-icon icon icon--ccd-charger-not-included"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-0-2-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs[39m
+        [33mdata-marko-key[39m=[32m"@defs s0-0-2-0"[39m
+      [36m>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-ccd-charger-not-included"[39m
+          [33mviewBox[39m=[32m"0 0 58 78"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33mclip-rule[39m=[32m"evenodd"[39m
+            [33md[39m=[32m"M.5 0H0v78h58V0H.5ZM1 2.686V77h54.758l-5.914-8.026A1.75 1.75 0 0 1 48.25 70H9.75A1.75 1.75 0 0 1 8 68.25v-38.5c0-.966.784-1.75 1.75-1.75H15v-6.314l-14-19Zm15 20.357V28h3.653L16 23.043ZM22.137 28 16 19.671V19h26v9H22.137Zm-1.748 1H9.75a.75.75 0 0 0-.75.75v38.5c0 .414.336.75.75.75h38.5a.75.75 0 0 0 .75-.75v-.421L20.39 29ZM49 64.457 22.874 29H48.25a.75.75 0 0 1 .75.75v34.707Zm1 1.357V29.75A1.75 1.75 0 0 0 48.25 28H43V18h-5V8h-4v10H24V8h-4v10h-5v.314L2.242 1H57v74.314l-7-9.5ZM37 9v9h-2V9h2Zm-16 9h2V9h-2v9Z"[39m
+            [33mfill-rule[39m=[32m"evenodd"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-ccd-charger-not-included"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"ccd__description-figure"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"ccd__top-icon icon icon--ccd-top"[39m
+        [33mdata-marko-key[39m=[32m"@svg s0-0-4-0"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs[39m
+          [33mdata-marko-key[39m=[32m"@defs s0-0-4-0"[39m
+        [36m>[39m
+          [36m<symbol[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mid[39m=[32m"icon-ccd-top"[39m
+            [33mviewBox[39m=[32m"0 0 35 25"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M0.5 25V13.5H34.5V25"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M6.5 13V0.5H10.5V13"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M24.5 13V0.5H28.5V13"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-ccd-top"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"ccd__body"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [0m1000 - 2000[0m
+        [36m</div>[39m
+        [36m<div>[39m
+          [0mW[0m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ccd > renders ccd with custom a11y 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-label[39m=[32m"custom text"[39m
+    [33mclass[39m=[32m"ccd"[39m
+    [33mrole[39m=[32m"figure"[39m
+    [33msecondary[39m=[32m"usbpd"[39m
+  [36m>[39m
+    [36m<svg[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33mclass[39m=[32m"ccd__charger-icon icon icon--ccd-charger-included"[39m
+      [33mdata-marko-key[39m=[32m"@svg s0-0-1-0"[39m
+      [33mfocusable[39m=[32m"false"[39m
+    [36m>[39m
+      [36m<defs[39m
+        [33mdata-marko-key[39m=[32m"@defs s0-0-1-0"[39m
+      [36m>[39m
+        [36m<symbol[39m
+          [33mid[39m=[32m"icon-ccd-charger-included"[39m
+          [33mviewBox[39m=[32m"0 0 58 78"[39m
+        [36m>[39m
+          [36m<path[39m
+            [33mclip-rule[39m=[32m"evenodd"[39m
+            [33md[39m=[32m"M0 0h58v78H0V0Zm1 1v76h56V1H1Zm7 28.75c0-.966.784-1.75 1.75-1.75H15V18h5V8h4v10h10V8h4v10h5v10h5.25c.967 0 1.75.784 1.75 1.75v38.5A1.75 1.75 0 0 1 48.25 70H9.75A1.75 1.75 0 0 1 8 68.25v-38.5ZM23 18V9h-2v9h2Zm14 0h-2V9h2v9Zm5 10v-9H16v9h26ZM9.75 29a.75.75 0 0 0-.75.75v38.5c0 .414.336.75.75.75h38.5a.75.75 0 0 0 .75-.75v-38.5a.75.75 0 0 0-.75-.75H9.75Z"[39m
+            [33mfill-rule[39m=[32m"evenodd"[39m
+          [36m/>[39m
+        [36m</symbol>[39m
+      [36m</defs>[39m
+      [36m<use[39m
+        [33mhref[39m=[32m"#icon-ccd-charger-included"[39m
+      [36m/>[39m
+    [36m</svg>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"ccd__description-figure"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"ccd__top-icon icon icon--ccd-top"[39m
+        [33mdata-marko-key[39m=[32m"@svg s0-0-4-0"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs[39m
+          [33mdata-marko-key[39m=[32m"@defs s0-0-4-0"[39m
+        [36m>[39m
+          [36m<symbol[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mid[39m=[32m"icon-ccd-top"[39m
+            [33mviewBox[39m=[32m"0 0 35 25"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M0.5 25V13.5H34.5V25"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M6.5 13V0.5H10.5V13"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M24.5 13V0.5H28.5V13"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-ccd-top"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"ccd__body"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [0m1000 - 2000[0m
+        [36m</div>[39m
+        [36m<div>[39m
+          [0mW[0m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ccd > renders ccd with usbpd included 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-label[39m=[32m" 1000 - 2000 watts. "[39m
+    [33mclass[39m=[32m"ccd"[39m
+    [33mrole[39m=[32m"figure"[39m
+    [33msecondary[39m=[32m"usbpd"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"ccd__description-figure"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"ccd__top-icon icon icon--ccd-top"[39m
+        [33mdata-marko-key[39m=[32m"@svg s0-0-4-0"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs[39m
+          [33mdata-marko-key[39m=[32m"@defs s0-0-4-0"[39m
+        [36m>[39m
+          [36m<symbol[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mid[39m=[32m"icon-ccd-top"[39m
+            [33mviewBox[39m=[32m"0 0 35 25"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M0.5 25V13.5H34.5V25"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M6.5 13V0.5H10.5V13"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M24.5 13V0.5H28.5V13"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-ccd-top"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"ccd__body"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [0m1000 - 2000[0m
+        [36m</div>[39m
+        [36m<div>[39m
+          [0mW[0m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ccd > renders default ccd 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33maria-label[39m=[32m" 1000 - 2000 watts. "[39m
+    [33mclass[39m=[32m"ccd"[39m
+    [33mrole[39m=[32m"figure"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"ccd__description-figure"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"ccd__top-icon icon icon--ccd-top"[39m
+        [33mdata-marko-key[39m=[32m"@svg s0-0-4-0"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs[39m
+          [33mdata-marko-key[39m=[32m"@defs s0-0-4-0"[39m
+        [36m>[39m
+          [36m<symbol[39m
+            [33mfill[39m=[32m"none"[39m
+            [33mid[39m=[32m"icon-ccd-top"[39m
+            [33mviewBox[39m=[32m"0 0 35 25"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M0.5 25V13.5H34.5V25"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M6.5 13V0.5H10.5V13"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M24.5 13V0.5H28.5V13"[39m
+              [33mstroke-width[39m=[32m"1"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-ccd-top"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"ccd__body"[39m
+      [36m>[39m
+        [36m<div>[39m
+          [0m1000 - 2000[0m
+        [36m</div>[39m
+        [36m<div>[39m
+          [0mW[0m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;

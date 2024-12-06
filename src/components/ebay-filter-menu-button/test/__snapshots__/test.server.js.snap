@@ -49,9 +49,10 @@ exports[`filter-menu > passes through additional html attributes 1`] = `
   <span
     class="filter-menu-button__menu"
   >
-    <!--F#f_0-->
+    <!--F#f_6-->
     <div
       class="filter-menu-button__items"
+      id="s0-3"
       role="menu"
     >
       <div
@@ -85,7 +86,7 @@ exports[`filter-menu > passes through additional html attributes 1`] = `
         <span
           class="filter-menu-button__text"
         >
-          <!--F#11[0]-->
+          <!--F#17[0]-->
           item 1
           <!--F/-->
         </span>
@@ -111,7 +112,7 @@ exports[`filter-menu > passes through additional html attributes 1`] = `
         <span
           class="filter-menu-button__text"
         >
-          <!--F#11[1]-->
+          <!--F#17[1]-->
           item 2
           <!--F/-->
         </span>
@@ -137,7 +138,7 @@ exports[`filter-menu > passes through additional html attributes 1`] = `
         <span
           class="filter-menu-button__text"
         >
-          <!--F#11[2]-->
+          <!--F#17[2]-->
           item 3
           <!--F/-->
         </span>
@@ -197,9 +198,10 @@ exports[`filter-menu > passes through additional html attributes 2`] = `
   <span
     class="filter-menu-button__menu"
   >
-    <!--F#f_0-->
+    <!--F#f_6-->
     <div
       class="filter-menu-button__items"
+      id="s0-3"
       role="menu"
     >
       <div
@@ -233,7 +235,7 @@ exports[`filter-menu > passes through additional html attributes 2`] = `
         <span
           class="filter-menu-button__text"
         >
-          <!--F#11[0]-->
+          <!--F#17[0]-->
           item 1
           <!--F/-->
         </span>
@@ -259,7 +261,7 @@ exports[`filter-menu > passes through additional html attributes 2`] = `
         <span
           class="filter-menu-button__text"
         >
-          <!--F#11[1]-->
+          <!--F#17[1]-->
           item 2
           <!--F/-->
         </span>
@@ -285,7 +287,7 @@ exports[`filter-menu > passes through additional html attributes 2`] = `
         <span
           class="filter-menu-button__text"
         >
-          <!--F#11[2]-->
+          <!--F#17[2]-->
           item 3
           <!--F/-->
         </span>
@@ -422,6 +424,7 @@ exports[`filter-menu > renders basic version 1`] = `
     [36m>[39m
       [36m<div[39m
         [33mclass[39m=[32m"filter-menu-button__items"[39m
+        [33mid[39m=[32m"s0-3"[39m
         [33mrole[39m=[32m"menu"[39m
       [36m>[39m
         [36m<div[39m
@@ -560,6 +563,7 @@ exports[`filter-menu > renders checked item 1`] = `
     [36m>[39m
       [36m<div[39m
         [33mclass[39m=[32m"filter-menu-button__items"[39m
+        [33mid[39m=[32m"s0-3"[39m
         [33mrole[39m=[32m"menu"[39m
       [36m>[39m
         [36m<div[39m
@@ -698,6 +702,7 @@ exports[`filter-menu > renders disabled item 1`] = `
     [36m>[39m
       [36m<div[39m
         [33mclass[39m=[32m"filter-menu-button__items"[39m
+        [33mid[39m=[32m"s0-3"[39m
         [33mrole[39m=[32m"menu"[39m
       [36m>[39m
         [36m<div[39m
@@ -836,6 +841,7 @@ exports[`filter-menu > renders with footer 1`] = `
     [36m>[39m
       [36m<div[39m
         [33mclass[39m=[32m"filter-menu-button__items"[39m
+        [33mid[39m=[32m"s0-3"[39m
         [33mrole[39m=[32m"menu"[39m
       [36m>[39m
         [36m<div[39m
@@ -981,6 +987,7 @@ exports[`filter-menu > renders with footer text 1`] = `
     [36m>[39m
       [36m<div[39m
         [33mclass[39m=[32m"filter-menu-button__items"[39m
+        [33mid[39m=[32m"s0-3"[39m
         [33mrole[39m=[32m"menu"[39m
       [36m>[39m
         [36m<div[39m
@@ -1125,6 +1132,7 @@ exports[`filter-menu > renders with footer text and accessible text 1`] = `
     [36m>[39m
       [36m<div[39m
         [33mclass[39m=[32m"filter-menu-button__items"[39m
+        [33mid[39m=[32m"s0-3"[39m
         [33mrole[39m=[32m"menu"[39m
       [36m>[39m
         [36m<div[39m

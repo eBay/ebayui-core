@@ -27,10 +27,12 @@ interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
     autocomplete?: "list" | "none";
     "list-selection"?: "manual" | "automatic";
     "floating-label"?: boolean;
-    button?: Marko.Input<"button"> & Marko.AttrTag<{
-        htmlAttributes?: Record<string, unknown>;
-        renderBody?: Marko.Body;
-    }>;
+    "view-all-options"?: boolean;
+    button?: Marko.Input<"button"> &
+        Marko.AttrTag<{
+            htmlAttributes?: Record<string, unknown>;
+            renderBody?: Marko.Body;
+        }>;
     options?: Marko.AttrTag<ComboboxOption>;
     "chevron-size"?: "large";
     "on-focus"?: (event: ComboboxEvent) => void;
@@ -49,7 +51,6 @@ export interface Input extends WithNormalizedProps<ComboboxInput> {}
 
 interface State {
     currentValue: Input["value"];
-    viewAllOptions: boolean;
 }
 
 export default class Combobox extends Marko.Component<Input, State> {
@@ -117,14 +118,7 @@ export default class Combobox extends Marko.Component<Input, State> {
     }
 
     handleExpand() {
-        if (this.state.viewAllOptions) {
-            this.setSelectedView();
-        } else {
-            this.state.viewAllOptions = true;
-            this.once("update", () => {
-                this.setSelectedView();
-            });
-        }
+        this.setSelectedView();
         this.emit("expand");
     }
 
@@ -179,7 +173,6 @@ export default class Combobox extends Marko.Component<Input, State> {
                 // We force the expander open just in case.
                 this.expand();
             });
-            this.state.viewAllOptions = false;
 
             this._emitComboboxEvent("input-change");
         });
@@ -233,7 +226,6 @@ export default class Combobox extends Marko.Component<Input, State> {
         this.lastValue = input.value;
         this.state = {
             currentValue: this.lastValue,
-            viewAllOptions: (this.state && this.state.viewAllOptions) || true,
         };
         if (this.expander) {
             this.expandedChange = input.expanded !== this.expanded;
@@ -356,7 +348,10 @@ export default class Combobox extends Marko.Component<Input, State> {
     }
 
     _getVisibleOptions() {
-        if (this.autocomplete === "none" || this.state.viewAllOptions) {
+        if (
+            this.autocomplete === "none" ||
+            (this.input.viewAllOptions ?? true)
+        ) {
             return [...(this.input.options ?? [])];
         }
 
