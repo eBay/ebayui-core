@@ -341,7 +341,7 @@ class Video extends Marko.Component<Input, State> {
         this.state.isLoaded = false;
         shakaLoad()
             .then((shaka: any) => {
-                this.shaka = shaka.default;
+                this.shaka = shaka.default || shaka;
 
                 this.handleSuccess();
             })
