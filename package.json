@@ -140,7 +140,7 @@
         "makeup-prevent-scroll-keys": "~0.3.1",
         "makeup-roving-tabindex": "~0.7.2",
         "makeup-screenreader-trap": "~0.5.1",
-        "makeup-typeahead": "^0.3.1"
+        "makeup-typeahead": "^0.3.2"
     },
     "publishConfig": {
         "registry": "https://registry.npmjs.org"
