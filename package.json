@@ -137,7 +137,7 @@
         "makeup-focusables": "~0.4.3",
         "makeup-key-emitter": "~0.4.2",
         "makeup-keyboard-trap": "~0.5.3",
-        "makeup-prevent-scroll-keys": "~0.3.1",
+        "makeup-prevent-scroll-keys": "~0.3.2",
         "makeup-roving-tabindex": "~0.7.2",
         "makeup-screenreader-trap": "~0.5.1",
         "makeup-typeahead": "^0.3.1"
