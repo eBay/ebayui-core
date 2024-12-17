@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.5.1
+
+### Patch Changes
+
+- [#2345](https://github.com/eBay/ebayui-core/pull/2345) [`04956d5`](https://github.com/eBay/ebayui-core/commit/04956d5abf3d9d5ae1abd0787656745293c2899e) Thanks [@saiponnada](https://github.com/saiponnada)! - fix(combobox): updated to default filtering behavior
+
 ## 14.5.0
 
 ### Minor Changes
