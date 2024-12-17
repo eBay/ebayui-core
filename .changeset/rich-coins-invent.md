@@ -1,5 +1,5 @@
 ---
-"@ebay/ebayui-core": minor
+"@ebay/ebayui-core": patch
 ---
 
 fix(combobox): updated to default filtering behavior
