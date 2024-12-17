@@ -727,24 +727,6 @@ exports[`combobox > renders with second item selected 1`] = `
         [33mtabindex[39m=[32m"-1"[39m
       [36m>[39m
         [36m<span>[39m
-          [0mAugust Campaign[0m
-        [36m</span>[39m
-      [36m</div>[39m
-      [36m<div[39m
-        [33mclass[39m=[32m"combobox__option"[39m
-        [33mrole[39m=[32m"option"[39m
-        [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<span>[39m
-          [0m4th of July Sale (paused)[0m
-        [36m</span>[39m
-      [36m</div>[39m
-      [36m<div[39m
-        [33mclass[39m=[32m"combobox__option"[39m
-        [33mrole[39m=[32m"option"[39m
-        [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<span>[39m
           [0mBasic Offer[0m
         [36m</span>[39m
       [36m</div>[39m
