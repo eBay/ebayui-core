@@ -102,7 +102,7 @@ export default class Combobox extends Marko.Component<Input, State> {
         if (this.listSelection === "automatic") {
             const selected = this._getVisibleOptions()[ev.detail.toIndex];
             // Set textbox value to selected, don't update state since it messes up active descendant
-            (this.getEl("combobox") as HTMLInputElement).value = selected.text;
+            (this.getEl("combobox") as HTMLInputElement).value = selected?.text;
         }
     }
 
@@ -350,7 +350,7 @@ export default class Combobox extends Marko.Component<Input, State> {
     _getVisibleOptions() {
         if (
             this.autocomplete === "none" ||
-            (this.input.viewAllOptions ?? true)
+            (this.input.viewAllOptions ?? false)
         ) {
             return [...(this.input.options ?? [])];
         }

@@ -59,6 +59,11 @@ export default {
             type: "boolean",
             control: { type: "boolean" },
             description: "Filters listbox options based on user input",
+            table: {
+                defaultValue: {
+                    summary: "false",
+                },
+            },
         },
         "floating-label": {
             control: { type: "text" },
