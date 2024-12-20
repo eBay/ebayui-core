@@ -13,6 +13,6 @@
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/progress-ebay-progress-spinner)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/progress-ebay-progress-spinner)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-spinner/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/progress-ebay-progress-spinner)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/progress-ebay-progress-spinner)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-progress-spinner/examples)

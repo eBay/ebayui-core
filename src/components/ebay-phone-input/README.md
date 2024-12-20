@@ -14,6 +14,6 @@ See [this example](https://github.com/eBay/ebayui-core/tree/master/src/component
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-phone-input-button)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/form-input-ebay-phone-input-button)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-phone-input-button/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-phone-input-button)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/form-input-ebay-phone-input-button)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-phone-input-button/examples)

@@ -1,7 +1,7 @@
 import type { DayISO } from "./date-utils";
 import localeInfo, { LocaleInfo, Locales } from "./locale-info";
 
-export function localeDefault(inputLocale?: string):string {
+export function localeDefault(inputLocale?: string): string {
     if (inputLocale) return inputLocale;
     let locale =
         (typeof navigator !== "undefined" &&

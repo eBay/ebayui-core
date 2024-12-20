@@ -12,6 +12,6 @@
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-star-rating)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/graphics-icons-ebay-star-rating)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-star-rating/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-star-rating)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/graphics-icons-ebay-star-rating)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-star-rating/examples)

@@ -15,6 +15,6 @@ For resizing, `ebay-video` supports fixed width or variable width. If no width i
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/media-ebay-video)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/media-ebay-video)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-video/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/media-ebay-video)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/media-ebay-video)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-video/examples)

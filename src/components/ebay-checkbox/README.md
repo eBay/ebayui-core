@@ -11,6 +11,6 @@ Displays an accessible checkbox component. Uses `<input/>` under the hood but di
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-checkbox)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/form-input-ebay-checkbox)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-checkbox/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-checkbox)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/form-input-ebay-checkbox)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-checkbox/examples)

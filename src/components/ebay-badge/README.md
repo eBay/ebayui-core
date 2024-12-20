@@ -15,6 +15,6 @@
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-badge)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/graphics-icons-ebay-badge)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-badge/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-badge)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/graphics-icons-ebay-badge)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-badge/examples)
