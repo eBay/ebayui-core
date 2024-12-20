@@ -11,5 +11,5 @@ The Skeletons are simplified versions of layouts to indicate that information ha
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-skeleton--documentation)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-skeleton/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-skeleton--documentation)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-skeleton/examples)

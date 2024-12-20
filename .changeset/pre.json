@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "14.5.0"
+  },
+  "changesets": [
+    "curvy-bobcats-attend",
+    "four-mangos-hug",
+    "purple-seals-deliver",
+    "strong-grapes-work"
+  ]
+}

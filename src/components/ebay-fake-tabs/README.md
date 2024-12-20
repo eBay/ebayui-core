@@ -11,6 +11,6 @@ Tabs which link to other pages. This can be used to deep link to other pages whi
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-fake-tabs)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/navigation-disclosure-ebay-fake-tabs)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-video/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-fake-tabs)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/navigation-disclosure-ebay-fake-tabs)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-video/examples)

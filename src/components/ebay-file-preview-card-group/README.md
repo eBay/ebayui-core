@@ -11,6 +11,6 @@ Group of file preview cards, primarily used alongside `ebay-file-input`.
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/media-ebay-file-preview-card-group)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/media-ebay-file-preview-card-group)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-file-preview-card-group/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/media-ebay-file-preview-card-group)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/media-ebay-file-preview-card-group)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-file-preview-card-group/examples)

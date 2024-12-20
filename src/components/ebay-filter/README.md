@@ -11,6 +11,6 @@ A button with a label which toggles between unselected and selected when clicked
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-filter)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-filter)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-filter)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-filter)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter/examples)

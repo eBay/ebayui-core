@@ -7,6 +7,6 @@
     </span>
 </h1>
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-section-title)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/navigation-disclosure-ebay-section-title)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-section-title/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-section-title)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/navigation-disclosure-ebay-section-title)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-section-title/examples)

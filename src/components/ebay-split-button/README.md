@@ -9,6 +9,6 @@
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/buttons-ebay-split-button)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/buttons-ebay-split-button)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-split-button/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/buttons-ebay-split-button)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/buttons-ebay-split-button)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-split-button/examples)

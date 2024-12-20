@@ -1,5 +1,17 @@
 # eBayUI-Core Changelog
 
+## 14.6.0-next.0
+
+### Minor Changes
+
+- [#2350](https://github.com/eBay/ebayui-core/pull/2350) [`8024cfe`](https://github.com/eBay/ebayui-core/commit/8024cfe2a7db3c6e21c0fbbe1edda25198358694) Thanks [@github-actions](https://github.com/apps/github-actions)! - feat(eek): added size option
+
+- [#2348](https://github.com/eBay/ebayui-core/pull/2348) [`981e76a`](https://github.com/eBay/ebayui-core/commit/981e76ac2d00d961a552a59dfa3914b3f1148516) Thanks [@saiponnada](https://github.com/saiponnada)! - docs(contributing): updated tests section
+
+- [#2337](https://github.com/eBay/ebayui-core/pull/2337) [`9c308b4`](https://github.com/eBay/ebayui-core/commit/9c308b46736f2ac646cec07d4e92f2ada1a10954) Thanks [@agliga](https://github.com/agliga)! - feat: added async loading instead of cdn loader
+
+- [#2352](https://github.com/eBay/ebayui-core/pull/2352) [`a5b2e69`](https://github.com/eBay/ebayui-core/commit/a5b2e6967a53593a2766f651ebed89328b7e093f) Thanks [@WinkeeFace](https://github.com/WinkeeFace)! - fix(ebay-carousel): fix width calculation for last pill when font not loaded (#2344)
+
 ## 14.5.0
 
 ### Minor Changes

@@ -13,6 +13,6 @@ It also allows for a title and a metric value to be displayed.
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/docs/charts-ebay-donut-chart)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/charts-ebay-donut-chart)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-donut-chart/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/docs/charts-ebay-donut-chart)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/charts-ebay-donut-chart)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-donut-chart/examples)
