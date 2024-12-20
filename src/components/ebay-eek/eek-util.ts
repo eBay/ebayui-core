@@ -12,6 +12,7 @@ interface EekInput extends Omit<Marko.Input<"div">, `on${string}`> {
     min: string;
     rating: string;
     a11yText?: string;
+    size?: "regular" | "large";
 }
 
 export interface Input extends WithNormalizedProps<EekInput> {}

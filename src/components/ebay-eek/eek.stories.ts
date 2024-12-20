@@ -37,6 +37,16 @@ export default {
             control: { type: "text" },
             description: "The minimum range",
         },
+        size: {
+            options: ["large", "regular"],
+            table: {
+                defaultValue: {
+                    summary: "regular",
+                },
+            },
+            type: { category: "Options" },
+            description: "The size of the EEK.",
+        },
     },
 };
 
