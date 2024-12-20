@@ -531,7 +531,7 @@ class Carousel extends Marko.Component<Input, State> {
                     if (!config.scrollTransitioning) {
                         this.handleScroll(this.listEl.scrollLeft);
                     }
-                }),
+                })
             );
         } else {
             this.subscribeTo(this.listEl).on("transitionend", ({ target }) => {
@@ -540,8 +540,13 @@ class Carousel extends Marko.Component<Input, State> {
                 }
             });
         }
-
         this.onRenderLegacy();
+
+        document.fonts.ready.then(() => {
+            this.cleanupAsync();
+            this.onRenderLegacy();
+        });
+
     }
 
     onUpdate() {

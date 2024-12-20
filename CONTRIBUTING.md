@@ -34,7 +34,7 @@ The demo page will render the `examples/` for each component. To selectively inc
 
 Execute `npm test` to run all tests and generate coverage reports at `./coverage/index.html`.
 
-Most of our server tests use `mocha-snap` in order to verify html snapshots against the generated html that the current component outputs. If these change the test will fail. In order to update the snapshots, one needs to run `UPDATE_SNAPSHOTS=1 npm test` and then new snapshots will be genrated, which should be checked in.
+Most of our server tests use `vitest` & `@marko/testing-library` in order to verify html snapshots against the generated html that the current component outputs. If these change the test will fail. In order to update the snapshots, one needs to run `npm test -u` and then new snapshots will be genrated, which should be checked in.
 
 ### Marko Lifecycle Functions
 

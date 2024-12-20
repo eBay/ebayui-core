@@ -8,6 +8,7 @@ $ const {
     class: inputClass,
     style,
     a11yText,
+    size,
     max,
     min,
     rating,
@@ -24,7 +25,7 @@ $ const eekRating = eekUtil(input);
         a11yText ||
         `Energy Rating: ${eekRating}. Range: ${max} - ${min}.`
     )
-    class=["eek", eekRating ? `eek--rating-${eekRating}` : null, inputClass]>
+    class=["eek", eekRating ? `eek--rating-${eekRating}` : null, size === "large" && "eek--large", inputClass]>
     <div class="eek__container" aria-hidden="true">
         <span class="eek__rating-range">
             <span aria-hidden="true">${max}</span>

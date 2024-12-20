@@ -49,3 +49,5 @@ fs.writeFileSync(
     markoConfigPath,
     fs.readFileSync(markoConfigPath, "utf-8").replace(/\.\/src\//g, "./dist/"),
 );
+
+fs.cpSync("src/node_modules", "dist/node_modules", { recursive: true });

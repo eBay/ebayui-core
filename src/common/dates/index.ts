@@ -1,10 +1,18 @@
 import type { DayISO } from "./date-utils";
 import localeInfo, { LocaleInfo, Locales } from "./locale-info";
 
-export function localeDefault(locale?: string) {
-    if (locale) return locale;
-    if (typeof navigator !== "undefined") return navigator.language;
-    return "en-US";
+export function localeDefault(inputLocale?: string):string {
+    if (inputLocale) return inputLocale;
+    let locale =
+        (typeof navigator !== "undefined" &&
+            (navigator.language || (navigator as any).userLanguage)) ||
+        "en-US";
+    try {
+        Intl.DateTimeFormat.supportedLocalesOf(locale);
+        return locale;
+    } catch (_error) {
+        return "en-US";
+    }
 }
 
 const localeCache = new Map<string | undefined, LocaleInfo>();

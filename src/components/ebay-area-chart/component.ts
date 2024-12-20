@@ -1,4 +1,4 @@
-import { CDNLoader } from "../../common/cdn";
+import { load as highChartsLoad } from "@internal/highcharts";
 import {
     chartFontFamily,
     backgroundColor,
@@ -43,7 +43,6 @@ const pointSize = 1.5;
 
 class AreaChart extends Marko.Component<Input> {
     declare chartRef: Highcharts.Chart;
-    declare cdnLoader: CDNLoader;
     declare mouseOut: ReturnType<typeof debounce>;
     declare mouseOver: ReturnType<typeof debounce>;
     declare points: Highcharts.Point[];
@@ -56,29 +55,14 @@ class AreaChart extends Marko.Component<Input> {
         }
     }
 
-    onCreate() {
-        this.cdnLoader = new CDNLoader(this as any, {
-            stagger: true,
-            key: "highcharts",
-            types: ["src", "src", "src"],
-            files: ["highcharts.js", "accessibility.js", "pattern-fill.js"],
-            setLoading: () => {},
-            handleError: this.handleError.bind(this),
-            handleSuccess: this.handleSuccess.bind(this),
-        });
-    }
-
     onMount() {
-        this.cdnLoader
-            .setOverrides(
-                [
-                    this.input.cdnHighcharts,
-                    this.input.cdnHighchartsAccessibility,
-                    this.input.cdnHighchartsPatternFill,
-                ] as string[],
-                this.input.version,
-            )
-            .mount();
+        highChartsLoad()
+            .then(() => {
+                this.handleSuccess();
+            })
+            .catch((e: Error) => {
+                this.handleError(e);
+            });
     }
 
     handleError(err: Error) {

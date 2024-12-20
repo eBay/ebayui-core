@@ -7,7 +7,7 @@
     </span>
 </h1>
 
-Descrete or Continuious carousel component. Can show items as a slide or various widths.
+Discrete or Continuous carousel component. Can show items as a slide or various widths.
 
 ## Examples and Documentation
 
@@ -22,4 +22,4 @@ In order to preserve the tabindex on an item, pass `data-carousel-tabindex="-1"`
 
 ## Reduced motion
 
-The carousel doesnot autoplay by respecting the `prefers-reduced-motion` media query. Toggle your reduced motion settings to view autoplay example with the default behavior and reduced motion behavior.
+The carousel does not autoplay by respecting the `prefers-reduced-motion` media query. Toggle your reduced motion settings to view autoplay example with the default behavior and reduced motion behavior.
