@@ -9,6 +9,6 @@
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/dialogs-ebay-panel-dialog)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/dialogs-ebay-panel-dialog)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-panel-dialog/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/dialogs-ebay-panel-dialog)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/dialogs-ebay-panel-dialog)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-panel-dialog/examples)

@@ -13,6 +13,6 @@ Under the hood, this uses google model viewer. All APIs are passthough to the mo
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/media-ebay-3d-viewer)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/media-ebay-3d-viewer)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-3d-viewer/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/media-ebay-3d-viewer)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/media-ebay-3d-viewer)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-3d-viewer/examples)

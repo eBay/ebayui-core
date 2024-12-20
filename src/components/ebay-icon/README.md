@@ -18,6 +18,6 @@ video
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-icon)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/graphics-icons-ebay-icon)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-icon/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-icon)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/graphics-icons-ebay-icon)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-icon/examples)

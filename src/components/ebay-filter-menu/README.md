@@ -11,6 +11,6 @@ The `ebay-filter-menu` component is used as a checkbox menu specificially styled
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-filter-menu)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-filter-menu)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter-menu/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-filter-menu)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-filter-menu)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-filter-menu/examples)

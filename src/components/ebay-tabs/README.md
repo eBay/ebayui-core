@@ -9,6 +9,6 @@
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-tabs)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/navigation-disclosure-ebay-tabs)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tabs/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-tabs)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/navigation-disclosure-ebay-tabs)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-tabs/examples)
