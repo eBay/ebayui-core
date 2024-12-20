@@ -11,9 +11,9 @@ Descrete or Continuious carousel component. Can show items as a slide or various
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-carousel)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/navigation-disclosure-ebay-carousel)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-carousel/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-carousel)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/navigation-disclosure-ebay-carousel)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-carousel/examples)
 
 ## Preserving tabindex for focusable elements
 

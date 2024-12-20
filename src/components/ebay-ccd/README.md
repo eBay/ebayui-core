@@ -11,6 +11,6 @@ EU energy label
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-ccd)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/graphics-icons-ebay-ccd)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-ccd/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/graphics-icons-ebay-ccd)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/graphics-icons-ebay-ccd)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-ccd/examples)

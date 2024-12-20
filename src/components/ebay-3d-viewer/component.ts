@@ -1,5 +1,5 @@
 import type { AttrClass, AttrString } from "marko/tags-html";
-import { CDNLoader } from "../../common/cdn";
+import { load as modelViewerLoad } from "@internal/model-viewer";
 import type { WithNormalizedProps } from "../../global";
 
 interface ViewerInput {
@@ -34,10 +34,9 @@ interface State {
 }
 
 class Viewer extends Marko.Component<Input, State> {
-    declare cdnLoader: CDNLoader;
     declare viewer: HTMLElement;
 
-    handleError(err: CustomEvent) {
+    handleError(err: Error) {
         this.state.failed = true;
         this.state.isLoaded = true;
         this.emit("load-error", err);
@@ -49,17 +48,6 @@ class Viewer extends Marko.Component<Input, State> {
             isLoaded: true,
             failed: false,
         };
-
-        this.cdnLoader = new CDNLoader(this as any, {
-            key: "modelViewer",
-            types: ["module"],
-            files: ["model-viewer.min.js"],
-            setLoading: (value) => {
-                this.state.showLoading = value;
-            },
-            handleError: this.handleError.bind(this),
-            handleSuccess: this.handleSuccess.bind(this),
-        });
     }
 
     handleSuccess() {
@@ -76,13 +64,13 @@ class Viewer extends Marko.Component<Input, State> {
     _loadViewer() {
         this.state.failed = false;
         this.state.isLoaded = false;
-
-        this.cdnLoader
-            .setOverrides(
-                this.input.cdnUrl ? [this.input.cdnUrl] : undefined,
-                this.input.version,
-            )
-            .mount();
+        modelViewerLoad()
+            .then(() => {
+                this.handleSuccess();
+            })
+            .catch((e: Error) => {
+                this.handleError(e);
+            });
     }
 }
 
