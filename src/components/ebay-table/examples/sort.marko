@@ -16,7 +16,7 @@ class {
 <ebay-table on-sort("onSort") ...input>
     <@header
         name="sellerCol"
-        column-type="row-header"
+        row-header=true
         sort=(state.sorted.sellerCol || "none")
     >
         Seller
