@@ -47,6 +47,14 @@ export default {
                 category: "@attribute tags",
             },
         },
+        rowHeader: {
+            name: "row-header",
+            control: { type: "boolean" },
+            description: "If true, the cell will be rendered as a row header",
+            table: {
+                category: "@header attribute tags",
+            },
+        },
         row: {
             name: "@row",
             description: "row attribute tags",
@@ -68,7 +76,6 @@ export default {
             options: [
                 "normal",
                 "numeric",
-                "row-header",
                 "layout",
                 "icon-action",
             ],

@@ -41,6 +41,7 @@ $ const {
                 <for|header, headerIndex| of=headers>
                     $ const {
                         columnType = "normal",
+                        rowHeader,
                         class: thClass,
                         name = `${headerIndex}`,
                         sort,
@@ -73,9 +74,7 @@ $ const {
                             sortEleAttr = { href };
                         } else if (sortOrder) {
                             sortEleAttr = {
-                                type: "button",
-                                "aria-pressed":
-                                    sortOrder !== "none" ? "true" : "false",
+                                type: "button"
                             };
                         }
                         <${href ? "a" : sortOrder ? "button" : null}
@@ -136,7 +135,7 @@ $ const {
                                     ) &&
                                     `table-cell--${header.columnType}`,
                             ];
-                            <${header.columnType === "row-header" ? "th" : "td"}
+                            <${header.rowHeader ? "th" : "td"}
                                 ...processHtmlAttributes(tdInput)
                                 class=[cellBaseClass, tdClass]
                             >
