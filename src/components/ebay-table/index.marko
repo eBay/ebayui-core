@@ -136,7 +136,7 @@ $ const {
                                     ) &&
                                     `table-cell--${header.columnType}`,
                             ];
-                            <${header.columnType === "row-header" ? "th" : "td"}
+                            <${header.rowHeader ? "th" : "td"}
                                 ...processHtmlAttributes(tdInput)
                                 class=[cellBaseClass, tdClass]
                             >
