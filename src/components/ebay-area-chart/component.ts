@@ -32,6 +32,10 @@ interface AreaChartInput extends Omit<Marko.Input<"div">, `on${string}`> {
     description?: Highcharts.SeriesAccessibilityOptionsObject["description"];
     series: Highcharts.SeriesAreaOptions | Highcharts.SeriesAreaOptions[];
     tooltipValueFormatter?: (value: string | number) => string;
+    tooltipTitleFormatter?: (
+        value: string | number,
+        dateFormat: typeof Highcharts.dateFormat,
+    ) => string;
     xLabelFormatter?: (
         value: string | number,
         dateFormat: typeof Highcharts.dateFormat,
@@ -122,6 +126,19 @@ class AreaChart extends Marko.Component<Input> {
             this.getContainerId(),
             this._mergeConfigs(config, this.input.highchartOptions ?? {}),
         );
+    }
+
+    /**
+     * Default format function for the tooltip titles
+     */
+    _tooltipTitleFormatter(
+        value: number | string,
+        dateFormat: typeof Highcharts.dateFormat,
+    ) {
+        if (typeof value === "string") {
+            value = parseFloat(value);
+        }
+        return dateFormat("%b %e, %Y", value);
     }
 
     /**
@@ -293,18 +310,25 @@ class AreaChart extends Marko.Component<Input> {
     getTooltipConfig(): Highcharts.TooltipOptions {
         const tooltipValueFormatter =
             this.input.tooltipValueFormatter ?? this._tooltipValueFormatter;
+
+        const tooltipTitleFormatter =
+            this.input.tooltipTitleFormatter ?? this._tooltipTitleFormatter;
+
         return {
             formatter: function (this) {
-                const date = Highcharts.dateFormat(
-                    "%b %e, %Y",
-                    this.x as number,
+                const date = tooltipTitleFormatter(
+                    this.x ?? 0,
+                    Highcharts.dateFormat,
                 );
 
                 // Display formatted total, only if there are more than one points
-                const total = this.points && this.points.length > 1 && this.points.reduce(
-                    (acc, curr) => acc + ((curr.y ?? 0) * 100),
-                    0,
-                ) / 100;
+                const total =
+                    this.points &&
+                    this.points.length > 1 &&
+                    this.points.reduce(
+                        (acc, curr) => acc + (curr.y ?? 0) * 100,
+                        0,
+                    ) / 100;
 
                 return tooltipTemplate.renderToString({
                     date,

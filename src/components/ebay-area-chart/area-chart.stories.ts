@@ -181,6 +181,12 @@ WithXLabelFormat.args = {
         }
         return dateFormat("%A", value);
     },
+    tooltipTitleFormatter(value, dateFormat) {
+        if (typeof value !== "number") {
+            return value;
+        }
+        return dateFormat("%A", value);
+    },
 };
 
 WithXLabelFormat.parameters = {
