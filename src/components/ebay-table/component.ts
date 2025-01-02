@@ -3,11 +3,9 @@ import { WithNormalizedProps } from "../../global";
 import { CheckboxEvent } from "../ebay-checkbox/component-browser";
 
 export type TableSort = "asc" | "desc" | "none";
-interface TableHeaderProps {
+export interface TableHeader extends Omit<Marko.Input<"th">, `on${string}`> {
     "column-type"?: "normal" | "numeric" | "layout" | "icon-action";
     "row-header"?: boolean;
-}
-export interface TableHeader extends WithNormalizedProps<TableHeaderProps>, Omit<Marko.Input<"th">, `on${string}`> {
     name?: string;
     sort?: TableSort | boolean;
     href?: AttrString;
