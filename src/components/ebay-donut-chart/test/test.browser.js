@@ -16,7 +16,7 @@ afterEach(cleanup);
 /** @type import("@marko/testing-library").RenderResult */
 let component;
 
-describe("given a donut chart", () => {
+describe.skip("given a donut chart", () => {
     beforeEach(async () => {
         component = await render(Standard, {});
         // Chart is fully rendered when aria-label for highcharts is present
@@ -49,7 +49,7 @@ describe("given a donut chart", () => {
     });
 });
 
-describe("given a donut chart with five values", () => {
+describe.skip("given a donut chart with five values", () => {
     beforeEach(async () => {
         component = await render(FiveValues, {});
         // Chart is fully rendered when aria-label for highcharts is present

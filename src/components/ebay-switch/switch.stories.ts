@@ -32,7 +32,7 @@ export default {
             },
         },
     },
-} ;
+};
 
 export const WithLabel: Story<Input> = (args) => ({
     input: args,

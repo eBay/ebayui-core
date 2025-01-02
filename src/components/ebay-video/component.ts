@@ -1,10 +1,8 @@
+import { load as shakaLoad } from "@internal/shaka-player";
 import type { AttrString } from "marko/tags-html";
-import { CDNLoader } from "../../common/cdn";
 import type { WithNormalizedProps } from "../../global";
 import { getElements } from "./elements";
 const DEFAULT_SPINNER_TIMEOUT = 2000;
-
-declare const shaka: any;
 
 const eventList = [
     "abort",
@@ -93,7 +91,7 @@ class Video extends Marko.Component<Input, State> {
     declare containerEl: HTMLElement;
     declare player: any;
     declare ui: any;
-    declare cdnLoader: CDNLoader;
+    declare shaka: any;
 
     isPlaylist(source: Marko.Input<"source"> & { src: string }) {
         const type = source.type && source.type.toLowerCase();
@@ -207,17 +205,6 @@ class Video extends Marko.Component<Input, State> {
             failed: false,
             played: false,
         };
-
-        this.cdnLoader = new CDNLoader(this as any, {
-            key: "shaka",
-            types: ["src", "css"],
-            files: ["shaka-player.ui.js", "controls.css"],
-            setLoading: (value) => {
-                this.state.showLoading = value;
-            },
-            handleError: this.handleError.bind(this),
-            handleSuccess: this.handleSuccess.bind(this),
-        });
     }
 
     _addTextTracks() {
@@ -266,21 +253,28 @@ class Video extends Marko.Component<Input, State> {
     _attach() {
         const { Report, TextSelection } = getElements(this);
         // eslint-disable-next-line no-undef,new-cap
-        this.ui = new shaka.ui.Overlay(
+        this.ui = new this.shaka.ui.Overlay(
             this.player,
             this.containerEl,
             this.video,
             this.input.reportText || "",
         );
 
+        if (document?.documentElement?.lang) {
+            this.ui
+                .getControls()
+                .getLocalization()
+                .changeLocale([document.documentElement.lang]);
+        }
+
         // eslint-disable-next-line no-undef,new-cap
-        shaka.ui.Controls.registerElement(
+        this.shaka.ui.Controls.registerElement(
             "report",
             new Report.Factory(this.input.reportText),
         );
 
         // eslint-disable-next-line no-undef,new-cap
-        shaka.ui.Controls.registerElement(
+        this.shaka.ui.Controls.registerElement(
             "captions",
             new TextSelection.Factory(),
         );
@@ -312,10 +306,10 @@ class Video extends Marko.Component<Input, State> {
 
     handleSuccess() {
         // eslint-disable-next-line no-undef,new-cap
-        shaka.polyfill.installAll();
+        this.shaka.polyfill.installAll();
 
         // eslint-disable-next-line no-undef,new-cap
-        this.player = new shaka.Player(this.video);
+        this.player = new this.shaka.Player(this.video);
         this.player.configure(this.input.shakaConfig || {});
         this._attach();
 
@@ -352,12 +346,15 @@ class Video extends Marko.Component<Input, State> {
     _loadVideo() {
         this.state.failed = false;
         this.state.isLoaded = false;
-        this.cdnLoader
-            .setOverrides(
-                [this.input.cdnUrl as string, this.input.cssUrl as string],
-                this.input.version,
-            )
-            .mount();
+        shakaLoad()
+            .then((shaka: any) => {
+                this.shaka = shaka.default || shaka;
+
+                this.handleSuccess();
+            })
+            .catch((e: Error) => {
+                this.handleError(e);
+            });
     }
 }
 

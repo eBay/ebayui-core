@@ -45,7 +45,7 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
     renderBody: "chip text" as any,
-} ;
+};
 Default.parameters = {
     docs: {
         source: {

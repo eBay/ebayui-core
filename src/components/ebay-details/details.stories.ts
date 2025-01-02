@@ -7,7 +7,7 @@ import type { Input } from "./component-browser";
 const Template: Story<Input> = (args) => ({
     input: {
         ...args,
-        renderBody: function(out: any) {
+        renderBody: function (out: any) {
             out.html(args.renderBody);
         } as any,
     },
@@ -88,7 +88,8 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    renderBody: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.` as any,
+    renderBody:
+        `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.` as any,
     text: "Show me the details!",
     size: "regular",
     open: false,

@@ -34,11 +34,15 @@ interface FilterMenuButtonInput
     "form-method"?: string;
     disabled?: boolean;
     "a11y-text"?: AttrString;
+    "search-header-value"?: string;
+    "search-header-placeholder-text"?: AttrString;
+    "a11y-search-header-clear-text"?: AttrString;
     "on-expand"?: () => void;
     "on-change"?: (event: FilterMenuButtonEvent) => void;
     "on-collapse"?: (event: FilterMenuButtonEvent) => void;
     "on-footer-click"?: (event: FilterMenuButtonEvent) => void;
     "on-form-submit"?: (event: FilterMenuButtonEvent) => void;
+    "on-search-change"?: (value: string) => void;
 }
 
 export interface Input extends WithNormalizedProps<FilterMenuButtonInput> {}

@@ -1,4 +1,4 @@
-import { CDNLoader } from "../../common/cdn";
+import { load as highChartsLoad } from "@internal/highcharts";
 import {
     chartFontFamily,
     backgroundColor,
@@ -50,7 +50,6 @@ export interface Input extends WithNormalizedProps<AreaChartInput> {}
 
 class AreaChart extends Marko.Component<Input> {
     declare chartRef: Highcharts.Chart;
-    declare cdnLoader: CDNLoader;
 
     onInput() {
         // if chartRef does not exist do not try to run setupCharts as it may be server side and highcharts only works on the client side
@@ -60,29 +59,14 @@ class AreaChart extends Marko.Component<Input> {
         }
     }
 
-    onCreate() {
-        this.cdnLoader = new CDNLoader(this as any, {
-            stagger: true,
-            key: "highcharts",
-            types: ["src", "src", "src"],
-            files: ["highcharts.js", "accessibility.js", "pattern-fill.js"],
-            setLoading: () => {},
-            handleError: this.handleError.bind(this),
-            handleSuccess: this.handleSuccess.bind(this),
-        });
-    }
-
     onMount() {
-        this.cdnLoader
-            .setOverrides(
-                [
-                    this.input.cdnHighcharts,
-                    this.input.cdnHighchartsAccessibility,
-                    this.input.cdnHighchartsPatternFill,
-                ] as string[],
-                this.input.version,
-            )
-            .mount();
+        highChartsLoad()
+            .then(() => {
+                this.handleSuccess();
+            })
+            .catch((e: Error) => {
+                this.handleError(e);
+            });
     }
 
     handleError(err: Error) {

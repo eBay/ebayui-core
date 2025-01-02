@@ -23,7 +23,7 @@ export default {
     BG: { countryCode: "BG", callingCode: "359", mask: "000 000 000" },
     BH: { countryCode: "BH", callingCode: "973", mask: "0000 0000" },
     BI: { countryCode: "BI", callingCode: "257", mask: "00 00 00 00" },
-    BJ: { countryCode: "BJ", callingCode: "229", mask: "00 00 00 00" },
+    BJ: { countryCode: "BJ", callingCode: "229", mask: "00 00 00 00 00" },
     BL: { countryCode: "BL", callingCode: "590", mask: "0000 00 00 00" },
     BM: { countryCode: "BM", callingCode: "1", mask: "(000) 000-0000" },
     BN: { countryCode: "BN", callingCode: "673", mask: "000 0000" },

@@ -9,9 +9,10 @@ exports[`filter-menu > passes through additional html attributes 1`] = `
   text="Button"
   type="number"
 >
-  <!--F#f_0-->
+  <!--F#f_6-->
   <div
     class="filter-menu__items"
+    id="s0"
     role="menu"
   >
     <div
@@ -45,7 +46,7 @@ exports[`filter-menu > passes through additional html attributes 1`] = `
       <span
         class="filter-menu__text"
       >
-        <!--F#11[0]-->
+        <!--F#17[0]-->
         item 1
         <!--F/-->
       </span>
@@ -71,7 +72,7 @@ exports[`filter-menu > passes through additional html attributes 1`] = `
       <span
         class="filter-menu__text"
       >
-        <!--F#11[1]-->
+        <!--F#17[1]-->
         item 2
         <!--F/-->
       </span>
@@ -97,7 +98,7 @@ exports[`filter-menu > passes through additional html attributes 1`] = `
       <span
         class="filter-menu__text"
       >
-        <!--F#11[2]-->
+        <!--F#17[2]-->
         item 3
         <!--F/-->
       </span>
@@ -108,7 +109,7 @@ exports[`filter-menu > passes through additional html attributes 1`] = `
     class="filter-menu__footer"
     type="button"
   >
-    <!--F#14-->
+    <!--F#20-->
     Apply
     <!--F/-->
   </button>
@@ -125,9 +126,10 @@ exports[`filter-menu > passes through additional html attributes 2`] = `
   text="Button"
   type="number"
 >
-  <!--F#f_0-->
+  <!--F#f_6-->
   <div
     class="filter-menu__items"
+    id="s0"
     role="menu"
   >
     <div
@@ -161,7 +163,7 @@ exports[`filter-menu > passes through additional html attributes 2`] = `
       <span
         class="filter-menu__text"
       >
-        <!--F#11[0]-->
+        <!--F#17[0]-->
         item 1
         <!--F/-->
       </span>
@@ -187,7 +189,7 @@ exports[`filter-menu > passes through additional html attributes 2`] = `
       <span
         class="filter-menu__text"
       >
-        <!--F#11[1]-->
+        <!--F#17[1]-->
         item 2
         <!--F/-->
       </span>
@@ -213,7 +215,7 @@ exports[`filter-menu > passes through additional html attributes 2`] = `
       <span
         class="filter-menu__text"
       >
-        <!--F#11[2]-->
+        <!--F#17[2]-->
         item 3
         <!--F/-->
       </span>
@@ -224,7 +226,7 @@ exports[`filter-menu > passes through additional html attributes 2`] = `
     class="filter-menu__footer"
     type="button"
   >
-    <!--F#14-->
+    <!--F#20-->
     Apply
     <!--F/-->
   </button>
@@ -318,6 +320,7 @@ exports[`filter-menu > renders basic version 1`] = `
   [36m>[39m
     [36m<div[39m
       [33mclass[39m=[32m"filter-menu__items"[39m
+      [33mid[39m=[32m"s0"[39m
       [33mrole[39m=[32m"menu"[39m
     [36m>[39m
       [36m<div[39m
@@ -422,6 +425,7 @@ exports[`filter-menu > renders checked item 1`] = `
   [36m>[39m
     [36m<div[39m
       [33mclass[39m=[32m"filter-menu__items"[39m
+      [33mid[39m=[32m"s0"[39m
       [33mrole[39m=[32m"menu"[39m
     [36m>[39m
       [36m<div[39m
@@ -526,6 +530,7 @@ exports[`filter-menu > renders disabled item 1`] = `
   [36m>[39m
     [36m<div[39m
       [33mclass[39m=[32m"filter-menu__items"[39m
+      [33mid[39m=[32m"s0"[39m
       [33mrole[39m=[32m"menu"[39m
     [36m>[39m
       [36m<div[39m
@@ -631,6 +636,7 @@ exports[`filter-menu > renders with aria-label 1`] = `
     [36m<div[39m
       [33maria-label[39m=[32m"test"[39m
       [33mclass[39m=[32m"filter-menu__items"[39m
+      [33mid[39m=[32m"s0"[39m
       [33mrole[39m=[32m"menu"[39m
     [36m>[39m
       [36m<div[39m
@@ -736,6 +742,7 @@ exports[`filter-menu > renders with aria-labelledby 1`] = `
     [36m<div[39m
       [33maria-labelledby[39m=[32m"test"[39m
       [33mclass[39m=[32m"filter-menu__items"[39m
+      [33mid[39m=[32m"s0"[39m
       [33mrole[39m=[32m"menu"[39m
     [36m>[39m
       [36m<div[39m
@@ -840,6 +847,7 @@ exports[`filter-menu > renders with footer render body 1`] = `
   [36m>[39m
     [36m<div[39m
       [33mclass[39m=[32m"filter-menu__items"[39m
+      [33mid[39m=[32m"s0"[39m
       [33mrole[39m=[32m"menu"[39m
     [36m>[39m
       [36m<div[39m
@@ -944,6 +952,7 @@ exports[`filter-menu > renders with footer text 1`] = `
   [36m>[39m
     [36m<div[39m
       [33mclass[39m=[32m"filter-menu__items"[39m
+      [33mid[39m=[32m"s0"[39m
       [33mrole[39m=[32m"menu"[39m
     [36m>[39m
       [36m<div[39m
@@ -1047,6 +1056,7 @@ exports[`filter-menu > renders with footer text and accessible text 1`] = `
   [36m>[39m
     [36m<div[39m
       [33mclass[39m=[32m"filter-menu__items"[39m
+      [33mid[39m=[32m"s0"[39m
       [33mrole[39m=[32m"menu"[39m
     [36m>[39m
       [36m<div[39m

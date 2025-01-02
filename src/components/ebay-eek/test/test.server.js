@@ -22,6 +22,19 @@ describe("eek", () => {
         expect(getByRole("figure")).toMatchSnapshot();
     });
 
+    it("renders large eek", async () => {
+        const { getByRole, getByText } = await render(template, {
+            max: "A+++",
+            min: "D",
+            rating: "B",
+            size: "large",
+        });
+        expect(getByText("A+++")).toMatchSnapshot();
+        expect(getByText("D")).toMatchSnapshot();
+        expect(getByText("B")).toMatchSnapshot();
+        expect(getByRole("figure")).toMatchSnapshot();
+    });
+
     it("renders invalid eek", async () => {
         const { getByRole, getByText } = await render(template, {
             max: "A",
