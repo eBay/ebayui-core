@@ -57,6 +57,12 @@ exports[`section-title > renders with x-axis label format 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
     [33mclass[39m=[32m"ebay-area-chart"[39m
+    [33mtooltip-title-formatter[39m=[32m"tooltipTitleFormatter(value, dateFormat) {
+    if (typeof value !== \\"number\\") {
+      return value;
+    }
+    return dateFormat(\\"%A\\", value);
+  }"[39m
   [36m>[39m
     [36m<div[39m
       [33mclass[39m=[32m"ebay-area-chart__container"[39m
