@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.6.1
+
+### Patch Changes
+
+- [#2359](https://github.com/eBay/ebayui-core/pull/2359) [`5bc9ec1`](https://github.com/eBay/ebayui-core/commit/5bc9ec1701c9cf6d17236ba921b9b85cc5cf1a8c) Thanks [@agliga](https://github.com/agliga)! - feat(internal): added support for webpack 4
+
 ## 14.6.0
 
 ### Minor Changes
