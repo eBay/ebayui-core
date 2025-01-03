@@ -1,23 +1,14 @@
 import { buildExtensionTemplate } from "../../common/storybook/utils";
 import Accordion from "./index.marko";
 import Readme from "./README.md";
+import defaultTemplate from "./examples/default.marko";
+import defaultTemplateCode from "./examples/default.marko?raw";
 import openTemplate from "./examples/opened.marko";
 import openTemplateCode from "./examples/opened.marko?raw";
 import largeTemplate from "./examples/large.marko";
 import largeTemplateCode from "./examples/large.marko?raw";
 import autoCollapsedTemplate from "./examples/autoCollapsed.marko";
 import autoCollapsedTemplateCode from "./examples/autoCollapsed.marko?raw";
-import { Story } from "@storybook/marko";
-import type { Input } from "./component-browser";
-
-const Template: Story<Input> = (args) => ({
-    input: {
-        ...args,
-        renderBody: function (out: any) {
-            out.html(args.renderBody);
-        } as any,
-    },
-});
 
 export default {
     title: "navigation & disclosure/ebay-accordion",
@@ -43,7 +34,8 @@ export default {
         },
         autoCollapse: {
             type: "boolean",
-            description: "Whether accordion panels should be autocollapsed when another is opened",
+            description:
+                "Whether accordion panels should be autocollapsed when another is opened",
             table: {
                 defaultValue: {
                     summary: "false",
@@ -82,30 +74,16 @@ export default {
     },
 };
 
-export const Default = Template.bind({});
-const items: any = [
-    {
-        text: "Item 1",
-        renderBody:
-            `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-    },
-    {
-        text: "Item 2",
-        renderBody:
-            `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-    },
-    {
-        text: "Item 3",
-        renderBody:
-            `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-    },
-];
-Default.args = {
-    items: items
-};
+export const Default = buildExtensionTemplate(
+    defaultTemplate,
+    defaultTemplateCode,
+);
 
 export const Open = buildExtensionTemplate(openTemplate, openTemplateCode);
 
 export const Large = buildExtensionTemplate(largeTemplate, largeTemplateCode);
 
-export const AutoCollapsed = buildExtensionTemplate(autoCollapsedTemplate, autoCollapsedTemplateCode);
+export const AutoCollapsed = buildExtensionTemplate(
+    autoCollapsedTemplate,
+    autoCollapsedTemplateCode,
+);
