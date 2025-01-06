@@ -5,7 +5,7 @@
         "type": "expression"
     },
     "@html-attributes": "expression",
-    "@messages <message>[]": {
+    "@message <message>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"
