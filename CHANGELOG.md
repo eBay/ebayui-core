@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.6.2
+
+### Patch Changes
+
+- [#2362](https://github.com/eBay/ebayui-core/pull/2362) [`d490819`](https://github.com/eBay/ebayui-core/commit/d4908190fae46de481bfb2149cae9cb5a92a0642) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Fix lasso issue
+
 ## 14.6.1
 
 ### Patch Changes
