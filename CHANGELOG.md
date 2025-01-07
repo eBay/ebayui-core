@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.6.3
+
+### Patch Changes
+
+- [#2364](https://github.com/eBay/ebayui-core/pull/2364) [`086ffc8`](https://github.com/eBay/ebayui-core/commit/086ffc84c965ba60df233dad1c63d277539966ad) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Install three as a peer dependency
+
 ## 14.6.2
 
 ### Patch Changes
