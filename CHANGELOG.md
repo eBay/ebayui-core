@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.6.4
+
+### Patch Changes
+
+- [#2367](https://github.com/eBay/ebayui-core/pull/2367) [`69acb3f`](https://github.com/eBay/ebayui-core/commit/69acb3f34c86dd2185016fcd759072ec65f2e6b4) Thanks [@agliga](https://github.com/agliga)! - fix(@internal): added commonjs support for older bundles
+
 ## 14.6.3
 
 ### Patch Changes
