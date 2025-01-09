@@ -47,14 +47,14 @@ class {
     </@header>
     <@header
         name="listPriceCol"
-        column-type="numeric"
+        column-type="numeric" as const
         sort=(state.sorted.listPriceCol || "none")
     >
         List Price
     </@header>
     <@header
         name="quantityCol"
-        column-type="numeric"
+        column-type="numeric" as const
         sort=(state.sorted.quantityCol || "none")
     >
         Quantity Available
@@ -62,10 +62,10 @@ class {
     <@header name="orderCol">
         Orders
     </@header>
-    <@header name="watchersCol" column-type="numeric">
+    <@header name="watchersCol" column-type="numeric" as const>
         Watchers
     </@header>
-    <@header name="protectionCol" column-type="numeric">
+    <@header name="protectionCol" column-type="numeric" as const>
         Protection
     </@header>
     <@header name="shippingCol">
