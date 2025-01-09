@@ -29,14 +29,14 @@ class {
     </@header>
     <@header
         name="listPriceCol"
-        column-type="numeric"
+        column-type="numeric" as const
         sort=(state.sorted.listPriceCol || "none")
     >
         List Price
     </@header>
     <@header
         name="quantityCol"
-        column-type="numeric"
+        column-type="numeric" as const
         sort=(state.sorted.quantityCol || "none")
     >
         Quantity Available
@@ -46,14 +46,14 @@ class {
     </@header>
     <@header
         name="watchersCol"
-        column-type="numeric"
+        column-type="numeric" as const
         sort=(state.sorted.watchersCol || "none")
     >
         Watchers
     </@header>
     <@header
         name="protectionCol"
-        column-type="numeric"
+        column-type="numeric" as const
         sort=(state.sorted.protectionCol || "none")
     >
         Protection
