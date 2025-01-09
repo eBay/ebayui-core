@@ -11,6 +11,6 @@ Button styled with core classes.
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-character-count)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-character-count)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-character-count/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-character-count)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-character-count)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-character-count/examples)

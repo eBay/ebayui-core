@@ -11,6 +11,6 @@ Looks like a link, but under the hood is a button.
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/buttons-ebay-fake-link)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/buttons-ebay-fake-link)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-link/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/buttons-ebay-fake-link)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/buttons-ebay-fake-link)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-fake-link/examples)

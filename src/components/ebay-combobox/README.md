@@ -11,6 +11,6 @@ The `<ebay-combobox>` is a combination of a text `<input>`, and a listbox (`aria
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-combobox)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/form-input-ebay-combobox)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-combobox/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/form-input-ebay-combobox)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/form-input-ebay-combobox)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-combobox/examples)

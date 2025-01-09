@@ -9,6 +9,6 @@
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-list)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-list)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-list/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/building-blocks-ebay-list)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/building-blocks-ebay-list)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-list/examples)

@@ -11,6 +11,6 @@ The `<ebay-education-notice>` is a tag used to create an education notice elemen
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/story/notices-tips-ebay-education-notice)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/notices-tips-ebay-education-notice)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-education-notice/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/story/notices-tips-ebay-education-notice)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/notices-tips-ebay-education-notice)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-education-notice/examples)

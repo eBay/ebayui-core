@@ -4,13 +4,13 @@ This page contains instructions and guidelines for anybody contributing code to 
 
 ## Table of Contents
 
--   [Development](#development)
--   [Pull Requests](#pull-requests)
--   [Branching Strategy](#branching-strategy)
--   [Unit Tests](#unit-tests)
--   [Definition of Done](#definition-of-done)
--   [Naming Scheme](#naming-scheme)
--   [Releases](#releases)
+- [Development](#development)
+- [Pull Requests](#pull-requests)
+- [Branching Strategy](#branching-strategy)
+- [Unit Tests](#unit-tests)
+- [Definition of Done](#definition-of-done)
+- [Naming Scheme](#naming-scheme)
+- [Releases](#releases)
 
 ## Development
 
@@ -18,7 +18,7 @@ This section includes information on system requirements, running the local serv
 
 ### System Requirements
 
--   [Node.js](https://nodejs.org/en/)
+- [Node.js](https://nodejs.org/en/)
 
 Clone this repo to your local environment then run `npm i` to install all dependencies.
 
@@ -71,9 +71,9 @@ If you are creating a new component or significantly altering an existing one, p
 
 We ask this because:
 
--   we want to avoid cases where developers build something that does not align with our wants & needs
--   we want to be able to carefully plan our sprint and test cycles with minimal disruption
--   we want to avoid cases where two developers duplicate work
+- we want to avoid cases where developers build something that does not align with our wants & needs
+- we want to be able to carefully plan our sprint and test cycles with minimal disruption
+- we want to avoid cases where two developers duplicate work
 
 ### Writing Code
 
@@ -81,10 +81,10 @@ The contents of a pull request should be related to a single issue only (or, at 
 
 Whilst it may be tempting to fix any [broken windows](https://www.rtuin.nl/2012/08/software-development-and-the-broken-windows-theory/) that you encounter, we ask you not to because:
 
--   it can distract the reviewer from the main issue at hand
--   it can add additional time needed for the reviewer
--   it can increase the chance of regressions
--   it can make rollbacks more difficult
+- it can distract the reviewer from the main issue at hand
+- it can add additional time needed for the reviewer
+- it can increase the chance of regressions
+- it can make rollbacks more difficult
 
 So please be a good citizen and create separate issues or pull requests for any broken windows that you find.
 
@@ -159,10 +159,10 @@ A milestone branch will be deleted after it has been merged into master. There i
 
 With this strategy, there are rarely more than a handful of branches at any one moment in time:
 
--   master branch (reflects current production code/release)
--   next minor or major milestone branch
--   next patch milestone branch
--   _n_ number of feature/issue branches (usually 1 - 3)
+- master branch (reflects current production code/release)
+- next minor or major milestone branch
+- next patch milestone branch
+- _n_ number of feature/issue branches (usually 1 - 3)
 
 ## Unit Tests
 
@@ -176,12 +176,12 @@ Browser side testing is predominantly concerned with the testing of _state_. For
 
 For both types of tests, please observe the following golden rules:
 
--   A test should only test one thing
-    -   Watch out for the words 'and' & 'or' in your test description!
--   A test should not contain conditional logic
-    -   We don't want to have to write tests for our tests!
--   A test description should avoid interpolated strings
-    -   Test descriptions should be human readable (readable != parsable)
+- A test should only test one thing
+    - Watch out for the words 'and' & 'or' in your test description!
+- A test should not contain conditional logic
+    - We don't want to have to write tests for our tests!
+- A test description should avoid interpolated strings
+    - Test descriptions should be human readable (readable != parsable)
 
 Above all, all aspects of a test should be human readable. A simple litmus test for this is that anybody should be able to read the test and, within a few seconds, be able to tell you what the _purpose_ of the test is. If they are confused, or ask questions, then it is not a well written test. Go back and refactor!
 
@@ -191,28 +191,28 @@ A component is considered "done", and ready for merge into release branch, when 
 
 1. Foundational layer review
 
--   Visual design (DS6)
--   Markup structure (Bones)
--   Accessibility pattern (MIND)
--   CSS (Skin)
+- Visual design (DS6)
+- Markup structure (Bones)
+- Accessibility pattern (MIND)
+- CSS (Skin)
 
 2. Component layer review
 
--   Tag API
--   Event API
--   Unit tests
--   Integration test
--   Performance test
--   Documentation
+- Tag API
+- Event API
+- Unit tests
+- Integration test
+- Performance test
+- Documentation
 
 3. Code review
 
--   Linter should catch syntax and style issues
--   Prefer performance over readability, but readability over "space saving" code
--   Apply the single-responsibility principle to functions
--   Refactor long functions into several small functions
--   Identify and move common utility functions to libraries or static methods
--   All CSS should come from Skin
+- Linter should catch syntax and style issues
+- Prefer performance over readability, but readability over "space saving" code
+- Apply the single-responsibility principle to functions
+- Refactor long functions into several small functions
+- Identify and move common utility functions to libraries or static methods
+- All CSS should come from Skin
 
 ## Naming Scheme
 
