@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.6.6
+
+### Patch Changes
+
+- [#2377](https://github.com/eBay/ebayui-core/pull/2377) [`06d6ae6`](https://github.com/eBay/ebayui-core/commit/06d6ae60cb3dff261c208666a1f985bcdd2f8eb4) Thanks [@agliga](https://github.com/agliga)! - fix(dialog): added request animation frame before running keyboardTrap
+
 ## 14.6.5
 
 ### Patch Changes
