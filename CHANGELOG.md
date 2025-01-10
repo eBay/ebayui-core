@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.6.5
+
+### Patch Changes
+
+- [#2374](https://github.com/eBay/ebayui-core/pull/2374) [`20eebd9`](https://github.com/eBay/ebayui-core/commit/20eebd97ce4da58efb0d6a28c7558de2e4f129f9) Thanks [@agliga](https://github.com/agliga)! - chore(@internal): added split imports
+
 ## 14.6.4
 
 ### Patch Changes
