@@ -247,7 +247,9 @@ class DialogBase extends Marko.Component<Input, State> {
                 screenReaderTrap.trap(this.el, { useHiddenProperty });
                 if (!useHiddenProperty) {
                     // Adding request animation frame because focusables will return that all elements are not visible since dialog is still animating.
-                    requestAnimationFrame(() => keyboardTrap.trap(this.windowEl));
+                    requestAnimationFrame(() =>
+                        keyboardTrap.trap(this.windowEl),
+                    );
                 }
             }
         };
