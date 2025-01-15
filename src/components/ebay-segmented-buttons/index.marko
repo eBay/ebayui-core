@@ -11,7 +11,7 @@ export interface SegmentedButtonsEvent {
 
 export interface SegmentedButton extends Omit<Marko.Input<"button">, `on${string}`> {
     selected?: boolean;
-    icon?: Marko.Renderable;
+    icon?: Marko.AttrTag<{ renderBody: Marko.Body }>;
 }
 
 static interface SegmentedButtonsInput extends Omit<Marko.Input<"div">, `on${string}`> {
