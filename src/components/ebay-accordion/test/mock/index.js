@@ -2,7 +2,7 @@
 import { createRenderBody } from "../../../../common/test-utils/shared";
 
 export const Default_Accordion = {
-    items: [
+    item: [
         {
             text: "Item 1",
             renderBody: createRenderBody(

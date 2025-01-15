@@ -6,7 +6,7 @@ export interface AccordionInput extends Omit<Marko.Input<"ul">, `on${string}`> {
     size?: "regular" | "large";
     "auto-collapse"?: AttrBoolean;
     "a11y-role-description"?: AttrString;
-    items?: Marko.AttrTag<
+    item?: Marko.AttrTag<
         Omit<DetailsInput, "size" | "alignment" | "layout" | `on${string}`>
     >;
     "on-toggle"?: (event: { originalEvent: Event; open: boolean }) => void;
@@ -27,11 +27,6 @@ class Accordion extends Marko.Component<Input> {
                 } 
             });            
         }
-        
-        this.emit("toggle", {
-            originalEvent: event.originalEvent,
-            open: (event.originalEvent.target as HTMLDetailsElement).open,
-        });
     }
 }
 

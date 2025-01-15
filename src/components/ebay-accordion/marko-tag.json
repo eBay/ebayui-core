@@ -11,7 +11,7 @@
     "@as": "string",
     "@auto-collapse": "boolean",
     "@a11y-role-description": "string",
-    "@items <item>[]": {
+    "@item <item>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,

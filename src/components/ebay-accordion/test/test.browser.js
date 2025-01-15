@@ -25,7 +25,7 @@ describe("given the accordion in the default state", () => {
     });
 
     it("should render all sections collapsed", () => {
-        input.items.forEach((item) => {
+        input.item.forEach((item) => {
             expect(
                 component.getByText(item.text).closest("details").open,
             ).to.equal(false);
@@ -34,27 +34,16 @@ describe("given the accordion in the default state", () => {
 
     describe("when first section toggled", () => {
         beforeEach(async () => {
-            await fireEvent.click(component.getByText(input.items[0].text));
-        });
-
-        it("should emit the toggle event", async () => {
-            const toggleEvent = component.emitted("toggle");
-            expect(toggleEvent.length).to.be.greaterThan(0);
-
-            const [eventArg] = toggleEvent.pop();
-            expect(eventArg).has.property("open");
-            expect(eventArg)
-                .has.property("originalEvent")
-                .is.an.instanceOf(Event);
+            await fireEvent.click(component.getByText(input.item[0].text));
         });
 
         it("should open the clicked section", async () => {
-            const firstSection = component.getByText(input.items[0].text);
+            const firstSection = component.getByText(input.item[0].text);
             expect(firstSection.closest("details").open).to.equal(true);
         });
 
         it("should close an open section when clicked again", async () => {
-            const firstSection = component.getByText(input.items[0].text);
+            const firstSection = component.getByText(input.item[0].text);
             expect(firstSection.closest("details").open).to.equal(true);
             await fireEvent.click(firstSection);
             expect(firstSection.closest("details").open).to.equal(false);
@@ -71,23 +60,20 @@ describe("given the accordion with autocollapse enabled", () => {
 
     it("should collapse previous section when new section is opened", async () => {
         // Open first section
-        await fireEvent.click(component.getByText(input.items[0].text));
+        await fireEvent.click(component.getByText(input.item[0].text));
         expect(
-            component.getByText(input.items[0].text).closest("details").open,
+            component.getByText(input.item[0].text).closest("details").open,
         ).to.equal(true);
 
         // Open second section
-        await fireEvent.click(component.getByText(input.items[1].text));
+        await fireEvent.click(component.getByText(input.item[1].text));
 
         // Verify first section closed and second section opened
         expect(
-            component.getByText(input.items[0].text).closest("details").open,
+            component.getByText(input.item[0].text).closest("details").open,
         ).to.equal(false);
         expect(
-            component.getByText(input.items[1].text).closest("details").open,
+            component.getByText(input.item[1].text).closest("details").open,
         ).to.equal(true);
-
-        const toggleEvents = component.emitted("toggle");
-        expect(toggleEvents.length).to.equal(2);
     });
 });

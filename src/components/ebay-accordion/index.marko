@@ -5,7 +5,7 @@ static function noop() {}
 $ const {
     class: inputClass,
     size,
-    items,
+    item: items = [],
     autoCollapse,
     a11yRoleDescription,
     ...htmlInput
@@ -19,7 +19,7 @@ $ (input as any).toJSON = noop;
     aria-roledescription=(a11yRoleDescription ?? "accordion")
     key="accordion-root"
 >
-    <for|item, i| of=items || []>
+    <for|item| of=items || []>
         <li>
             <ebay-details
                 ...item

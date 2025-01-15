@@ -53,7 +53,7 @@ export default {
                 },
             },
         },
-        items: {
+        item: {
             name: "@item",
             description:
                 "Represents an <ebay-details/> element to be used as part of the group. Allowed attributes are `open`, `as`, `text` and `renderBody`",
@@ -63,7 +63,7 @@ export default {
         },
         onToggle: {
             action: "on-toggle",
-            description: "Triggered on toggle",
+            description: "Triggered on toggle of details to control auto-collapse",
             table: {
                 category: "Events",
                 defaultValue: {
