@@ -1201,7 +1201,7 @@ exports[`menu-button > renders with overflow variant 1`] = `
       [36m</svg>[39m
     [36m</button>[39m
     [36m<span[39m
-      [33mclass[39m=[32m"menu-button__menu menu-button__menu--reverse"[39m
+      [33mclass[39m=[32m"menu-button__menu"[39m
       [33mtabindex[39m=[32m"-1"[39m
     [36m>[39m
       [36m<div[39m
@@ -1437,7 +1437,7 @@ exports[`menu-button > renders with reverse=true 1`] = `
       [36m</svg>[39m
     [36m</button>[39m
     [36m<span[39m
-      [33mclass[39m=[32m"menu-button__menu menu-button__menu--reverse"[39m
+      [33mclass[39m=[32m"menu-button__menu"[39m
       [33mtabindex[39m=[32m"-1"[39m
     [36m>[39m
       [36m<div[39m

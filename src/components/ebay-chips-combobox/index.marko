@@ -13,6 +13,7 @@ $ const {
 $ const options = [...option || []].map((o) => o.text)
 
 <span
+    key="root"
     class=[
         "chips-combobox",
         fluid && "chips-combobox--fluid",
@@ -43,6 +44,7 @@ $ const options = [...option || []].map((o) => o.text)
         onExpand("emit", "expand")
         onCollapse("emit", "collapse")
         disabled=disabled
+        dropdown-element=() => component.getEl("root")
         chevron-size="large"
         ...comboboxInput
         autocomplete="list"
