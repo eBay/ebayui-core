@@ -12,7 +12,7 @@ $ const {
     formName,
     formAction,
     formMethod,
-    items,
+    items: items = [],
     searchHeaderValue,
     searchHeaderPlaceholderText,
     a11ySearchHeaderClearText,
@@ -57,7 +57,7 @@ $ const {
         on-form-submit("handleFormSubmit")
         on-footer-click("handleFooterButtonClick")
         on-search-change("emit", "search-change")>
-        <for|item, i| of=(items || [])>
+        <for|item, i| of=items>
             <@item ...item checked=component.isChecked(i)/>
         </for>
         <if(footerText)>

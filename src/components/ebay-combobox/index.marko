@@ -8,7 +8,7 @@ $ const {
     style,
     borderless,
     autocomplete,
-    options,
+    option: options = [],
     floatingLabel,
     listSelection,
     expanded,
@@ -101,7 +101,7 @@ $ var id = inputId || component.getElId("input");
     </span>
     <if(component._hasVisibleOptions())>
         <div key="listbox" role="listbox" class="combobox__listbox">
-            <for|option| of=component._getVisibleOptions()>
+            <for|option| of=options>
                 $ const { text, value, class: optionClass, ...htmlOption } = option;
                 $ var isSelected = (
                     (value || text) === state.currentValue

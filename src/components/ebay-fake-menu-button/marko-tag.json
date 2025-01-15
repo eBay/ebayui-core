@@ -29,7 +29,7 @@
     "@disabled": "boolean",
     "@collapseOnSelect": "boolean",
     "@variant": "string",
-    "@items <item>[]": {
+    "@item": {
         "@*": {
             "targetProperty": null,
             "type": "expression"
@@ -49,7 +49,7 @@
         "@class": "string",
         "@style": "string"
     },
-    "@separator <separator>[]": {
+    "@separator": {
         "@html-attributes": "expression",
         "@class": "string",
         "@style": "string",

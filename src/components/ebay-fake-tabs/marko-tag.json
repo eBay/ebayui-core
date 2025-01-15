@@ -7,7 +7,7 @@
     "@html-attributes": "expression",
     "@selected-index": "number",
     "@tab-matches-current-url": "boolean",
-    "@tabs <tab>[]": {
+    "@tab <tab>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,
@@ -16,5 +16,6 @@
         "@html-attributes": "expression",
         "@href": "#html-href"
     },
+    "@tab": "Marko.AttrTag<Tab>",
     "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-fake-tabs)"
 }

@@ -215,7 +215,7 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    items: [
+    item: [
         {
             renderBody: `item 1 that has very long text`,
         },

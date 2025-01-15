@@ -6,13 +6,13 @@ $ const {
     a11yHeadingTag,
     a11yMenuButtonText,
     class: inputClass,
-    items: attrTagItems,
+    item: itemsList = [],
     ...htmlInput
 } = input;
 
-$ const items = [...(attrTagItems || [])];
+$ const items = Array.isArray(itemsList) ? itemsList : [itemsList].filter(Boolean);
+$ var anyHref = items.some((element) => element.href != null);
 
-$ var anyHref = (items || []).some((element) => element.href != null);
 <nav
     ...processHtmlAttributes(htmlInput)
     key='root'

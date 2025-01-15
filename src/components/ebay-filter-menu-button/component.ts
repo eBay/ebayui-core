@@ -69,7 +69,7 @@ export default class extends MenuUtils<Input, MenuState> {
         currentChecked,
     }: FilterMenuEvent) {
         // TODO: the event data from the filter-menu should probably
-        // change to include which items are checked not just the values.
+        // change to include which item are checked not just the values.
         if (checkedIndex !== undefined) this.toggleChecked(checkedIndex);
         this._emitComponentEvent("change", originalEvent, {
             el,
@@ -97,7 +97,7 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     onInput(input: Input) {
-        input.items = input.items || ([] as any);
+        input.items = input.items || ([] as any); // Changed from items
         this.state = this.getInputState(input);
     }
 

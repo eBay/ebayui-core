@@ -85,7 +85,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    options: [
+    option: [
         {
             value: "1",
             text: "Option 1",

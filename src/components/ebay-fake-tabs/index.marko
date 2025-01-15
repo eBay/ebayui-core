@@ -4,7 +4,7 @@ import type { WithNormalizedProps } from "../../global";
 $ const {
     selectedIndex = 0,
     class: inputClass,
-    tabs,
+    tab: tabs = [],
     tabMatchesCurrentUrl,
     renderBody,
     ...htmlInput
@@ -28,20 +28,20 @@ $ var tabAriaCurrent: Marko.Input<"li">['aria-current'] = tabMatchesCurrentUrl =
     ...processHtmlAttributes(htmlInput)
     class=["fake-tabs", inputClass]>
     <ul class="fake-tabs__items">
-        <for|tab, i| of=(tabs || [])>
+        <for|item, i| of=(tabs || [])>
             $ const {
                 href,
                 ...htmlTab
-            } = tab;
+            } = item;
             $ var isSelected = selectedIndex === i;
             <li
                 ...processHtmlAttributes(htmlTab)
                 class=[
-                    tab.class,
+                    item.class,
                     "fake-tabs__item"
                 ]>
                 <a aria-current=(isSelected && tabAriaCurrent) href=href>
-                    <${tab.renderBody}/>
+                    <${item.renderBody}/>
                 </a>
             </li>
         </for>

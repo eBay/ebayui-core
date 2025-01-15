@@ -4,7 +4,7 @@ $ const {
     name,
     class: inputClass,
     disabled,
-    options,
+    option: options = [],
     tabindex = 0,
     typeaheadTimeoutLength,
     ...htmlInput
@@ -18,7 +18,7 @@ $ const {
     tabindex:no-update=tabindex
     on-activeDescendantChange(component.isAutoSelection ? "handleListboxChange" : undefined)
     onKeydown(!component.isAutoSelection && "handleKeyDown")>
-    <for|option,index| of=(options || [])>
+    <for|option,index| of=(options)>
         $ const {
             value,
             class: optionClass,
@@ -63,7 +63,7 @@ $ const {
     </for>
 </div>
 <select hidden class="listbox__native" name=name>
-    <for|option, i| of=(options || [])>
+    <for|option, i| of=(options)>
         <option
             value=option.value
             selected=(i === state.selectedIndex)

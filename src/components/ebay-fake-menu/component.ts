@@ -18,13 +18,14 @@ export interface Item extends MenuItem {
     itemMatchesUrl?: boolean;
     current?: boolean;
     badgeNumber?: number;
+    separator?: boolean;
 }
 
 export interface Separator {}
 interface FakeMenuInput
     extends BaseMenuInput,
         Omit<Marko.Input<"span">, `on${string}`> {
-    items?: Marko.AttrTag<Item>;
+    item?: Marko.AttrTag<Item>;
     separator?: Marko.AttrTag<Separator>;
     "class-prefix"?: string;
     reverse?: boolean;
@@ -36,7 +37,7 @@ interface FakeMenuInput
 export interface Input extends WithNormalizedProps<FakeMenuInput> {}
 
 export default class extends MenuUtils<Input, MenuState> {
-    declare items: Item[];
+    declare items: Item[]; 
 
     onCreate() {
         setupMenu(this);
@@ -75,10 +76,11 @@ export default class extends MenuUtils<Input, MenuState> {
 
     onInput(input: Input) {
         this.items = [];
-        for (const item of input.items || []) {
-            if (!item.separator) {
-                this.items.push(item);
-            }
+        for (const item of input.item || []) {
+            this.items.push(item);
+        }
+        if (input.separator) {
+            this.items.push({ separator: true });
         }
     }
 }

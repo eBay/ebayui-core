@@ -48,6 +48,10 @@ interface MenuButtonInput
     "on-change"?: (event: MenuButtonEvent) => void;
     "on-select"?: (event: MenuButtonEvent) => void;
     "on-mousedown"?: (event: MenuButtonEvent) => void;
+    item?: Marko.AttrTag<{ 
+        renderBody?: Marko.Body 
+        separator?: boolean
+    }>[];
 }
 
 export interface Input extends WithNormalizedProps<MenuButtonInput> {}
