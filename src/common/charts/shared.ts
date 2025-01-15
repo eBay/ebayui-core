@@ -1,8 +1,8 @@
 export const chartFontFamily = '"Market Sans", Arial, sans-serif',
     backgroundColor = "var(--color-background-primary)",
     gridColor = "var(--color-data-viz-grid)",
-    labelsColor = "var(--color-data-viz-labels)",
-    legendColor = "var(--color-data-viz-legend)",
+    labelsColor = "var(--color-foreground-secondary)",
+    legendColor = "var(--color-foreground-primary)",
     legendInactiveColor = "var(--color-data-viz-legend-inactive)",
     legendHoverColor = "var(--color-data-viz-legend-hover)",
     tooltipBackgroundColor = "var(--color-background-primary)",
@@ -79,6 +79,7 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
             const color = strokeColorMapping[i % strokeColorMapping.length];
             series[i].lineColor = color;
             series[i].borderColor = color;
+            series[i].fillOpacity = 1; 
         }
     },
     setDonutColors = function (series: any) {
@@ -110,4 +111,25 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
         });
 
         return colors.map((color: any) => color.lineColor);
+    },
+    setSeriesMarkerStyles = function (series: Highcharts.PlotAreaOptions[]) {
+        series.forEach((s, i) => {
+            s.zIndex = series.length - i;
+            s.marker = {
+                symbol: "circle",
+                lineWidth: 1,
+                fillColor: "black",
+                lineColor: "white",
+                states: {
+                    hover: {
+                        animation: { duration: 0 },
+                        radius: 4,
+                        lineWidth: 2,
+                    },
+                    normal: {
+                        animation: false,
+                    },
+                },
+            };
+        });
     };

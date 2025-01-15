@@ -1,0 +1,73 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`section-title > renders defaults 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"ebay-area-chart"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"ebay-area-chart__container"[39m
+      [33mid[39m=[32m"ebay-bar-chart-s0"[39m
+    [36m/>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`section-title > renders with five series 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"ebay-area-chart"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"ebay-area-chart__container"[39m
+      [33mid[39m=[32m"ebay-bar-chart-s0"[39m
+    [36m/>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`section-title > renders with non-spline param 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33marea-type[39m=[32m"area"[39m
+    [33mclass[39m=[32m"ebay-area-chart"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"ebay-area-chart__container"[39m
+      [33mid[39m=[32m"ebay-bar-chart-s0"[39m
+    [36m/>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`section-title > renders with two series 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"ebay-area-chart"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"ebay-area-chart__container"[39m
+      [33mid[39m=[32m"ebay-bar-chart-s0"[39m
+    [36m/>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`section-title > renders with x-axis label format 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"ebay-area-chart"[39m
+    [33mtooltip-title-formatter[39m=[32m"tooltipTitleFormatter(value, dateFormat) {
+    if (typeof value !== \\"number\\") {
+      return value;
+    }
+    return dateFormat(\\"%A\\", value);
+  }"[39m
+  [36m>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"ebay-area-chart__container"[39m
+      [33mid[39m=[32m"ebay-bar-chart-s0"[39m
+    [36m/>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
