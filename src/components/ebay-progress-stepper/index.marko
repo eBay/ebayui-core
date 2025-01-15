@@ -5,9 +5,9 @@ import type { AttrString } from 'marko/tags-html';
 export interface Step extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
     current?: boolean;
     a11yText?: string;
-    title?: Omit<Marko.Input<"h4">, `on${string}`> & {
+    title?: Marko.AttrTag<Omit<Marko.Input<"h4">, `on${string}`> & {
         as?: keyof Marko.NativeTags;
-    }
+    }>
 }
 
 static interface ProgressStepperInput extends Omit<Marko.Input<"div">, `on${string}`> {
