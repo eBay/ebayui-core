@@ -73,7 +73,7 @@ export default {
         columnType: {
             name: "column-type",
             control: { type: "select" },
-            description: "Determines how the column is rendered (normal, numeric, layout, or icon-action)",
+            description: "Determines how the column is rendered",
             options: [
                 "normal",
                 "numeric",

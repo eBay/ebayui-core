@@ -73,9 +73,7 @@ $ const {
                             sortEleAttr = { href };
                         } else if (sortOrder) {
                             sortEleAttr = {
-                                type: "button",
-                                "aria-pressed":
-                                    sortOrder !== "none" ? "true" : "false",
+                                type: "button"
                             };
                         }
                         <${href ? "a" : sortOrder ? "button" : null}
