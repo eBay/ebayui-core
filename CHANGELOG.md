@@ -1,5 +1,19 @@
 # eBayUI-Core Changelog
 
+## 14.7.0-next.0
+
+### Minor Changes
+
+- [#2384](https://github.com/eBay/ebayui-core/pull/2384) [`96f2732`](https://github.com/eBay/ebayui-core/commit/96f273242ac1a91bd851426e676ff4dca2f0d8e3) Thanks [@agliga](https://github.com/agliga)! - Add area chart
+
+### Patch Changes
+
+- [#2384](https://github.com/eBay/ebayui-core/pull/2384) [`2cb19b1`](https://github.com/eBay/ebayui-core/commit/2cb19b11f766f1cf2744d8f07ec7c79ef56194de) Thanks [@agliga](https://github.com/agliga)! - TS fix for combobox
+
+- [#2384](https://github.com/eBay/ebayui-core/pull/2384) [`59357e6`](https://github.com/eBay/ebayui-core/commit/59357e6cdc401cbd0a14832c7e72fd20ddc2b7fd) Thanks [@agliga](https://github.com/agliga)! - Upgrade dependencies
+
+- [#2384](https://github.com/eBay/ebayui-core/pull/2384) [`985ec4f`](https://github.com/eBay/ebayui-core/commit/985ec4fe074ba2097b2a23421e95d1e7960f77d3) Thanks [@agliga](https://github.com/agliga)! - Updated the component-browser.ts file to reference shared attributes from tags-html.d.ts and added the Textbox class implementation.
+
 ## 14.6.7
 
 ### Patch Changes

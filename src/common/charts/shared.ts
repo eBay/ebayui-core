@@ -79,7 +79,7 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
             const color = strokeColorMapping[i % strokeColorMapping.length];
             series[i].lineColor = color;
             series[i].borderColor = color;
-            series[i].fillOpacity = 1; 
+            series[i].fillOpacity = 1;
         }
     },
     setDonutColors = function (series: any) {
