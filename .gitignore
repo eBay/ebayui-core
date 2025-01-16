@@ -21,3 +21,4 @@ yarn.lock
 .env
 _cdn
 __screenshots__
+.DS_Store
