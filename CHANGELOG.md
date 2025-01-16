@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.6.7
+
+### Patch Changes
+
+- [`2cbf433`](https://github.com/eBay/ebayui-core/commit/2cbf43374041102ae8598f00bbf9e83af3cf874c) Thanks [@agliga](https://github.com/agliga)! - fix(@internal): added correct lasso remap
+
 ## 14.6.6
 
 ### Patch Changes
