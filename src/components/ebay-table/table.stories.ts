@@ -81,6 +81,9 @@ export default {
             ],
             table: {
                 category: "@header attribute tags",
+                defaultValue: {
+                    summary: "normal",
+                },
             },
         },
         href: {
