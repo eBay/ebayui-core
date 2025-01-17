@@ -83,7 +83,8 @@
         "makeup-roving-tabindex": "~0.7.3",
         "makeup-screenreader-trap": "~0.5.3",
         "makeup-typeahead": "^0.3.3",
-        "shaka-player": "4.12.5"
+        "shaka-player": "4.12.5",
+        "three": "^0.172.0"
     },
     "devDependencies": {
         "@babel/cli": "^7.26.4",

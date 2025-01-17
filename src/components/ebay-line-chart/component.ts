@@ -23,14 +23,15 @@ import tooltipTemplate from "./tooltip.marko";
 import type HighchartsTypes from "highcharts";
 declare const Highcharts: typeof HighchartsTypes;
 
-interface SeriesLineOptions extends Highcharts.SeriesLineOptions {
+interface SeriesLineOptions extends Highcharts.PlotLineOptions {
     data: Highcharts.PointOptionsObject[];
+    type: "line",
 }
 
 interface LineChartInput
     extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
     title?: Highcharts.TitleOptions["text"];
-    description?: Highcharts.PlotSeriesOptions["description"];
+    description?: Highcharts.PlotLineOptions["description"];
     "x-axis-label-format"?: Highcharts.XAxisLabelsOptions["format"];
     "x-axis-positioner"?: Highcharts.XAxisOptions["tickPositioner"];
     "y-axis-labels"?: Highcharts.YAxisLabelsOptions["format"][];
