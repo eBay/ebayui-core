@@ -19,8 +19,9 @@
         },
         "@html-attributes": "expression",
         "@column-type": {
-            "enum": ["normal", "numeric", "row-header", "layout", "icon-action"]
-        }
+            "enum": ["normal", "numeric", "layout", "icon-action"]
+        },
+        "@row-header": "boolean"
     },
     "@row <row>[]": {
         "attribute-groups": ["html-attributes"],
