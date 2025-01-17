@@ -1,5 +1,13 @@
 # eBayUI-Core Changelog
 
+## 14.6.8
+
+### Patch Changes
+
+- [`55f2485`](https://github.com/eBay/ebayui-core/commit/55f24852abf3bbe501739f7d79268e97f61b4244) Thanks [@agliga](https://github.com/agliga)! - chore: updated shaka-player and model-viewer versions
+
+- [`1b96861`](https://github.com/eBay/ebayui-core/commit/1b96861b9ae2380cf422ce129aeb208866d43683) Thanks [@agliga](https://github.com/agliga)! - fix(video): removed report from last argument
+
 ## 14.6.7
 
 ### Patch Changes
