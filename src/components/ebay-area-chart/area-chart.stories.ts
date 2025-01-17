@@ -19,7 +19,7 @@ const seriesDataWithoutLabels = sampleSeriesData.map((series) => {
             return rest;
         }),
     };
-})
+});
 
 export default {
     title: "charts/ebay-area-chart",

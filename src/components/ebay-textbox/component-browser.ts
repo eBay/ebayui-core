@@ -1,6 +1,10 @@
 import FloatingLabel from "makeup-floating-label";
 import type { WithNormalizedProps } from "../../global";
-import type { AttrOnOff, AttrString, AttrStringOrNumber } from "marko/tags-html";
+import type {
+    AttrOnOff,
+    AttrString,
+    AttrStringOrNumber,
+} from "marko/tags-html";
 
 export interface TextboxEvent {
     originalEvent: Event;
@@ -35,7 +39,6 @@ interface TextboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
     autocorrect?: AttrOnOff;
     cols?: AttrStringOrNumber;
     rows?: AttrStringOrNumber;
-
 }
 
 export interface Input extends WithNormalizedProps<TextboxInput> {}
