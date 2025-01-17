@@ -72,7 +72,7 @@
         "@floating-ui/dom": "^1.6.12",
         "@google/model-viewer": "^4.0.0",
         "@marko-tags/subscribe": "^0.5.1",
-        "highcharts": "11.4.8",
+        "highcharts": "^11.4.8",
         "makeup-active-descendant": "0.7.4",
         "makeup-expander": "~0.11.4",
         "makeup-floating-label": "~0.4.5",
