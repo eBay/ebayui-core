@@ -11,7 +11,7 @@ import type { LegendItem } from "../ebay-chart-legend/component";
 import type HighchartsTypes from "highcharts";
 declare const Highcharts: typeof HighchartsTypes;
 
-interface SeriesDonutOptions extends Omit<Highcharts.SeriesPieOptions, "type"> {
+interface SeriesDonutOptions extends Omit<Highcharts.SeriesOptions, "type"> {
     data: Highcharts.PointOptionsObject[];
     type?: "pie" | "variablepie";
 }
@@ -26,7 +26,7 @@ interface DonutChartInput
     "cdn-highcharts-pattern-fill"?: string;
     version?: string;
     series: SeriesDonutOptions[];
-    highchartsDescription?: Highcharts.PlotSeriesOptions["description"];
+    highchartsDescription?: string;
 }
 
 export interface Input extends WithNormalizedProps<DonutChartInput> {}
@@ -77,7 +77,7 @@ class DonutChart extends Marko.Component<Input> {
      */
     _setupChart() {
         // Set default type to "pie"
-        const series = this.input.series.map((series) => ({
+        const series = this.input.series?.map((series) => ({
             ...series,
             type: series.type || "pie",
         })) as Highcharts.SeriesOptionsType[];
