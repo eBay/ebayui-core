@@ -1,5 +1,47 @@
 # eBayUI-Core Changelog
 
+## 14.6.7
+
+### Patch Changes
+
+- [`2cbf433`](https://github.com/eBay/ebayui-core/commit/2cbf43374041102ae8598f00bbf9e83af3cf874c) Thanks [@agliga](https://github.com/agliga)! - fix(@internal): added correct lasso remap
+
+## 14.6.6
+
+### Patch Changes
+
+- [#2377](https://github.com/eBay/ebayui-core/pull/2377) [`06d6ae6`](https://github.com/eBay/ebayui-core/commit/06d6ae60cb3dff261c208666a1f985bcdd2f8eb4) Thanks [@agliga](https://github.com/agliga)! - fix(dialog): added request animation frame before running keyboardTrap
+
+## 14.6.5
+
+### Patch Changes
+
+- [#2374](https://github.com/eBay/ebayui-core/pull/2374) [`20eebd9`](https://github.com/eBay/ebayui-core/commit/20eebd97ce4da58efb0d6a28c7558de2e4f129f9) Thanks [@agliga](https://github.com/agliga)! - chore(@internal): added split imports
+
+## 14.6.4
+
+### Patch Changes
+
+- [#2367](https://github.com/eBay/ebayui-core/pull/2367) [`69acb3f`](https://github.com/eBay/ebayui-core/commit/69acb3f34c86dd2185016fcd759072ec65f2e6b4) Thanks [@agliga](https://github.com/agliga)! - fix(@internal): added commonjs support for older bundles
+
+## 14.6.3
+
+### Patch Changes
+
+- [#2364](https://github.com/eBay/ebayui-core/pull/2364) [`086ffc8`](https://github.com/eBay/ebayui-core/commit/086ffc84c965ba60df233dad1c63d277539966ad) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Install three as a peer dependency
+
+## 14.6.2
+
+### Patch Changes
+
+- [#2362](https://github.com/eBay/ebayui-core/pull/2362) [`d490819`](https://github.com/eBay/ebayui-core/commit/d4908190fae46de481bfb2149cae9cb5a92a0642) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Fix lasso issue
+
+## 14.6.1
+
+### Patch Changes
+
+- [#2359](https://github.com/eBay/ebayui-core/pull/2359) [`5bc9ec1`](https://github.com/eBay/ebayui-core/commit/5bc9ec1701c9cf6d17236ba921b9b85cc5cf1a8c) Thanks [@agliga](https://github.com/agliga)! - feat(internal): added support for webpack 4
+
 ## 14.6.0
 
 ### Minor Changes

@@ -51,7 +51,7 @@ jobs:
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   path-to-lcov: coverage/lcov.info
             - name: Upload artifact
-              uses: actions/upload-pages-artifact@v1
+              uses: actions/upload-pages-artifact@v3
 
     # Deployment job
     deploy:
@@ -72,7 +72,7 @@ jobs:
         steps:
             - name: Deploy to GitHub Pages
               id: deployment
-              uses: actions/deploy-pages@v2
+              uses: actions/deploy-pages@v4
     release:
         # Sets permissions of the GITHUB_TOKEN to allow opening release PR
         permissions:
