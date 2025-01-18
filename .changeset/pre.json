@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "14.6.8"
+  },
+  "changesets": [
+    "sharp-bees-grin",
+    "sixty-experts-marry",
+    "thirty-walls-notice",
+    "wet-wombats-roll"
+  ]
+}
