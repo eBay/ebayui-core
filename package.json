@@ -1,6 +1,6 @@
 {
     "name": "@ebay/ebayui-core",
-    "version": "14.6.7",
+    "version": "14.6.8",
     "description": "Collection of core eBay components; considered to be the building blocks for all composite structures, pages & apps.",
     "keywords": [
         "marko-components"
@@ -70,9 +70,9 @@
     ],
     "dependencies": {
         "@floating-ui/dom": "^1.6.12",
-        "@google/model-viewer": "3.5.0",
+        "@google/model-viewer": "^4.0.0",
         "@marko-tags/subscribe": "^0.5.1",
-        "highcharts": "11.3.0",
+        "highcharts": "^11.4.8",
         "makeup-active-descendant": "0.7.4",
         "makeup-expander": "~0.11.4",
         "makeup-floating-label": "~0.4.5",
@@ -83,7 +83,7 @@
         "makeup-roving-tabindex": "~0.7.3",
         "makeup-screenreader-trap": "~0.5.3",
         "makeup-typeahead": "^0.3.3",
-        "shaka-player": "4.12.5"
+        "shaka-player": "^4.12.8"
     },
     "devDependencies": {
         "@babel/cli": "^7.26.4",

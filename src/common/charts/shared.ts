@@ -65,7 +65,7 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
     ],
     // function is used to set up the colors including lineColor(svg stroke) on each of the series objects
     // based on the length of the series array
-    setSeriesColors = function (series: Highcharts.PlotAreaOptions[]) {
+    setSeriesColors = function (series: Highcharts.SeriesOptions[]) {
         const strokeColorMapping = [
             chartPrimaryColor,
             chartSecondaryColor,
@@ -77,11 +77,17 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
         for (let i = 0; i < series.length; i++) {
             // Added a modulus in case the user passes in more than 5 series so it doesn't error out
             const color = strokeColorMapping[i % strokeColorMapping.length];
-            series[i].lineColor = color;
-            series[i].borderColor = color;
-            series[i].fillOpacity = 1; 
+            if (series[i].type === "bar") {
+                (series[i] as Highcharts.SeriesBarOptions).borderColor = color;
+                (series[i] as Highcharts.SeriesBarOptions).color = color;
+            }
+            else {
+                (series[i] as Highcharts.SeriesAreaOptions).lineColor = color;
+                (series[i] as Highcharts.SeriesAreaOptions).fillOpacity = 1;
+            }
         }
     },
+
     setDonutColors = function (series: any) {
         const colors = [
             { lineColor: chartPrimaryColor, borderColor: chartPrimaryColor },
@@ -112,7 +118,7 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
 
         return colors.map((color: any) => color.lineColor);
     },
-    setSeriesMarkerStyles = function (series: Highcharts.PlotAreaOptions[]) {
+    setSeriesMarkerStyles = function (series: Highcharts.SeriesAreaOptions[]) {
         series.forEach((s, i) => {
             s.zIndex = series.length - i;
             s.marker = {

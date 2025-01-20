@@ -257,7 +257,6 @@ class Video extends Marko.Component<Input, State> {
             this.player,
             this.containerEl,
             this.video,
-            this.input.reportText || "",
         );
 
         if (document?.documentElement?.lang) {
