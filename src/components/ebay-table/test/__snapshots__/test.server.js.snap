@@ -15,7 +15,6 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<button[39m
-              [33maria-pressed[39m=[32m"true"[39m
               [33mtype[39m=[32m"button"[39m
             [36m>[39m
               [0mSeller[0m
@@ -45,7 +44,6 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<button[39m
-              [33maria-pressed[39m=[32m"false"[39m
               [33mtype[39m=[32m"button"[39m
             [36m>[39m
               [0mItem[0m
@@ -75,7 +73,6 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<button[39m
-              [33maria-pressed[39m=[32m"false"[39m
               [33mtype[39m=[32m"button"[39m
             [36m>[39m
               [0mStatus[0m
@@ -95,7 +92,6 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [36m<button[39m
-              [33maria-pressed[39m=[32m"false"[39m
               [33mtype[39m=[32m"button"[39m
             [36m>[39m
               [0mList Price[0m
@@ -115,7 +111,6 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [36m<button[39m
-              [33maria-pressed[39m=[32m"false"[39m
               [33mtype[39m=[32m"button"[39m
             [36m>[39m
               [0mQuantity Available[0m
@@ -135,7 +130,6 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<button[39m
-              [33maria-pressed[39m=[32m"false"[39m
               [33mtype[39m=[32m"button"[39m
             [36m>[39m
               [0mOrders[0m
@@ -155,7 +149,6 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
             [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [36m<button[39m
-              [33maria-pressed[39m=[32m"false"[39m
               [33mtype[39m=[32m"button"[39m
             [36m>[39m
               [0mWatchers[0m
@@ -173,7 +166,17 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
           [36m</th>[39m
           [36m<th[39m
             [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
-         ..."
+          [36m>[39m
+            [36m<button[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mProtection[0m
+              [0m [0m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon icon--12"[39m
+                [33mfocusable[39m=[32m"false"[39m
+              [..."
 `;
 
 exports[`ebay-table > renders ColumnSortingClientSide 1`] = `
@@ -205,7 +208,6 @@ exports[`ebay-table > renders ColumnSortingClientSide 1`] = `
             [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [36m<button[39m
-              [33maria-pressed[39m=[32m"false"[39m
               [33mtype[39m=[32m"button"[39m
             [36m>[39m
               [0mList Price[0m
@@ -235,7 +237,6 @@ exports[`ebay-table > renders ColumnSortingClientSide 1`] = `
             [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
           [36m>[39m
             [36m<button[39m
-              [33maria-pressed[39m=[32m"false"[39m
               [33mtype[39m=[32m"button"[39m
             [36m>[39m
               [0mQuantity Available[0m
@@ -374,7 +375,11 @@ exports[`ebay-table > renders ColumnSortingClientSide 1`] = `
           [36m>[39m
             [36m<a[39m
               [33mhref[39m=[32m"https://ebay.com"[39m
-            ..."
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+        ..."
 `;
 
 exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
