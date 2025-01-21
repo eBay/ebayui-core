@@ -59,9 +59,6 @@ interface VideoInput extends Omit<Marko.Input<"video">, `on${string}`> {
     sources: Marko.AttrTag<Marko.Input<"source">>;
     "report-text"?: AttrString;
     "spinner-timeout"?: number;
-    "cdn-url"?: string;
-    "css-url"?: string;
-    version?: string;
     thumbnail?: string;
     track?: Marko.AttrTag<Marko.Input<"track">>;
     "error-text"?: AttrString;
