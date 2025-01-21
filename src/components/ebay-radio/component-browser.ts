@@ -4,7 +4,7 @@ export interface RadioEvent {
     originalEvent: Event;
     value: string;
 }
-interface RadioInput extends Omit<Marko.Input<"input">, `on${string}`> {
+interface RadioInput extends Omit<Marko.HTML.Input, `on${string}`> {
     "icon-style"?: "rounded" | "square";
     "on-change"?: (e: RadioEvent, el: HTMLInputElement) => void;
     "on-focus"?: (e: RadioEvent, el: HTMLInputElement) => void;

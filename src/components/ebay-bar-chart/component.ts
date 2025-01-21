@@ -29,8 +29,7 @@ interface SeriesItem
     group?: string;
 }
 
-interface BarChartInput
-    extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
+interface BarChartInput extends Omit<Marko.HTML.Div, `on${string}` | "title"> {
     title: Highcharts.TitleOptions["text"];
     description?: Highcharts.SeriesOptionsType["description"];
     "x-axis-label-format"?: Highcharts.XAxisLabelsOptions["format"];

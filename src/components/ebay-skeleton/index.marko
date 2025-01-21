@@ -2,7 +2,7 @@ import { processHtmlAttributes } from "../../common/html-attributes";
 import type { WithNormalizedProps } from '../../global';
 import type { AttrString } from "marko/tags-html";
 
-static interface SkeletonInput extends Omit<Marko.Input<"div">, `on${string}`> {
+static interface SkeletonInput extends Omit<Marko.HTML.Div, `on${string}`> {
     "a11y-text"?: AttrString;
 }
 

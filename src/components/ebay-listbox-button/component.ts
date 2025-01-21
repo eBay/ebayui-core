@@ -6,7 +6,7 @@ import type { ChangeEvent } from "../ebay-listbox/component";
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
 
-interface ListboxButtonInput extends Omit<Marko.Input<"div">, `on${string}`> {
+interface ListboxButtonInput extends Omit<Marko.HTML.Div, `on${string}`> {
     options?: ListboxInput["options"];
     name?: ListboxInput["name"];
     "list-selection"?: ListboxInput["listSelection"];

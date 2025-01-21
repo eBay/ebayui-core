@@ -2,15 +2,15 @@ import { createLinear } from "makeup-roving-tabindex";
 import * as eventUtils from "../../common/event-utils";
 import type { WithNormalizedProps } from "../../global";
 
-export interface Panel extends Omit<Marko.Input<"div">, `on${string}`> {}
+export interface Panel extends Omit<Marko.HTML.Div, `on${string}`> {}
 
-export interface Tab extends Omit<Marko.Input<"div">, `on${string}`> {}
+export interface Tab extends Omit<Marko.HTML.Div, `on${string}`> {}
 
 export interface TabsEvent {
     selectedIndex: number;
 }
 
-interface TabsInput extends Omit<Marko.Input<"div">, `on${string}`> {
+interface TabsInput extends Omit<Marko.HTML.Div, `on${string}`> {
     tabs?: Marko.AttrTag<Tab>;
     panels?: Marko.AttrTag<Panel>;
     activation?: "auto" | "manual";

@@ -9,8 +9,7 @@ export interface ToggleButtonGroupEvent {
     pressed: number[];
 }
 
-interface ToggleButtonGroupInput
-    extends Omit<Marko.Input<"span">, `on${string}`> {
+interface ToggleButtonGroupInput extends Omit<Marko.HTML.Span, `on${string}`> {
     buttons?: Marko.AttrTag<Omit<ToggleButtonInput, `on${string}`>>;
     variant?: "checkbox" | "radio" | "radio-toggle";
     "a11y-text"?: string;

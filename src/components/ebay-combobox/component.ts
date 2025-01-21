@@ -20,7 +20,7 @@ export interface ComboboxEvent {
     options: Input["options"];
 }
 
-interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
+interface ComboboxInput extends Omit<Marko.HTML.Input, `on${string}`> {
     expanded?: boolean;
     borderless?: boolean;
     fluid?: boolean;
@@ -28,7 +28,7 @@ interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
     "list-selection"?: "manual" | "automatic";
     "floating-label"?: AttrString;
     "view-all-options"?: boolean;
-    button?: Marko.Input<"button"> &
+    button?: Marko.HTML.Button &
         Marko.AttrTag<{
             htmlAttributes?: Record<string, unknown>;
             renderBody?: Marko.Body;

@@ -1,6 +1,6 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 import type { WithNormalizedProps } from "../../global";
-static interface CCDInput extends Omit<Marko.Input<"div">, `on${string}`> {
+static interface CCDInput extends Omit<Marko.HTML.Div, `on${string}`> {
     max?: string;
     min?: string;
     "charger-icon"?: "included" | "not-included";

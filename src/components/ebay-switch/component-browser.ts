@@ -6,7 +6,7 @@ export interface SwitchEvent {
     checked: boolean;
 }
 
-interface SwitchInput extends Omit<Marko.Input<"input">, `on${string}`> {
+interface SwitchInput extends Omit<Marko.HTML.Input, `on${string}`> {
     "on-change"?: (event: SwitchEvent) => void;
 }
 

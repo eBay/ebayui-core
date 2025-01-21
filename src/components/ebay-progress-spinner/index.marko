@@ -2,7 +2,7 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
 
-static interface ProgressSpinnerInput extends Omit<Marko.Input<"span">, `on${string}`> {
+static interface ProgressSpinnerInput extends Omit<Marko.HTML.Span, `on${string}`> {
     size?: "large" | "small";
     "a11y-text"?: AttrString;
 }

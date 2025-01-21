@@ -7,13 +7,13 @@ interface TooltipOverlayInput {
     "style-left"?: string;
     "style-right"?: string;
     "style-bottom"?: string;
-    heading?: Marko.Input<"span"> & {
+    heading?: Marko.HTML.Span & {
         as?: keyof Marko.NativeTags;
         renderBody?: Marko.Body;
     } & Iterable<any>;
     id?: string;
     type: keyof typeof typeRoles;
-    content?: Marko.AttrTag<Marko.Input<"span">>;
+    content?: Marko.AttrTag<Marko.HTML.Span>;
     "a11y-close-text"?: AttrString;
     footer?: Marko.AttrTag<
         Marko.Renderable & {

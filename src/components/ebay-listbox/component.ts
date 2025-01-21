@@ -13,14 +13,14 @@ export interface ChangeEvent {
     el: HTMLOptionElement;
 }
 
-export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
+export interface Option extends Omit<Marko.HTML.Option, `on${string}`> {
     disabled?: boolean;
     text?: AttrString;
     description?: Marko.AttrTag<{ renderBody?: Marko.Body }>;
     icon?: Marko.AttrTag<{ renderBody?: Marko.Body }>;
 }
 
-interface ListboxInput extends Omit<Marko.Input<"div">, `on${string}`> {
+interface ListboxInput extends Omit<Marko.HTML.Div, `on${string}`> {
     "list-selection"?: "auto" | "manual";
     "typeahead-timeout-length"?: number;
     options?: Marko.AttrTag<Option>;

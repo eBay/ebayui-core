@@ -2,7 +2,7 @@ import { processHtmlAttributes } from "../../../../common/html-attributes";
 import type { AttrClass } from "marko/tags-html";
 import type { WithNormalizedProps } from '../../../../global';
 
-static interface SkeletonImageInput extends Omit<Marko.Input<"div">, `on${string}`> {
+static interface SkeletonImageInput extends Omit<Marko.HTML.Div, `on${string}`> {
     as?: keyof Marko.NativeTags;
     class?: AttrClass;
 }
