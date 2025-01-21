@@ -52,21 +52,6 @@ export default {
                 'Either "inline", or "fullscreen". When player strats to play, will either play "inline" (default) or switch to "fullscreen"',
             control: { type: "text" },
         },
-        cdnUrl: {
-            description:
-                "The full url to point to where to download shaka. This is only used to override the default CDN path.",
-            control: { type: "text" },
-        },
-        cssUrl: {
-            control: { type: "text" },
-            description:
-                "The full url to point to where to download shaka css. This is only used to override the default CDN path.",
-        },
-        cdnVersion: {
-            control: { type: "text" },
-            description:
-                "If using the default CDN path, you can override what version of shaka to use.",
-        },
         a11yLoadText: {
             control: { type: "text" },
             description:
@@ -226,8 +211,8 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     width: "600",
     height: "400",
     sources: [
@@ -237,10 +222,10 @@ Standard.args = {
         },
     ] as any,
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-video", Standard.args),
+            code: tagToString("ebay-video", Default.args),
         },
     },
 };
