@@ -5,7 +5,7 @@ static function noop() {}
 $ const {
     class: inputClass,
     size,
-    item: items = [],
+    details: items = [],
     autoCollapse,
     a11yRoleDescription,
     ...htmlInput
@@ -25,6 +25,7 @@ $ (input as any).toJSON = noop;
                 ...item
                 layout="accordion"
                 on-toggle("handleToggle")
+                on-click("emit", "click")
             >
                 <${item.renderBody} />
             </ebay-details>

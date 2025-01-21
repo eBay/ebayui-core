@@ -1,7 +1,8 @@
 import type { WithNormalizedProps } from "../../global";
 
-export interface DetailsInput extends Omit<Marko.HTML.Details, `on${string}`> {
-    text: string;
+export interface DetailsInput
+    extends Omit<Marko.Input<"details">, `on${string}`> {
+    summary?: Marko.AttrTag<Marko.Input<"span">>;
     size?: "regular" | "small";
     alignment?: "regular" | "center";
     layout?: "regular" | "accordion";

@@ -11,7 +11,13 @@
     "@size": {
         "enum": ["regular", "small"]
     },
-    "@text": "string",
+    "@summary": {
+        "@*": {
+            "targetProperty": null,
+            "type": "expression"
+        },
+        "@html-attributes": "expression"
+    },
     "@as": "string",
     "@open": "boolean",
     "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/navigation-disclosure-ebay-details)"

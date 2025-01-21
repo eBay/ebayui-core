@@ -7,7 +7,7 @@ $ const {
     open,
     alignment,
     size,
-    text,
+    summary,
     renderBody,
     layout,
     as: inputAs,
@@ -23,22 +23,24 @@ $ (input as any).toJSON = noop;
     key="root"
     onToggle("toggleDetails")
     onClick("clickDetails")>
-    <summary class=[
-        "details__summary",
-        size === "small" && "details__summary--small",
-        alignment === "center" && "details__summary--center"
-    ]>
-        <span class="details__label">${text}</span>
-        <span class="details__icon" hidden>
-            <if(layout === "accordion")>
-                <ebay-add-16-icon class="details__expand"/>
-                <ebay-remove-16-icon class="details__collapse"/>
-            </if>
-            <else>
-                <ebay-chevron-down-16-icon/>
-            </else>
-        </span>
-    </summary>
+    <if(summary)>
+        <summary class=[
+            "details__summary",
+            size === "small" && "details__summary--small",
+            alignment === "center" && "details__summary--center"
+        ]>
+            <span class="details__label"><${summary.renderBody}/></span>
+            <span class="details__icon" hidden>
+                <if(layout === "accordion")>
+                    <ebay-add-16-icon class="details__expand"/>
+                    <ebay-remove-16-icon class="details__collapse"/>
+                </if>
+                <else>
+                    <ebay-chevron-down-16-icon/>
+                </else>
+            </span>
+        </summary>
+    </if>
     <${inputAs || "div"} class=layout === "accordion" && "details__content">
         <${renderBody}/>
     </>

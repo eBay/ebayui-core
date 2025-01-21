@@ -53,8 +53,8 @@ export default {
                 },
             },
         },
-        item: {
-            name: "@item",
+        details: {
+            name: "@details",
             description:
                 "Represents an <ebay-details/> element to be used as part of the group. Allowed attributes are `open`, `as`, `text` and `renderBody`",
             table: {
@@ -68,6 +68,16 @@ export default {
                 category: "Events",
                 defaultValue: {
                     summary: "{ originalEvent, open }",
+                },
+            },
+        },
+        onClick: {
+            action: "on-click",
+            description: "Triggered on click of details",
+            table: {
+                category: "Events",
+                defaultValue: {
+                    summary: "{ originalEvent }",
                 },
             },
         },
