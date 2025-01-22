@@ -1,0 +1,15 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "14.6.8"
+  },
+  "changesets": [
+    "healthy-ducks-sip",
+    "poor-mirrors-float",
+    "sharp-bees-grin",
+    "sixty-experts-marry",
+    "thirty-walls-notice",
+    "wet-wombats-roll"
+  ]
+}
