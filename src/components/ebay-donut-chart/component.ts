@@ -17,7 +17,7 @@ interface SeriesDonutOptions extends Omit<Highcharts.SeriesOptions, "type"> {
 }
 
 interface DonutChartInput
-    extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
+    extends Omit<Marko.HTML.Div, `on${string}` | "title"> {
     title?: Marko.AttrTag<Marko.Renderable>;
     metricValue?: Marko.AttrTag<Marko.Renderable>;
     metricLabel?: Marko.AttrTag<Marko.Renderable>;

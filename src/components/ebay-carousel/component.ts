@@ -14,7 +14,7 @@ const LEFT = -1;
 const RIGHT = 1;
 
 interface Item {
-    htmlAttributes?: Marko.Input<"li">;
+    htmlAttributes?: Marko.HTML.LI;
     key?: string;
     class?: AttrClass;
     style?: AttrStyle;
