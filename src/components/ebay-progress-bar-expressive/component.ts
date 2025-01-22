@@ -12,7 +12,7 @@ interface Message {
 }
 
 interface ProgressBarExpressiveInput
-    extends Omit<Marko.Input<"div">, `on${string}`> {
+    extends Omit<Marko.HTML.Div, `on${string}`> {
     "a11y-text"?: AttrString;
     messages?: Marko.AttrTag<Message>;
     size?: "medium" | "large";

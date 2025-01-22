@@ -8,7 +8,7 @@ export interface TriStateCheckboxEvent {
 }
 
 interface TriStateCheckboxInput
-    extends Omit<Marko.Input<"input">, `on${string}` | "checked" | "type"> {
+    extends Omit<Marko.HTML.Input, `on${string}` | "checked" | "type"> {
     checked?: AttrTriState;
     "skip-mixed"?: boolean;
     size?: "regular" | "large";

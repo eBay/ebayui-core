@@ -28,8 +28,7 @@ interface SeriesLineOptions extends Highcharts.PlotLineOptions {
     type: "line",
 }
 
-interface LineChartInput
-    extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
+interface LineChartInput extends Omit<Marko.HTML.Div, `on${string}` | "title"> {
     title?: Highcharts.TitleOptions["text"];
     description?: Highcharts.PlotLineOptions["description"];
     "x-axis-label-format"?: Highcharts.XAxisLabelsOptions["format"];

@@ -2,7 +2,7 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 import type { WithNormalizedProps } from '../../global';
 import type { AttrString } from "marko/tags-html";
 
-static interface StarRatingInput extends Omit<Marko.Input<"div">, `on${string}`> {
+static interface StarRatingInput extends Omit<Marko.HTML.Div, `on${string}`> {
     value?: `${0|1|2|3|4}${"-5" | ""}` | "5";
     "a11y-text"?: AttrString;
 }

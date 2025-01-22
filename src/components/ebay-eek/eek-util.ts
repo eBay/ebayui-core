@@ -7,7 +7,7 @@ const validRanges = {
     A: ["G"],
 };
 
-interface EekInput extends Omit<Marko.Input<"div">, `on${string}`> {
+interface EekInput extends Omit<Marko.HTML.Div, `on${string}`> {
     max: string;
     min: string;
     rating: string;

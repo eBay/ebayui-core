@@ -6,8 +6,7 @@ export interface StarRatingEvent<T extends Event> {
     value: number;
 }
 
-interface StarRatingSelectInput
-    extends Omit<Marko.Input<"div">, `on${string}`> {
+interface StarRatingSelectInput extends Omit<Marko.HTML.Div, `on${string}`> {
     value?: string | number;
     "a11y-star-text"?: [string, string, string, string, string];
     "a11y-text"?: AttrString;

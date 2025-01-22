@@ -10,11 +10,11 @@ $ const {
     ...htmlInput
 } = input;
 
-export interface Tab extends Marko.Input<"li"> {
+export interface Tab extends Omit<Marko.HTML.LI, `on${string}`> {
     href: string;
 }
 
-static interface FakeTabsInput extends Omit<Marko.Input<"div">, `on${string}`> {
+static interface FakeTabsInput extends Omit<Marko.HTML.Div, `on${string}`> {
     "selected-index"?: number;
     tabs?: Marko.AttrTag<Tab>;
     "tab-matches-current-url"?: boolean;
@@ -22,7 +22,7 @@ static interface FakeTabsInput extends Omit<Marko.Input<"div">, `on${string}`> {
 
 export interface Input extends WithNormalizedProps<FakeTabsInput> {}
 
-$ var tabAriaCurrent: Marko.Input<"li">['aria-current'] = tabMatchesCurrentUrl === false ? "true" : "page";
+$ var tabAriaCurrent: Marko.HTML.LI['aria-current'] = tabMatchesCurrentUrl === false ? "true" : "page";
 
 <div
     ...processHtmlAttributes(htmlInput)

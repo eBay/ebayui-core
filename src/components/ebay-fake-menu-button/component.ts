@@ -8,7 +8,7 @@ import type {
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
 
-interface FakeMenuButtonInput extends Omit<Marko.Input<"span">, `on${string}`> {
+interface FakeMenuButtonInput extends Omit<Marko.HTML.Span, `on${string}`> {
     text?: AttrString;
     size?: "none" | "large";
     "prefix-id"?: string;

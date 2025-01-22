@@ -5,7 +5,7 @@ export interface ToggleButtonEvent {
     pressed: boolean;
 }
 
-interface ToggleButtonInput extends Omit<Marko.Input<"span">, `on${string}`> {
+interface ToggleButtonInput extends Omit<Marko.HTML.Span, `on${string}`> {
     pressed?: boolean;
     "layout-type"?: string;
     icon?: Marko.AttrTag<Marko.Renderable>;

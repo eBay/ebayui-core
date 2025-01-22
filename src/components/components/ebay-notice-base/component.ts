@@ -2,7 +2,7 @@ import type { AttrString, AttrClass } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../../global";
 
 interface NoticeBaseInput
-    extends Omit<Marko.Input<"section">, "title" | `on${string}`> {
+    extends Omit<Marko.HTML.Section, "title" | `on${string}`> {
     status?:
         | "confirmation"
         | "celebration"
@@ -23,12 +23,12 @@ interface NoticeBaseInput
     footer?: Marko.AttrTag<Marko.Renderable>;
     "a11y-dismiss-text"?: AttrString;
     title?: Marko.AttrTag<
-        Marko.Input<"title"> & {
+        Marko.HTML.Title & {
             as?: Marko.Renderable;
         }
     >;
     cta?: Marko.AttrTag<
-        Marko.Input<"a"> & {
+        Marko.HTML.A & {
             renderBody?: Marko.Renderable;
         }
     >;

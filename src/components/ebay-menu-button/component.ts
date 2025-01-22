@@ -22,7 +22,7 @@ export interface MenuButtonEvent {
 
 interface MenuButtonInput
     extends BaseMenuInput,
-        Omit<Marko.Input<"span">, `on${string}`> {
+        Omit<Marko.HTML.Span, `on${string}`> {
     "collapse-on-select"?: boolean;
     "prefix-id"?: string;
     variant?: "overflow" | "form" | "button" | "icon";

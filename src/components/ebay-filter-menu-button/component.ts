@@ -19,12 +19,12 @@ export interface FilterMenuButtonEvent {
 
 interface FilterMenuButtonInput
     extends BaseMenuInput,
-        Omit<Marko.Input<"span">, `on${string}`> {
+        Omit<Marko.HTML.Span, `on${string}`> {
     text?: AttrString;
     "footer-text"?: AttrString;
     "a11y-footer-text"?: AttrString;
     footer?: WithNormalizedProps<
-        Omit<Marko.Input<"button">, `on${string}`> & {
+        Omit<Marko.HTML.Button, `on${string}`> & {
             "a11y-footer-text"?: AttrString;
         }
     >;

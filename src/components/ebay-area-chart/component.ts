@@ -27,7 +27,7 @@ declare module "highcharts" {
     }
 }
 
-interface AreaChartInput extends Omit<Marko.Input<"div">, `on${string}`> {
+interface AreaChartInput extends Omit<Marko.HTML.Div, `on${string}`> {
     title?: Highcharts.TitleOptions["text"];
     description?: Highcharts.SeriesAccessibilityOptionsObject["description"];
     series: Highcharts.SeriesAreaOptions | Highcharts.SeriesAreaOptions[];
