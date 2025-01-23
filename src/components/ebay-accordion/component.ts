@@ -13,30 +13,30 @@ export interface AccordionInput extends Omit<Marko.Input<"ul">, `on${string}`> {
     "on-click"?: (event: { originalEvent: MouseEvent }) => void;
 }
 
+interface State {
+    index: number;
+}
+
 export interface Input extends WithNormalizedProps<AccordionInput> {}
-class Accordion extends Marko.Component<Input> {
-    handleToggle(event: { originalEvent: Event; open: boolean }) {
+
+class Accordion extends Marko.Component<Input, State> {
+    onInput(input: Input) {
+        this.state = {
+            index: -1,
+        };
+    }
+
+    handleToggle(index: number, event: { originalEvent: Event; open: boolean; }) {
         
         const { autoCollapse } = this.input;
-        const accordion = this.getEl("accordion-root") as HTMLUListElement;
-        const detailsElements = Array.from(accordion.querySelectorAll("details"));
-        const index = detailsElements.indexOf(
-            event.originalEvent.target as HTMLDetailsElement,
-        );
-
-        if (autoCollapse && event.open) {
-            detailsElements.forEach((details: HTMLDetailsElement) => {
-                // Close the <details> element by setting its open attribute to false
-                if (details !== event.originalEvent.target) {
-                    details.open = false;
-                }
-            });
+        if(autoCollapse && event.open) {
+            this.state.index = index;
         }
-
+        
         this.emit("toggle", {
             originalEvent: event.originalEvent,
             open: (event.originalEvent.target as HTMLDetailsElement).open,
-            index,
+            index: index,
         });
     }
 }

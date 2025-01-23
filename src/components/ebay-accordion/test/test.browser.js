@@ -7,7 +7,7 @@ import {
     it,
     expect,
 } from "vitest";
-import { render, fireEvent, cleanup } from "@marko/testing-library";
+import { render, fireEvent, waitFor, cleanup } from "@marko/testing-library";
 import { fastAnimations } from "../../../common/test-utils/browser";
 import template from "../index.marko";
 import * as mock from "./mock";
@@ -84,15 +84,17 @@ describe("given the accordion with autocollapse enabled", () => {
         );
 
         // Verify first section closed and second section opened
-        expect(
-            component
-                .getByText(getSectionText(input.details[0]))
-                .closest("details").open,
-        ).to.equal(false);
-        expect(
-            component
-                .getByText(getSectionText(input.details[1]))
-                .closest("details").open,
-        ).to.equal(true);
+        await waitFor(() => {
+            expect(
+                component
+                    .getByText(getSectionText(input.details[0]))
+                    .closest("details").open,
+            ).to.equal(false);
+            expect(
+                component
+                    .getByText(getSectionText(input.details[1]))
+                    .closest("details").open,
+            ).to.equal(true);
+        });
     });
 });

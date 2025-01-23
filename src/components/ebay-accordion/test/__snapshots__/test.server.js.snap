@@ -5,13 +5,10 @@ exports[`accordion > renders accordion with auto-collapse true 1`] = `
   [36m<ul[39m
     [33maria-roledescription[39m=[32m"accordion"[39m
     [33mclass[39m=[32m"accordion"[39m
-    [33mdata-marko-key[39m=[32m"@accordion-root s0-0"[39m
   [36m>[39m
     [36m<li>[39m
       [36m<details[39m
         [33mclass[39m=[32m"details"[39m
-        [33mdata-marko[39m=[32m"{\\"ontoggle\\":\\"toggleDetails s0-0-1[0] false\\",\\"onclick\\":\\"clickDetails s0-0-1[0] false\\"}"[39m
-        [33mdata-marko-key[39m=[32m"@root s0-0-1[0]"[39m
       [36m>[39m
         [36m<summary[39m
           [33mclass[39m=[32m"details__summary"[39m
@@ -28,12 +25,9 @@ exports[`accordion > renders accordion with auto-collapse true 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__expand icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[0]-4-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
-              [36m<defs[39m
-                [33mdata-marko-key[39m=[32m"@defs s0-0-1[0]-4-0"[39m
-              [36m>[39m
+              [36m<defs>[39m
                 [36m<symbol[39m
                   [33mid[39m=[32m"icon-add-16"[39m
                   [33mviewBox[39m=[32m"0 0 16 16"[39m
@@ -50,12 +44,9 @@ exports[`accordion > renders accordion with auto-collapse true 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__collapse icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[0]-5-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
-              [36m<defs[39m
-                [33mdata-marko-key[39m=[32m"@defs s0-0-1[0]-5-0"[39m
-              [36m>[39m
+              [36m<defs>[39m
                 [36m<symbol[39m
                   [33mid[39m=[32m"icon-remove-16"[39m
                   [33mviewBox[39m=[32m"0 0 16 16"[39m
@@ -73,7 +64,6 @@ exports[`accordion > renders accordion with auto-collapse true 1`] = `
         [36m</summary>[39m
         [36m<div[39m
           [33mclass[39m=[32m"details__content"[39m
-          [33mdata-marko-key[39m=[32m"7 s0-0-1[0]"[39m
         [36m>[39m
           [36m<p>[39m
             [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
@@ -84,8 +74,6 @@ exports[`accordion > renders accordion with auto-collapse true 1`] = `
     [36m<li>[39m
       [36m<details[39m
         [33mclass[39m=[32m"details"[39m
-        [33mdata-marko[39m=[32m"{\\"ontoggle\\":\\"toggleDetails s0-0-1[1] false\\",\\"onclick\\":\\"clickDetails s0-0-1[1] false\\"}"[39m
-        [33mdata-marko-key[39m=[32m"@root s0-0-1[1]"[39m
       [36m>[39m
         [36m<summary[39m
           [33mclass[39m=[32m"details__summary"[39m
@@ -102,7 +90,6 @@ exports[`accordion > renders accordion with auto-collapse true 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__expand icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[1]-4-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -112,7 +99,6 @@ exports[`accordion > renders accordion with auto-collapse true 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__collapse icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[1]-5-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -123,7 +109,6 @@ exports[`accordion > renders accordion with auto-collapse true 1`] = `
         [36m</summary>[39m
         [36m<div[39m
           [33mclass[39m=[32m"details__content"[39m
-          [33mdata-marko-key[39m=[32m"7 s0-0-1[1]"[39m
         [36m>[39m
           [36m<p>[39m
             [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
@@ -134,8 +119,6 @@ exports[`accordion > renders accordion with auto-collapse true 1`] = `
     [36m<li>[39m
       [36m<details[39m
         [33mclass[39m=[32m"details"[39m
-        [33mdata-marko[39m=[32m"{\\"ontoggle\\":\\"toggleDetails s0-0-1[2] false\\",\\"onclick\\":\\"clickDetails s0-0-1[2] false\\"}"[39m
-        [33mdata-marko-key[39m=[32m"@root s0-0-1[2]"[39m
       [36m>[39m
         [36m<summary[39m
           [33mclass[39m=[32m"details__summary"[39m
@@ -152,7 +135,6 @@ exports[`accordion > renders accordion with auto-collapse true 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__expand icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[2]-4-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -162,7 +144,6 @@ exports[`accordion > renders accordion with auto-collapse true 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__collapse icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[2]-5-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -173,7 +154,6 @@ exports[`accordion > renders accordion with auto-collapse true 1`] = `
         [36m</summary>[39m
         [36m<div[39m
           [33mclass[39m=[32m"details__content"[39m
-          [33mdata-marko-key[39m=[32m"7 s0-0-1[2]"[39m
         [36m>[39m
           [36m<p>[39m
             [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
@@ -190,13 +170,10 @@ exports[`accordion > renders accordion with large size 1`] = `
   [36m<ul[39m
     [33maria-roledescription[39m=[32m"accordion"[39m
     [33mclass[39m=[32m"accordion accordion--large"[39m
-    [33mdata-marko-key[39m=[32m"@accordion-root s0-0"[39m
   [36m>[39m
     [36m<li>[39m
       [36m<details[39m
         [33mclass[39m=[32m"details"[39m
-        [33mdata-marko[39m=[32m"{\\"ontoggle\\":\\"toggleDetails s0-0-1[0] false\\",\\"onclick\\":\\"clickDetails s0-0-1[0] false\\"}"[39m
-        [33mdata-marko-key[39m=[32m"@root s0-0-1[0]"[39m
       [36m>[39m
         [36m<summary[39m
           [33mclass[39m=[32m"details__summary"[39m
@@ -213,12 +190,9 @@ exports[`accordion > renders accordion with large size 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__expand icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[0]-4-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
-              [36m<defs[39m
-                [33mdata-marko-key[39m=[32m"@defs s0-0-1[0]-4-0"[39m
-              [36m>[39m
+              [36m<defs>[39m
                 [36m<symbol[39m
                   [33mid[39m=[32m"icon-add-16"[39m
                   [33mviewBox[39m=[32m"0 0 16 16"[39m
@@ -235,12 +209,9 @@ exports[`accordion > renders accordion with large size 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__collapse icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[0]-5-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
-              [36m<defs[39m
-                [33mdata-marko-key[39m=[32m"@defs s0-0-1[0]-5-0"[39m
-              [36m>[39m
+              [36m<defs>[39m
                 [36m<symbol[39m
                   [33mid[39m=[32m"icon-remove-16"[39m
                   [33mviewBox[39m=[32m"0 0 16 16"[39m
@@ -258,7 +229,6 @@ exports[`accordion > renders accordion with large size 1`] = `
         [36m</summary>[39m
         [36m<div[39m
           [33mclass[39m=[32m"details__content"[39m
-          [33mdata-marko-key[39m=[32m"7 s0-0-1[0]"[39m
         [36m>[39m
           [36m<p>[39m
             [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
@@ -269,8 +239,6 @@ exports[`accordion > renders accordion with large size 1`] = `
     [36m<li>[39m
       [36m<details[39m
         [33mclass[39m=[32m"details"[39m
-        [33mdata-marko[39m=[32m"{\\"ontoggle\\":\\"toggleDetails s0-0-1[1] false\\",\\"onclick\\":\\"clickDetails s0-0-1[1] false\\"}"[39m
-        [33mdata-marko-key[39m=[32m"@root s0-0-1[1]"[39m
       [36m>[39m
         [36m<summary[39m
           [33mclass[39m=[32m"details__summary"[39m
@@ -287,7 +255,6 @@ exports[`accordion > renders accordion with large size 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__expand icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[1]-4-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -297,7 +264,6 @@ exports[`accordion > renders accordion with large size 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__collapse icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[1]-5-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -308,7 +274,6 @@ exports[`accordion > renders accordion with large size 1`] = `
         [36m</summary>[39m
         [36m<div[39m
           [33mclass[39m=[32m"details__content"[39m
-          [33mdata-marko-key[39m=[32m"7 s0-0-1[1]"[39m
         [36m>[39m
           [36m<p>[39m
             [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
@@ -319,8 +284,6 @@ exports[`accordion > renders accordion with large size 1`] = `
     [36m<li>[39m
       [36m<details[39m
         [33mclass[39m=[32m"details"[39m
-        [33mdata-marko[39m=[32m"{\\"ontoggle\\":\\"toggleDetails s0-0-1[2] false\\",\\"onclick\\":\\"clickDetails s0-0-1[2] false\\"}"[39m
-        [33mdata-marko-key[39m=[32m"@root s0-0-1[2]"[39m
       [36m>[39m
         [36m<summary[39m
           [33mclass[39m=[32m"details__summary"[39m
@@ -337,7 +300,6 @@ exports[`accordion > renders accordion with large size 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__expand icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[2]-4-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -347,7 +309,6 @@ exports[`accordion > renders accordion with large size 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__collapse icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[2]-5-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -358,7 +319,6 @@ exports[`accordion > renders accordion with large size 1`] = `
         [36m</summary>[39m
         [36m<div[39m
           [33mclass[39m=[32m"details__content"[39m
-          [33mdata-marko-key[39m=[32m"7 s0-0-1[2]"[39m
         [36m>[39m
           [36m<p>[39m
             [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
@@ -375,13 +335,10 @@ exports[`accordion > renders accordion with localized role description 1`] = `
   [36m<ul[39m
     [33maria-roledescription[39m=[32m"Akkordeon"[39m
     [33mclass[39m=[32m"accordion"[39m
-    [33mdata-marko-key[39m=[32m"@accordion-root s0-0"[39m
   [36m>[39m
     [36m<li>[39m
       [36m<details[39m
         [33mclass[39m=[32m"details"[39m
-        [33mdata-marko[39m=[32m"{\\"ontoggle\\":\\"toggleDetails s0-0-1[0] false\\",\\"onclick\\":\\"clickDetails s0-0-1[0] false\\"}"[39m
-        [33mdata-marko-key[39m=[32m"@root s0-0-1[0]"[39m
       [36m>[39m
         [36m<summary[39m
           [33mclass[39m=[32m"details__summary"[39m
@@ -398,12 +355,9 @@ exports[`accordion > renders accordion with localized role description 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__expand icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[0]-4-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
-              [36m<defs[39m
-                [33mdata-marko-key[39m=[32m"@defs s0-0-1[0]-4-0"[39m
-              [36m>[39m
+              [36m<defs>[39m
                 [36m<symbol[39m
                   [33mid[39m=[32m"icon-add-16"[39m
                   [33mviewBox[39m=[32m"0 0 16 16"[39m
@@ -420,12 +374,9 @@ exports[`accordion > renders accordion with localized role description 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__collapse icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[0]-5-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
-              [36m<defs[39m
-                [33mdata-marko-key[39m=[32m"@defs s0-0-1[0]-5-0"[39m
-              [36m>[39m
+              [36m<defs>[39m
                 [36m<symbol[39m
                   [33mid[39m=[32m"icon-remove-16"[39m
                   [33mviewBox[39m=[32m"0 0 16 16"[39m
@@ -443,7 +394,6 @@ exports[`accordion > renders accordion with localized role description 1`] = `
         [36m</summary>[39m
         [36m<div[39m
           [33mclass[39m=[32m"details__content"[39m
-          [33mdata-marko-key[39m=[32m"7 s0-0-1[0]"[39m
         [36m>[39m
           [36m<p>[39m
             [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
@@ -454,8 +404,6 @@ exports[`accordion > renders accordion with localized role description 1`] = `
     [36m<li>[39m
       [36m<details[39m
         [33mclass[39m=[32m"details"[39m
-        [33mdata-marko[39m=[32m"{\\"ontoggle\\":\\"toggleDetails s0-0-1[1] false\\",\\"onclick\\":\\"clickDetails s0-0-1[1] false\\"}"[39m
-        [33mdata-marko-key[39m=[32m"@root s0-0-1[1]"[39m
       [36m>[39m
         [36m<summary[39m
           [33mclass[39m=[32m"details__summary"[39m
@@ -472,7 +420,6 @@ exports[`accordion > renders accordion with localized role description 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__expand icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[1]-4-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -482,7 +429,6 @@ exports[`accordion > renders accordion with localized role description 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__collapse icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[1]-5-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -493,7 +439,6 @@ exports[`accordion > renders accordion with localized role description 1`] = `
         [36m</summary>[39m
         [36m<div[39m
           [33mclass[39m=[32m"details__content"[39m
-          [33mdata-marko-key[39m=[32m"7 s0-0-1[1]"[39m
         [36m>[39m
           [36m<p>[39m
             [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
@@ -504,8 +449,6 @@ exports[`accordion > renders accordion with localized role description 1`] = `
     [36m<li>[39m
       [36m<details[39m
         [33mclass[39m=[32m"details"[39m
-        [33mdata-marko[39m=[32m"{\\"ontoggle\\":\\"toggleDetails s0-0-1[2] false\\",\\"onclick\\":\\"clickDetails s0-0-1[2] false\\"}"[39m
-        [33mdata-marko-key[39m=[32m"@root s0-0-1[2]"[39m
       [36m>[39m
         [36m<summary[39m
           [33mclass[39m=[32m"details__summary"[39m
@@ -522,7 +465,6 @@ exports[`accordion > renders accordion with localized role description 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__expand icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[2]-4-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -532,7 +474,6 @@ exports[`accordion > renders accordion with localized role description 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__collapse icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[2]-5-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -543,7 +484,6 @@ exports[`accordion > renders accordion with localized role description 1`] = `
         [36m</summary>[39m
         [36m<div[39m
           [33mclass[39m=[32m"details__content"[39m
-          [33mdata-marko-key[39m=[32m"7 s0-0-1[2]"[39m
         [36m>[39m
           [36m<p>[39m
             [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
@@ -560,13 +500,10 @@ exports[`accordion > renders default accordion 1`] = `
   [36m<ul[39m
     [33maria-roledescription[39m=[32m"accordion"[39m
     [33mclass[39m=[32m"accordion"[39m
-    [33mdata-marko-key[39m=[32m"@accordion-root s0-0"[39m
   [36m>[39m
     [36m<li>[39m
       [36m<details[39m
         [33mclass[39m=[32m"details"[39m
-        [33mdata-marko[39m=[32m"{\\"ontoggle\\":\\"toggleDetails s0-0-1[0] false\\",\\"onclick\\":\\"clickDetails s0-0-1[0] false\\"}"[39m
-        [33mdata-marko-key[39m=[32m"@root s0-0-1[0]"[39m
       [36m>[39m
         [36m<summary[39m
           [33mclass[39m=[32m"details__summary"[39m
@@ -583,12 +520,9 @@ exports[`accordion > renders default accordion 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__expand icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[0]-4-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
-              [36m<defs[39m
-                [33mdata-marko-key[39m=[32m"@defs s0-0-1[0]-4-0"[39m
-              [36m>[39m
+              [36m<defs>[39m
                 [36m<symbol[39m
                   [33mid[39m=[32m"icon-add-16"[39m
                   [33mviewBox[39m=[32m"0 0 16 16"[39m
@@ -605,12 +539,9 @@ exports[`accordion > renders default accordion 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__collapse icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[0]-5-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
-              [36m<defs[39m
-                [33mdata-marko-key[39m=[32m"@defs s0-0-1[0]-5-0"[39m
-              [36m>[39m
+              [36m<defs>[39m
                 [36m<symbol[39m
                   [33mid[39m=[32m"icon-remove-16"[39m
                   [33mviewBox[39m=[32m"0 0 16 16"[39m
@@ -628,7 +559,6 @@ exports[`accordion > renders default accordion 1`] = `
         [36m</summary>[39m
         [36m<div[39m
           [33mclass[39m=[32m"details__content"[39m
-          [33mdata-marko-key[39m=[32m"7 s0-0-1[0]"[39m
         [36m>[39m
           [36m<p>[39m
             [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
@@ -639,8 +569,6 @@ exports[`accordion > renders default accordion 1`] = `
     [36m<li>[39m
       [36m<details[39m
         [33mclass[39m=[32m"details"[39m
-        [33mdata-marko[39m=[32m"{\\"ontoggle\\":\\"toggleDetails s0-0-1[1] false\\",\\"onclick\\":\\"clickDetails s0-0-1[1] false\\"}"[39m
-        [33mdata-marko-key[39m=[32m"@root s0-0-1[1]"[39m
       [36m>[39m
         [36m<summary[39m
           [33mclass[39m=[32m"details__summary"[39m
@@ -657,7 +585,6 @@ exports[`accordion > renders default accordion 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__expand icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[1]-4-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -667,7 +594,6 @@ exports[`accordion > renders default accordion 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__collapse icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[1]-5-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -678,7 +604,6 @@ exports[`accordion > renders default accordion 1`] = `
         [36m</summary>[39m
         [36m<div[39m
           [33mclass[39m=[32m"details__content"[39m
-          [33mdata-marko-key[39m=[32m"7 s0-0-1[1]"[39m
         [36m>[39m
           [36m<p>[39m
             [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
@@ -689,8 +614,6 @@ exports[`accordion > renders default accordion 1`] = `
     [36m<li>[39m
       [36m<details[39m
         [33mclass[39m=[32m"details"[39m
-        [33mdata-marko[39m=[32m"{\\"ontoggle\\":\\"toggleDetails s0-0-1[2] false\\",\\"onclick\\":\\"clickDetails s0-0-1[2] false\\"}"[39m
-        [33mdata-marko-key[39m=[32m"@root s0-0-1[2]"[39m
       [36m>[39m
         [36m<summary[39m
           [33mclass[39m=[32m"details__summary"[39m
@@ -707,7 +630,6 @@ exports[`accordion > renders default accordion 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__expand icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[2]-4-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -717,7 +639,6 @@ exports[`accordion > renders default accordion 1`] = `
             [36m<svg[39m
               [33maria-hidden[39m=[32m"true"[39m
               [33mclass[39m=[32m"details__collapse icon icon--16"[39m
-              [33mdata-marko-key[39m=[32m"@svg s0-0-1[2]-5-0"[39m
               [33mfocusable[39m=[32m"false"[39m
             [36m>[39m
               [36m<use[39m
@@ -728,7 +649,6 @@ exports[`accordion > renders default accordion 1`] = `
         [36m</summary>[39m
         [36m<div[39m
           [33mclass[39m=[32m"details__content"[39m
-          [33mdata-marko-key[39m=[32m"7 s0-0-1[2]"[39m
         [36m>[39m
           [36m<p>[39m
             [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m

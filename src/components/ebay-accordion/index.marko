@@ -19,12 +19,13 @@ $ (input as any).toJSON = noop;
     aria-roledescription=(a11yRoleDescription ?? "accordion")
     key="accordion-root"
 >
-    <for|item| of=items || []>
+    <for|item, index| of=items || []>
         <li>
             <ebay-details
                 ...item
+                open= item.open || (autoCollapse && index === state.index)
                 layout="accordion"
-                on-toggle("handleToggle")
+                on-toggle("handleToggle", index)
                 on-click("emit", "click")
             >
                 <${item.renderBody} />
