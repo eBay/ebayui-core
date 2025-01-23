@@ -28,10 +28,11 @@ interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
     "list-selection"?: "manual" | "automatic";
     "floating-label"?: boolean;
     "view-all-options"?: boolean;
-    button?: Marko.Input<"button"> & Marko.AttrTag<{
-        htmlAttributes?: Record<string, unknown>;
-        renderBody?: Marko.Body;
-    }>;
+    button?: Marko.Input<"button"> &
+        Marko.AttrTag<{
+            htmlAttributes?: Record<string, unknown>;
+            renderBody?: Marko.Body;
+        }>;
     options?: Marko.AttrTag<ComboboxOption>;
     "chevron-size"?: "large";
     "on-focus"?: (event: ComboboxEvent) => void;
@@ -235,7 +236,10 @@ export default class Combobox extends Marko.Component<Input, State> {
         this.lastValue = input.value;
         this.state = {
             currentValue: this.lastValue,
-            viewAllOptions: (this.state && this.state.viewAllOptions) || input.viewAllOptions || false,
+            viewAllOptions:
+                (this.state && this.state.viewAllOptions) ||
+                input.viewAllOptions ||
+                false,
         };
         if (this.expander) {
             this.expandedChange = input.expanded !== this.expanded;
