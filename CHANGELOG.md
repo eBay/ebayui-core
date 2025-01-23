@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 14.6.9
+
+### Patch Changes
+
+- [#2402](https://github.com/eBay/ebayui-core/pull/2402) [`6fea187`](https://github.com/eBay/ebayui-core/commit/6fea187704aa350922c4cc4009a2cbea929340a0) Thanks [@agliga](https://github.com/agliga)! - fix(combobox): reverted removing of view all options
+
 ## 14.6.8
 
 ### Patch Changes
