@@ -1,5 +1,23 @@
 # eBayUI-Core Changelog
 
+## 14.7.0-next.0
+
+### Minor Changes
+
+- [#2384](https://github.com/eBay/ebayui-core/pull/2384) [`e40437c`](https://github.com/eBay/ebayui-core/commit/e40437cf8c2e301ed00958831e14996b2fec2757) Thanks [@agliga](https://github.com/agliga)! - fix(ebay-table): update row-header attribute, removed aria-pressed
+
+- [#2384](https://github.com/eBay/ebayui-core/pull/2384) [`6bddc30`](https://github.com/eBay/ebayui-core/commit/6bddc309ac8ffbff98302ec88ecd403e5c962723) Thanks [@agliga](https://github.com/agliga)! - Add area chart
+
+### Patch Changes
+
+- [#2384](https://github.com/eBay/ebayui-core/pull/2384) [`c2b5b9d`](https://github.com/eBay/ebayui-core/commit/c2b5b9d6678516df4a7dc40aef5f37df1fad6b01) Thanks [@agliga](https://github.com/agliga)! - Refactor to simplify types
+
+- [#2384](https://github.com/eBay/ebayui-core/pull/2384) [`bd170c2`](https://github.com/eBay/ebayui-core/commit/bd170c2448a49d2e3cc8f7441063b94f9b1156c5) Thanks [@agliga](https://github.com/agliga)! - TS fix for combobox
+
+- [#2384](https://github.com/eBay/ebayui-core/pull/2384) [`21197e5`](https://github.com/eBay/ebayui-core/commit/21197e55618b0c01fb522d6417307d0e4c6d4877) Thanks [@agliga](https://github.com/agliga)! - Upgrade dependencies
+
+- [#2384](https://github.com/eBay/ebayui-core/pull/2384) [`d316e9f`](https://github.com/eBay/ebayui-core/commit/d316e9f7eac27aea776d11ed5ed556c1928cfd9d) Thanks [@agliga](https://github.com/agliga)! - Updated the component-browser.ts file to reference shared attributes from tags-html.d.ts and added the Textbox class implementation.
+
 ## 14.6.9
 
 ### Patch Changes

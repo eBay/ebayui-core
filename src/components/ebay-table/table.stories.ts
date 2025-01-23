@@ -73,12 +73,7 @@ export default {
         columnType: {
             name: "column-type",
             control: { type: "select" },
-            options: [
-                "normal",
-                "numeric",
-                "layout",
-                "icon-action",
-            ],
+            options: ["normal", "numeric", "layout", "icon-action"],
             table: {
                 category: "@header attribute tags",
                 defaultValue: {

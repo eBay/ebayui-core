@@ -44,8 +44,8 @@ export default {
                 // Pre-bundle @storybook/addon-docs/blocks to avoid runtime errors
                 // This is needed because MDX documentation requires these blocks to be available
                 // during dynamic imports
-                include: ['@storybook/addon-docs/blocks']
-            }
+                include: ["@storybook/addon-docs/blocks"],
+            },
         });
     },
 };
