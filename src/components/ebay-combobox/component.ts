@@ -36,6 +36,10 @@ interface ComboboxInput extends Omit<Marko.HTML.Input, `on${string}`> {
         }>;
     options?: Marko.AttrTag<ComboboxOption>;
     "chevron-size"?: "large";
+    /**
+     * For internal use only. Used when combobox container changes.
+     * @returns The dropdown element to be used for the combobox
+     */
     "dropdown-element"?:  () => HTMLElement;
     "on-focus"?: (event: ComboboxEvent) => void;
     "on-button-click"?: (event: { originalEvent: MouseEvent }) => void;
@@ -354,8 +358,6 @@ export default class Combobox extends Marko.Component<Input, State> {
             this._floatingLabel.destroy();
             this._floatingLabel = null;
         }
-
-        // this.dropdownUtil?.cleanup();
     }
 
     _setSelectedText(text: string) {
