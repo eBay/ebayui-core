@@ -1,0 +1,48 @@
+import countryList from "./data.json";
+import type { AttrStringOrNumber, AttrClass } from "marko/tags-html";
+import type { Input as ComboboxInput } from "<ebay-combobox>";
+class {
+    declare state: {
+        autocompleteOption: "list" | "none";
+        value: AttrStringOrNumber;
+    };
+    timeout: any;
+    onCreate() {
+        this.state = {
+            autocompleteOption: "none",
+            value: ''
+        };
+    }
+    inputChange(e: {
+        currentInputValue: AttrStringOrNumber;
+        options?: Marko.AttrTag<{
+            text: string;
+            value?: string;
+            class?: AttrClass;
+            sticky?: boolean;
+        }>;
+    }) {
+        this.state.value = e.currentInputValue;
+        this.state.autocompleteOption = "list";
+        this.emit('input-change', e)
+   }
+   handleExpand() {
+        this.state.autocompleteOption = "none";
+        this.emit('expand')
+   }
+    selected: ComboboxInput["on-select"] = (e) => {
+        this.state.value = e.currentInputValue;
+    }
+}
+
+<ebay-combobox
+    ...input
+    autocomplete=state.autocompleteOption
+    value=state.value
+    on-expand("handleExpand")
+    on-select("selected")
+    on-input-change("inputChange")>
+    <for|option| of=countryList>
+        <@option data-id=option.code text=option.name/>
+    </for>
+</ebay-combobox>
