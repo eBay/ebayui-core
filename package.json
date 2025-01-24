@@ -132,7 +132,7 @@
         "libphonenumber-js": "^1.11.17",
         "lint-staged": "^15.2.11",
         "lintspaces-cli": "^1.0.0",
-        "marko": "^5.35.32",
+        "marko": "^5.37.10",
         "playwright": "^1.49.1",
         "postcss-less": "^6.0.0",
         "prettier": "^3.4.2",
