@@ -42,5 +42,13 @@ $ var isMini = variant === "_mini";
         "lightbox-dialog__window--animate",
         isMini && "lightbox-dialog__window--mini",
     ]>
+        <@top>
+            <if(bannerImgSrc)>
+                    <div class="lightbox-dialog__image" style={
+                        backgroundImage: `url(${bannerImgSrc})`,
+                        backgroundPosition: bannerImgPosition,
+                    } />
+            </if>
+        </@top>
         <${renderBody}/>
 </ebay-dialog-base>
