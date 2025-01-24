@@ -1,9 +1,11 @@
 import type { WithNormalizedProps } from "../../global";
 
-export interface DetailsInput extends Omit<Marko.HTML.Details, `on${string}`> {
-    text: string;
+export interface DetailsInput
+    extends Omit<Marko.Input<"details">, `on${string}`> {
+    summary?: Marko.AttrTag<Marko.Input<"span">>;
     size?: "regular" | "small";
     alignment?: "regular" | "center";
+    layout?: "regular" | "accordion";
     as?: keyof Marko.NativeTags;
     "on-toggle"?: (event: { originalEvent: Event; open: boolean }) => void;
     "on-click"?: (event: { originalEvent: MouseEvent }) => void;

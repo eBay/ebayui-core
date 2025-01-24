@@ -2,7 +2,9 @@
 import { createRenderBody } from "../../../../common/test-utils/shared";
 
 export const Default_Details = {
-    text: "open",
+    summary: {
+        renderBody: createRenderBody("open"),
+    },
     renderBody: createRenderBody("body content"),
 };
 
