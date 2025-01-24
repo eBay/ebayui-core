@@ -1,18 +1,12 @@
 static const validSizes = ["wide", "narrow", "fullscreen", "large"] as const;
-import type { AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 import type { Input as DialogBaseInput } from "../components/ebay-dialog-base/component";
 
 export interface LightboxDialogInput extends Omit<DialogBaseInput, `on${string}`> {
     variant?: "_mini";
-    expanded?: boolean;
-    "a11y-maximize-text"?: AttrString;
-    "a11y-minimize-text"?: AttrString;
     "banner-img-src"?: string;
     size?: (typeof validSizes)[number];
     "banner-img-position"?: Marko.CSS.Properties["backgroundPosition"];
-    "on-expanded"?: () => void;
-    "on-collapsed"?: () => void;
     "on-open"?: DialogBaseInput["on-open"];
     "on-close"?: DialogBaseInput["on-close"];
     "on-prevButtonClick"?: DialogBaseInput["on-prevButtonClick"];
@@ -20,16 +14,10 @@ export interface LightboxDialogInput extends Omit<DialogBaseInput, `on${string}`
 
 export interface Input extends WithNormalizedProps<LightboxDialogInput> {}
 
-export interface State {
-    expanded: boolean;
-}
-
 $ const {
     class: inputClass,
     variant,
     buttonPosition = "right",
-    a11yMaximizeText = "Maximize Lightbox Dialog",
-    a11yMinimizeText = "Minimize Lightbox Dialog",
     bannerImgSrc,
     bannerImgPosition,
     size,
@@ -38,7 +26,6 @@ $ const {
 } = input;
 
 $ var isMini = variant === "_mini";
-$ var handleLabel = state.expanded ? a11yMinimizeText : a11yMaximizeText;
 
 <ebay-dialog-base
     ...dialogBaseInput
@@ -54,25 +41,6 @@ $ var handleLabel = state.expanded ? a11yMinimizeText : a11yMaximizeText;
     window-class=[
         "lightbox-dialog__window--animate",
         isMini && "lightbox-dialog__window--mini",
-        state.expanded && "lightbox-dialog__window--expanded"
     ]>
-        <@top>
-            <button
-                aria-label=handleLabel
-                type="button"
-                class=`lightbox-dialog__handle`
-                onClick("handleExpand")
-                onTouchstart("handleTouchStart")
-                onTouchmove("handleTouchMove")
-                onTouchend("handleTouchEnd")
-                onTouchcancel("handleTouchEnd")
-            ></button>
-            <if(bannerImgSrc)>
-                    <div class="lightbox-dialog__image" style={
-                        backgroundImage: `url(${bannerImgSrc})`,
-                        backgroundPosition: bannerImgPosition,
-                    } />
-            </if>
-        </@top>
         <${renderBody}/>
 </ebay-dialog-base>

@@ -25,7 +25,6 @@ interface FakeMenuInput
     extends BaseMenuInput,
         Omit<Marko.HTML.Span, `on${string}`> {
     items?: Marko.AttrTag<Item>;
-    separator?: Marko.AttrTag<Separator>;
     "class-prefix"?: string;
     reverse?: boolean;
     "fix-width"?: boolean;

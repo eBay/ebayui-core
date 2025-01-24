@@ -27,7 +27,6 @@ interface FakeMenuButtonInput extends Omit<Marko.HTML.Span, `on${string}`> {
     reverse?: boolean;
     "fix-width"?: boolean;
     items?: Marko.AttrTag<FakeMenuItem>;
-    separator?: Marko.AttrTag<{}>;
     "collapse-on-select"?: boolean;
     "on-expand"?: (event: MenuEvent) => void;
     "on-collapse"?: (event: MenuEvent) => void;

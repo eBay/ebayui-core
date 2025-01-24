@@ -15,13 +15,6 @@ exports[`dialog > passes through additional html attributes 1`] = `
   <div
     class="lightbox-dialog__window lightbox-dialog__window--animate"
   >
-    <!--F#9-->
-    <button
-      aria-label="Maximize Dialog"
-      class="lightbox-dialog__handle"
-      type="button"
-    />
-    <!--F/-->
     <div
       class="lightbox-dialog__header"
     >
@@ -69,7 +62,7 @@ exports[`dialog > passes through additional html attributes 1`] = `
       class="lightbox-dialog__main"
     >
       <!--F#16-->
-      <!--F#2-->
+      <!--F#0-->
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </p>
@@ -102,13 +95,6 @@ exports[`dialog > passes through additional html attributes 2`] = `
   <div
     class="lightbox-dialog__window lightbox-dialog__window--animate"
   >
-    <!--F#9-->
-    <button
-      aria-label="Maximize Dialog"
-      class="lightbox-dialog__handle"
-      type="button"
-    />
-    <!--F/-->
     <div
       class="lightbox-dialog__header"
     >
@@ -156,7 +142,7 @@ exports[`dialog > passes through additional html attributes 2`] = `
       class="lightbox-dialog__main"
     >
       <!--F#16-->
-      <!--F#2-->
+      <!--F#0-->
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </p>
@@ -186,11 +172,6 @@ exports[`dialog > renders basic version 1`] = `
     [36m<div[39m
       [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
     [36m>[39m
-      [36m<button[39m
-        [33maria-label[39m=[32m"Maximize Dialog"[39m
-        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
-        [33mtype[39m=[32m"button"[39m
-      [36m/>[39m
       [36m<div[39m
         [33mclass[39m=[32m"lightbox-dialog__header"[39m
       [36m>[39m
@@ -264,15 +245,6 @@ exports[`dialog > renders expressive version 1`] = `
     [36m<div[39m
       [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
     [36m>[39m
-      [36m<button[39m
-        [33maria-label[39m=[32m"Maximize Dialog"[39m
-        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
-        [33mtype[39m=[32m"button"[39m
-      [36m/>[39m
-      [36m<div[39m
-        [33mclass[39m=[32m"lightbox-dialog__image"[39m
-        [33mstyle[39m=[32m"background-image:url(http://ir.ebaystatic.com/cr/v/c1/skin/image-treatment/mountain.jpeg);background-position:top"[39m
-      [36m/>[39m
       [36m<div[39m
         [33mclass[39m=[32m"lightbox-dialog__header"[39m
       [36m>[39m
@@ -345,11 +317,6 @@ exports[`dialog > renders in open state 1`] = `
     [36m<div[39m
       [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
     [36m>[39m
-      [36m<button[39m
-        [33maria-label[39m=[32m"Maximize Dialog"[39m
-        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
-        [33mtype[39m=[32m"button"[39m
-      [36m/>[39m
       [36m<div[39m
         [33mclass[39m=[32m"lightbox-dialog__header"[39m
       [36m>[39m
@@ -423,11 +390,6 @@ exports[`dialog > renders scrolling dialog 1`] = `
     [36m<div[39m
       [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
     [36m>[39m
-      [36m<button[39m
-        [33maria-label[39m=[32m"Maximize Lightbox Dialog"[39m
-        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
-        [33mtype[39m=[32m"button"[39m
-      [36m/>[39m
       [36m<div[39m
         [33mclass[39m=[32m"lightbox-dialog__header"[39m
       [36m>[39m
@@ -494,7 +456,7 @@ exports[`dialog > renders scrolling dialog 1`] = `
           [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.[0m
         [36m</p>[39m
         [36m<p>[39m
-          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis..."
+          [0mLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupid..."
 `;
 
 exports[`dialog > renders size=large 1`] = `
@@ -509,11 +471,6 @@ exports[`dialog > renders size=large 1`] = `
     [36m<div[39m
       [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
     [36m>[39m
-      [36m<button[39m
-        [33maria-label[39m=[32m"Maximize Dialog"[39m
-        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
-        [33mtype[39m=[32m"button"[39m
-      [36m/>[39m
       [36m<div[39m
         [33mclass[39m=[32m"lightbox-dialog__header"[39m
       [36m>[39m
@@ -587,11 +544,6 @@ exports[`dialog > renders size=narrow 1`] = `
     [36m<div[39m
       [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
     [36m>[39m
-      [36m<button[39m
-        [33maria-label[39m=[32m"Maximize Dialog"[39m
-        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
-        [33mtype[39m=[32m"button"[39m
-      [36m/>[39m
       [36m<div[39m
         [33mclass[39m=[32m"lightbox-dialog__header"[39m
       [36m>[39m
@@ -665,11 +617,6 @@ exports[`dialog > renders size=wide 1`] = `
     [36m<div[39m
       [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
     [36m>[39m
-      [36m<button[39m
-        [33maria-label[39m=[32m"Maximize Dialog"[39m
-        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
-        [33mtype[39m=[32m"button"[39m
-      [36m/>[39m
       [36m<div[39m
         [33mclass[39m=[32m"lightbox-dialog__header"[39m
       [36m>[39m
@@ -743,11 +690,6 @@ exports[`dialog > renders with header and footer 1`] = `
     [36m<div[39m
       [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
     [36m>[39m
-      [36m<button[39m
-        [33maria-label[39m=[32m"Maximize Lightbox Dialog"[39m
-        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
-        [33mtype[39m=[32m"button"[39m
-      [36m/>[39m
       [36m<div[39m
         [33mclass[39m=[32m"lightbox-dialog__header"[39m
       [36m>[39m
@@ -835,11 +777,6 @@ exports[`dialog > renders with previous button 1`] = `
     [36m<div[39m
       [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
     [36m>[39m
-      [36m<button[39m
-        [33maria-label[39m=[32m"Maximize Lightbox Dialog"[39m
-        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
-        [33mtype[39m=[32m"button"[39m
-      [36m/>[39m
       [36m<div[39m
         [33mclass[39m=[32m"lightbox-dialog__header"[39m
       [36m>[39m
