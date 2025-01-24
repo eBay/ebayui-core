@@ -34,12 +34,11 @@ interface ComboboxInput extends Omit<Marko.HTML.Input, `on${string}`> {
             renderBody?: Marko.Body;
         }>;
     options?: Marko.AttrTag<ComboboxOption>;
-    "chevron-size"?: "large";
     /**
      * For internal use only. Used when combobox container changes.
      * @returns The dropdown element to be used for the combobox
      */
-    "dropdown-element"?:  () => HTMLElement;
+    "dropdown-element"?: () => HTMLElement;
     "on-focus"?: (event: ComboboxEvent) => void;
     "on-button-click"?: (event: { originalEvent: MouseEvent }) => void;
     "on-expand"?: () => void;
@@ -233,13 +232,12 @@ export default class Combobox extends Marko.Component<Input, State> {
             input.listSelection === "manual" ? "manual" : "automatic";
         this.lastValue = input.value;
         this.state = {
-            currentValue: this.lastValue
+            currentValue: this.lastValue,
         };
         if (this.expander) {
             this.expandedChange = input.expanded !== this.expanded;
             if (this.expandedChange) {
                 this.expander.expanded = input.expanded;
-
             }
         }
         this.expanded = input.expanded;
@@ -317,7 +315,10 @@ export default class Combobox extends Marko.Component<Input, State> {
             }
         }
 
-        this.dropdownUtil = new DropdownUtil(this.input.dropdownElement?.() ?? this.getEl("combobox"), this.getEl("listbox"))
+        this.dropdownUtil = new DropdownUtil(
+            this.input.dropdownElement?.() ?? this.getEl("combobox"),
+            this.getEl("listbox"),
+        );
         if (this.isExpanded()) {
             this.dropdownUtil.show();
         }
@@ -325,7 +326,6 @@ export default class Combobox extends Marko.Component<Input, State> {
         if (this.input.floatingLabel) {
             this._setupFloatingLabel();
         }
-
     }
 
     _cleanupMakeup() {
@@ -363,9 +363,7 @@ export default class Combobox extends Marko.Component<Input, State> {
     }
 
     _getVisibleOptions() {
-        if (
-            this.autocomplete === "none"
-        ) {
+        if (this.autocomplete === "none") {
             return [...(this.input.options ?? [])];
         }
 

@@ -14,7 +14,6 @@ $ const {
     listSelection,
     expanded,
     fluid,
-    chevronSize,
     ...htmlInput
 } = input;
 
@@ -77,28 +76,20 @@ $ var id = inputId || component.getElId("input");
             onKeydown("handleComboboxKeyDown")
             onKeyup("handleComboboxKeyUp")
         >
-        <${hasButton ? "button" : null}
-            ...processHtmlAttributes(htmlButton)
-            onClick("handleButtonClick")
-            key="actionable"
-            class=[
-                "icon-btn",
-                "icon-btn--transparent",
-                buttonClass,
-            ]
-        >
-            <if(buttonRenderBody)>
+        <if(hasButton)>
+            <button
+                ...processHtmlAttributes(htmlButton)
+                onClick("handleButtonClick")
+                key="actionable"
+                class=[
+                    "icon-btn",
+                    "icon-btn--transparent",
+                    buttonClass,
+                ]
+            >
                 <${buttonRenderBody}/>
-            </if>
-            <else>
-                <if(chevronSize === "large")>
-                    <ebay-chevron-down-16-icon/>
-                </if>
-                <else>
-                    <ebay-chevron-down-12-icon/>
-                </else>
-            </else>
-        </>
+            </button>
+        </if>
     </span>
     <if(component._hasVisibleOptions())>
         <div key="listbox" role="listbox" class="combobox__listbox">
