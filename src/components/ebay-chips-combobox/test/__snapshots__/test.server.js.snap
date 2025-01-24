@@ -16,7 +16,7 @@ exports[`ebay-chips-combobox > renders default 1`] = `
           [33maria-expanded[39m=[32m"false"[39m
           [33maria-haspopup[39m=[32m"listbox"[39m
           [33mautocomplete[39m=[32m"off"[39m
-          [33mid[39m=[32m"s0-0-4-input"[39m
+          [33mid[39m=[32m"s0-0-3-input"[39m
           [33mplaceholder[39m=[32m"Add item"[39m
           [33mrole[39m=[32m"combobox"[39m
           [33mtype[39m=[32m"text"[39m
@@ -92,12 +92,12 @@ exports[`ebay-chips-combobox > renders with chips already selected 1`] = `
         [36m>[39m
           [36m<span[39m
             [33mclass[39m=[32m"chip__text"[39m
-            [33mid[39m=[32m"s0-0-3[0]-text"[39m
+            [33mid[39m=[32m"s0-0-2[0]-text"[39m
           [36m>[39m
             [0mOption 1[0m
           [36m</span>[39m
           [36m<button[39m
-            [33maria-describedby[39m=[32m"s0-0-3[0]-text"[39m
+            [33maria-describedby[39m=[32m"s0-0-2[0]-text"[39m
             [33maria-label[39m=[32m"Remove Option 1"[39m
             [33mclass[39m=[32m"chip__button"[39m
             [33mtype[39m=[32m"button"[39m
@@ -130,12 +130,12 @@ exports[`ebay-chips-combobox > renders with chips already selected 1`] = `
         [36m>[39m
           [36m<span[39m
             [33mclass[39m=[32m"chip__text"[39m
-            [33mid[39m=[32m"s0-0-3[1]-text"[39m
+            [33mid[39m=[32m"s0-0-2[1]-text"[39m
           [36m>[39m
             [0mOption 3[0m
           [36m</span>[39m
           [36m<button[39m
-            [33maria-describedby[39m=[32m"s0-0-3[1]-text"[39m
+            [33maria-describedby[39m=[32m"s0-0-2[1]-text"[39m
             [33maria-label[39m=[32m"Remove Option 3"[39m
             [33mclass[39m=[32m"chip__button"[39m
             [33mtype[39m=[32m"button"[39m
@@ -158,12 +158,12 @@ exports[`ebay-chips-combobox > renders with chips already selected 1`] = `
         [36m>[39m
           [36m<span[39m
             [33mclass[39m=[32m"chip__text"[39m
-            [33mid[39m=[32m"s0-0-3[2]-text"[39m
+            [33mid[39m=[32m"s0-0-2[2]-text"[39m
           [36m>[39m
             [0mCustom Option[0m
           [36m</span>[39m
           [36m<button[39m
-            [33maria-describedby[39m=[32m"s0-0-3[2]-text"[39m
+            [33maria-describedby[39m=[32m"s0-0-2[2]-text"[39m
             [33maria-label[39m=[32m"Remove Custom Option"[39m
             [33mclass[39m=[32m"chip__button"[39m
             [33mtype[39m=[32m"button"[39m
@@ -192,7 +192,7 @@ exports[`ebay-chips-combobox > renders with chips already selected 1`] = `
           [33maria-expanded[39m=[32m"false"[39m
           [33maria-haspopup[39m=[32m"listbox"[39m
           [33mautocomplete[39m=[32m"off"[39m
-          [33mid[39m=[32m"s0-0-4-input"[39m
+          [33mid[39m=[32m"s0-0-3-input"[39m
           [33mplaceholder[39m=[32m"Add item"[39m
           [33mrole[39m=[32m"combobox"[39m
           [33mtype[39m=[32m"text"[39m

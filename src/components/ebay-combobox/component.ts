@@ -1,6 +1,7 @@
 import { createLinear } from "makeup-active-descendant";
 import FloatingLabel from "makeup-floating-label";
 import Expander from "makeup-expander";
+import { DropdownUtil } from "../../common/dropdown";
 import { scroll } from "../../common/element-scroll";
 import * as eventUtils from "../../common/event-utils";
 import safeRegex from "../../common/build-safe-regex";
@@ -34,6 +35,11 @@ interface ComboboxInput extends Omit<Marko.HTML.Input, `on${string}`> {
         }>;
     options?: Marko.AttrTag<ComboboxOption>;
     "chevron-size"?: "large";
+    /**
+     * For internal use only. Used when combobox container changes.
+     * @returns The dropdown element to be used for the combobox
+     */
+    "dropdown-element"?:  () => HTMLElement;
     "on-focus"?: (event: ComboboxEvent) => void;
     "on-button-click"?: (event: { originalEvent: MouseEvent }) => void;
     "on-expand"?: () => void;
@@ -63,6 +69,7 @@ export default class Combobox extends Marko.Component<Input, State> {
     declare expanded?: boolean;
     declare expandedChange: boolean;
     declare _floatingLabel: any;
+    declare dropdownUtil: DropdownUtil;
 
     focus() {
         (this.getEl("combobox") as HTMLElement).focus();
@@ -119,11 +126,13 @@ export default class Combobox extends Marko.Component<Input, State> {
 
     handleExpand() {
         this.setSelectedView();
+        this.dropdownUtil.show();
         this.emit("expand");
     }
 
     handleCollapse() {
         this.activeDescendant.reset();
+        this.dropdownUtil.hide();
         this.emit("collapse");
     }
 
@@ -230,6 +239,7 @@ export default class Combobox extends Marko.Component<Input, State> {
             this.expandedChange = input.expanded !== this.expanded;
             if (this.expandedChange) {
                 this.expander.expanded = input.expanded;
+
             }
         }
         this.expanded = input.expanded;
@@ -307,9 +317,15 @@ export default class Combobox extends Marko.Component<Input, State> {
             }
         }
 
+        this.dropdownUtil = new DropdownUtil(this.input.dropdownElement?.() ?? this.getEl("combobox"), this.getEl("listbox"))
+        if (this.isExpanded()) {
+            this.dropdownUtil.show();
+        }
+
         if (this.input.floatingLabel) {
             this._setupFloatingLabel();
         }
+
     }
 
     _cleanupMakeup() {
