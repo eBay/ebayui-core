@@ -9,7 +9,7 @@ describe("fake tabs", () => {
         const input = mock.fake3HeadingsNoIndex;
         const { getByText } = await render(template, input);
 
-        input.tabs.forEach((heading) => {
+        input.tab.forEach((heading) => {
             const headingEl = getByText(heading.renderBody.text);
             expect(headingEl).toMatchSnapshot();
         });
@@ -21,7 +21,7 @@ describe("fake tabs", () => {
     it("renders fake version with 3 tabs on the second panel", async () => {
         const input = mock.fake3Headings1Index;
         const { getByText } = await render(template, input);
-        input.tabs.forEach((heading) => {
+        input.tab.forEach((heading) => {
             const headingEl = getByText(heading.renderBody.text);
             expect(headingEl).toMatchSnapshot();
         });
@@ -34,7 +34,7 @@ describe("tabs-heading", () => {
     describe("when fake", () => {
         testPassThroughAttributes(template, {
             child: {
-                name: "tabs",
+                name: "tab",
                 multiple: true,
             },
         });

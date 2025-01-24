@@ -20,7 +20,7 @@ var _default = exports.default = _marko_template;
 const _marko_component2 = _component2.default;
 _marko_template._ = (0, _renderer.default)(function (input, out, _componentDef, _component, state, $global) {
   (0, _renderTag.default)(_index2.default, (0, _attrTag.i)(() => {
-    (0, _attrTag.r)("items", {
+    (0, _attrTag.r)("item", {
       "separator": true
     });
   }), out, _componentDef, "0");

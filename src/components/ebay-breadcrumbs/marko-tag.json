@@ -10,7 +10,7 @@
     "@a11y-menu-button-text": "string",
     "@aria-labelledby": "never",
     "@role": "never",
-    "@items <item>[]": {
+    "@item <item>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"

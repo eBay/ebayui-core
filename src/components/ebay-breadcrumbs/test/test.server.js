@@ -12,7 +12,7 @@ describe("breadcrumbs", () => {
 
         expect(getByLabelText(input.a11yHeadingText)).toMatchSnapshot();
 
-        input.items.forEach((item) =>
+        input.item.forEach((item) =>
             expect(getByText(item.renderBody.text)).toMatchSnapshot(),
         );
     });
@@ -21,12 +21,12 @@ describe("breadcrumbs", () => {
         const input = mock.linkLastWithoutHREF;
         const { getByText } = await render(template, input);
 
-        input.items.forEach((item, i) => {
+        input.item.forEach((item, i) => {
             const itemEl = getByText(item.renderBody.text);
             expect(itemEl).toMatchSnapshot();
             if (item.href) {
                 expect(itemEl).toMatchSnapshot();
-            } else if (i === input.items.length - 1) {
+            } else if (i === input.item.length - 1) {
                 expect(itemEl).toMatchSnapshot();
             } else {
                 // error state, because for this test, each item should either have an href or aria-current for the last one
@@ -44,7 +44,7 @@ describe("breadcrumbs", () => {
     it("renders buttons when hrefs are missing", async () => {
         const input = mock.Buttons;
         const { getByText } = await render(template, input);
-        input.items.forEach((item) =>
+        input.item.forEach((item) =>
             expect(getByText(item.renderBody.text)).toMatchSnapshot(),
         );
     });
@@ -53,7 +53,7 @@ describe("breadcrumbs", () => {
 testPassThroughAttributes(template);
 testPassThroughAttributes(template, {
     child: {
-        name: "items",
+        name: "item",
         multiple: true,
     },
 });

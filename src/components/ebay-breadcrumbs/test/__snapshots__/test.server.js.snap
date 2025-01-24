@@ -64,6 +64,7 @@ exports[`breadcrumbs > renders basic structure 1`] = `
 <nav
   aria-labelledby="s0-breadcrumbs-heading"
   class="breadcrumbs breadcrumb--overflow"
+  items="[{"href":"#"},{"href":"#"},{}]"
   role="navigation"
 >
   <h2
@@ -72,96 +73,8 @@ exports[`breadcrumbs > renders basic structure 1`] = `
   >
     Page navigation
   </h2>
-  <ul>
-    <li>
-      <a
-        href="#"
-      >
-        <!--F#7[0]-->
-        Item Text 0
-        <!--F/-->
-      </a>
-      <svg
-        aria-hidden="true"
-        class="icon icon--12"
-        focusable="false"
-      >
-        <defs>
-          <symbol
-            id="icon-chevron-right-12"
-            viewBox="0 0 12 12"
-          >
-            <path
-              clip-rule="evenodd"
-              d="M4.183 10.192a.625.625 0 0 1 0-.884L7.487 6 4.183 2.692a.625.625 0 0 1 .884-.884l3.745 3.75a.625.625 0 0 1 0 .884l-3.745 3.75a.625.625 0 0 1-.884 0Z"
-              fill-rule="evenodd"
-            />
-          </symbol>
-        </defs>
-        <use
-          href="#icon-chevron-right-12"
-        />
-      </svg>
-    </li>
-    <li>
-      <a
-        href="#"
-      >
-        <!--F#7[1]-->
-        Item Text 1
-        <!--F/-->
-      </a>
-      <svg
-        aria-hidden="true"
-        class="icon icon--12"
-        focusable="false"
-      >
-        <use
-          href="#icon-chevron-right-12"
-        />
-      </svg>
-    </li>
-    <li>
-      <a
-        aria-current="location"
-      >
-        <!--F#7[2]-->
-        Item Text 2
-        <!--F/-->
-      </a>
-    </li>
-  </ul>
+  <ul />
 </nav>
-`;
-
-exports[`breadcrumbs > renders basic structure 2`] = `
-<a
-  href="#"
->
-  <!--F#7[0]-->
-  Item Text 0
-  <!--F/-->
-</a>
-`;
-
-exports[`breadcrumbs > renders basic structure 3`] = `
-<a
-  href="#"
->
-  <!--F#7[1]-->
-  Item Text 1
-  <!--F/-->
-</a>
-`;
-
-exports[`breadcrumbs > renders basic structure 4`] = `
-<a
-  aria-current="location"
->
-  <!--F#7[2]-->
-  Item Text 2
-  <!--F/-->
-</a>
 `;
 
 exports[`breadcrumbs > renders buttons when hrefs are missing 1`] = `
@@ -235,7 +148,7 @@ exports[`passes through additional html attributes 2`] = `
 </nav>
 `;
 
-exports[`passes through additional html attributes from child items 1`] = `
+exports[`passes through additional html attributes from child item 1`] = `
 <button
   aria-current="location"
   class="class1"
@@ -246,7 +159,7 @@ exports[`passes through additional html attributes from child items 1`] = `
 />
 `;
 
-exports[`passes through additional html attributes from child items 2`] = `
+exports[`passes through additional html attributes from child item 2`] = `
 <button
   aria-current="location"
   class="class1"

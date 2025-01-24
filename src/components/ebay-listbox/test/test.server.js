@@ -7,7 +7,7 @@ import { testPassThroughAttributes } from "../../../common/test-utils/server";
 const { Standard, withDescription } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
-const options = [...Standard.args.options];
+const options = [...Standard.args.option];
 
 describe("listbox", () => {
     it("renders basic version", async () => {
@@ -37,7 +37,7 @@ describe("listbox", () => {
     testPassThroughAttributes(Standard);
     testPassThroughAttributes(Standard, {
         child: {
-            name: "options",
+            name: "option",
             multiple: true,
         },
     });

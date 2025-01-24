@@ -16,7 +16,7 @@
     "@form-method": "string",
     "@a11y-text": "string",
     "@a11y-footer-text": "string",
-    "@items <item>[]": {
+    "@item <item>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,

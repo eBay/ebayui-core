@@ -14,7 +14,7 @@ import * as stories from "../listbox.stories";
 
 const { Standard } = composeStories(stories);
 
-const options = Standard.args.options;
+const options = Standard.args.option;
 options[0] = Object.assign({ selected: true }, options[0]);
 
 afterEach(cleanup);

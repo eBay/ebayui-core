@@ -7,7 +7,7 @@ import { addRenderBodies } from "../../../common/storybook/utils";
 
 const { Standard } = composeStories(stories);
 
-const items = [...Standard.args.items];
+const items = [...Standard.args.item];
 
 afterEach(cleanup);
 

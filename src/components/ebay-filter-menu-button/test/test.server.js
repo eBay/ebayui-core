@@ -7,7 +7,7 @@ import { testPassThroughAttributes } from "../../../common/test-utils/server";
 const { Default, WithFooter } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
-const items = [...Default.args.items];
+const items = [...Default.args.item];
 
 describe("filter-menu", () => {
     it("renders basic version", async () => {
@@ -42,7 +42,7 @@ describe("filter-menu", () => {
     testPassThroughAttributes(Default);
     testPassThroughAttributes(Default, {
         child: {
-            name: "items",
+            name: "item",
             multiple: true,
         },
     });

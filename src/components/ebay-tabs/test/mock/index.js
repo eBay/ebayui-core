@@ -5,10 +5,10 @@ import {
 } from "../../../../common/test-utils/shared";
 
 export const basic3Headings_3Panels_No_Index = {
-    tabs: getNItems(3, (i) => ({
+    tab: getNItems(3, (i) => ({
         renderBody: createRenderBody(`Heading ${i}`),
     })),
-    panels: getNItems(3, (i) => ({
+    panel: getNItems(3, (i) => ({
         renderBody: createRenderBody(`Panel ${i}`),
     })),
 };
@@ -39,11 +39,11 @@ export const basic3Headings_3Panels_ActivationManual = Object.assign(
 
 export const fake3HeadingsNoIndex = {
     fake: true,
-    tabs: getNItems(3, (i) => ({
+    tab: getNItems(3, (i) => ({
         href: `#tab-${i}`,
         renderBody: createRenderBody(`Heading ${i}`),
     })),
-    panels: [
+    panel: [
         {
             renderBody: createRenderBody("Panel 0"),
         },

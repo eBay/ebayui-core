@@ -115,6 +115,7 @@
         "@storybook/marko": "~9.0.2",
         "@storybook/marko-vite": "^2.0.3",
         "@storybook/mdx2-csf": "^1.1.0",
+        "@types/node": "^22.10.10",
         "@vitest/browser": "^3.0.3",
         "@vitest/coverage-istanbul": "^3.0.3",
         "@vitest/ui": "^3.0.3",

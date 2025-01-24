@@ -7,21 +7,21 @@ import {
 export const basic2Items = {
     text: "Basic Menu",
     a11yText: "Menu A11y Text",
-    items: getNItems(2, (i) => ({
+    item: getNItems(2, (i) => ({
         href: `#${i}`,
         renderBody: createRenderBody(`Item text ${i}`),
     })),
 };
 
 export const basic3Items = Object.assign({}, basic2Items, {
-    items: getNItems(3, (i) => ({
+    item: getNItems(3, (i) => ({
         href: `#${i}`,
         renderBody: createRenderBody(`Item text ${i}`),
     })),
 });
 
 export const separator4Items = Object.assign({}, basic2Items, {
-    items: getNItems(4, (i) => ({
+    item: getNItems(4, (i) => ({
         href: `#${i}`,
         separator: i === 2,
         renderBody: createRenderBody(`Item text ${i}`),

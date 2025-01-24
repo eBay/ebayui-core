@@ -200,7 +200,7 @@ export default {
 export const Standard = Template.bind({});
 
 Standard.args = {
-    items: [
+    item: [
         {
             renderBody: `item 1 that has very long text`,
             href: "https://www.ebay.com",

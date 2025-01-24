@@ -35,7 +35,7 @@ describe("given the select with 3 options", () => {
             expect(eventArg).has.property("index", 1);
             expect(eventArg)
                 .has.property("selected")
-                .deep.equal([input.options[1].value]);
+                .deep.equal([input.option[1].value]);
         });
     });
 });

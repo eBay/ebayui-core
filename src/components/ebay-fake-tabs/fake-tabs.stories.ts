@@ -47,7 +47,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    tabs: [
+    tab: [
         {
             renderBody: `Tab 1`,
             href: "https://www.ebay.com",

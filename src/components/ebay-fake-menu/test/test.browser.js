@@ -11,7 +11,7 @@ let component;
 
 describe("given the menu is in the default state", () => {
     const input = mock.basic2Items;
-    const firstItemText = input.items[0].renderBody.text;
+    const firstItemText = input.item[0].renderBody.text;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -50,9 +50,9 @@ describe("given the menu is in the default state", () => {
 describe("given the menu has checkbox items with separator", () => {
     const input = Object.assign({ type: "checkbox" }, mock.separator4Items);
 
-    const firstItemText = input.items[0].renderBody.text;
-    const secondItemText = input.items[1].renderBody.text;
-    const thirdItemText = input.items[3].renderBody.text;
+    const firstItemText = input.item[0].renderBody.text;
+    const secondItemText = input.item[1].renderBody.text;
+    const thirdItemText = input.item[3].renderBody.text;
 
     beforeEach(async () => {
         component = await render(template, input);

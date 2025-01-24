@@ -56,33 +56,8 @@ exports[`select > renders a disabled input select with disabled floating label 1
 exports[`select > renders an input select with inline floating label 1`] = `
 <select
   id="s0-select"
->
-  <option
-    selected=""
-    text="option 0"
-    value=""
-  >
-    option 0
-  </option>
-  <option
-    text="option 1"
-    value="1"
-  >
-    option 1
-  </option>
-  <option
-    text="option 2"
-    value="2"
-  >
-    option 2
-  </option>
-  <option
-    text="option 3"
-    value="3"
-  >
-    option 3
-  </option>
-</select>
+  options="[{"value":"","text":"option 0"},{"value":"1","text":"option 1"},{"value":"2","text":"option 2"},{"value":"3","text":"option 3"}]"
+/>
 `;
 
 exports[`select > renders an input select with inline floating label 2`] = `
@@ -97,33 +72,8 @@ exports[`select > renders an input select with inline floating label 2`] = `
 exports[`select > renders an input select with inline floating label and an id 1`] = `
 <select
   id="select-id"
->
-  <option
-    selected=""
-    text="option 0"
-    value=""
-  >
-    option 0
-  </option>
-  <option
-    text="option 1"
-    value="1"
-  >
-    option 1
-  </option>
-  <option
-    text="option 2"
-    value="2"
-  >
-    option 2
-  </option>
-  <option
-    text="option 3"
-    value="3"
-  >
-    option 3
-  </option>
-</select>
+  options="[{"value":"","text":"option 0"},{"value":"1","text":"option 1"},{"value":"2","text":"option 2"},{"value":"3","text":"option 3"}]"
+/>
 `;
 
 exports[`select > renders basic version 1`] = `
@@ -340,6 +290,7 @@ exports[`select > renders empty 1`] = `
 [
   <select
     id="s0-select"
+    options="[]"
   />,
 ]
 `;
@@ -349,27 +300,8 @@ exports[`select > renders empty 2`] = `[]`;
 exports[`select > renders with borderless=true 1`] = `
 <select
   id="s0-select"
->
-  <option
-    selected=""
-    text="option 0"
-    value="0"
-  >
-    option 0
-  </option>
-  <option
-    text="option 1"
-    value="1"
-  >
-    option 1
-  </option>
-  <option
-    text="option 2"
-    value="2"
-  >
-    option 2
-  </option>
-</select>
+  options="[{"value":"0","text":"option 0"},{"value":"1","text":"option 1"},{"value":"2","text":"option 2"}]"
+/>
 `;
 
 exports[`select > renders with second item selected 1`] = `

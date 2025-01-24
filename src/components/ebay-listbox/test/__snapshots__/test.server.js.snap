@@ -164,6 +164,78 @@ exports[`listbox > passes through additional html attributes 2`] = `
 </div>
 `;
 
+exports[`listbox > passes through additional html attributes from child option 1`] = `
+<div
+  class="listbox__option class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="option"
+  style="color:red"
+  type="number"
+>
+  <span
+    class="listbox__value"
+  />
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-tick-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-tick-16"
+    />
+  </svg>
+</div>
+`;
+
+exports[`listbox > passes through additional html attributes from child option 2`] = `
+<div
+  class="listbox__option class1"
+  data-passed-through="true"
+  data-testid="AttributePassthrough"
+  role="option"
+  style="color:red"
+  type="number"
+>
+  <span
+    class="listbox__value"
+  />
+  <svg
+    aria-hidden="true"
+    class="icon icon--16"
+    focusable="false"
+  >
+    <defs>
+      <symbol
+        id="icon-tick-16"
+        viewBox="0 0 16 16"
+      >
+        <path
+          clip-rule="evenodd"
+          d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
+          fill-rule="evenodd"
+        />
+      </symbol>
+    </defs>
+    <use
+      href="#icon-tick-16"
+    />
+  </svg>
+</div>
+`;
+
 exports[`listbox > passes through additional html attributes from child options 1`] = `
 <div
   class="listbox__option class1"

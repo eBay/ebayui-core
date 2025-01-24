@@ -15,11 +15,11 @@ describe("combobox", () => {
     });
 
     it("renders empty", async () => {
-        await htmlSnap(Isolated, { options: [] });
+        await htmlSnap(Isolated, { option: [] });
     });
 
     it("renders with second item selected", async () => {
-        await htmlSnap(Isolated, { value: Isolated.args.options[2].text });
+        await htmlSnap(Isolated, { value: Isolated.args.option[2].text });
     });
 
     it("renders with borderless enabled", async () => {
@@ -57,7 +57,7 @@ describe("combobox", () => {
 describe("combobox-option", () => {
     testPassThroughAttributes(Isolated, {
         child: {
-            name: "options",
+            name: "option",
             input: {
                 text: "test",
                 value: "value",

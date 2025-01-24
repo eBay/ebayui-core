@@ -14,7 +14,7 @@ import * as stories from "../listbox-button.stories";
 
 const { Default, withDescription } = composeStories(stories);
 
-const options = [...Default.args.options];
+const options = [...Default.args.option];
 options[0] = Object.assign({ selected: true }, options[0]);
 
 afterEach(cleanup);

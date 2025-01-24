@@ -55,7 +55,7 @@ describe("menu", () => {
     testUtils.testPassThroughAttributes(Default);
     testUtils.testPassThroughAttributes(Default, {
         child: {
-            name: "items",
+            name: "item",
             multiple: true,
         },
     });

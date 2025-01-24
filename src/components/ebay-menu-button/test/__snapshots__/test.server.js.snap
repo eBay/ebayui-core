@@ -250,74 +250,6 @@ exports[`menu-button > passes through additional html attributes 2`] = `
 </span>
 `;
 
-exports[`menu-button > passes through additional html attributes from child items 1`] = `
-<div
-  class="menu-button__item class1"
-  data-passed-through="true"
-  data-testid="AttributePassthrough"
-  role="menuitem"
-  style="color:red"
-  type="number"
->
-  <span />
-  <svg
-    aria-hidden="true"
-    class="icon icon--16"
-    focusable="false"
-  >
-    <defs>
-      <symbol
-        id="icon-tick-16"
-        viewBox="0 0 16 16"
-      >
-        <path
-          clip-rule="evenodd"
-          d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
-          fill-rule="evenodd"
-        />
-      </symbol>
-    </defs>
-    <use
-      href="#icon-tick-16"
-    />
-  </svg>
-</div>
-`;
-
-exports[`menu-button > passes through additional html attributes from child items 2`] = `
-<div
-  class="menu-button__item class1"
-  data-passed-through="true"
-  data-testid="AttributePassthrough"
-  role="menuitem"
-  style="color:red"
-  type="number"
->
-  <span />
-  <svg
-    aria-hidden="true"
-    class="icon icon--16"
-    focusable="false"
-  >
-    <defs>
-      <symbol
-        id="icon-tick-16"
-        viewBox="0 0 16 16"
-      >
-        <path
-          clip-rule="evenodd"
-          d="M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"
-          fill-rule="evenodd"
-        />
-      </symbol>
-    </defs>
-    <use
-      href="#icon-tick-16"
-    />
-  </svg>
-</div>
-`;
-
 exports[`menu-button > renders basic version 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
@@ -1800,6 +1732,7 @@ exports[`menu-button > renders with type=checkbox and checked=false 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"menu-button"[39m
+    [33mitems[39m=[32m"[{\\"checked\\":false}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -1847,7 +1780,9 @@ exports[`menu-button > renders with type=checkbox and checked=false 1`] = `
           [33mclass[39m=[32m"menu-button__item"[39m
           [33mrole[39m=[32m"menuitemcheckbox"[39m
         [36m>[39m
-          [36m<span />[39m
+          [36m<span>[39m
+            [0mitem 1 that has very long text[0m
+          [36m</span>[39m
           [36m<svg[39m
             [33maria-hidden[39m=[32m"true"[39m
             [33mclass[39m=[32m"icon icon--16"[39m
@@ -1865,6 +1800,42 @@ exports[`menu-button > renders with type=checkbox and checked=false 1`] = `
                 [36m/>[39m
               [36m</symbol>[39m
             [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33maria-checked[39m=[32m"false"[39m
+          [33mclass[39m=[32m"menu-button__item"[39m
+          [33mrole[39m=[32m"menuitemcheckbox"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0mitem 2[0m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33maria-checked[39m=[32m"false"[39m
+          [33mclass[39m=[32m"menu-button__item"[39m
+          [33mrole[39m=[32m"menuitemcheckbox"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0mitem 3[0m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
             [36m<use[39m
               [33mhref[39m=[32m"#icon-tick-16"[39m
             [36m/>[39m
@@ -1880,6 +1851,7 @@ exports[`menu-button > renders with type=checkbox and checked=true 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"menu-button"[39m
+    [33mitems[39m=[32m"[{\\"checked\\":true}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -1923,11 +1895,13 @@ exports[`menu-button > renders with type=checkbox and checked=true 1`] = `
         [33mrole[39m=[32m"menu"[39m
       [36m>[39m
         [36m<div[39m
-          [33maria-checked[39m=[32m"true"[39m
+          [33maria-checked[39m=[32m"false"[39m
           [33mclass[39m=[32m"menu-button__item"[39m
           [33mrole[39m=[32m"menuitemcheckbox"[39m
         [36m>[39m
-          [36m<span />[39m
+          [36m<span>[39m
+            [0mitem 1 that has very long text[0m
+          [36m</span>[39m
           [36m<svg[39m
             [33maria-hidden[39m=[32m"true"[39m
             [33mclass[39m=[32m"icon icon--16"[39m
@@ -1950,6 +1924,42 @@ exports[`menu-button > renders with type=checkbox and checked=true 1`] = `
             [36m/>[39m
           [36m</svg>[39m
         [36m</div>[39m
+        [36m<div[39m
+          [33maria-checked[39m=[32m"false"[39m
+          [33mclass[39m=[32m"menu-button__item"[39m
+          [33mrole[39m=[32m"menuitemcheckbox"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0mitem 2[0m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33maria-checked[39m=[32m"false"[39m
+          [33mclass[39m=[32m"menu-button__item"[39m
+          [33mrole[39m=[32m"menuitemcheckbox"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0mitem 3[0m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
       [36m</div>[39m
     [36m</span>[39m
   [36m</span>[39m
@@ -1960,6 +1970,7 @@ exports[`menu-button > renders with type=radio and checked=false 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"menu-button"[39m
+    [33mitems[39m=[32m"[{\\"checked\\":false}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -2007,7 +2018,9 @@ exports[`menu-button > renders with type=radio and checked=false 1`] = `
           [33mclass[39m=[32m"menu-button__item"[39m
           [33mrole[39m=[32m"menuitemradio"[39m
         [36m>[39m
-          [36m<span />[39m
+          [36m<span>[39m
+            [0mitem 1 that has very long text[0m
+          [36m</span>[39m
           [36m<svg[39m
             [33maria-hidden[39m=[32m"true"[39m
             [33mclass[39m=[32m"icon icon--16"[39m
@@ -2030,6 +2043,42 @@ exports[`menu-button > renders with type=radio and checked=false 1`] = `
             [36m/>[39m
           [36m</svg>[39m
         [36m</div>[39m
+        [36m<div[39m
+          [33maria-checked[39m=[32m"false"[39m
+          [33mclass[39m=[32m"menu-button__item"[39m
+          [33mrole[39m=[32m"menuitemradio"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0mitem 2[0m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33maria-checked[39m=[32m"false"[39m
+          [33mclass[39m=[32m"menu-button__item"[39m
+          [33mrole[39m=[32m"menuitemradio"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0mitem 3[0m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
       [36m</div>[39m
     [36m</span>[39m
   [36m</span>[39m
@@ -2040,6 +2089,7 @@ exports[`menu-button > renders with type=radio and checked=true 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"menu-button"[39m
+    [33mitems[39m=[32m"[{\\"checked\\":true}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -2083,11 +2133,13 @@ exports[`menu-button > renders with type=radio and checked=true 1`] = `
         [33mrole[39m=[32m"menu"[39m
       [36m>[39m
         [36m<div[39m
-          [33maria-checked[39m=[32m"true"[39m
+          [33maria-checked[39m=[32m"false"[39m
           [33mclass[39m=[32m"menu-button__item"[39m
           [33mrole[39m=[32m"menuitemradio"[39m
         [36m>[39m
-          [36m<span />[39m
+          [36m<span>[39m
+            [0mitem 1 that has very long text[0m
+          [36m</span>[39m
           [36m<svg[39m
             [33maria-hidden[39m=[32m"true"[39m
             [33mclass[39m=[32m"icon icon--16"[39m
@@ -2105,6 +2157,42 @@ exports[`menu-button > renders with type=radio and checked=true 1`] = `
                 [36m/>[39m
               [36m</symbol>[39m
             [36m</defs>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33maria-checked[39m=[32m"false"[39m
+          [33mclass[39m=[32m"menu-button__item"[39m
+          [33mrole[39m=[32m"menuitemradio"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0mitem 2[0m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
+            [36m<use[39m
+              [33mhref[39m=[32m"#icon-tick-16"[39m
+            [36m/>[39m
+          [36m</svg>[39m
+        [36m</div>[39m
+        [36m<div[39m
+          [33maria-checked[39m=[32m"false"[39m
+          [33mclass[39m=[32m"menu-button__item"[39m
+          [33mrole[39m=[32m"menuitemradio"[39m
+        [36m>[39m
+          [36m<span>[39m
+            [0mitem 3[0m
+          [36m</span>[39m
+          [36m<svg[39m
+            [33maria-hidden[39m=[32m"true"[39m
+            [33mclass[39m=[32m"icon icon--16"[39m
+            [33mfocusable[39m=[32m"false"[39m
+          [36m>[39m
             [36m<use[39m
               [33mhref[39m=[32m"#icon-tick-16"[39m
             [36m/>[39m

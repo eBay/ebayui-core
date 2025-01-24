@@ -51,7 +51,7 @@ describe("given the menu is in the default state", () => {
 
     describe("when an item is added via input from its parent and the new item is clicked", () => {
         const newInput = mock.basic3Items;
-        const thirdItemText = newInput.items[2].renderBody.text;
+        const thirdItemText = newInput.item[2].renderBody.text;
         beforeEach(async () => {
             await component.rerender(newInput);
             await fireEvent.click(component.getByText(thirdItemText));
@@ -110,7 +110,7 @@ describe("given the menu is in the default state", () => {
 
 describe("given the menu is in the expanded state", () => {
     const input = mock.basic2Items;
-    const firstItemText = input.items[0].renderBody.text;
+    const firstItemText = input.item[0].renderBody.text;
 
     beforeEach(async () => {
         component = await render(template, input);

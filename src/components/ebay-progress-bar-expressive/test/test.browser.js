@@ -24,7 +24,7 @@ describe("progress-bar-expressive", () => {
 
             it("then displays each message for the specified duration", async () => {
                 const statusEl = component.getByRole("status");
-                const messages = WithCustomTiming.args.messages;
+                const messages = WithCustomTiming.args.message;
 
                 // go through all messages once and loop back to first one
                 for (let i = 0; i <= messages.length; i++) {

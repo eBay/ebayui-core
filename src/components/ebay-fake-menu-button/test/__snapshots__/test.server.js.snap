@@ -112,7 +112,7 @@ exports[`menu-button > passes through additional html attributes 2`] = `
 </span>
 `;
 
-exports[`menu-button > passes through additional html attributes from child items 1`] = `
+exports[`menu-button > passes through additional html attributes from child item 1`] = `
 <button
   class="fake-menu-button__item class1"
   data-passed-through="true"
@@ -145,7 +145,7 @@ exports[`menu-button > passes through additional html attributes from child item
 </button>
 `;
 
-exports[`menu-button > passes through additional html attributes from child items 2`] = `
+exports[`menu-button > passes through additional html attributes from child item 2`] = `
 <button
   class="fake-menu-button__item class1"
   data-passed-through="true"
@@ -182,6 +182,7 @@ exports[`menu-button > renders basic version 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"fake-menu-button"[39m
+    [33mitems[39m=[32m"[{\\"href\\":\\"#0\\"},{\\"href\\":\\"#1\\"}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -227,58 +228,7 @@ exports[`menu-button > renders basic version 1`] = `
         [33mclass[39m=[32m"fake-menu__items"[39m
         [33mid[39m=[32m"s0-@content-menu"[39m
         [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#0"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 0[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<defs>[39m
-                [36m<symbol[39m
-                  [33mid[39m=[32m"icon-tick-16"[39m
-                  [33mviewBox[39m=[32m"0 0 16 16"[39m
-                [36m>[39m
-                  [36m<path[39m
-                    [33mclip-rule[39m=[32m"evenodd"[39m
-                    [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
-                    [33mfill-rule[39m=[32m"evenodd"[39m
-                  [36m/>[39m
-                [36m</symbol>[39m
-              [36m</defs>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#1"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 1[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-      [36m</ul>[39m
+      [36m/>[39m
     [36m</span>[39m
   [36m</span>[39m
 [36m</DocumentFragment>[39m"
@@ -288,6 +238,7 @@ exports[`menu-button > renders with a custom label 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"fake-menu-button"[39m
+    [33mitems[39m=[32m"[{\\"href\\":\\"#0\\"},{\\"href\\":\\"#1\\"}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -335,58 +286,7 @@ exports[`menu-button > renders with a custom label 1`] = `
         [33mclass[39m=[32m"fake-menu__items"[39m
         [33mid[39m=[32m"s0-@content-menu"[39m
         [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#0"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 0[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<defs>[39m
-                [36m<symbol[39m
-                  [33mid[39m=[32m"icon-tick-16"[39m
-                  [33mviewBox[39m=[32m"0 0 16 16"[39m
-                [36m>[39m
-                  [36m<path[39m
-                    [33mclip-rule[39m=[32m"evenodd"[39m
-                    [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
-                    [33mfill-rule[39m=[32m"evenodd"[39m
-                  [36m/>[39m
-                [36m</symbol>[39m
-              [36m</defs>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#1"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 1[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-      [36m</ul>[39m
+      [36m/>[39m
     [36m</span>[39m
   [36m</span>[39m
 [36m</DocumentFragment>[39m"
@@ -396,6 +296,7 @@ exports[`menu-button > renders with borderless=true 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"fake-menu-button"[39m
+    [33mitems[39m=[32m"[{\\"href\\":\\"#0\\"},{\\"href\\":\\"#1\\"}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -441,58 +342,7 @@ exports[`menu-button > renders with borderless=true 1`] = `
         [33mclass[39m=[32m"fake-menu__items"[39m
         [33mid[39m=[32m"s0-@content-menu"[39m
         [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#0"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 0[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<defs>[39m
-                [36m<symbol[39m
-                  [33mid[39m=[32m"icon-tick-16"[39m
-                  [33mviewBox[39m=[32m"0 0 16 16"[39m
-                [36m>[39m
-                  [36m<path[39m
-                    [33mclip-rule[39m=[32m"evenodd"[39m
-                    [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
-                    [33mfill-rule[39m=[32m"evenodd"[39m
-                  [36m/>[39m
-                [36m</symbol>[39m
-              [36m</defs>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#1"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 1[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-      [36m</ul>[39m
+      [36m/>[39m
     [36m</span>[39m
   [36m</span>[39m
 [36m</DocumentFragment>[39m"
@@ -554,6 +404,7 @@ exports[`menu-button > renders with disabled state 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"fake-menu-button"[39m
+    [33mitems[39m=[32m"[{\\"href\\":\\"#0\\"},{\\"href\\":\\"#1\\"},{\\"href\\":\\"#2\\"}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -600,77 +451,7 @@ exports[`menu-button > renders with disabled state 1`] = `
         [33mclass[39m=[32m"fake-menu__items"[39m
         [33mid[39m=[32m"s0-@content-menu"[39m
         [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#0"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 0[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<defs>[39m
-                [36m<symbol[39m
-                  [33mid[39m=[32m"icon-tick-16"[39m
-                  [33mviewBox[39m=[32m"0 0 16 16"[39m
-                [36m>[39m
-                  [36m<path[39m
-                    [33mclip-rule[39m=[32m"evenodd"[39m
-                    [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
-                    [33mfill-rule[39m=[32m"evenodd"[39m
-                  [36m/>[39m
-                [36m</symbol>[39m
-              [36m</defs>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#1"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 1[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#2"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 2[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-      [36m</ul>[39m
+      [36m/>[39m
     [36m</span>[39m
   [36m</span>[39m
 [36m</DocumentFragment>[39m"
@@ -680,6 +461,7 @@ exports[`menu-button > renders with fix-width=true 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"fake-menu-button"[39m
+    [33mitems[39m=[32m"[{\\"href\\":\\"#0\\"},{\\"href\\":\\"#1\\"}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -725,58 +507,7 @@ exports[`menu-button > renders with fix-width=true 1`] = `
         [33mclass[39m=[32m"fake-menu__items"[39m
         [33mid[39m=[32m"s0-@content-menu"[39m
         [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#0"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 0[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<defs>[39m
-                [36m<symbol[39m
-                  [33mid[39m=[32m"icon-tick-16"[39m
-                  [33mviewBox[39m=[32m"0 0 16 16"[39m
-                [36m>[39m
-                  [36m<path[39m
-                    [33mclip-rule[39m=[32m"evenodd"[39m
-                    [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
-                    [33mfill-rule[39m=[32m"evenodd"[39m
-                  [36m/>[39m
-                [36m</symbol>[39m
-              [36m</defs>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#1"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 1[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-      [36m</ul>[39m
+      [36m/>[39m
     [36m</span>[39m
   [36m</span>[39m
 [36m</DocumentFragment>[39m"
@@ -786,6 +517,7 @@ exports[`menu-button > renders with icon 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"fake-menu-button"[39m
+    [33mitems[39m=[32m"[{\\"href\\":\\"#0\\"},{\\"href\\":\\"#1\\"}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -829,58 +561,7 @@ exports[`menu-button > renders with icon 1`] = `
         [33mclass[39m=[32m"fake-menu__items"[39m
         [33mid[39m=[32m"s0-@content-menu"[39m
         [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#0"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 0[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<defs>[39m
-                [36m<symbol[39m
-                  [33mid[39m=[32m"icon-tick-16"[39m
-                  [33mviewBox[39m=[32m"0 0 16 16"[39m
-                [36m>[39m
-                  [36m<path[39m
-                    [33mclip-rule[39m=[32m"evenodd"[39m
-                    [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
-                    [33mfill-rule[39m=[32m"evenodd"[39m
-                  [36m/>[39m
-                [36m</symbol>[39m
-              [36m</defs>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#1"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 1[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-      [36m</ul>[39m
+      [36m/>[39m
     [36m</span>[39m
   [36m</span>[39m
 [36m</DocumentFragment>[39m"
@@ -890,6 +571,7 @@ exports[`menu-button > renders with overflow variant 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"fake-menu-button"[39m
+    [33mitems[39m=[32m"[{\\"href\\":\\"#0\\"},{\\"href\\":\\"#1\\"}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -926,58 +608,7 @@ exports[`menu-button > renders with overflow variant 1`] = `
         [33mclass[39m=[32m"fake-menu__items"[39m
         [33mid[39m=[32m"s0-@content-menu"[39m
         [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#0"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 0[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<defs>[39m
-                [36m<symbol[39m
-                  [33mid[39m=[32m"icon-tick-16"[39m
-                  [33mviewBox[39m=[32m"0 0 16 16"[39m
-                [36m>[39m
-                  [36m<path[39m
-                    [33mclip-rule[39m=[32m"evenodd"[39m
-                    [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
-                    [33mfill-rule[39m=[32m"evenodd"[39m
-                  [36m/>[39m
-                [36m</symbol>[39m
-              [36m</defs>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#1"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 1[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-      [36m</ul>[39m
+      [36m/>[39m
     [36m</span>[39m
   [36m</span>[39m
 [36m</DocumentFragment>[39m"
@@ -987,6 +618,7 @@ exports[`menu-button > renders with reverse=true 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"fake-menu-button"[39m
+    [33mitems[39m=[32m"[{\\"href\\":\\"#0\\"},{\\"href\\":\\"#1\\"}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -1032,58 +664,7 @@ exports[`menu-button > renders with reverse=true 1`] = `
         [33mclass[39m=[32m"fake-menu__items"[39m
         [33mid[39m=[32m"s0-@content-menu"[39m
         [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#0"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 0[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<defs>[39m
-                [36m<symbol[39m
-                  [33mid[39m=[32m"icon-tick-16"[39m
-                  [33mviewBox[39m=[32m"0 0 16 16"[39m
-                [36m>[39m
-                  [36m<path[39m
-                    [33mclip-rule[39m=[32m"evenodd"[39m
-                    [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
-                    [33mfill-rule[39m=[32m"evenodd"[39m
-                  [36m/>[39m
-                [36m</symbol>[39m
-              [36m</defs>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#1"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 1[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-      [36m</ul>[39m
+      [36m/>[39m
     [36m</span>[39m
   [36m</span>[39m
 [36m</DocumentFragment>[39m"
@@ -1093,6 +674,7 @@ exports[`menu-button > renders with separators 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"fake-menu-button"[39m
+    [33mitems[39m=[32m"[{\\"href\\":\\"#0\\",\\"separator\\":false},{\\"href\\":\\"#1\\",\\"separator\\":false},{\\"href\\":\\"#2\\",\\"separator\\":true},{\\"href\\":\\"#3\\",\\"separator\\":false}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -1138,83 +720,7 @@ exports[`menu-button > renders with separators 1`] = `
         [33mclass[39m=[32m"fake-menu__items"[39m
         [33mid[39m=[32m"s0-@content-menu"[39m
         [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#0"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 0[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<defs>[39m
-                [36m<symbol[39m
-                  [33mid[39m=[32m"icon-tick-16"[39m
-                  [33mviewBox[39m=[32m"0 0 16 16"[39m
-                [36m>[39m
-                  [36m<path[39m
-                    [33mclip-rule[39m=[32m"evenodd"[39m
-                    [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
-                    [33mfill-rule[39m=[32m"evenodd"[39m
-                  [36m/>[39m
-                [36m</symbol>[39m
-              [36m</defs>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#1"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 1[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<hr[39m
-            [33mclass[39m=[32m"fake-menu-button__separator"[39m
-            [33mrole[39m=[32m"separator"[39m
-          [36m/>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#3"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 3[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-      [36m</ul>[39m
+      [36m/>[39m
     [36m</span>[39m
   [36m</span>[39m
 [36m</DocumentFragment>[39m"
@@ -1224,6 +730,7 @@ exports[`menu-button > renders with size=small 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"fake-menu-button"[39m
+    [33mitems[39m=[32m"[{\\"href\\":\\"#0\\"},{\\"href\\":\\"#1\\"}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -1269,58 +776,7 @@ exports[`menu-button > renders with size=small 1`] = `
         [33mclass[39m=[32m"fake-menu__items"[39m
         [33mid[39m=[32m"s0-@content-menu"[39m
         [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#0"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 0[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<defs>[39m
-                [36m<symbol[39m
-                  [33mid[39m=[32m"icon-tick-16"[39m
-                  [33mviewBox[39m=[32m"0 0 16 16"[39m
-                [36m>[39m
-                  [36m<path[39m
-                    [33mclip-rule[39m=[32m"evenodd"[39m
-                    [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
-                    [33mfill-rule[39m=[32m"evenodd"[39m
-                  [36m/>[39m
-                [36m</symbol>[39m
-              [36m</defs>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#1"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 1[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-      [36m</ul>[39m
+      [36m/>[39m
     [36m</span>[39m
   [36m</span>[39m
 [36m</DocumentFragment>[39m"
@@ -1330,6 +786,7 @@ exports[`menu-button > renders without toggle icon 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<span[39m
     [33mclass[39m=[32m"fake-menu-button"[39m
+    [33mitems[39m=[32m"[{\\"href\\":\\"#0\\"},{\\"href\\":\\"#1\\"}]"[39m
   [36m>[39m
     [36m<button[39m
       [33maria-expanded[39m=[32m"false"[39m
@@ -1355,58 +812,7 @@ exports[`menu-button > renders without toggle icon 1`] = `
         [33mclass[39m=[32m"fake-menu__items"[39m
         [33mid[39m=[32m"s0-@content-menu"[39m
         [33mtabindex[39m=[32m"-1"[39m
-      [36m>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#0"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 0[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<defs>[39m
-                [36m<symbol[39m
-                  [33mid[39m=[32m"icon-tick-16"[39m
-                  [33mviewBox[39m=[32m"0 0 16 16"[39m
-                [36m>[39m
-                  [36m<path[39m
-                    [33mclip-rule[39m=[32m"evenodd"[39m
-                    [33md[39m=[32m"M13.707 5.707a1 1 0 0 0-1.414-1.414L6 10.586 3.707 8.293a1 1 0 0 0-1.414 1.414l3 3a1 1 0 0 0 1.414 0l7-7Z"[39m
-                    [33mfill-rule[39m=[32m"evenodd"[39m
-                  [36m/>[39m
-                [36m</symbol>[39m
-              [36m</defs>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-        [36m<li>[39m
-          [36m<a[39m
-            [33mclass[39m=[32m"fake-menu-button__item"[39m
-            [33mhref[39m=[32m"#1"[39m
-          [36m>[39m
-            [36m<span>[39m
-              [0mItem text 1[0m
-            [36m</span>[39m
-            [36m<svg[39m
-              [33maria-hidden[39m=[32m"true"[39m
-              [33mclass[39m=[32m"icon icon--16"[39m
-              [33mfocusable[39m=[32m"false"[39m
-            [36m>[39m
-              [36m<use[39m
-                [33mhref[39m=[32m"#icon-tick-16"[39m
-              [36m/>[39m
-            [36m</svg>[39m
-          [36m</a>[39m
-        [36m</li>[39m
-      [36m</ul>[39m
+      [36m/>[39m
     [36m</span>[39m
   [36m</span>[39m
 [36m</DocumentFragment>[39m"

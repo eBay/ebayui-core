@@ -184,7 +184,7 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
     text: "text",
-    items: [
+    item: [
         {
             value: "item 1",
             renderBody: `item 1`,
@@ -211,7 +211,7 @@ Default.parameters = {
 export const WithFooter = Template.bind({});
 WithFooter.args = {
     text: "text",
-    items: [
+    item: [
         {
             value: "item 1",
             renderBody: `item 1`,

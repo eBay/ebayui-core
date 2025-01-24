@@ -13,7 +13,7 @@ describe("carousel", () => {
 
             expect(getByRole("group")).toMatchSnapshot();
 
-            input.items.forEach((item) =>
+            input.item.forEach((item) =>
                 expect(queryByText(item.renderBody.text)).toMatchSnapshot(),
             );
         });
@@ -73,7 +73,7 @@ describe("carousel", () => {
             expect(getByLabelText(input.a11yPreviousText)).toMatchSnapshot();
             expect(getByLabelText(input.a11yNextText)).toMatchSnapshot();
 
-            input.items.forEach((item) =>
+            input.item.forEach((item) =>
                 expect(queryByText(item.renderBody.text)).toMatchSnapshot(),
             );
         });
@@ -90,7 +90,7 @@ describe("carousel", () => {
     testPassThroughAttributes(template);
     testPassThroughAttributes(template, {
         child: {
-            name: "items",
+            name: "item",
             multiple: true,
         },
     });

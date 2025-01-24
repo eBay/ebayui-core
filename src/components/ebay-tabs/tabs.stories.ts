@@ -57,7 +57,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    panels: [
+    panel: [
         {
             renderBody: `panel one`,
         },
@@ -68,7 +68,7 @@ Standard.args = {
             renderBody: `panel three`,
         },
     ] as any,
-    tabs: [
+    tab: [
         {
             renderBody: `Tab 1`,
         },
@@ -84,8 +84,8 @@ Standard.parameters = {
     docs: {
         source: {
             code: tagToString("ebay-tabs", Standard.args, {
-                tabs: "tab",
-                panels: "panel",
+                tab: "tab",
+                panel: "panel",
             }),
         },
     },

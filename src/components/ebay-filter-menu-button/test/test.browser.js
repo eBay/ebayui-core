@@ -7,7 +7,7 @@ import { addRenderBodies } from "../../../common/storybook/utils";
 
 const { Default, WithFooter } = composeStories(stories);
 
-const items = [...Default.args.items];
+const items = [...Default.args.item];
 
 afterEach(cleanup);
 
@@ -272,7 +272,7 @@ describe("given the menu is in the expanded state", () => {
 
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, Default.args, { items: newItems }),
+                Object.assign({}, Default.args, { item: newItems }),
             );
             await fireEvent.click(component.getByText(fourthItem));
         });
@@ -295,7 +295,7 @@ describe("given the menu item is disabled", () => {
     beforeEach(async () => {
         items[0] = Object.assign({}, items[0], { disabled: true });
 
-        component = await render(Default, { items: addRenderBodies(items) });
+        component = await render(Default, { item: addRenderBodies(items) });
     });
 
     describe("when an item is clicked", () => {

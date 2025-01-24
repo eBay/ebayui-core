@@ -5,6 +5,7 @@ exports[`pagination > Interactive > renders defaults 1`] = `
   [36m<nav[39m
     [33maria-labelledby[39m=[32m"s0-0-heading"[39m
     [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"disabled\\":true},{\\"current\\":true},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"current\\":false},{\\"type\\":\\"next\\",\\"disabled\\":false}]"[39m
     [33mrole[39m=[32m"navigation"[39m
   [36m>[39m
     [36m<span[39m
@@ -220,6 +221,7 @@ exports[`pagination > passes through additional html attributes 1`] = `
   class="pagination class1"
   data-passed-through="true"
   data-testid="AttributePassthrough"
+  item="[{"type":"previous","href":"#","disabled":true},{"href":"#","current":true},{"href":"#"},{"href":"#"},{"href":"#"},{"href":"#"},{"href":"#"},{"href":"#"},{"href":"#"},{"href":"#"},{"type":"next","href":"#","disabled":true}]"
   role="navigation"
   style="color:red"
   type="number"
@@ -403,6 +405,7 @@ exports[`pagination > passes through additional html attributes 2`] = `
   class="pagination class1"
   data-passed-through="true"
   data-testid="AttributePassthrough"
+  item="[{"type":"previous","href":"#","disabled":true},{"href":"#","current":true},{"href":"#"},{"href":"#"},{"href":"#"},{"href":"#"},{"href":"#"},{"href":"#"},{"href":"#"},{"href":"#"},{"type":"next","href":"#","disabled":true}]"
   role="navigation"
   style="color:red"
   type="number"
@@ -586,6 +589,7 @@ exports[`pagination > passes through additional html attributes 3`] = `
   class="pagination class1"
   data-passed-through="true"
   data-testid="AttributePassthrough"
+  item="[{"type":"previous","disabled":true},{"current":true},{},{},{},{},{},{},{},{},{"type":"next","disabled":true}]"
   role="navigation"
   style="color:red"
   type="number"
@@ -758,6 +762,7 @@ exports[`pagination > passes through additional html attributes 4`] = `
   class="pagination class1"
   data-passed-through="true"
   data-testid="AttributePassthrough"
+  item="[{"type":"previous","disabled":true},{"current":true},{},{},{},{},{},{},{},{},{"type":"next","disabled":true}]"
   role="navigation"
   style="color:red"
   type="number"
@@ -929,6 +934,7 @@ exports[`pagination > with buttons > renders button version 1`] = `
   [36m<nav[39m
     [33maria-labelledby[39m=[32m"s0-heading"[39m
     [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"disabled\\":true},{\\"current\\":true},{},{},{},{},{},{},{},{},{\\"type\\":\\"next\\",\\"disabled\\":true}]"[39m
     [33mrole[39m=[32m"navigation"[39m
   [36m>[39m
     [36m<span[39m
@@ -943,6 +949,7 @@ exports[`pagination > with buttons > renders button version 1`] = `
       [36m</h2>[39m
     [36m</span>[39m
     [36m<button[39m
+      [33maria-disabled[39m=[32m"true"[39m
       [33maria-label[39m=[32m"previous"[39m
       [33mclass[39m=[32m"pagination__previous icon-btn"[39m
       [33mstyle[39m=[32m"min-width:40px"[39m
@@ -973,37 +980,38 @@ exports[`pagination > with buttons > renders button version 1`] = `
     [36m>[39m
       [36m<li>[39m
         [36m<button[39m
+          [33maria-current[39m=[32m"page"[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 0[0m
+          [0m1[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 1[0m
+          [0m2[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 2[0m
+          [0m3[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 3[0m
+          [0m4[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 4[0m
+          [0m5[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -1012,7 +1020,7 @@ exports[`pagination > with buttons > renders button version 1`] = `
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 5[0m
+          [0m6[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -1021,7 +1029,7 @@ exports[`pagination > with buttons > renders button version 1`] = `
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 6[0m
+          [0m7[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -1030,7 +1038,7 @@ exports[`pagination > with buttons > renders button version 1`] = `
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 7[0m
+          [0m8[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -1039,65 +1047,12 @@ exports[`pagination > with buttons > renders button version 1`] = `
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 8[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 9[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 10[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 11[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 12[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 13[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 14[0m
+          [0m9[0m
         [36m</button>[39m
       [36m</li>[39m
     [36m</ol>[39m
     [36m<button[39m
+      [33maria-disabled[39m=[32m"true"[39m
       [33maria-label[39m=[32m"next"[39m
       [33mclass[39m=[32m"pagination__next icon-btn"[39m
       [33mstyle[39m=[32m"min-width:40px"[39m
@@ -1132,6 +1087,7 @@ exports[`pagination > with buttons > renders button version selected items 1`] =
   [36m<nav[39m
     [33maria-labelledby[39m=[32m"s0-heading"[39m
     [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"disabled\\":true},{\\"current\\":true},{},{},{},{},{},{},{},{},{\\"type\\":\\"next\\",\\"disabled\\":true}]"[39m
     [33mrole[39m=[32m"navigation"[39m
   [36m>[39m
     [36m<span[39m
@@ -1146,6 +1102,7 @@ exports[`pagination > with buttons > renders button version selected items 1`] =
       [36m</h2>[39m
     [36m</span>[39m
     [36m<button[39m
+      [33maria-disabled[39m=[32m"true"[39m
       [33maria-label[39m=[32m"previous"[39m
       [33mclass[39m=[32m"pagination__previous icon-btn"[39m
       [33mstyle[39m=[32m"min-width:40px"[39m
@@ -1174,49 +1131,40 @@ exports[`pagination > with buttons > renders button version selected items 1`] =
     [36m<ol[39m
       [33mclass[39m=[32m"pagination__items"[39m
     [36m>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 0[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 1[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 2[0m
-        [36m</button>[39m
-      [36m</li>[39m
       [36m<li>[39m
         [36m<button[39m
           [33maria-current[39m=[32m"page"[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 3[0m
+          [0m1[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 4[0m
+          [0m2[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li>[39m
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 5[0m
+          [0m3[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+        [36m>[39m
+          [0m4[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+        [36m>[39m
+          [0m5[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -1225,7 +1173,7 @@ exports[`pagination > with buttons > renders button version selected items 1`] =
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 6[0m
+          [0m6[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -1234,7 +1182,7 @@ exports[`pagination > with buttons > renders button version selected items 1`] =
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 7[0m
+          [0m7[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -1243,7 +1191,7 @@ exports[`pagination > with buttons > renders button version selected items 1`] =
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 8[0m
+          [0m8[0m
         [36m</button>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -1252,56 +1200,12 @@ exports[`pagination > with buttons > renders button version selected items 1`] =
         [36m<button[39m
           [33mclass[39m=[32m"pagination__item"[39m
         [36m>[39m
-          [0mitem 9[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 10[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 11[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 12[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 13[0m
-        [36m</button>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<button[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-        [36m>[39m
-          [0mitem 14[0m
+          [0m9[0m
         [36m</button>[39m
       [36m</li>[39m
     [36m</ol>[39m
     [36m<button[39m
+      [33maria-disabled[39m=[32m"true"[39m
       [33maria-label[39m=[32m"next"[39m
       [33mclass[39m=[32m"pagination__next icon-btn"[39m
       [33mstyle[39m=[32m"min-width:40px"[39m
@@ -1336,6 +1240,7 @@ exports[`pagination > with buttons > renders buttons with last page visible 1`] 
   [36m<nav[39m
     [33maria-labelledby[39m=[32m"s0-heading"[39m
     [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"disabled\\":true},{\\"current\\":true},{},{},{},{},{},{},{},{},{\\"type\\":\\"next\\",\\"disabled\\":true}]"[39m
     [33mrole[39m=[32m"navigation"[39m
     [33mvariant[39m=[32m"show-last"[39m
   [36m>[39m
@@ -1517,6 +1422,7 @@ exports[`pagination > with buttons > renders default button version 1`] = `
   [36m<nav[39m
     [33maria-labelledby[39m=[32m"s0-heading"[39m
     [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"disabled\\":true},{\\"current\\":true},{},{},{},{},{},{},{},{},{\\"type\\":\\"next\\",\\"disabled\\":true}]"[39m
     [33mrole[39m=[32m"navigation"[39m
   [36m>[39m
     [36m<span[39m
@@ -1669,6 +1575,7 @@ exports[`pagination > with buttons > renders default button with overflow 1`] = 
   [36m<nav[39m
     [33maria-labelledby[39m=[32m"s0-heading"[39m
     [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"disabled\\":true},{\\"current\\":true},{},{},{},{},{},{},{},{},{\\"type\\":\\"next\\",\\"disabled\\":true}]"[39m
     [33mrole[39m=[32m"navigation"[39m
     [33mvariant[39m=[32m"overflow"[39m
   [36m>[39m
@@ -2033,6 +1940,7 @@ exports[`pagination > with buttons > renders empty button version 1`] = `
   [36m<nav[39m
     [33maria-labelledby[39m=[32m"s0-heading"[39m
     [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"disabled\\":true},{\\"current\\":true},{},{},{},{},{},{},{},{},{\\"type\\":\\"next\\",\\"disabled\\":true}]"[39m
     [33mrole[39m=[32m"navigation"[39m
   [36m>[39m
     [36m<span[39m
@@ -2047,6 +1955,7 @@ exports[`pagination > with buttons > renders empty button version 1`] = `
       [36m</h2>[39m
     [36m</span>[39m
     [36m<button[39m
+      [33maria-disabled[39m=[32m"true"[39m
       [33maria-label[39m=[32m"previous"[39m
       [33mclass[39m=[32m"pagination__previous icon-btn"[39m
       [33mstyle[39m=[32m"min-width:40px"[39m
@@ -2074,8 +1983,82 @@ exports[`pagination > with buttons > renders empty button version 1`] = `
     [36m</button>[39m
     [36m<ol[39m
       [33mclass[39m=[32m"pagination__items"[39m
-    [36m/>[39m
+    [36m>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33maria-current[39m=[32m"page"[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+        [36m>[39m
+          [0m1[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+        [36m>[39m
+          [0m2[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+        [36m>[39m
+          [0m3[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+        [36m>[39m
+          [0m4[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+        [36m>[39m
+          [0m5[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+        [36m>[39m
+          [0m6[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+        [36m>[39m
+          [0m7[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+        [36m>[39m
+          [0m8[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+        [36m>[39m
+          [0m9[0m
+        [36m</button>[39m
+      [36m</li>[39m
+    [36m</ol>[39m
     [36m<button[39m
+      [33maria-disabled[39m=[32m"true"[39m
       [33maria-label[39m=[32m"next"[39m
       [33mclass[39m=[32m"pagination__next icon-btn"[39m
       [33mstyle[39m=[32m"min-width:40px"[39m
@@ -2110,6 +2093,7 @@ exports[`pagination > with links > renders basic version 1`] = `
   [36m<nav[39m
     [33maria-labelledby[39m=[32m"s0-heading"[39m
     [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"href\\":\\"#\\",\\"disabled\\":true},{\\"href\\":\\"#\\",\\"current\\":true},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"type\\":\\"next\\",\\"href\\":\\"#\\",\\"disabled\\":true}]"[39m
     [33mrole[39m=[32m"navigation"[39m
   [36m>[39m
     [36m<span[39m
@@ -2273,306 +2257,7 @@ exports[`pagination > with links > renders empty version 1`] = `
   [36m<nav[39m
     [33maria-labelledby[39m=[32m"s0-heading"[39m
     [33mclass[39m=[32m"pagination"[39m
-    [33mrole[39m=[32m"navigation"[39m
-  [36m>[39m
-    [36m<span[39m
-      [33maria-live[39m=[32m"polite"[39m
-      [33mrole[39m=[32m"status"[39m
-    [36m>[39m
-      [36m<h2[39m
-        [33mclass[39m=[32m"clipped"[39m
-        [33mid[39m=[32m"s0-heading"[39m
-      [36m>[39m
-        [0mCurrent page[0m
-      [36m</h2>[39m
-    [36m</span>[39m
-    [36m<a[39m
-      [33maria-label[39m=[32m"previous"[39m
-      [33mclass[39m=[32m"pagination__previous icon-link"[39m
-      [33mhref[39m=[32m"#"[39m
-      [33mstyle[39m=[32m"min-width:40px"[39m
-      [33mtype[39m=[32m"previous"[39m
-    [36m>[39m
-      [36m<svg[39m
-        [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--16"[39m
-        [33mfocusable[39m=[32m"false"[39m
-      [36m>[39m
-        [36m<defs>[39m
-          [36m<symbol[39m
-            [33mid[39m=[32m"icon-arrow-left-16"[39m
-            [33mviewBox[39m=[32m"0 0 16 16"[39m
-          [36m>[39m
-            [36m<path[39m
-              [33md[39m=[32m"M14 7H4.41l4.3-4.29a1.004 1.004 0 0 0-1.42-1.42l-6 6a1 1 0 0 0 0 1.41l6 6a1 1 0 0 0 1.41-1.41L4.41 9H14a1 1 0 1 0 0-2Z"[39m
-            [36m/>[39m
-          [36m</symbol>[39m
-        [36m</defs>[39m
-        [36m<use[39m
-          [33mhref[39m=[32m"#icon-arrow-left-16"[39m
-        [36m/>[39m
-      [36m</svg>[39m
-    [36m</a>[39m
-    [36m<ol[39m
-      [33mclass[39m=[32m"pagination__items"[39m
-    [36m/>[39m
-    [36m<a[39m
-      [33maria-label[39m=[32m"next"[39m
-      [33mclass[39m=[32m"pagination__next icon-link"[39m
-      [33mhref[39m=[32m"#"[39m
-      [33mstyle[39m=[32m"min-width:40px"[39m
-      [33mtype[39m=[32m"next"[39m
-    [36m>[39m
-      [36m<svg[39m
-        [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--16"[39m
-        [33mfocusable[39m=[32m"false"[39m
-      [36m>[39m
-        [36m<defs>[39m
-          [36m<symbol[39m
-            [33mid[39m=[32m"icon-arrow-right-16"[39m
-            [33mviewBox[39m=[32m"0 0 16 16"[39m
-          [36m>[39m
-            [36m<path[39m
-              [33md[39m=[32m"M14.92 8.38a1 1 0 0 0-.22-1.09l-6-6a1 1 0 1 0-1.41 1.42L11.59 7H2a1 1 0 1 0 0 2h9.59l-4.3 4.29A1 1 0 1 0 8.7 14.7l6-6a1 1 0 0 0 .22-.32Z"[39m
-            [36m/>[39m
-          [36m</symbol>[39m
-        [36m</defs>[39m
-        [36m<use[39m
-          [33mhref[39m=[32m"#icon-arrow-right-16"[39m
-        [36m/>[39m
-      [36m</svg>[39m
-    [36m</a>[39m
-  [36m</nav>[39m
-[36m</DocumentFragment>[39m"
-`;
-
-exports[`pagination > with links > renders with a selected item 1`] = `
-"[36m<DocumentFragment>[39m
-  [36m<nav[39m
-    [33maria-labelledby[39m=[32m"s0-heading"[39m
-    [33mclass[39m=[32m"pagination"[39m
-    [33mrole[39m=[32m"navigation"[39m
-  [36m>[39m
-    [36m<span[39m
-      [33maria-live[39m=[32m"polite"[39m
-      [33mrole[39m=[32m"status"[39m
-    [36m>[39m
-      [36m<h2[39m
-        [33mclass[39m=[32m"clipped"[39m
-        [33mid[39m=[32m"s0-heading"[39m
-      [36m>[39m
-        [0mCurrent page[0m
-      [36m</h2>[39m
-    [36m</span>[39m
-    [36m<a[39m
-      [33maria-label[39m=[32m"previous"[39m
-      [33mclass[39m=[32m"pagination__previous icon-link"[39m
-      [33mhref[39m=[32m"#"[39m
-      [33mstyle[39m=[32m"min-width:40px"[39m
-      [33mtype[39m=[32m"previous"[39m
-    [36m>[39m
-      [36m<svg[39m
-        [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--16"[39m
-        [33mfocusable[39m=[32m"false"[39m
-      [36m>[39m
-        [36m<defs>[39m
-          [36m<symbol[39m
-            [33mid[39m=[32m"icon-arrow-left-16"[39m
-            [33mviewBox[39m=[32m"0 0 16 16"[39m
-          [36m>[39m
-            [36m<path[39m
-              [33md[39m=[32m"M14 7H4.41l4.3-4.29a1.004 1.004 0 0 0-1.42-1.42l-6 6a1 1 0 0 0 0 1.41l6 6a1 1 0 0 0 1.41-1.41L4.41 9H14a1 1 0 1 0 0-2Z"[39m
-            [36m/>[39m
-          [36m</symbol>[39m
-        [36m</defs>[39m
-        [36m<use[39m
-          [33mhref[39m=[32m"#icon-arrow-left-16"[39m
-        [36m/>[39m
-      [36m</svg>[39m
-    [36m</a>[39m
-    [36m<ol[39m
-      [33mclass[39m=[32m"pagination__items"[39m
-    [36m>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 0[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 1[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 2[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<a[39m
-          [33maria-current[39m=[32m"page"[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 3[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 4[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 5[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 6[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 7[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 8[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 9[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 10[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 11[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 12[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 13[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 14[0m
-        [36m</a>[39m
-      [36m</li>[39m
-    [36m</ol>[39m
-    [36m<a[39m
-      [33maria-label[39m=[32m"next"[39m
-      [33mclass[39m=[32m"pagination__next icon-link"[39m
-      [33mhref[39m=[32m"#"[39m
-      [33mstyle[39m=[32m"min-width:40px"[39m
-      [33mtype[39m=[32m"next"[39m
-    [36m>[39m
-      [36m<svg[39m
-        [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--16"[39m
-        [33mfocusable[39m=[32m"false"[39m
-      [36m>[39m
-        [36m<defs>[39m
-          [36m<symbol[39m
-            [33mid[39m=[32m"icon-arrow-right-16"[39m
-            [33mviewBox[39m=[32m"0 0 16 16"[39m
-          [36m>[39m
-            [36m<path[39m
-              [33md[39m=[32m"M14.92 8.38a1 1 0 0 0-.22-1.09l-6-6a1 1 0 1 0-1.41 1.42L11.59 7H2a1 1 0 1 0 0 2h9.59l-4.3 4.29A1 1 0 1 0 8.7 14.7l6-6a1 1 0 0 0 .22-.32Z"[39m
-            [36m/>[39m
-          [36m</symbol>[39m
-        [36m</defs>[39m
-        [36m<use[39m
-          [33mhref[39m=[32m"#icon-arrow-right-16"[39m
-        [36m/>[39m
-      [36m</svg>[39m
-    [36m</a>[39m
-  [36m</nav>[39m
-[36m</DocumentFragment>[39m"
-`;
-
-exports[`pagination > with links > renders with aria-disabled when navigation is disabled 1`] = `
-"[36m<DocumentFragment>[39m
-  [36m<nav[39m
-    [33maria-labelledby[39m=[32m"s0-heading"[39m
-    [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"href\\":\\"#\\",\\"disabled\\":true},{\\"href\\":\\"#\\",\\"current\\":true},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"type\\":\\"next\\",\\"href\\":\\"#\\",\\"disabled\\":true}]"[39m
     [33mrole[39m=[32m"navigation"[39m
   [36m>[39m
     [36m<span[39m
@@ -2617,39 +2302,13 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
     [36m<ol[39m
       [33mclass[39m=[32m"pagination__items"[39m
     [36m>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 0[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 1[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 2[0m
-        [36m</a>[39m
-      [36m</li>[39m
       [36m<li>[39m
         [36m<a[39m
           [33maria-current[39m=[32m"page"[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 3[0m
+          [0m1[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li>[39m
@@ -2657,7 +2316,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 4[0m
+          [0m2[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li>[39m
@@ -2665,7 +2324,23 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 5[0m
+          [0m3[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m4[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m5[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2675,7 +2350,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 6[0m
+          [0m6[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2685,7 +2360,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 7[0m
+          [0m7[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2695,7 +2370,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 8[0m
+          [0m8[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2705,7 +2380,131 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 9[0m
+          [0m9[0m
+        [36m</a>[39m
+      [36m</li>[39m
+    [36m</ol>[39m
+    [36m<a[39m
+      [33maria-disabled[39m=[32m"true"[39m
+      [33maria-label[39m=[32m"next"[39m
+      [33mclass[39m=[32m"pagination__next icon-link"[39m
+      [33mhref[39m=[32m"#"[39m
+      [33mstyle[39m=[32m"min-width:40px"[39m
+      [33mtype[39m=[32m"next"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"icon icon--16"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-arrow-right-16"[39m
+            [33mviewBox[39m=[32m"0 0 16 16"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M14.92 8.38a1 1 0 0 0-.22-1.09l-6-6a1 1 0 1 0-1.41 1.42L11.59 7H2a1 1 0 1 0 0 2h9.59l-4.3 4.29A1 1 0 1 0 8.7 14.7l6-6a1 1 0 0 0 .22-.32Z"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-arrow-right-16"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+    [36m</a>[39m
+  [36m</nav>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`pagination > with links > renders with a selected item 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<nav[39m
+    [33maria-labelledby[39m=[32m"s0-heading"[39m
+    [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"href\\":\\"#\\",\\"disabled\\":true},{\\"href\\":\\"#\\",\\"current\\":true},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"type\\":\\"next\\",\\"href\\":\\"#\\",\\"disabled\\":true}]"[39m
+    [33mrole[39m=[32m"navigation"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33maria-live[39m=[32m"polite"[39m
+      [33mrole[39m=[32m"status"[39m
+    [36m>[39m
+      [36m<h2[39m
+        [33mclass[39m=[32m"clipped"[39m
+        [33mid[39m=[32m"s0-heading"[39m
+      [36m>[39m
+        [0mCurrent page[0m
+      [36m</h2>[39m
+    [36m</span>[39m
+    [36m<a[39m
+      [33maria-disabled[39m=[32m"true"[39m
+      [33maria-label[39m=[32m"previous"[39m
+      [33mclass[39m=[32m"pagination__previous icon-link"[39m
+      [33mhref[39m=[32m"#"[39m
+      [33mstyle[39m=[32m"min-width:40px"[39m
+      [33mtype[39m=[32m"previous"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"icon icon--16"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-arrow-left-16"[39m
+            [33mviewBox[39m=[32m"0 0 16 16"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M14 7H4.41l4.3-4.29a1.004 1.004 0 0 0-1.42-1.42l-6 6a1 1 0 0 0 0 1.41l6 6a1 1 0 0 0 1.41-1.41L4.41 9H14a1 1 0 1 0 0-2Z"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-arrow-left-16"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+    [36m</a>[39m
+    [36m<ol[39m
+      [33mclass[39m=[32m"pagination__items"[39m
+    [36m>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33maria-current[39m=[32m"page"[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m1[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m2[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m3[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m4[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m5[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2715,7 +2514,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 10[0m
+          [0m6[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2725,7 +2524,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 11[0m
+          [0m7[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2735,7 +2534,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 12[0m
+          [0m8[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2745,7 +2544,131 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 13[0m
+          [0m9[0m
+        [36m</a>[39m
+      [36m</li>[39m
+    [36m</ol>[39m
+    [36m<a[39m
+      [33maria-disabled[39m=[32m"true"[39m
+      [33maria-label[39m=[32m"next"[39m
+      [33mclass[39m=[32m"pagination__next icon-link"[39m
+      [33mhref[39m=[32m"#"[39m
+      [33mstyle[39m=[32m"min-width:40px"[39m
+      [33mtype[39m=[32m"next"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"icon icon--16"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-arrow-right-16"[39m
+            [33mviewBox[39m=[32m"0 0 16 16"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M14.92 8.38a1 1 0 0 0-.22-1.09l-6-6a1 1 0 1 0-1.41 1.42L11.59 7H2a1 1 0 1 0 0 2h9.59l-4.3 4.29A1 1 0 1 0 8.7 14.7l6-6a1 1 0 0 0 .22-.32Z"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-arrow-right-16"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+    [36m</a>[39m
+  [36m</nav>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`pagination > with links > renders with aria-disabled when navigation is disabled 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<nav[39m
+    [33maria-labelledby[39m=[32m"s0-heading"[39m
+    [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"href\\":\\"#\\",\\"disabled\\":true},{\\"href\\":\\"#\\",\\"current\\":true},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"type\\":\\"next\\",\\"href\\":\\"#\\",\\"disabled\\":true}]"[39m
+    [33mrole[39m=[32m"navigation"[39m
+  [36m>[39m
+    [36m<span[39m
+      [33maria-live[39m=[32m"polite"[39m
+      [33mrole[39m=[32m"status"[39m
+    [36m>[39m
+      [36m<h2[39m
+        [33mclass[39m=[32m"clipped"[39m
+        [33mid[39m=[32m"s0-heading"[39m
+      [36m>[39m
+        [0mCurrent page[0m
+      [36m</h2>[39m
+    [36m</span>[39m
+    [36m<a[39m
+      [33maria-disabled[39m=[32m"true"[39m
+      [33maria-label[39m=[32m"previous"[39m
+      [33mclass[39m=[32m"pagination__previous icon-link"[39m
+      [33mhref[39m=[32m"#"[39m
+      [33mstyle[39m=[32m"min-width:40px"[39m
+      [33mtype[39m=[32m"previous"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"icon icon--16"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-arrow-left-16"[39m
+            [33mviewBox[39m=[32m"0 0 16 16"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M14 7H4.41l4.3-4.29a1.004 1.004 0 0 0-1.42-1.42l-6 6a1 1 0 0 0 0 1.41l6 6a1 1 0 0 0 1.41-1.41L4.41 9H14a1 1 0 1 0 0-2Z"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-arrow-left-16"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+    [36m</a>[39m
+    [36m<ol[39m
+      [33mclass[39m=[32m"pagination__items"[39m
+    [36m>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33maria-current[39m=[32m"page"[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m1[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m2[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m3[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m4[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m5[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2755,7 +2678,37 @@ exports[`pagination > with links > renders with aria-disabled when navigation is
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 14[0m
+          [0m6[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m7[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m8[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li[39m
+        [33mhidden[39m=[32m""[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m9[0m
         [36m</a>[39m
       [36m</li>[39m
     [36m</ol>[39m
@@ -2796,6 +2749,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
   [36m<nav[39m
     [33maria-labelledby[39m=[32m"s0-heading"[39m
     [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"href\\":\\"#\\",\\"disabled\\":true},{\\"href\\":\\"#\\",\\"current\\":true},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"type\\":\\"next\\",\\"href\\":\\"#\\",\\"disabled\\":true}]"[39m
     [33mrole[39m=[32m"navigation"[39m
   [36m>[39m
     [36m<span[39m
@@ -2809,11 +2763,13 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
         [0mCurrent page[0m
       [36m</h2>[39m
     [36m</span>[39m
-    [36m<button[39m
+    [36m<a[39m
       [33maria-disabled[39m=[32m"true"[39m
       [33maria-label[39m=[32m"previous"[39m
-      [33mclass[39m=[32m"pagination__previous icon-btn"[39m
+      [33mclass[39m=[32m"pagination__previous icon-link"[39m
+      [33mhref[39m=[32m"#"[39m
       [33mstyle[39m=[32m"min-width:40px"[39m
+      [33mtype[39m=[32m"previous"[39m
     [36m>[39m
       [36m<svg[39m
         [33maria-hidden[39m=[32m"true"[39m
@@ -2834,43 +2790,17 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [33mhref[39m=[32m"#icon-arrow-left-16"[39m
         [36m/>[39m
       [36m</svg>[39m
-    [36m</button>[39m
+    [36m</a>[39m
     [36m<ol[39m
       [33mclass[39m=[32m"pagination__items"[39m
     [36m>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 0[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 1[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 2[0m
-        [36m</a>[39m
-      [36m</li>[39m
       [36m<li>[39m
         [36m<a[39m
           [33maria-current[39m=[32m"page"[39m
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 3[0m
+          [0m1[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li>[39m
@@ -2878,7 +2808,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 4[0m
+          [0m2[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li>[39m
@@ -2886,7 +2816,23 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 5[0m
+          [0m3[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m4[0m
+        [36m</a>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"pagination__item"[39m
+          [33mhref[39m=[32m"#"[39m
+        [36m>[39m
+          [0m5[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2896,7 +2842,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 6[0m
+          [0m6[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2906,7 +2852,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 7[0m
+          [0m7[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2916,7 +2862,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 8[0m
+          [0m8[0m
         [36m</a>[39m
       [36m</li>[39m
       [36m<li[39m
@@ -2926,65 +2872,17 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [33mclass[39m=[32m"pagination__item"[39m
           [33mhref[39m=[32m"#"[39m
         [36m>[39m
-          [0mitem 9[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 10[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 11[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 12[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 13[0m
-        [36m</a>[39m
-      [36m</li>[39m
-      [36m<li[39m
-        [33mhidden[39m=[32m""[39m
-      [36m>[39m
-        [36m<a[39m
-          [33mclass[39m=[32m"pagination__item"[39m
-          [33mhref[39m=[32m"#"[39m
-        [36m>[39m
-          [0mitem 14[0m
+          [0m9[0m
         [36m</a>[39m
       [36m</li>[39m
     [36m</ol>[39m
-    [36m<button[39m
+    [36m<a[39m
       [33maria-disabled[39m=[32m"true"[39m
       [33maria-label[39m=[32m"next"[39m
-      [33mclass[39m=[32m"pagination__next icon-btn"[39m
+      [33mclass[39m=[32m"pagination__next icon-link"[39m
+      [33mhref[39m=[32m"#"[39m
       [33mstyle[39m=[32m"min-width:40px"[39m
+      [33mtype[39m=[32m"next"[39m
     [36m>[39m
       [36m<svg[39m
         [33maria-hidden[39m=[32m"true"[39m
@@ -3005,7 +2903,7 @@ exports[`pagination > with links > renders with aria-disabled when navigation it
           [33mhref[39m=[32m"#icon-arrow-right-16"[39m
         [36m/>[39m
       [36m</svg>[39m
-    [36m</button>[39m
+    [36m</a>[39m
   [36m</nav>[39m
 [36m</DocumentFragment>[39m"
 `;
@@ -3015,6 +2913,7 @@ exports[`pagination > with links > renders with last page visible 1`] = `
   [36m<nav[39m
     [33maria-labelledby[39m=[32m"s0-heading"[39m
     [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"href\\":\\"#\\",\\"disabled\\":true},{\\"href\\":\\"#\\",\\"current\\":true},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"type\\":\\"next\\",\\"href\\":\\"#\\",\\"disabled\\":true}]"[39m
     [33mrole[39m=[32m"navigation"[39m
     [33mvariant[39m=[32m"show-last"[39m
   [36m>[39m
@@ -3207,6 +3106,7 @@ exports[`pagination > with links > renders with overflow 1`] = `
   [36m<nav[39m
     [33maria-labelledby[39m=[32m"s0-heading"[39m
     [33mclass[39m=[32m"pagination"[39m
+    [33mitem[39m=[32m"[{\\"type\\":\\"previous\\",\\"href\\":\\"#\\",\\"disabled\\":true},{\\"href\\":\\"#\\",\\"current\\":true},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"href\\":\\"#\\"},{\\"type\\":\\"next\\",\\"href\\":\\"#\\",\\"disabled\\":true}]"[39m
     [33mrole[39m=[32m"navigation"[39m
     [33mvariant[39m=[32m"overflow"[39m
   [36m>[39m
@@ -3575,24 +3475,4 @@ exports[`pagination > with links > renders with overflow 1`] = `
     [36m</a>[39m
   [36m</nav>[39m
 [36m</DocumentFragment>[39m"
-`;
-
-exports[`pagination-item > passes through additional html attributes from child items 1`] = `
-<button
-  class="pagination__item class1"
-  data-passed-through="true"
-  data-testid="AttributePassthrough"
-  style="color:red"
-  type="number"
-/>
-`;
-
-exports[`pagination-item > passes through additional html attributes from child items 2`] = `
-<button
-  class="pagination__item class1"
-  data-passed-through="true"
-  data-testid="AttributePassthrough"
-  style="color:red"
-  type="number"
-/>
 `;

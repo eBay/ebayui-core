@@ -68,7 +68,7 @@ export default {
             description:
                 "A list of selected options. Each item is the string that will be displayed in the selected list of chips. If it matches an item in the dropdown, it won't be shown in dropdown",
         },
-        options: {
+        option: {
             name: "@option",
             description:
                 "Repeatable attribute tag containing the autofill options",

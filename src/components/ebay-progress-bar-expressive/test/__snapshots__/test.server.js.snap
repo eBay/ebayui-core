@@ -4,6 +4,7 @@ exports[`progress-bar-expressive > renders custom accessible name 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
     [33mclass[39m=[32m"progress-bar-expressive"[39m
+    [33mmessages[39m=[32m"[{},{\\"duration\\":2000},{}]"[39m
   [36m>[39m
     [36m<div[39m
       [33mclass[39m=[32m"progress-bar-expressive__messages"[39m
@@ -204,6 +205,7 @@ exports[`progress-bar-expressive > renders message container 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
     [33mclass[39m=[32m"progress-bar-expressive"[39m
+    [33mmessages[39m=[32m"[{},{},{}]"[39m
   [36m>[39m
     [36m<div[39m
       [33mclass[39m=[32m"progress-bar-expressive__messages"[39m

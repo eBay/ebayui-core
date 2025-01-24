@@ -73,7 +73,7 @@ describe("menu-button", () => {
             input: {
                 type: "button",
             },
-            name: "items",
+            name: "item",
             multiple: true,
         },
     });

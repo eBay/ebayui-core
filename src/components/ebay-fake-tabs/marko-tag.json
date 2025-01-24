@@ -7,7 +7,7 @@
     "@html-attributes": "expression",
     "@selected-index": "number",
     "@tab-matches-current-url": "boolean",
-    "@tabs <tab>[]": {
+    "@tab <tab>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,
