@@ -71,7 +71,7 @@
     "dependencies": {
         "@floating-ui/dom": "^1.6.12",
         "@google/model-viewer": "^4.0.0",
-        "@marko-tags/subscribe": "^0.5.1",
+        "@marko-tags/subscribe": "^0.5.2",
         "highcharts": "11.3.0",
         "makeup-active-descendant": "0.7.4",
         "makeup-expander": "~0.11.4",
