@@ -8,7 +8,7 @@ import withFooterCode from "./examples/withFooter.marko?raw";
 import type { Input } from "./component";
 
 export default {
-    title: "dialogs/ebay-drawer-dialog",
+    title: "deprecated/ebay-drawer-dialog-deprecated",
     component: Component,
     parameters: {
         docs: {
