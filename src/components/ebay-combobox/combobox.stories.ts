@@ -8,6 +8,8 @@ import Combobox from "./index.marko";
 import type { Input } from "./component";
 import SearchFilteringTemplate from "./examples/search-filtering.marko";
 import SearchFilteringTemplateCode from "./examples/search-filtering.marko?raw";
+import ActionableButtonTemplate from "./examples/actionable-button.marko";
+import ActionableButtonTemplateCode from "./examples/actionable-button.marko?raw";
 import { Story } from "@storybook/marko";
 
 const Template: Story<Input> = (args) => ({
@@ -221,4 +223,9 @@ Isolated.parameters = {
 export const SearchFiltering = buildExtensionTemplate(
     SearchFilteringTemplate,
     SearchFilteringTemplateCode,
+);
+
+export const ActionableButton = buildExtensionTemplate(
+    ActionableButtonTemplate,
+    ActionableButtonTemplateCode,
 );

@@ -1,17 +1,30 @@
+import type { ComboboxEvent } from "../component";
 class {
-    toggle() {
-        console.log(this.getComponent<any>("combobox").isExpanded());
+    declare state: {
+        value: string;
+    }
+    onCreate() {
+        this.state = {
+            value: "Basic Offer 22"
+        }
+    }
+    handleClear() {
+        this.state.value=""
+    }
+    handleSelect(e: ComboboxEvent) {
+        this.state.value = e.selectedOption?.text || "";
     }
 }
 
 <ebay-combobox
     key="combobox"
     name="example2text"
-    value="Basic Offer 22"
+    value=state.value
     autocomplete="list"
-    on-button-click("toggle")>
+    on-button-click("handleClear")
+    on-select("handleSelect")>
     <@button aria-label="Toggle autocomplete">
-        <ebay-chevron-down-12-icon/>
+        <ebay-clear-16-icon/>
     </@button>
     <@option text="August Campaign"/>
     <@option text="4th of July Sale (paused)"/>

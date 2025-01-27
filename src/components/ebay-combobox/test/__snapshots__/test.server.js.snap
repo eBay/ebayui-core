@@ -35,29 +35,6 @@ exports[`combobox > passes through additional html attributes 2`] = `
       role="combobox"
       type="text"
     />
-    <!--F#f_@actionable-->
-    <svg
-      aria-hidden="true"
-      class="icon icon--12"
-      focusable="false"
-    >
-      <defs>
-        <symbol
-          id="icon-chevron-down-12"
-          viewBox="0 0 12 12"
-        >
-          <path
-            clip-rule="evenodd"
-            d="M1.808 4.188a.625.625 0 0 1 .884 0L6 7.495l3.308-3.307a.625.625 0 1 1 .884.885l-3.75 3.749a.625.625 0 0 1-.884 0l-3.75-3.749a.626.626 0 0 1 0-.885Z"
-            fill-rule="evenodd"
-          />
-        </symbol>
-      </defs>
-      <use
-        href="#icon-chevron-down-12"
-      />
-    </svg>
-    <!--F/-->
   </span>
   <div
     class="combobox__listbox"
@@ -139,27 +116,6 @@ exports[`combobox > renders basic version 1`] = `
         [33mrole[39m=[32m"combobox"[39m
         [33mtype[39m=[32m"text"[39m
       [36m/>[39m
-      [36m<svg[39m
-        [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--12"[39m
-        [33mfocusable[39m=[32m"false"[39m
-      [36m>[39m
-        [36m<defs>[39m
-          [36m<symbol[39m
-            [33mid[39m=[32m"icon-chevron-down-12"[39m
-            [33mviewBox[39m=[32m"0 0 12 12"[39m
-          [36m>[39m
-            [36m<path[39m
-              [33mclip-rule[39m=[32m"evenodd"[39m
-              [33md[39m=[32m"M1.808 4.188a.625.625 0 0 1 .884 0L6 7.495l3.308-3.307a.625.625 0 1 1 .884.885l-3.75 3.749a.625.625 0 0 1-.884 0l-3.75-3.749a.626.626 0 0 1 0-.885Z"[39m
-              [33mfill-rule[39m=[32m"evenodd"[39m
-            [36m/>[39m
-          [36m</symbol>[39m
-        [36m</defs>[39m
-        [36m<use[39m
-          [33mhref[39m=[32m"#icon-chevron-down-12"[39m
-        [36m/>[39m
-      [36m</svg>[39m
     [36m</span>[39m
     [36m<div[39m
       [33mclass[39m=[32m"combobox__listbox"[39m
@@ -242,27 +198,6 @@ exports[`combobox > renders empty 1`] = `
         [33mrole[39m=[32m"combobox"[39m
         [33mtype[39m=[32m"text"[39m
       [36m/>[39m
-      [36m<svg[39m
-        [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--12"[39m
-        [33mfocusable[39m=[32m"false"[39m
-      [36m>[39m
-        [36m<defs>[39m
-          [36m<symbol[39m
-            [33mid[39m=[32m"icon-chevron-down-12"[39m
-            [33mviewBox[39m=[32m"0 0 12 12"[39m
-          [36m>[39m
-            [36m<path[39m
-              [33mclip-rule[39m=[32m"evenodd"[39m
-              [33md[39m=[32m"M1.808 4.188a.625.625 0 0 1 .884 0L6 7.495l3.308-3.307a.625.625 0 1 1 .884.885l-3.75 3.749a.625.625 0 0 1-.884 0l-3.75-3.749a.626.626 0 0 1 0-.885Z"[39m
-              [33mfill-rule[39m=[32m"evenodd"[39m
-            [36m/>[39m
-          [36m</symbol>[39m
-        [36m</defs>[39m
-        [36m<use[39m
-          [33mhref[39m=[32m"#icon-chevron-down-12"[39m
-        [36m/>[39m
-      [36m</svg>[39m
     [36m</span>[39m
   [36m</span>[39m
 [36m</DocumentFragment>[39m"
@@ -373,27 +308,6 @@ exports[`combobox > renders with borderless enabled 1`] = `
         [33mrole[39m=[32m"combobox"[39m
         [33mtype[39m=[32m"text"[39m
       [36m/>[39m
-      [36m<svg[39m
-        [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--12"[39m
-        [33mfocusable[39m=[32m"false"[39m
-      [36m>[39m
-        [36m<defs>[39m
-          [36m<symbol[39m
-            [33mid[39m=[32m"icon-chevron-down-12"[39m
-            [33mviewBox[39m=[32m"0 0 12 12"[39m
-          [36m>[39m
-            [36m<path[39m
-              [33mclip-rule[39m=[32m"evenodd"[39m
-              [33md[39m=[32m"M1.808 4.188a.625.625 0 0 1 .884 0L6 7.495l3.308-3.307a.625.625 0 1 1 .884.885l-3.75 3.749a.625.625 0 0 1-.884 0l-3.75-3.749a.626.626 0 0 1 0-.885Z"[39m
-              [33mfill-rule[39m=[32m"evenodd"[39m
-            [36m/>[39m
-          [36m</symbol>[39m
-        [36m</defs>[39m
-        [36m<use[39m
-          [33mhref[39m=[32m"#icon-chevron-down-12"[39m
-        [36m/>[39m
-      [36m</svg>[39m
     [36m</span>[39m
     [36m<div[39m
       [33mclass[39m=[32m"combobox__listbox"[39m
@@ -479,29 +393,7 @@ exports[`combobox > renders with default actionable button 1`] = `
       [36m<button[39m
         [33maria-label[39m=[32m"Actionable Button"[39m
         [33mclass[39m=[32m"icon-btn icon-btn--transparent"[39m
-      [36m>[39m
-        [36m<svg[39m
-          [33maria-hidden[39m=[32m"true"[39m
-          [33mclass[39m=[32m"icon icon--12"[39m
-          [33mfocusable[39m=[32m"false"[39m
-        [36m>[39m
-          [36m<defs>[39m
-            [36m<symbol[39m
-              [33mid[39m=[32m"icon-chevron-down-12"[39m
-              [33mviewBox[39m=[32m"0 0 12 12"[39m
-            [36m>[39m
-              [36m<path[39m
-                [33mclip-rule[39m=[32m"evenodd"[39m
-                [33md[39m=[32m"M1.808 4.188a.625.625 0 0 1 .884 0L6 7.495l3.308-3.307a.625.625 0 1 1 .884.885l-3.75 3.749a.625.625 0 0 1-.884 0l-3.75-3.749a.626.626 0 0 1 0-.885Z"[39m
-                [33mfill-rule[39m=[32m"evenodd"[39m
-              [36m/>[39m
-            [36m</symbol>[39m
-          [36m</defs>[39m
-          [36m<use[39m
-            [33mhref[39m=[32m"#icon-chevron-down-12"[39m
-          [36m/>[39m
-        [36m</svg>[39m
-      [36m</button>[39m
+      [36m/>[39m
     [36m</span>[39m
     [36m<div[39m
       [33mclass[39m=[32m"combobox__listbox"[39m
@@ -591,27 +483,6 @@ exports[`combobox > renders with floating label 1`] = `
         [33mtype[39m=[32m"text"[39m
         [33mvalue[39m=[32m""[39m
       [36m/>[39m
-      [36m<svg[39m
-        [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--12"[39m
-        [33mfocusable[39m=[32m"false"[39m
-      [36m>[39m
-        [36m<defs>[39m
-          [36m<symbol[39m
-            [33mid[39m=[32m"icon-chevron-down-12"[39m
-            [33mviewBox[39m=[32m"0 0 12 12"[39m
-          [36m>[39m
-            [36m<path[39m
-              [33mclip-rule[39m=[32m"evenodd"[39m
-              [33md[39m=[32m"M1.808 4.188a.625.625 0 0 1 .884 0L6 7.495l3.308-3.307a.625.625 0 1 1 .884.885l-3.75 3.749a.625.625 0 0 1-.884 0l-3.75-3.749a.626.626 0 0 1 0-.885Z"[39m
-              [33mfill-rule[39m=[32m"evenodd"[39m
-            [36m/>[39m
-          [36m</symbol>[39m
-        [36m</defs>[39m
-        [36m<use[39m
-          [33mhref[39m=[32m"#icon-chevron-down-12"[39m
-        [36m/>[39m
-      [36m</svg>[39m
     [36m</span>[39m
     [36m<div[39m
       [33mclass[39m=[32m"combobox__listbox"[39m
@@ -695,27 +566,6 @@ exports[`combobox > renders with second item selected 1`] = `
         [33mtype[39m=[32m"text"[39m
         [33mvalue[39m=[32m"Basic Offer"[39m
       [36m/>[39m
-      [36m<svg[39m
-        [33maria-hidden[39m=[32m"true"[39m
-        [33mclass[39m=[32m"icon icon--12"[39m
-        [33mfocusable[39m=[32m"false"[39m
-      [36m>[39m
-        [36m<defs>[39m
-          [36m<symbol[39m
-            [33mid[39m=[32m"icon-chevron-down-12"[39m
-            [33mviewBox[39m=[32m"0 0 12 12"[39m
-          [36m>[39m
-            [36m<path[39m
-              [33mclip-rule[39m=[32m"evenodd"[39m
-              [33md[39m=[32m"M1.808 4.188a.625.625 0 0 1 .884 0L6 7.495l3.308-3.307a.625.625 0 1 1 .884.885l-3.75 3.749a.625.625 0 0 1-.884 0l-3.75-3.749a.626.626 0 0 1 0-.885Z"[39m
-              [33mfill-rule[39m=[32m"evenodd"[39m
-            [36m/>[39m
-          [36m</symbol>[39m
-        [36m</defs>[39m
-        [36m<use[39m
-          [33mhref[39m=[32m"#icon-chevron-down-12"[39m
-        [36m/>[39m
-      [36m</svg>[39m
     [36m</span>[39m
     [36m<div[39m
       [33mclass[39m=[32m"combobox__listbox"[39m
