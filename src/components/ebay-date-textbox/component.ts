@@ -1,4 +1,5 @@
 import Expander from "makeup-expander";
+import { DropdownUtil } from "../../common/dropdown";
 import { type DayISO, dateArgToISO } from "../../common/dates/date-utils";
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
@@ -56,6 +57,7 @@ interface State {
 
 class DateTextbox extends Marko.Component<Input, State> {
     declare expander: any;
+    declare dropdownUtil: DropdownUtil;
 
     onCreate() {
         this.state = {
@@ -73,10 +75,13 @@ class DateTextbox extends Marko.Component<Input, State> {
             expandOnClick: true,
             autoCollapse: true,
         });
+
+        this.dropdownUtil = new DropdownUtil(this.el as HTMLElement, this.getEl("popover"))
     }
 
     onDestroy() {
         this.expander?.destroy();
+        this.dropdownUtil?.cleanup();
     }
 
     onInput(input: Input) {
@@ -117,10 +122,12 @@ class DateTextbox extends Marko.Component<Input, State> {
     openPopover() {
         this.calculateNumMonths();
         this.state.popover = true;
+        this.dropdownUtil.show();
     }
 
     closePopover() {
         this.state.popover = false;
+        this.dropdownUtil.hide();
     }
 
     onPopoverSelect({ iso }: { iso: DayISO }) {

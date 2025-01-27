@@ -23,22 +23,6 @@ export default {
             control: { type: "text" },
             description: "The asset to load",
         },
-        cdnVersion: {
-            control: { type: "text" },
-            table: {
-                category: "",
-                defaultValue: {
-                    summary: "2.1.1",
-                },
-            },
-            description:
-                "The version of the assets to load from CDN. This can be overriden in case the current verion has issues",
-        },
-        cdnUrl: {
-            control: { type: "text" },
-            description:
-                "This will override the whole URL used for downloading the media player assets. This is mainly used if you want to use your own CDN.",
-        },
         a11yText: {
             control: { type: "text" },
             table: {

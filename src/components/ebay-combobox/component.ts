@@ -1,10 +1,11 @@
 import { createLinear } from "makeup-active-descendant";
 import FloatingLabel from "makeup-floating-label";
 import Expander from "makeup-expander";
+import { DropdownUtil } from "../../common/dropdown";
 import { scroll } from "../../common/element-scroll";
 import * as eventUtils from "../../common/event-utils";
 import safeRegex from "../../common/build-safe-regex";
-import type { AttrClass } from "marko/tags-html";
+import type { AttrClass, AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 
 export interface ComboboxOption {
@@ -20,21 +21,24 @@ export interface ComboboxEvent {
     options: Input["options"];
 }
 
-interface ComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
+interface ComboboxInput extends Omit<Marko.HTML.Input, `on${string}`> {
     expanded?: boolean;
     borderless?: boolean;
     fluid?: boolean;
     autocomplete?: "list" | "none";
     "list-selection"?: "manual" | "automatic";
-    "floating-label"?: boolean;
-    "view-all-options"?: boolean;
+    "floating-label"?: AttrString;
     button?: Marko.Input<"button"> &
         Marko.AttrTag<{
             htmlAttributes?: Record<string, unknown>;
             renderBody?: Marko.Body;
         }>;
     options?: Marko.AttrTag<ComboboxOption>;
-    "chevron-size"?: "large";
+    /**
+     * For internal use only. Used when combobox container changes.
+     * @returns The dropdown element to be used for the combobox
+     */
+    "dropdown-element"?: () => HTMLElement;
     "on-focus"?: (event: ComboboxEvent) => void;
     "on-button-click"?: (event: { originalEvent: MouseEvent }) => void;
     "on-expand"?: () => void;
@@ -51,7 +55,6 @@ export interface Input extends WithNormalizedProps<ComboboxInput> {}
 
 interface State {
     currentValue: Input["value"];
-    viewAllOptions: boolean;
 }
 
 export default class Combobox extends Marko.Component<Input, State> {
@@ -65,6 +68,7 @@ export default class Combobox extends Marko.Component<Input, State> {
     declare expanded?: boolean;
     declare expandedChange: boolean;
     declare _floatingLabel: any;
+    declare dropdownUtil: DropdownUtil;
 
     focus() {
         (this.getEl("combobox") as HTMLElement).focus();
@@ -120,19 +124,14 @@ export default class Combobox extends Marko.Component<Input, State> {
     }
 
     handleExpand() {
-        if (this.state.viewAllOptions || this.input.viewAllOptions !== true) {
-            this.setSelectedView();
-        } else {
-            this.state.viewAllOptions = true;
-            this.once("update", () => {
-                this.setSelectedView();
-            });
-        }
+        this.setSelectedView();
+        this.dropdownUtil.show();
         this.emit("expand");
     }
 
     handleCollapse() {
         this.activeDescendant.reset();
+        this.dropdownUtil.hide();
         this.emit("collapse");
     }
 
@@ -182,8 +181,6 @@ export default class Combobox extends Marko.Component<Input, State> {
                 // We force the expander open just in case.
                 this.expand();
             });
-            this.state.viewAllOptions = false;
-
             this._emitComboboxEvent("input-change");
         });
     }
@@ -236,10 +233,6 @@ export default class Combobox extends Marko.Component<Input, State> {
         this.lastValue = input.value;
         this.state = {
             currentValue: this.lastValue,
-            viewAllOptions:
-                (this.state && this.state.viewAllOptions) ||
-                input.viewAllOptions ||
-                false,
         };
         if (this.expander) {
             this.expandedChange = input.expanded !== this.expanded;
@@ -322,6 +315,14 @@ export default class Combobox extends Marko.Component<Input, State> {
             }
         }
 
+        this.dropdownUtil = new DropdownUtil(
+            this.input.dropdownElement?.() ?? this.getEl("combobox"),
+            this.getEl("listbox"),
+        );
+        if (this.isExpanded()) {
+            this.dropdownUtil.show();
+        }
+
         if (this.input.floatingLabel) {
             this._setupFloatingLabel();
         }
@@ -362,7 +363,7 @@ export default class Combobox extends Marko.Component<Input, State> {
     }
 
     _getVisibleOptions() {
-        if (this.autocomplete === "none" || this.state.viewAllOptions) {
+        if (this.autocomplete === "none") {
             return [...(this.input.options ?? [])];
         }
 

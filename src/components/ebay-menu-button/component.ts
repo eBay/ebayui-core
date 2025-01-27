@@ -1,5 +1,6 @@
 import Expander from "makeup-expander";
 import * as eventUtils from "../../common/event-utils";
+import { DropdownUtil } from "../../common/dropdown";
 import setupMenu, {
     MenuUtils,
     type BaseMenuInput,
@@ -22,7 +23,7 @@ export interface MenuButtonEvent {
 
 interface MenuButtonInput
     extends BaseMenuInput,
-        Omit<Marko.Input<"span">, `on${string}`> {
+        Omit<Marko.HTML.Span, `on${string}`> {
     "collapse-on-select"?: boolean;
     "prefix-id"?: string;
     variant?: "overflow" | "form" | "button" | "icon";
@@ -54,6 +55,7 @@ export interface Input extends WithNormalizedProps<MenuButtonInput> {}
 
 export default class extends MenuUtils<Input, MenuState> {
     declare expander: any;
+    declare dropdownUtil: DropdownUtil;
 
     onCreate() {
         setupMenu(this);
@@ -124,6 +126,7 @@ export default class extends MenuUtils<Input, MenuState> {
         if (this.input.disabled) {
             return;
         }
+        this.dropdownUtil.show();
         this.emitComponentEvent({ eventType: "expand" });
     }
 
@@ -131,6 +134,7 @@ export default class extends MenuUtils<Input, MenuState> {
         if (this.input.disabled) {
             return;
         }
+        this.dropdownUtil.hide();
         this.emitComponentEvent({ eventType: "collapse" });
     }
 
@@ -225,11 +229,21 @@ export default class extends MenuUtils<Input, MenuState> {
             autoCollapse: true,
             alwaysDoFocusManagement: true,
         });
+
+        this.dropdownUtil = new DropdownUtil(
+            this.getEl("button"),
+            this.getEl("content"),
+            {
+                reverse: this.input.reverse
+            }
+        );
     }
 
     _cleanupMakeup() {
         if (this.expander) {
             this.expander.destroy();
         }
+
+        this.dropdownUtil?.cleanup?.();
     }
 }

@@ -1,12 +1,13 @@
 import Expander from "makeup-expander";
 import * as scrollKeyPreventer from "makeup-prevent-scroll-keys";
+import { DropdownUtil } from "../../common/dropdown";
 import type { Input as ListboxInput } from "../ebay-listbox/component";
 import type Listbox from "../ebay-listbox/component";
 import type { ChangeEvent } from "../ebay-listbox/component";
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
 
-interface ListboxButtonInput extends Omit<Marko.Input<"div">, `on${string}`> {
+interface ListboxButtonInput extends Omit<Marko.HTML.Div, `on${string}`> {
     options?: ListboxInput["options"];
     name?: ListboxInput["name"];
     "list-selection"?: ListboxInput["listSelection"];
@@ -40,14 +41,17 @@ interface State {
 
 class ListboxButton extends Marko.Component<Input, State> {
     declare _expander: any;
+    declare dropdownUtil: DropdownUtil;
 
     handleExpand() {
         (this.getComponent("options") as Listbox).elementScroll();
+        this.dropdownUtil.show();
         this.emit("expand");
     }
 
     handleCollapse() {
         (this.getEl("button") as HTMLButtonElement).focus();
+        this.dropdownUtil.hide();
         this.emit("collapse");
     }
 
@@ -122,6 +126,7 @@ class ListboxButton extends Marko.Component<Input, State> {
 
             scrollKeyPreventer.add(this.getEl("button"));
         }
+        this.dropdownUtil = new DropdownUtil(this.getEl("button"), this.getEl("options"))
     }
 
     _cleanupMakeup() {
@@ -129,6 +134,8 @@ class ListboxButton extends Marko.Component<Input, State> {
             this._expander.destroy();
             this._expander = undefined;
         }
+
+        this.dropdownUtil?.cleanup();
     }
 }
 

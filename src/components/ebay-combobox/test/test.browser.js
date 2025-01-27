@@ -190,7 +190,7 @@ describe("given the combobox with 3 items and 2 selected and view all options", 
     beforeEach(async () => {
         component = await render(Isolated, {
             value: Isolated.args.options[1].text,
-            viewAllOptions: true,
+            autocomplete: "none",
         });
     });
 

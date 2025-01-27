@@ -2,15 +2,15 @@ import { processHtmlAttributes } from '../../common/html-attributes';
 import type { WithNormalizedProps } from '../../global';
 import type { AttrString } from 'marko/tags-html';
 
-export interface Step extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
+export interface Step extends Omit<Marko.HTML.Div, `on${string}` | "title"> {
     current?: boolean;
     a11yText?: string;
-    title?: Omit<Marko.Input<"h4">, `on${string}`> & {
+    title?: Marko.AttrTag<Omit<Marko.HTML.H4, `on${string}`> & {
         as?: keyof Marko.NativeTags;
-    }
+    }>
 }
 
-static interface ProgressStepperInput extends Omit<Marko.Input<"div">, `on${string}`> {
+static interface ProgressStepperInput extends Omit<Marko.HTML.Div, `on${string}`> {
     direction?: "row" | "column";
     step?: Marko.AttrTag<Step>;
     "default-state"?: "complete" | "upcoming" | "attention" | "current";

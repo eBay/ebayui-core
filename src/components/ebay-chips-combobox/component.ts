@@ -6,7 +6,7 @@ export interface ChipsComboboxEvent {
     selected: string[];
 }
 
-interface ChipsComboboxInput extends Omit<Marko.Input<"input">, `on${string}`> {
+interface ChipsComboboxInput extends Omit<Marko.HTML.Input, `on${string}`> {
     expanded?: boolean;
     fluid?: boolean;
     error?: boolean;

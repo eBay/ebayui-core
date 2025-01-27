@@ -1,0 +1,81 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`3d-viewer > renders default 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"three-d-player"[39m
+  [36m>[39m
+    [36m<model-viewer[39m
+      [33malt[39m=[32m"View these shoes for sale."[39m
+      [33mcamera-controls[39m=[32m""[39m
+      [33msrc[39m=[32m"https://ir.ebaystatic.com/cr/v/c1/ebayui/3d/v1/image.glb"[39m
+      [33mtouch-action[39m=[32m"pan-y"[39m
+    [36m/>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"three-d-player__overlay three-d-player__overlay--hidden"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-hidden[39m=[32m"true"[39m
+        [33mclass[39m=[32m"icon icon--24"[39m
+        [33mfocusable[39m=[32m"false"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-attention-24"[39m
+            [33mviewBox[39m=[32m"0 0 24 24"[39m
+          [36m>[39m
+            [36m<path[39m
+              [33md[39m=[32m"M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12C23.994 5.375 18.625.006 12 0Zm0 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c-.006 5.52-4.48 9.994-10 10ZM11 7a1 1 0 1 1 2 0v6a1 1 0 1 1-2 0V7Zm1 11a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-attention-24"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"three-d-player__overlay-text"[39m
+      [36m>[39m
+        [0mAn error has occurred[0m
+      [36m</div>[39m
+    [36m</div>[39m
+    [36m<div[39m
+      [33mclass[39m=[32m"three-d-player__overlay three-d-player__overlay--hidden"[39m
+    [36m>[39m
+      [36m<svg[39m
+        [33maria-labelledby[39m=[32m"s0-5-0-text"[39m
+        [33mclass[39m=[32m"icon icon--64-colored"[39m
+        [33mfocusable[39m=[32m"false"[39m
+        [33mrole[39m=[32m"img"[39m
+      [36m>[39m
+        [36m<defs>[39m
+          [36m<symbol[39m
+            [33mid[39m=[32m"icon-play-filled-64-colored"[39m
+            [33mviewBox[39m=[32m"0 0 64 64"[39m
+          [36m>[39m
+            [36m<circle[39m
+              [33mcx[39m=[32m"32"[39m
+              [33mcy[39m=[32m"32"[39m
+              [33mfill[39m=[32m"#fff"[39m
+              [33mfill-opacity[39m=[32m".88"[39m
+              [33mr[39m=[32m"32"[39m
+            [36m/>[39m
+            [36m<path[39m
+              [33md[39m=[32m"m26.131 16.41 21.6 13.33a2.648 2.648 0 0 1 0 4.52l-21.6 13.33C24.333 48.7 22 47.425 22 45.33V18.67c0-2.094 2.333-3.37 4.131-2.26Z"[39m
+              [33mfill[39m=[32m"#191919"[39m
+            [36m/>[39m
+          [36m</symbol>[39m
+        [36m</defs>[39m
+        [36m<title[39m
+          [33mid[39m=[32m"s0-5-0-text"[39m
+        [36m>[39m
+          [0mClick to start[0m
+        [36m</title>[39m
+        [36m<use[39m
+          [33mhref[39m=[32m"#icon-play-filled-64-colored"[39m
+        [36m/>[39m
+      [36m</svg>[39m
+    [36m</div>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;

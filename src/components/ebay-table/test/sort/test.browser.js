@@ -26,7 +26,6 @@ describe("given sortable table with Seller column is sorted in ascending order (
         it("then proper sort event should be emitted", async () => {
             expect(sellerColumn).toMatchInlineSnapshot(`
               <button
-                aria-pressed="true"
                 type="button"
               >
                 
@@ -68,7 +67,6 @@ describe("given sortable table with Seller column is sorted in ascending order (
             it("then proper sort event should be emitted", async () => {
                 expect(sellerColumn).toMatchInlineSnapshot(`
                   <button
-                    aria-pressed="false"
                     type="button"
                   >
                     

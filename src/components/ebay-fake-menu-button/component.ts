@@ -1,5 +1,6 @@
 import Expander from "makeup-expander";
 import * as eventUtils from "../../common/event-utils";
+import { DropdownUtil } from "../../common/dropdown";
 import type { MenuEvent } from "../ebay-fake-menu/component";
 import type {
     Input as FakeMenuInput,
@@ -8,7 +9,7 @@ import type {
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
 
-interface FakeMenuButtonInput extends Omit<Marko.Input<"span">, `on${string}`> {
+interface FakeMenuButtonInput extends Omit<Marko.HTML.Span, `on${string}`> {
     text?: AttrString;
     size?: "none" | "large";
     "prefix-id"?: string;
@@ -38,6 +39,7 @@ export interface Input extends WithNormalizedProps<FakeMenuButtonInput> {}
 
 class FakeMenuButton extends Marko.Component<Input> {
     declare expander: any;
+    declare dropdownUtil: DropdownUtil;
 
     handleMenuKeydown({ el, originalEvent, index }: MenuEvent) {
         eventUtils.handleActionKeydown(originalEvent as KeyboardEvent, () => {
@@ -59,10 +61,12 @@ class FakeMenuButton extends Marko.Component<Input> {
     }
 
     handleExpand() {
+        this.dropdownUtil.show();
         this.emitComponentEvent({ eventType: "expand" });
     }
 
     handleCollapse() {
+        this.dropdownUtil.hide();
         this.emitComponentEvent({ eventType: "collapse" });
     }
 
@@ -129,12 +133,21 @@ class FakeMenuButton extends Marko.Component<Input> {
             autoCollapse: true,
             alwaysDoFocusManagement: true,
         });
+
+        this.dropdownUtil = new DropdownUtil(
+            this.getEl("button"),
+            this.getEl("content"),
+            {
+                reverse: this.input.reverse,
+            },
+        );
     }
 
     _cleanupMakeup() {
         if (this.expander) {
             this.expander.destroy();
         }
+        this.dropdownUtil?.cleanup();
     }
 }
 

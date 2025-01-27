@@ -2,12 +2,12 @@ import FloatingLabel from "makeup-floating-label";
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
 
-export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
+export interface Option extends Omit<Marko.HTML.Option, `on${string}`> {
     optgroup?: string;
     text?: string;
 }
 
-interface SelectInput extends Omit<Marko.Input<"select">, `on${string}`> {
+interface SelectInput extends Omit<Marko.HTML.Select, `on${string}`> {
     options?: Marko.AttrTag<Option>;
     "floating-label"?: AttrString;
     "is-large"?: boolean;

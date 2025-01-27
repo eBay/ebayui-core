@@ -6,14 +6,14 @@ export interface FileInputEvent {
 }
 
 interface FileInputInput
-    extends Omit<Marko.Input<"input">, `on${string}` | "type"> {
+    extends Omit<Marko.HTML.Input, `on${string}` | "type"> {
     renderBody?: Marko.Body;
     header?: Marko.AttrTag<
         Marko.Input<`h${number}`> & {
             as?: `h${number}`;
         }
     >;
-    subheader?: Marko.AttrTag<Marko.Input<"span">>;
+    subheader?: Marko.AttrTag<Marko.HTML.Span>;
     "on-input"?: (event: FileInputEvent) => void;
 }
 

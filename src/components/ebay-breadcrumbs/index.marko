@@ -38,7 +38,7 @@ $ var anyHref = (items || []).some((element) => element.href != null);
                     >
                         <for|i| of=state.hiddenIndex>
                             <@item
-                                type=(anyHref ? 'a' : 'button') as (Marko.Input<"button">["type"])
+                                type=(anyHref ? 'a' : 'button') as (Marko.HTML.Button["type"])
                                 ...processHtmlAttributes(items[i])
                             >
                                 <${items[i].renderBody}/>

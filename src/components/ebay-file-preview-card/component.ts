@@ -13,7 +13,7 @@ export type FilePreviewCardMenuAction = {
     label: string;
 };
 
-interface FilePreviewCardInput extends Omit<Marko.Input<"div">, `on${string}`> {
+interface FilePreviewCardInput extends Omit<Marko.HTML.Div, `on${string}`> {
     "a11y-cancel-upload-text"?: AttrString;
     "delete-text"?: AttrString;
     as?: keyof Marko.NativeTags;

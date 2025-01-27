@@ -1,8 +1,7 @@
 import type { AttrString } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 
-export interface FilterInput
-    extends Omit<Marko.Input<"button">, `on${string}`> {
+export interface FilterInput extends Omit<Marko.HTML.Button, `on${string}`> {
     selected?: boolean;
     href?: string;
     "use-aria-pressed"?: boolean;

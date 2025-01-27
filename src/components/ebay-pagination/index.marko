@@ -83,7 +83,7 @@ $ var range = component._getVisibleRange(items);
                                     <if(isItemHidden(j, range) && visible)>
                                         <@item
                                             ...processHtmlAttributes(item, ignoredItemAttributes)
-                                            type=component.getItemTag(item) as (Marko.Input<"button">["type"])
+                                            type=component.getItemTag(item) as (Marko.HTML.Button["type"])
                                             data-page-number=j
                                         >
                                             <${item.renderBody}/>
