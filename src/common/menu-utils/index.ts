@@ -10,7 +10,6 @@ export interface MenuItem extends Omit<Marko.HTML.Button, `on${string}`> {
 export interface BaseMenuInput {
     items?: Marko.AttrTag<MenuItem>;
     type?: string;
-    separator?: Marko.AttrTag<{}>;
 }
 
 export interface MenuState {
@@ -55,8 +54,8 @@ export class MenuUtils<
     }
 
     getInputState(input: Input) {
-        /* 
-            ebay-menu uses separators and we need to exclude these 
+        /*
+            ebay-menu uses separators and we need to exclude these
             from items to pass correct indexes to state
             Any other component that doesn't have separator should pass through
         */
