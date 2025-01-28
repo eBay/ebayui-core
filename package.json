@@ -69,7 +69,7 @@
         "extends @ebay/browserslist-config"
     ],
     "dependencies": {
-        "@floating-ui/dom": "^1.6.12",
+        "@floating-ui/dom": "^1.6.13",
         "@google/model-viewer": "^4.0.0",
         "@marko-tags/subscribe": "^0.5.1",
         "highcharts": "11.3.0",
