@@ -76,7 +76,10 @@ class DateTextbox extends Marko.Component<Input, State> {
             autoCollapse: true,
         });
 
-        this.dropdownUtil = new DropdownUtil(this.el as HTMLElement, this.getEl("popover"))
+        this.dropdownUtil = new DropdownUtil(
+            this.el as HTMLElement,
+            this.getEl("popover"),
+        );
     }
 
     onDestroy() {

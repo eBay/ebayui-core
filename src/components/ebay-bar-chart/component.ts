@@ -97,7 +97,7 @@ class BarChart extends Marko.Component<Input> {
             : [this.input.series];
         const stacked = this.input.stacked;
         const title = this.input.title;
-        
+
         // controls rounded corders and spacing at the bottom of data points
         if (stacked) {
             series[0].bottom = true; // set a variable on the first series so it renders rounder corners on the bottom of the bar

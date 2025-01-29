@@ -234,8 +234,8 @@ export default class extends MenuUtils<Input, MenuState> {
             this.getEl("button"),
             this.getEl("content"),
             {
-                reverse: this.input.reverse
-            }
+                reverse: this.input.reverse,
+            },
         );
     }
 

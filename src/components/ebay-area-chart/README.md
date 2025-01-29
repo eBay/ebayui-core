@@ -11,6 +11,6 @@ The area chart displays one to five series of data points as an interactive stac
 
 ## Examples and Documentation
 
--   [Storybook](https://ebay.github.io/ebayui-core/?path=/docs/charts-ebay-area-chart)
--   [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/charts-ebay-area-chart)
--   [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-area-chart/examples)
+- [Storybook](https://ebay.github.io/ebayui-core/?path=/docs/charts-ebay-area-chart)
+- [Storybook Docs](https://ebay.github.io/ebayui-core/?path=/docs/charts-ebay-area-chart)
+- [Code Examples](https://github.com/eBay/ebayui-core/tree/master/src/components/ebay-area-chart/examples)

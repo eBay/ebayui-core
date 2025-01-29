@@ -126,7 +126,10 @@ class ListboxButton extends Marko.Component<Input, State> {
 
             scrollKeyPreventer.add(this.getEl("button"));
         }
-        this.dropdownUtil = new DropdownUtil(this.getEl("button"), this.getEl("options"))
+        this.dropdownUtil = new DropdownUtil(
+            this.getEl("button"),
+            this.getEl("options"),
+        );
     }
 
     _cleanupMakeup() {

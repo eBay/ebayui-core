@@ -1,0 +1,22 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "14.6.9"
+  },
+  "changesets": [
+    "breezy-toys-agree",
+    "fast-toys-sparkle",
+    "healthy-ducks-sip",
+    "lemon-mangos-thank",
+    "poor-mirrors-float",
+    "rotten-geckos-sniff",
+    "sharp-bees-grin",
+    "short-crabs-retire",
+    "sixty-experts-marry",
+    "smooth-rules-laugh",
+    "thirty-walls-notice",
+    "tidy-rockets-wonder",
+    "wet-wombats-roll"
+  ]
+}
