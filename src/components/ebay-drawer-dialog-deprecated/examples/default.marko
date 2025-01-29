@@ -2,7 +2,7 @@ export interface Input {
     renderBody?: Marko.Body;
 }
 
-<ebay-drawer-dialog
+<ebay-drawer-dialog-deprecated
     a11y-close-text="Close drawer"
     open=state.open
     on-close("closeDrawer")
@@ -11,7 +11,7 @@ export interface Input {
     on-open("emit", "open")
     ...input>
     <${input.renderBody}/>
-</ebay-drawer-dialog>
+</ebay-drawer-dialog-deprecated>
 <ebay-button on-click("openDrawer")>Open drawer</ebay-button>
 class {
     declare state: {

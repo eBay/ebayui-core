@@ -1,13 +1,13 @@
 <h1 style='display: flex; justify-content: space-between; align-items: center;'>
     <span>
-        ebay-drawer-dialog
+        ebay-drawer-dialog-deprecated
     </span>
     <span style='font-weight: normal; font-size: medium; margin-bottom: -15px;'>
         DS v1.2.0
     </span>
 </h1>
 
-** Deprecated ** (Use lightbox-dialog instead)
+** Deprecated will be removed next major ** (Use lightbox-dialog instead)
 Dialog which slides in from the bottom of the screen. Used mainly on moble.
 
 ## Examples and Documentation

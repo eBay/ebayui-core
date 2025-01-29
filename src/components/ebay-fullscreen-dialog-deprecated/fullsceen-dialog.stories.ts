@@ -10,7 +10,7 @@ const Template: Story<Input> = (args) => ({
 });
 
 export default {
-    title: "dialogs/ebay-fullscreen-dialog",
+    title: "deprecated/ebay-fullscreen-dialog-deprecated",
     component: Component,
     parameters: {
         docs: {
