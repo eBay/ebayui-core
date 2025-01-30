@@ -26,10 +26,3 @@ export const Footer_Button = Object.assign({}, Page, {
         renderBody: createRenderBody("Footer"),
     },
 });
-
-export const Page_Celebration = Object.assign({}, Page, {
-    status: "celebration",
-    title: {
-        renderBody: createRenderBody("Title"),
-    },
-});

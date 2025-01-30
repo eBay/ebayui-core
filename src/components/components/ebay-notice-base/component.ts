@@ -5,7 +5,6 @@ interface NoticeBaseInput
     extends Omit<Marko.HTML.Section, "title" | `on${string}`> {
     status?:
         | "confirmation"
-        | "celebration"
         | "attention"
         | "information"
         | "education";
