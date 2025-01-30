@@ -154,8 +154,6 @@ class Listbox extends Marko.Component<Input, State> {
     _setupMakeup() {
         const { input, state } = this;
 
-        // This `as any` is here for while `options` is coerced into an array from `marko-tag.json`.
-        // After we move to the full `iterator` we can switch to `if (input.options && !input.disabled)`
         if ((input.option as any)?.length && !input.disabled) {
             const container = this.getEl("options");
             const optionsContainer = this.getEl("options");

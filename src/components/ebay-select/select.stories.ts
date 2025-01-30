@@ -138,7 +138,7 @@ ExternalLabel.parameters = {
 };
 
 ExternalLabel.args = {
-    option: [ //This breaks if I set it to option, but it looks like everything's already swamped.
+    option: [
         {
             text: "Select an option",
             value: "",

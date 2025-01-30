@@ -10,7 +10,7 @@ $ const {
     ...htmlInput
 } = input;
 
-$ const items = [...(attrTagItems || [])];
+$ const items = [...attrTagItems];
 
 $ var anyHref = (items || []).some((element) => element.href != null);
 <nav

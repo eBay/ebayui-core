@@ -10,8 +10,6 @@ $ const {
     ...comboboxInput
 } = input as Omit<typeof input, `on${string}`>;
 
-$ const mappedOptions = [...options || []].map((o) => o.text)
-
 <span
     key="root"
     class=[
@@ -48,7 +46,7 @@ $ const mappedOptions = [...options || []].map((o) => o.text)
         ...comboboxInput
         autocomplete="list"
     >
-        <for|option| of=mappedOptions>
+        <for|{text: option}| of=options>
             <if(
                 !state.selected || !state.selected.some((val) => val === option)
             )>

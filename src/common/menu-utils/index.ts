@@ -26,7 +26,7 @@ export class MenuUtils<
     State extends MenuState,
 > extends Component<Input, State> {
     declare type?: string;
-    declare item: MenuItem[];
+    declare items: MenuItem[];
 
     isRadio() {
         return this.type === "radio";
@@ -34,10 +34,10 @@ export class MenuUtils<
 
     getCheckedValues() {
         if (this.isRadio()) {
-            const item = this.item[this.state.checkedIndex!] || {};
+            const item = this.items[this.state.checkedIndex!] || {};
             return [item.value];
         }
-        return this.item
+        return this.items
             .filter((item, index) => this.state.checkedItems![index])
             .map((item) => item.value);
     }
@@ -48,7 +48,7 @@ export class MenuUtils<
                 ? undefined
                 : [this.state.checkedIndex];
         }
-        return this.item
+        return this.items
             .map((item, i) => this.state.checkedItems![i] && i)
             .filter((item) => item !== false && item !== undefined) as number[];
     }
@@ -59,17 +59,17 @@ export class MenuUtils<
             from items to pass correct indexes to state
             Any other component that doesn't have separator should pass through
         */
-        this.item = [...(input.item || [])].filter((item) => !item.separator);
+        this.items = [...(input.item || [])].filter((item) => !item.separator);
         this.type = input.type;
         if (this.isRadio()) {
             return {
-                checkedIndex: (this.item || []).findIndex(
+                checkedIndex: (this.items || []).findIndex(
                     (item) => item.checked || false,
                 ),
             };
         }
         return {
-            checkedItems: (this.item || []).map(
+            checkedItems: (this.items || []).map(
                 (item) => item.checked || false,
             ),
         };
@@ -83,7 +83,7 @@ export class MenuUtils<
     }
 
     isDisabled(index: number) {
-        return this.item[index].disabled;
+        return this.items[index].disabled;
     }
 
     toggleChecked(index: number | number[]) {
