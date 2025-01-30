@@ -10,7 +10,7 @@ import { Story } from "@storybook/marko";
 import type { Input } from "./component-browser";
 
 export default {
-    title: "building blocks/ebay list",
+    title: "building blocks/ebay-list",
     component: Component,
     parameters: {
         docs: {

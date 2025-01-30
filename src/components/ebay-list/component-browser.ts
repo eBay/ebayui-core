@@ -7,7 +7,7 @@ export interface ListItem extends Omit<Marko.HTML.Div, `on${string}`> {
 }
 
 interface ListInput extends Omit<Marko.HTML.Div, `on${string}`> {
-    items?: Marko.AttrTag<ListItem>;
+    item?: Marko.AttrTag<ListItem>;
     "on-button-click"?: (event: { index: number }) => void;
 }
 

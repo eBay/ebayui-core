@@ -7,7 +7,7 @@ import { testPassThroughAttributes } from "../../../common/test-utils/server";
 const { Standard, withDescription } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
-const options = [...Standard.args.options];
+const option = [...Standard.args.option];
 
 describe("listbox", () => {
     it("renders basic version", async () => {
@@ -15,19 +15,19 @@ describe("listbox", () => {
     });
 
     it("renders empty", async () => {
-        await htmlSnap(Standard, { options: [] });
+        await htmlSnap(Standard, { option: [] });
     });
 
     it("renders with second item selected", async () => {
-        options[1] = Object.assign({ selected: true }, options[1]);
+        option[1] = Object.assign({ selected: true }, option[1]);
 
-        await htmlSnap(Standard, { options });
+        await htmlSnap(Standard, { option });
     });
 
     it("renders with second item disabled", async () => {
-        options[1] = Object.assign({ disabled: true }, options[1]);
+        option[1] = Object.assign({ disabled: true }, option[1]);
 
-        await htmlSnap(Standard, { options });
+        await htmlSnap(Standard, { option });
     });
 
     it("renders with description", async () => {
@@ -37,7 +37,7 @@ describe("listbox", () => {
     testPassThroughAttributes(Standard);
     testPassThroughAttributes(Standard, {
         child: {
-            name: "options",
+            name: "option",
             multiple: true,
         },
     });

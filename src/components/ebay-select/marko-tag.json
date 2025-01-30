@@ -14,7 +14,7 @@
     "@name": "#html-name",
     "@required": "#html-required",
     "@size": "#html-size",
-    "@options <option>[]": {
+    "@option <option>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,

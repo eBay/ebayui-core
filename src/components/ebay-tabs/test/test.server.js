@@ -23,7 +23,7 @@ describe("tabs", () => {
 describe("tabs-heading", () => {
     testPassThroughAttributes(template, {
         child: {
-            name: "tabs",
+            name: "tab",
             multiple: true,
         },
     });
@@ -32,7 +32,7 @@ describe("tabs-heading", () => {
 describe("tabs-panel", () => {
     testPassThroughAttributes(template, {
         child: {
-            name: "panels",
+            name: "panel",
             multiple: true,
         },
     });

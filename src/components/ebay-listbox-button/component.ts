@@ -8,7 +8,7 @@ import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
 
 interface ListboxButtonInput extends Omit<Marko.HTML.Div, `on${string}`> {
-    options?: ListboxInput["options"];
+    option?: ListboxInput["option"];
     name?: ListboxInput["name"];
     "list-selection"?: ListboxInput["listSelection"];
     "prefix-id"?: string;
@@ -75,10 +75,10 @@ class ListboxButton extends Marko.Component<Input, State> {
     }
 
     onInput(input: Input) {
-        input.options = input.options || ([] as any);
+        input.option = input.option || ([] as any);
         this.state.selectedIndex = -1;
         let i = 0;
-        for (const option of input.options || []) {
+        for (const option of input.option || []) {
             if (option.selected) {
                 this.state.selectedIndex = i;
                 break;
@@ -110,7 +110,7 @@ class ListboxButton extends Marko.Component<Input, State> {
 
         // This `as any` is here for while `options` is coerced into an array from `marko-tag.json`.
         // After we move to the full `iterator` we can switch to `if (input.options && !input.disabled)`
-        if ((input.options as any)?.length && !input.disabled) {
+        if ((input.option as any)?.length && !input.disabled) {
             const container = this.getEl("container");
 
             this._expander = new Expander(container, {

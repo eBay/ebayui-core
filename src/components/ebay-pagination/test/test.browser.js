@@ -22,7 +22,7 @@ describe("given the pagination is rendered", () => {
     describe("with links", () => {
         beforeEach(async () => {
             component = await render(Links, {
-                items: getPaginationItems(6, true),
+                item: getPaginationItems(6, true),
             });
         });
 
@@ -31,7 +31,7 @@ describe("given the pagination is rendered", () => {
 
     describe("with buttons", () => {
         beforeEach(async () => {
-            component = await render(Buttons, { items: getPaginationItems(6) });
+            component = await render(Buttons, { item: getPaginationItems(6) });
         });
 
         thenItCanBeInteractedWith();
@@ -125,7 +125,7 @@ describe("given the pagination is rendered", () => {
 describe("given the pagination is rendered with disabled controls", () => {
     beforeEach(async () => {
         component = await render(Links, {
-            items: getPaginationItems(1, true, null, true),
+            item: getPaginationItems(1, true, null, true),
         });
     });
 
@@ -171,9 +171,9 @@ describe("given the pagination is rendered with disabled controls", () => {
 
 describe("given the pagination is rendered with overflow menu", () => {
     // Standard render which will also wait for resize event to trigger
-    async function renderWithOverflow(items, selected) {
+    async function renderWithOverflow(item, selected) {
         component = await render(Links, {
-            items: getPaginationItems(items, true, selected),
+            item: getPaginationItems(item, true, selected),
             variant: "overflow",
         });
         await new Promise((resolve) => requestAnimationFrame(resolve));
@@ -267,7 +267,7 @@ describe("given the pagination is rendered at various sizes", () => {
     [
         {
             name: "with the second item selected",
-            input: { items: getPaginationItems(9, true, 1) },
+            input: { item: getPaginationItems(9, true, 1) },
             cases: [
                 {
                     width: 330,
@@ -285,7 +285,7 @@ describe("given the pagination is rendered at various sizes", () => {
         },
         {
             name: "with the fifth item selected",
-            input: { items: getPaginationItems(9, true, 4) },
+            input: { item: getPaginationItems(9, true, 4) },
             cases: [
                 {
                     width: 330,
@@ -307,7 +307,7 @@ describe("given the pagination is rendered at various sizes", () => {
         },
         {
             name: "with the eighth item selected",
-            input: { items: getPaginationItems(9, true, 7) },
+            input: { item: getPaginationItems(9, true, 7) },
             cases: [
                 {
                     width: 330,
@@ -326,7 +326,7 @@ describe("given the pagination is rendered at various sizes", () => {
         {
             name: "first item and dots",
             input: {
-                items: getPaginationItems(16, true, 1),
+                item: getPaginationItems(16, true, 1),
                 variant: "show-last",
             },
             cases: [
@@ -348,7 +348,7 @@ describe("given the pagination is rendered at various sizes", () => {
         {
             name: "with the seventh item selected and dots",
             input: {
-                items: getPaginationItems(16, true, 7),
+                item: getPaginationItems(16, true, 7),
                 variant: "show-last",
             },
             cases: [
@@ -374,7 +374,7 @@ describe("given the pagination is rendered at various sizes", () => {
         {
             name: "with the 3rd to last item selected and hidden dots",
             input: {
-                items: getPaginationItems(16, true, 13),
+                item: getPaginationItems(16, true, 13),
                 variant: "show-last",
             },
             cases: [
@@ -396,7 +396,7 @@ describe("given the pagination is rendered at various sizes", () => {
         {
             name: "with the last item selected and hidden dots",
             input: {
-                items: getPaginationItems(16, true, 15),
+                item: getPaginationItems(16, true, 15),
                 variant: "show-last",
             },
             cases: [
@@ -418,7 +418,7 @@ describe("given the pagination is rendered at various sizes", () => {
         {
             name: "hidden dots",
             input: {
-                items: getPaginationItems(5, true, 1),
+                item: getPaginationItems(5, true, 1),
                 variant: "show-last",
             },
             cases: [
@@ -458,7 +458,7 @@ describe("given the pagination is rendered at various sizes", () => {
                     });
 
                     it(`then it shows items ${from} through ${to}`, () => {
-                        input.items.slice(1, -1).forEach((itemData, i) => {
+                        input.item.slice(1, -1).forEach((itemData, i) => {
                             const itemEl = component.getByText(
                                 itemData.renderBody.text,
                             );

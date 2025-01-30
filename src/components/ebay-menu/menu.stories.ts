@@ -113,7 +113,7 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    items: [
+    item: [
         {
             renderBody: `item 1 that has very long text`,
         },
@@ -128,7 +128,7 @@ Default.args = {
 Default.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-menu", Default.args, { items: "item" }),
+            code: tagToString("ebay-menu", Default.args),
         },
     },
 };

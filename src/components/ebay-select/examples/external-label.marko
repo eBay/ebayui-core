@@ -1,5 +1,5 @@
 export interface Input {
-    options: Array<{
+    option: Array<{
         value: string,
         text: string
     }>;
@@ -25,7 +25,7 @@ class {
         Option
     </label>
     <ebay-select ...input name="formFieldName" id="select" on-change("handleChange")>
-        <for|option, i| of=input.options>
+        <for|option, i| of=input.option>
             <@option value=option.value text=option.text selected=i === state.selected/>
         </for>
     </ebay-select>

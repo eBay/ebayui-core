@@ -8,7 +8,7 @@
     "@size": {
         "enum": ["regular", "large"]
     },
-    "@buttons <button>[]": {
+    "@button <button>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"

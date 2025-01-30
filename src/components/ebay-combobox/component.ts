@@ -18,7 +18,7 @@ export interface ComboboxOption {
 export interface ComboboxEvent {
     currentInputValue: State["currentValue"];
     selectedOption?: ComboboxOption;
-    options: Input["options"];
+    option: Input["option"];
 }
 
 interface ComboboxInput extends Omit<Marko.HTML.Input, `on${string}`> {
@@ -33,12 +33,13 @@ interface ComboboxInput extends Omit<Marko.HTML.Input, `on${string}`> {
             htmlAttributes?: Record<string, unknown>;
             renderBody?: Marko.Body;
         }>;
-    options?: Marko.AttrTag<ComboboxOption>;
+    option?: Marko.AttrTag<ComboboxOption>;
     /**
      * For internal use only. Used when combobox container changes.
      * @returns The dropdown element to be used for the combobox
      */
     "dropdown-element"?: () => HTMLElement;
+    "chevron-size"?: "large";
     "on-focus"?: (event: ComboboxEvent) => void;
     "on-button-click"?: (event: { originalEvent: MouseEvent }) => void;
     "on-expand"?: () => void;
@@ -357,18 +358,18 @@ export default class Combobox extends Marko.Component<Input, State> {
     }
 
     _getSelectedOption() {
-        return [...(this.input.options ?? [])].find(
+        return [...(this.input.option ?? [])].find(
             (option) => option.text === this.state.currentValue,
         );
     }
 
     _getVisibleOptions() {
         if (this.autocomplete === "none") {
-            return [...(this.input.options ?? [])];
+            return [...(this.input.option ?? [])];
         }
 
         const currentValueReg = safeRegex(this.state.currentValue?.toString());
-        return [...(this.input.options ?? [])].filter(
+        return [...(this.input.option ?? [])].filter(
             (option) =>
                 currentValueReg.test(option.text || "") || option.sticky,
         );
@@ -382,7 +383,7 @@ export default class Combobox extends Marko.Component<Input, State> {
         this.emit(`${eventName}`, {
             currentInputValue: this.state.currentValue,
             selectedOption: this._getSelectedOption(),
-            options: this.input.options,
+            option: this.input.option,
         } satisfies ComboboxEvent);
     }
 }

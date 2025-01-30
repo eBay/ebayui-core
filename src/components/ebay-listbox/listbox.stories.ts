@@ -39,7 +39,7 @@ export default {
             },
             description:
                 "If manual then user will need to press enter to select an item using keyboard. Otherwise auto will automatically select as the user presses up/down",
-            options: ["manual", "auto"],
+            option: ["manual", "auto"],
             type: "select",
         },
         selected: {
@@ -85,7 +85,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    options: [
+    option: [
         {
             value: "1",
             text: "Option 1",

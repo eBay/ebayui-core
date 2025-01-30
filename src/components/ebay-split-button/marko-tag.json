@@ -17,7 +17,7 @@
     "@type": {
         "enum": ["none", "radio", "checkbox"]
     },
-    "@items <item>[]": {
+    "@item <item>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"

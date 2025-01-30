@@ -17,7 +17,7 @@ class SegmentedButtons extends Marko.Component<Input, State> {
 
     onInput(input: Input) {
         let selectedIndex = (
-            (input.buttons || []) as SegmentedButton[]
+            (input.button || []) as SegmentedButton[]
         ).findIndex((button) => button.selected);
         if (selectedIndex === -1) {
             selectedIndex = 0;
@@ -28,8 +28,8 @@ class SegmentedButtons extends Marko.Component<Input, State> {
     onButtonClick(index: number, ev: PointerEvent) {
         if (index !== this.state.selectedIndex) {
             this.state.selectedIndex = index;
-            const value = this.input.buttons
-                ? [...this.input.buttons][index].value || undefined
+            const value = this.input.button
+                ? [...this.input.button][index].value || undefined
                 : undefined;
             this.emit("change", {
                 index,

@@ -211,7 +211,7 @@ export const Standard = Template.bind({});
 Standard.args = {
     renderBody: "Button" as any,
     a11yMenuText: "Menu",
-    items: [
+    item: [
         {
             renderBody: `item 1 that has very long text`,
         },
@@ -227,9 +227,7 @@ Standard.args = {
 Standard.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-split-button", Standard.args, {
-                items: "item",
-            }),
+            code: tagToString("ebay-split-button", Standard.args),
         },
     },
 };

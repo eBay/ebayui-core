@@ -14,7 +14,7 @@
     "@a11y-text": "string",
     "@a11y-label-id": "string",
     "@layout-type": "string",
-    "@buttons <button>[]": {
+    "@button <button>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"

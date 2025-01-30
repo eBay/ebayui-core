@@ -34,7 +34,7 @@
     "@disabled": "boolean",
     "@collapseOnSelect": "boolean",
     "@variant": "string",
-    "@items <item>[]": {
+    "@item <item>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"

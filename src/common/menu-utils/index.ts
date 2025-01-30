@@ -8,7 +8,7 @@ export interface MenuItem extends Omit<Marko.HTML.Button, `on${string}`> {
 }
 
 export interface BaseMenuInput {
-    items?: Marko.AttrTag<MenuItem>;
+    item?: Marko.AttrTag<MenuItem>;
     type?: string;
 }
 
@@ -26,7 +26,7 @@ export class MenuUtils<
     State extends MenuState,
 > extends Component<Input, State> {
     declare type?: string;
-    declare items: MenuItem[];
+    declare item: MenuItem[];
 
     isRadio() {
         return this.type === "radio";
@@ -34,10 +34,10 @@ export class MenuUtils<
 
     getCheckedValues() {
         if (this.isRadio()) {
-            const item = this.items[this.state.checkedIndex!] || {};
+            const item = this.item[this.state.checkedIndex!] || {};
             return [item.value];
         }
-        return this.items
+        return this.item
             .filter((item, index) => this.state.checkedItems![index])
             .map((item) => item.value);
     }
@@ -48,7 +48,7 @@ export class MenuUtils<
                 ? undefined
                 : [this.state.checkedIndex];
         }
-        return this.items
+        return this.item
             .map((item, i) => this.state.checkedItems![i] && i)
             .filter((item) => item !== false && item !== undefined) as number[];
     }
@@ -59,17 +59,17 @@ export class MenuUtils<
             from items to pass correct indexes to state
             Any other component that doesn't have separator should pass through
         */
-        this.items = [...(input.items || [])].filter((item) => !item.separator);
+        this.item = [...(input.item || [])].filter((item) => !item.separator);
         this.type = input.type;
         if (this.isRadio()) {
             return {
-                checkedIndex: (this.items || []).findIndex(
+                checkedIndex: (this.item || []).findIndex(
                     (item) => item.checked || false,
                 ),
             };
         }
         return {
-            checkedItems: (this.items || []).map(
+            checkedItems: (this.item || []).map(
                 (item) => item.checked || false,
             ),
         };
@@ -83,7 +83,7 @@ export class MenuUtils<
     }
 
     isDisabled(index: number) {
-        return this.items[index].disabled;
+        return this.item[index].disabled;
     }
 
     toggleChecked(index: number | number[]) {
@@ -108,7 +108,7 @@ export class MenuUtils<
 
     getSeparatorMap(input: Input) {
         let separatorCount = 0;
-        return [...(input.items || [])].reduce(
+        return [...(input.item || [])].reduce(
             (map, item, index) => {
                 if (item.separator) {
                     map[index - separatorCount] = true;

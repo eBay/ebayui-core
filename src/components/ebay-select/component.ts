@@ -8,7 +8,7 @@ export interface Option extends Omit<Marko.HTML.Option, `on${string}`> {
 }
 
 interface SelectInput extends Omit<Marko.HTML.Select, `on${string}`> {
-    options?: Marko.AttrTag<Option>;
+    option?: Marko.AttrTag<Option>;
     "floating-label"?: AttrString;
     "is-large"?: boolean;
     borderless?: boolean;
@@ -36,7 +36,7 @@ class Select extends Marko.Component<Input, State> {
     handleChange(event: Event | { target: { selectedIndex: number } }) {
         const { selectedIndex } = event.target as HTMLSelectElement;
         const el = this.getEls("option")[selectedIndex];
-        const option = [...(this.input.options || [])][selectedIndex];
+        const option = [...(this.input.option || [])][selectedIndex];
 
         this.state.selectedIndex = selectedIndex;
 
@@ -59,7 +59,7 @@ class Select extends Marko.Component<Input, State> {
     onInput(input: Input) {
         this.state.selectedIndex = 0;
         let i = 0;
-        for (const option of input.options || []) {
+        for (const option of input.option || []) {
             if (option.selected) {
                 this.state.selectedIndex = i;
                 break;

@@ -7,7 +7,7 @@ import { addRenderBodies } from "../../../common/storybook/utils";
 
 const { Default } = composeStories(stories);
 
-const items = [...Default.args.items];
+const items = [...Default.args.item];
 
 afterEach(cleanup);
 
@@ -16,7 +16,7 @@ let component;
 
 function getExpandedInput(expanded) {
     return Object.assign({}, Default.args, {
-        items: addRenderBodies([...items]),
+        item: addRenderBodies([...items]),
         expanded,
     });
 }
@@ -72,7 +72,7 @@ describe("given the menu is in the default state", () => {
 
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, Default.args, { items: newItems }),
+                Object.assign({}, Default.args, { item: newItems }),
             );
             await fireEvent.click(component.getByText(fourthItem));
         });
@@ -125,7 +125,7 @@ describe("given the menu is in the default state", () => {
 });
 
 describe("given the menu is in the expanded state", () => {
-    const firstItemText = Default.args.items[0].renderBody;
+    const firstItemText = Default.args.item[0].renderBody;
 
     beforeEach(async () => {
         component = await render(Default);

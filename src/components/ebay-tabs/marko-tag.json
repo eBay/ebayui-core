@@ -9,7 +9,7 @@
     "@activation": {
         "enum": ["auto", "manual"]
     },
-    "@tabs <tab>[]": {
+    "@tab <tab>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,
@@ -17,7 +17,7 @@
         },
         "@html-attributes": "expression"
     },
-    "@panels <panel>[]": {
+    "@panel <panel>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,

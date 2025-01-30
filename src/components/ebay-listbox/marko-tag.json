@@ -16,7 +16,7 @@
     },
     "@button-name": "#html-name",
     "@disabled": "#html-disabled",
-    "@options <option>[]": {
+    "@option <option>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,

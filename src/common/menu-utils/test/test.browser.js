@@ -5,7 +5,7 @@ import { getNItems } from "../../test-utils/shared";
 describe("non radio component", () => {
     const input = {
         type: "checkbox",
-        items: getNItems(3, (i) => ({
+        item: getNItems(3, (i) => ({
             value: `item ${i}`,
             checked: i === 2,
         })),
@@ -63,7 +63,7 @@ describe("non radio component", () => {
 describe("radio component", () => {
     const input = {
         type: "radio",
-        items: getNItems(3, (i) => ({
+        item: getNItems(3, (i) => ({
             value: `item ${i}`,
             checked: i === 2,
         })),

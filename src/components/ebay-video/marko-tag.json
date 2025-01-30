@@ -18,7 +18,7 @@
     "@volume-slider": "boolean",
     "@spinner-timeout": "number",
     "@muted": "boolean",
-    "@sources <source>[]": {
+    "@source <source>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"
@@ -26,7 +26,7 @@
         "@src": "string",
         "@type": "string"
     },
-    "@tracks <track>[]": {
+    "@track <track>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"

@@ -24,9 +24,9 @@ export default {
         },
     },
     argTypes: {
-        buttons: {
+        button: {
             description: "Each button in the segmented button",
-            name: "@buttons",
+            name: "@button",
             table: {
                 category: "@Attribute Tags",
             },
@@ -79,7 +79,7 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    buttons: [
+    button: [
         {
             renderBody: `Q1`,
             value: "quarter1",
@@ -103,7 +103,7 @@ Default.parameters = {
     docs: {
         source: {
             code: tagToString("ebay-segmented-buttons", Default.args, {
-                buttons: "button",
+                button: "button",
             }),
         },
     },

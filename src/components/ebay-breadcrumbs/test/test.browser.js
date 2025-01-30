@@ -9,7 +9,7 @@ let component;
 
 describe("given a basic breadcrumb", () => {
     const input = mock.Links;
-    const firstItem = input.items[0];
+    const firstItem = input.item[0];
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -30,7 +30,7 @@ describe("given a basic breadcrumb", () => {
 
 describe("button", () => {
     const input = mock.Buttons;
-    const lastItem = input.items[input.items.length - 1];
+    const lastItem = input.item[input.item.length - 1];
 
     beforeEach(async () => {
         component = await render(template, input);

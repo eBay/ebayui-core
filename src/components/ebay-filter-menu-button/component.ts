@@ -101,7 +101,7 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     onInput(input: Input) {
-        input.items = input.items || ([] as any);
+        input.item = input.item || ([] as any);
         this.state = this.getInputState(input);
     }
 

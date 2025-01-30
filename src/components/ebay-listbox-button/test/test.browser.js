@@ -14,7 +14,7 @@ import * as stories from "../listbox-button.stories";
 
 const { Default, withDescription } = composeStories(stories);
 
-const options = [...Default.args.options];
+const options = [...Default.args.option];
 options[0] = Object.assign({ selected: true }, options[0]);
 
 afterEach(cleanup);
@@ -134,7 +134,7 @@ describe("given the listbox is in an expanded state", () => {
     beforeEach(async () => {
         component = await render(
             Default,
-            { listSelection: "auto", options },
+            { listSelection: "auto", option: options },
             {
                 container: form,
             },
@@ -189,7 +189,11 @@ describe("given the listbox is in an expanded state", () => {
 
 describe("given the listbox is in an expanded state with manual list-selection", () => {
     beforeEach(async () => {
-        component = await render(Default, { options }, { container: form });
+        component = await render(
+            Default,
+            { option: options },
+            { container: form },
+        );
         await fireEvent.click(component.getByRole("button"));
     });
 

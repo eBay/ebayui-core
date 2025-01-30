@@ -6,7 +6,7 @@
     },
     "@html-attributes": "expression",
     "@separator": "boolean",
-    "@items <item>[]": {
+    "@item <item>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,

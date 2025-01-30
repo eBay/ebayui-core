@@ -11,7 +11,7 @@
     "@type": "string",
     "@reverse": "boolean",
     "@fix-width": "boolean",
-    "@items <item>[]": {
+    "@item <item>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"

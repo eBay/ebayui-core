@@ -7,7 +7,7 @@ import { addRenderBodies } from "../../../common/storybook/utils";
 
 const { Standard } = composeStories(stories);
 
-const items = [...Standard.args.items];
+const items = [...Standard.args.item];
 
 afterEach(cleanup);
 
@@ -157,7 +157,7 @@ describe("given the menu is in the default state", () => {
         const fourthItem = "item 4";
         beforeEach(async () => {
             await component.rerender(
-                Object.assign({}, Standard.args, { items: newItems }),
+                Object.assign({}, Standard.args, { item: newItems }),
             );
             await fireEvent.click(component.getByText(fourthItem));
         });
@@ -359,7 +359,7 @@ describe("given the menu is in the radio state", () => {
         beforeEach(async () => {
             await component.rerender(
                 Object.assign({}, Standard.args, {
-                    items: newItems,
+                    item: newItems,
                     type: "radio",
                 }),
             );
@@ -386,7 +386,7 @@ describe("given the menu item is disabled", () => {
     beforeEach(async () => {
         items[0] = Object.assign({}, items[0], { disabled: true });
 
-        component = await render(Standard, { items: addRenderBodies(items) });
+        component = await render(Standard, { item: addRenderBodies(items) });
 
         firstItem = component.getAllByRole("menuitemcheckbox")[0];
         secondItem = component.getAllByRole("menuitemcheckbox")[1];
