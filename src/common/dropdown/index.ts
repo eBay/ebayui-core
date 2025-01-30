@@ -4,12 +4,12 @@ import {
     computePosition,
     shift,
     offset,
-    type ReferenceElement
+    type ReferenceElement,
 } from "@floating-ui/dom";
 
 interface DropdownUtilOptions {
     reverse?: boolean;
-    offset?: number
+    offset?: number;
 }
 
 export class DropdownUtil {
@@ -18,7 +18,11 @@ export class DropdownUtil {
     declare cleanupFn: any;
     declare options: DropdownUtilOptions;
 
-    constructor(host: HTMLElement, overlay: HTMLElement, options?: DropdownUtilOptions) {
+    constructor(
+        host: HTMLElement,
+        overlay: HTMLElement,
+        options?: DropdownUtilOptions,
+    ) {
         this.host = host as ReferenceElement;
         this.overlay = overlay as HTMLElement;
         this.options = options ?? {};

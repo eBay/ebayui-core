@@ -1,5 +1,44 @@
 # eBayUI-Core Changelog
 
+## 15.0.0-next.0
+
+### Major Changes
+
+- [#2384](https://github.com/eBay/ebayui-core/pull/2384) [`aad6f91`](https://github.com/eBay/ebayui-core/commit/aad6f91497c136185490bbf6218a8d38b1dd3093) Thanks [@agliga](https://github.com/agliga)! - fix(combobox): remove view all options
+  `view-all-options` is no longer a valid option for combobox. Use `autocomplete: none` instead
+
+- [#2415](https://github.com/eBay/ebayui-core/pull/2415) [`02f4e69`](https://github.com/eBay/ebayui-core/commit/02f4e69475226fe4265a951b5b0a6cd62f2eb3dd) Thanks [@agliga](https://github.com/agliga)! - feat(marko-json): changed all attribute tags to be singular
+
+- [#2357](https://github.com/eBay/ebayui-core/pull/2357) [`549c3c3`](https://github.com/eBay/ebayui-core/commit/549c3c3f7369df4d7e3d0ae0fb3d7549ee315c17) Thanks [@saiponnada](https://github.com/saiponnada)! - feat(ebay-accordion): new component
+
+- [#2381](https://github.com/eBay/ebayui-core/pull/2381) [`02f0cd8`](https://github.com/eBay/ebayui-core/commit/02f0cd887d0eb073bb1378ef515aa9e4db9d4d0a) Thanks [@agliga](https://github.com/agliga)! - feat(dropdowns): added support for floating-ui
+
+- [#2413](https://github.com/eBay/ebayui-core/pull/2413) [`b2f1c6b`](https://github.com/eBay/ebayui-core/commit/b2f1c6baee10dbd2e238a3e5d26cf8f333948976) Thanks [@agliga](https://github.com/agliga)! - feat(notice): removed celebration from status
+
+- [#2411](https://github.com/eBay/ebayui-core/pull/2411) [`57d2b60`](https://github.com/eBay/ebayui-core/commit/57d2b6009bdb25543845f30f0cc298d6d44a1c3f) Thanks [@agliga](https://github.com/agliga)! - chore: renamed ebay-fullscreen-dialog to ebay-fullscreen-dialog-deprecated and ebay-drawer-dialog to ebay-drawer-dialog-deprecated
+
+- [#2406](https://github.com/eBay/ebayui-core/pull/2406) [`7dfbfce`](https://github.com/eBay/ebayui-core/commit/7dfbfce3d8b56d8895b130507666d5ce0010de43) Thanks [@agliga](https://github.com/agliga)! - chore: removed deprecated code
+
+### Minor Changes
+
+- [#2413](https://github.com/eBay/ebayui-core/pull/2413) [`e40437c`](https://github.com/eBay/ebayui-core/commit/e40437cf8c2e301ed00958831e14996b2fec2757) Thanks [@agliga](https://github.com/agliga)! - fix(ebay-table): update row-header attribute, removed aria-pressed
+
+- [#2413](https://github.com/eBay/ebayui-core/pull/2413) [`6bddc30`](https://github.com/eBay/ebayui-core/commit/6bddc309ac8ffbff98302ec88ecd403e5c962723) Thanks [@agliga](https://github.com/agliga)! - Add area chart
+
+### Patch Changes
+
+- [#2407](https://github.com/eBay/ebayui-core/pull/2407) [`e40902f`](https://github.com/eBay/ebayui-core/commit/e40902f378ffdd69b79bab48356ada97725bd7a2) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Ensure custom styles are included in build
+
+- [#2413](https://github.com/eBay/ebayui-core/pull/2413) [`c2b5b9d`](https://github.com/eBay/ebayui-core/commit/c2b5b9d6678516df4a7dc40aef5f37df1fad6b01) Thanks [@agliga](https://github.com/agliga)! - Refactor to simplify types
+
+- [#2408](https://github.com/eBay/ebayui-core/pull/2408) [`eb53ada`](https://github.com/eBay/ebayui-core/commit/eb53adaf7b1380ffa13292a844f47c00549c5cfe) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Remove chevron from combobox
+
+- [#2413](https://github.com/eBay/ebayui-core/pull/2413) [`bd170c2`](https://github.com/eBay/ebayui-core/commit/bd170c2448a49d2e3cc8f7441063b94f9b1156c5) Thanks [@agliga](https://github.com/agliga)! - TS fix for combobox
+
+- [#2413](https://github.com/eBay/ebayui-core/pull/2413) [`21197e5`](https://github.com/eBay/ebayui-core/commit/21197e55618b0c01fb522d6417307d0e4c6d4877) Thanks [@agliga](https://github.com/agliga)! - Upgrade dependencies
+
+- [#2413](https://github.com/eBay/ebayui-core/pull/2413) [`d316e9f`](https://github.com/eBay/ebayui-core/commit/d316e9f7eac27aea776d11ed5ed556c1928cfd9d) Thanks [@agliga](https://github.com/agliga)! - Updated the component-browser.ts file to reference shared attributes from tags-html.d.ts and added the Textbox class implementation.
+
 ## 14.6.9
 
 ### Patch Changes

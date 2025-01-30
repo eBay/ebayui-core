@@ -26,13 +26,15 @@ class Accordion extends Marko.Component<Input, State> {
         };
     }
 
-    handleToggle(index: number, event: { originalEvent: Event; open: boolean; }) {
-        
+    handleToggle(
+        index: number,
+        event: { originalEvent: Event; open: boolean },
+    ) {
         const { autoCollapse } = this.input;
-        if(autoCollapse && event.open) {
+        if (autoCollapse && event.open) {
             this.state.index = index;
         }
-        
+
         this.emit("toggle", {
             originalEvent: event.originalEvent,
             open: (event.originalEvent.target as HTMLDetailsElement).open,

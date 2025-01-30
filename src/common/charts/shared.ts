@@ -80,14 +80,12 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
             if (series[i].type === "bar") {
                 (series[i] as Highcharts.SeriesBarOptions).borderColor = color;
                 (series[i] as Highcharts.SeriesBarOptions).color = color;
-            }
-            else {
+            } else {
                 (series[i] as Highcharts.SeriesAreaOptions).lineColor = color;
                 (series[i] as Highcharts.SeriesAreaOptions).fillOpacity = 1;
             }
         }
     },
-
     setDonutColors = function (series: any) {
         const colors = [
             { lineColor: chartPrimaryColor, borderColor: chartPrimaryColor },
