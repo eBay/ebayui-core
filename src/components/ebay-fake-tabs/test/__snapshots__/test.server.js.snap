@@ -110,7 +110,7 @@ exports[`fake tabs > renders fake version with 3 tabs on the second panel 3`] = 
 </a>
 `;
 
-exports[`tabs-heading > when fake > passes through additional html attributes from child tabs 1`] = `
+exports[`tabs-heading > when fake > passes through additional html attributes from child tab 1`] = `
 <li
   class="class1 fake-tabs__item"
   data-passed-through="true"
@@ -124,7 +124,7 @@ exports[`tabs-heading > when fake > passes through additional html attributes fr
 </li>
 `;
 
-exports[`tabs-heading > when fake > passes through additional html attributes from child tabs 2`] = `
+exports[`tabs-heading > when fake > passes through additional html attributes from child tab 2`] = `
 <li
   class="class1 fake-tabs__item"
   data-passed-through="true"

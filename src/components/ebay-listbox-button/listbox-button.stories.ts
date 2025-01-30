@@ -72,7 +72,7 @@ export default {
             },
             description:
                 "If manual then user will need to press enter to select an item using keyboard. Otherwise auto will automatically select as the user presses up/down",
-            options: ["manual", "auto"],
+            option: ["manual", "auto"],
             type: "select",
         },
         prefixId: {
@@ -116,7 +116,7 @@ export default {
         variant: {
             description:
                 "If `form`, changes appearance to match other form-specific dropdown-esque components for visual consistency.",
-            options: ["standard", "form"],
+            option: ["standard", "form"],
             type: "select",
         },
 
@@ -156,7 +156,7 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
     prefixLabel: "Selected:",
-    options: [
+    option: [
         {
             value: "1",
             text: "Option 1",
@@ -174,9 +174,7 @@ Default.args = {
 Default.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-listbox-button", Default.args, {
-                items: "item",
-            }),
+            code: tagToString("ebay-listbox-button", Default.args),
         },
     },
 };

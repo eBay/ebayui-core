@@ -6,11 +6,11 @@ $ const {
     a11yHeadingTag,
     a11yMenuButtonText,
     class: inputClass,
-    items: attrTagItems,
+    item: attrTagItems = [],
     ...htmlInput
 } = input;
 
-$ const items = [...(attrTagItems || [])];
+$ const items = [...attrTagItems];
 
 $ var anyHref = (items || []).some((element) => element.href != null);
 <nav

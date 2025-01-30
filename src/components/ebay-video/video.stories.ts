@@ -215,7 +215,7 @@ export const Default = Template.bind({});
 Default.args = {
     width: "600",
     height: "400",
-    sources: [
+    source: [
         {
             src: "https://ir.ebaystatic.com/cr/v/c1/ebayui/video/v1/playlist.mpd",
             type: "dash",
@@ -235,7 +235,7 @@ ios.storyName = "ios";
 ios.args = {
     width: "600",
     height: "400",
-    sources: [
+    source: [
         {
             src: "https://ir.ebaystatic.com/cr/v/c1/ebayui/video/v1/playlist.m3u8",
             type: "hls",
@@ -267,7 +267,7 @@ mp4.args = {
     height: "300",
     "a11y-load-text": "This video is loading now",
     "a11y-play-text": "Click to start this video",
-    sources: [
+    source: [
         {
             src: "https://ir.ebaystatic.com/cr/v/c1/ebayui/video/v1/video.mp4",
         },

@@ -298,7 +298,7 @@ exports[`filter-menu > passes through additional html attributes 2`] = `
 </span>
 `;
 
-exports[`filter-menu > passes through additional html attributes from child items 1`] = `
+exports[`filter-menu > passes through additional html attributes from child item 1`] = `
 <div
   aria-checked="false"
   class="filter-menu-button__item class1"
@@ -337,7 +337,7 @@ exports[`filter-menu > passes through additional html attributes from child item
 </div>
 `;
 
-exports[`filter-menu > passes through additional html attributes from child items 2`] = `
+exports[`filter-menu > passes through additional html attributes from child item 2`] = `
 <div
   aria-checked="false"
   class="filter-menu-button__item class1"

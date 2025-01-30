@@ -612,7 +612,7 @@ exports[`combobox > renders with second item selected 1`] = `
 [36m</DocumentFragment>[39m"
 `;
 
-exports[`combobox-option > passes through additional html attributes from child options 1`] = `
+exports[`combobox-option > passes through additional html attributes from child option 1`] = `
 <div
   class="combobox__option class1"
   data-passed-through="true"
@@ -628,7 +628,7 @@ exports[`combobox-option > passes through additional html attributes from child 
 </div>
 `;
 
-exports[`combobox-option > passes through additional html attributes from child options 2`] = `
+exports[`combobox-option > passes through additional html attributes from child option 2`] = `
 <div
   class="combobox__option class1"
   data-passed-through="true"

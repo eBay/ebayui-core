@@ -107,8 +107,8 @@ describe("typeahead functionality", () => {
 });
 
 describe("given the menu is in the default state", () => {
-    const firstItemText = Default.args.items[0].renderBody;
-    const secondItemText = Default.args.items[1].renderBody;
+    const firstItemText = Default.args.item[0].renderBody;
+    const secondItemText = Default.args.item[1].renderBody;
 
     beforeEach(async () => {
         component = await render(Default);

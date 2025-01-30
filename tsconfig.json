@@ -16,7 +16,7 @@
         "skipLibCheck": true,
         "strict": true,
         "target": "ES2015",
-        "types": ["vite/client", "mdx"],
+        "types": ["vite/client", "mdx", "node"],
         "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
     }
 }

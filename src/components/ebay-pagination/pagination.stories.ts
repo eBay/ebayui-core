@@ -130,7 +130,7 @@ Links.args = {
     a11yPreviousText: "previous",
     a11yNextText: "next",
     a11yCurrentText: "Current page",
-    items: [
+    item: [
         {
             renderBody: ``,
             type: "previous",
@@ -195,7 +195,7 @@ Buttons.args = {
     a11yPreviousText: "previous",
     a11yNextText: "next",
     a11yCurrentText: "Current page",
-    items: [
+    item: [
         {
             renderBody: ``,
             type: "previous",

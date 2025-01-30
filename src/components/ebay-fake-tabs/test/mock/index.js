@@ -4,7 +4,7 @@ import {
 } from "../../../../common/test-utils/shared";
 
 export const fake3HeadingsNoIndex = {
-    tabs: getNItems(3, (i) => ({
+    tab: getNItems(3, (i) => ({
         href: `#tab-${i}`,
         renderBody: createRenderBody(`Heading ${i}`),
     })),

@@ -2,18 +2,18 @@
 import { getNItems } from "../../../../common/test-utils/shared";
 
 export const basic0Options = {
-    options: [],
+    option: [],
 };
 
 export const basic3Options = {
-    options: getNItems(3, (i) => ({
+    option: getNItems(3, (i) => ({
         value: String(i),
         text: `option ${i}`,
     })),
 };
 
 export const basic3OptionsWithBlank = {
-    options: getNItems(4, (i) => ({
+    option: getNItems(4, (i) => ({
         value: i === 0 ? "" : String(i),
         text: `option ${i}`,
     })),
@@ -24,7 +24,7 @@ export const Borderless_3Options = Object.assign({}, basic3Options, {
 });
 
 export const basic3Options1Selected = {
-    options: getNItems(3, (i) => ({
+    option: getNItems(3, (i) => ({
         value: String(i),
         text: `option ${i}`,
         selected: i === 1,

@@ -90,7 +90,7 @@ describe("given a continuous carousel", () => {
 
             it("then it moved to the second item", () => {
                 const secondItem = component.getByText(
-                    input.items[1].renderBody.text,
+                    input.item[1].renderBody.text,
                 );
                 assertAtStartOfSlide(secondItem);
             });
@@ -106,7 +106,7 @@ describe("given a continuous carousel", () => {
 
             it("then shows the first item", () => {
                 const firstItem = component.getByText(
-                    input.items[0].renderBody.text,
+                    input.item[0].renderBody.text,
                 );
                 assertAtStartOfSlide(firstItem);
             });
@@ -122,7 +122,7 @@ describe("given a continuous carousel", () => {
 
             it("then shows the first item", () => {
                 const firstItem = component.getByText(
-                    input.items[0].renderBody.text,
+                    input.item[0].renderBody.text,
                 );
                 assertAtStartOfSlide(firstItem);
             });
@@ -143,7 +143,7 @@ describe("given a continuous carousel", () => {
         describe("when next button is clicked", () => {
             let nextHiddenItem;
             beforeEach(async () => {
-                nextHiddenItem = input.items
+                nextHiddenItem = input.item
                     .map((item) => component.getByText(item.renderBody.text))
                     .find((el) => el.hasAttribute("aria-hidden"));
                 fireEvent.click(component.getByLabelText(input.a11yNextText));
@@ -183,7 +183,7 @@ describe("given a continuous carousel", () => {
         describe("when previous button is clicked", () => {
             let previousHiddenItem;
             beforeEach(async () => {
-                previousHiddenItem = input.items
+                previousHiddenItem = input.item
                     .map((item) => component.getByText(item.renderBody.text))
                     .reverse()
                     .find((el) => el.hasAttribute("aria-hidden"));
@@ -235,7 +235,7 @@ describe("given a continuous carousel", () => {
 
             it("then the last item is visible", () => {
                 const lastItem = component.getByText(
-                    input.items[input.items.length - 1].renderBody.text,
+                    input.item[input.item.length - 1].renderBody.text,
                 );
                 assertAtEndOfSlide(lastItem);
             });
@@ -265,7 +265,7 @@ describe("given a continuous carousel", () => {
 
             it("then the last item is not visible", () => {
                 const lastItem = component.getByText(
-                    input.items[input.items.length - 1].renderBody.text,
+                    input.item[input.item.length - 1].renderBody.text,
                 );
                 assertIsNotVisible(lastItem);
             });
@@ -338,7 +338,7 @@ describe("given a discrete carousel", () => {
 
             it("then it moved to the second item", () => {
                 const secondItem = component.getByText(
-                    input.items[1].renderBody.text,
+                    input.item[1].renderBody.text,
                 );
                 assertAtStartOfSlide(secondItem);
             });
@@ -354,7 +354,7 @@ describe("given a discrete carousel", () => {
 
             it("then shows the first item", () => {
                 const firstItem = component.getByText(
-                    input.items[0].renderBody.text,
+                    input.item[0].renderBody.text,
                 );
                 assertAtStartOfSlide(firstItem);
             });
@@ -370,7 +370,7 @@ describe("given a discrete carousel", () => {
 
             it("then shows the first item", () => {
                 const firstItem = component.getByText(
-                    input.items[0].renderBody.text,
+                    input.item[0].renderBody.text,
                 );
                 assertAtStartOfSlide(firstItem);
             });
@@ -414,7 +414,7 @@ describe("given a discrete carousel", () => {
             () => {
                 beforeEach(async () => {
                     const thirdItem = component.getByText(
-                        input.items[1].renderBody.text,
+                        input.item[1].renderBody.text,
                     );
                     const list = thirdItem.parentElement;
                     list.scrollLeft = thirdItem.offsetLeft;
@@ -433,7 +433,7 @@ describe("given a discrete carousel", () => {
         function thenItMovedToTheSecondSlide() {
             it("then it moved to the second item", () => {
                 const secondItem = component.getByText(
-                    input.items[1].renderBody.text,
+                    input.item[1].renderBody.text,
                 );
                 assertAtStartOfSlide(secondItem);
             });
@@ -486,7 +486,7 @@ describe("given a discrete carousel", () => {
 
             it("then it moved to the second item", () => {
                 const secondItem = component.getByText(
-                    input.items[1].renderBody.text,
+                    input.item[1].renderBody.text,
                 );
                 assertAtStartOfSlide(secondItem);
             });
@@ -536,7 +536,7 @@ describe("given a discrete carousel", () => {
 
             it("then it moved to the third item", () => {
                 const secondItem = component.getByText(
-                    input.items[2].renderBody.text,
+                    input.item[2].renderBody.text,
                 );
                 assertAtStartOfSlide(secondItem);
             });
@@ -559,7 +559,7 @@ describe("given a discrete carousel", () => {
 
         it("then it shows part of the next slide", () => {
             const thirdItem = component.getByText(
-                input.items[2].renderBody.text,
+                input.item[2].renderBody.text,
             );
             const list = thirdItem.parentElement;
             const { right: slideRight } = list.getBoundingClientRect();
@@ -585,7 +585,7 @@ describe("given a discrete carousel", () => {
 
             it("then it moved to the third item", () => {
                 const secondItem = component.getByText(
-                    input.items[2].renderBody.text,
+                    input.item[2].renderBody.text,
                 );
                 assertAtStartOfSlide(secondItem);
             });
@@ -619,7 +619,7 @@ describe("given a discrete carousel", () => {
 
             it("then it moved to the third item", () => {
                 const thirdItem = component.getByText(
-                    input.items[2].renderBody.text,
+                    input.item[2].renderBody.text,
                 );
                 assertAtStartOfSlide(thirdItem);
             });
@@ -695,7 +695,7 @@ describe("given a discrete carousel", () => {
         function thenItIsOnTheFirstSlide() {
             it("then it is displaying the first item", () => {
                 const firstItem = component.getByText(
-                    input.items[0].renderBody.text,
+                    input.item[0].renderBody.text,
                 );
                 assertAtStartOfSlide(firstItem);
             });

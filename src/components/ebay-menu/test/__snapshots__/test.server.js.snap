@@ -172,7 +172,7 @@ exports[`menu > passes through additional html attributes 2`] = `
 </span>
 `;
 
-exports[`menu > passes through additional html attributes from child items 1`] = `
+exports[`menu > passes through additional html attributes from child item 1`] = `
 <div
   class="menu__item class1"
   data-passed-through="true"
@@ -206,7 +206,7 @@ exports[`menu > passes through additional html attributes from child items 1`] =
 </div>
 `;
 
-exports[`menu > passes through additional html attributes from child items 2`] = `
+exports[`menu > passes through additional html attributes from child item 2`] = `
 <div
   class="menu__item class1"
   data-passed-through="true"

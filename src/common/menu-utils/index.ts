@@ -8,7 +8,7 @@ export interface MenuItem extends Omit<Marko.HTML.Button, `on${string}`> {
 }
 
 export interface BaseMenuInput {
-    items?: Marko.AttrTag<MenuItem>;
+    item?: Marko.AttrTag<MenuItem>;
     type?: string;
 }
 
@@ -59,7 +59,7 @@ export class MenuUtils<
             from items to pass correct indexes to state
             Any other component that doesn't have separator should pass through
         */
-        this.items = [...(input.items || [])].filter((item) => !item.separator);
+        this.items = [...(input.item || [])].filter((item) => !item.separator);
         this.type = input.type;
         if (this.isRadio()) {
             return {
@@ -108,7 +108,7 @@ export class MenuUtils<
 
     getSeparatorMap(input: Input) {
         let separatorCount = 0;
-        return [...(input.items || [])].reduce(
+        return [...(input.item || [])].reduce(
             (map, item, index) => {
                 if (item.separator) {
                     map[index - separatorCount] = true;

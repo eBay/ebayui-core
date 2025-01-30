@@ -5,7 +5,7 @@
         "type": "expression"
     },
     "@html-attributes": "expression",
-    "@items <item>[]": {
+    "@item <item>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"

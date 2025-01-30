@@ -3577,7 +3577,7 @@ exports[`pagination > with links > renders with overflow 1`] = `
 [36m</DocumentFragment>[39m"
 `;
 
-exports[`pagination-item > passes through additional html attributes from child items 1`] = `
+exports[`pagination-item > passes through additional html attributes from child item 1`] = `
 <button
   class="pagination__item class1"
   data-passed-through="true"
@@ -3587,7 +3587,7 @@ exports[`pagination-item > passes through additional html attributes from child 
 />
 `;
 
-exports[`pagination-item > passes through additional html attributes from child items 2`] = `
+exports[`pagination-item > passes through additional html attributes from child item 2`] = `
 <button
   class="pagination__item class1"
   data-passed-through="true"

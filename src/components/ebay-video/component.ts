@@ -55,8 +55,8 @@ interface VideoInput extends Omit<Marko.HTML.Video, `on${string}`> {
     volume?: number;
     action?: "play" | "pause";
     "volume-slider"?: boolean;
-    tracks?: any[];
-    sources: Marko.AttrTag<Marko.HTML.Source>;
+    clip?: any[];
+    source: Marko.AttrTag<Marko.HTML.Source>;
     "report-text"?: AttrString;
     "spinner-timeout"?: number;
     thumbnail?: string;
@@ -205,7 +205,7 @@ class Video extends Marko.Component<Input, State> {
     }
 
     _addTextTracks() {
-        (this.input.tracks || []).forEach((track) => {
+        (this.input.clip || []).forEach((track) => {
             this.player.addTextTrack(track.src, track.srclang, track.kind);
         });
 
@@ -217,7 +217,7 @@ class Video extends Marko.Component<Input, State> {
 
     _loadSrc(index?: number) {
         const currentIndex = index || 0;
-        const sources = [...this.input.sources];
+        const sources = [...this.input.source];
         const src = sources[currentIndex];
         let nextIndex: number;
         if (src && sources.length > currentIndex + 1) {

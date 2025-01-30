@@ -15,7 +15,7 @@ export interface SegmentedButton extends Omit<Marko.HTML.Button, `on${string}`> 
 }
 
 static interface SegmentedButtonsInput extends Omit<Marko.HTML.Div, `on${string}`> {
-    buttons?: Marko.AttrTag<SegmentedButton>;
+    button?: Marko.AttrTag<SegmentedButton>;
     size?: (typeof validSizes)[number];
     "on-change"?: (event: SegmentedButtonsEvent) => void;
 }
@@ -25,7 +25,7 @@ export interface Input extends WithNormalizedProps<SegmentedButtonsInput> {}
 $ let {
     size: inputSize,
     class: inputClass,
-    buttons,
+    button: buttons = [],
     ...htmlInput
 } = input;
 
@@ -40,7 +40,7 @@ $ var size = inputSize && validSizes.includes(inputSize) ? inputSize : null;
     ...processHtmlAttributes(htmlInput)
 >
     <ul>
-        <for|button, index| of=input.buttons || []>
+        <for|button, index| of=input.button || []>
             $ const {
                 class: buttonClass,
                 icon,

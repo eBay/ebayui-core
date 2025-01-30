@@ -112,7 +112,7 @@ exports[`menu-button > passes through additional html attributes 2`] = `
 </span>
 `;
 
-exports[`menu-button > passes through additional html attributes from child items 1`] = `
+exports[`menu-button > passes through additional html attributes from child item 1`] = `
 <button
   class="fake-menu-button__item class1"
   data-passed-through="true"
@@ -145,7 +145,7 @@ exports[`menu-button > passes through additional html attributes from child item
 </button>
 `;
 
-exports[`menu-button > passes through additional html attributes from child items 2`] = `
+exports[`menu-button > passes through additional html attributes from child item 2`] = `
 <button
   class="fake-menu-button__item class1"
   data-passed-through="true"

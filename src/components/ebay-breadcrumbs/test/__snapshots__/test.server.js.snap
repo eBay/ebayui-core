@@ -235,7 +235,7 @@ exports[`passes through additional html attributes 2`] = `
 </nav>
 `;
 
-exports[`passes through additional html attributes from child items 1`] = `
+exports[`passes through additional html attributes from child item 1`] = `
 <button
   aria-current="location"
   class="class1"
@@ -246,7 +246,7 @@ exports[`passes through additional html attributes from child items 1`] = `
 />
 `;
 
-exports[`passes through additional html attributes from child items 2`] = `
+exports[`passes through additional html attributes from child item 2`] = `
 <button
   aria-current="location"
   class="class1"

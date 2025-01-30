@@ -1,5 +1,5 @@
 $ const {
-    option,
+    option: options = [],
     selected: inputSelected,
     class: inputClass,
     fluid,
@@ -9,8 +9,6 @@ $ const {
     a11yDeleteButtonText = "Remove",
     ...comboboxInput
 } = input as Omit<typeof input, `on${string}`>;
-
-$ const options = [...option || []].map((o) => o.text)
 
 <span
     key="root"
@@ -48,7 +46,7 @@ $ const options = [...option || []].map((o) => o.text)
         ...comboboxInput
         autocomplete="list"
     >
-        <for|option| of=options>
+        <for|{text: option}| of=options>
             <if(
                 !state.selected || !state.selected.some((val) => val === option)
             )>

@@ -222,7 +222,7 @@ exports[`tabs > renders basic version with 3 tabs and 3 panels on the second pan
 [36m</DocumentFragment>[39m"
 `;
 
-exports[`tabs-heading > passes through additional html attributes from child tabs 1`] = `
+exports[`tabs-heading > passes through additional html attributes from child tab 1`] = `
 <div
   aria-controls="s0-tabpanel-0"
   aria-selected="true"
@@ -238,7 +238,7 @@ exports[`tabs-heading > passes through additional html attributes from child tab
 </div>
 `;
 
-exports[`tabs-heading > passes through additional html attributes from child tabs 2`] = `
+exports[`tabs-heading > passes through additional html attributes from child tab 2`] = `
 <div
   aria-controls="s0-tabpanel-0"
   aria-selected="true"
@@ -254,7 +254,7 @@ exports[`tabs-heading > passes through additional html attributes from child tab
 </div>
 `;
 
-exports[`tabs-panel > passes through additional html attributes from child panels 1`] = `
+exports[`tabs-panel > passes through additional html attributes from child panel 1`] = `
 <div
   aria-labelledby="s0-tabs-0"
   class="class1 tabs__panel"
@@ -273,7 +273,7 @@ exports[`tabs-panel > passes through additional html attributes from child panel
 </div>
 `;
 
-exports[`tabs-panel > passes through additional html attributes from child panels 2`] = `
+exports[`tabs-panel > passes through additional html attributes from child panel 2`] = `
 <div
   aria-labelledby="s0-tabs-0"
   class="class1 tabs__panel"

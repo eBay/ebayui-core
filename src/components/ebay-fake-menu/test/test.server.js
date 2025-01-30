@@ -9,7 +9,7 @@ describe("fake-menu", () => {
         const input = mock.basic2Items;
         const { getByText } = await render(template, input);
 
-        input.items.forEach((item) => {
+        input.item.forEach((item) => {
             expect(
                 getByText(item.renderBody.text).closest(".fake-menu__item"),
             ).toMatchSnapshot();
@@ -20,7 +20,7 @@ describe("fake-menu", () => {
         const input = Object.assign({ reverse: true }, mock.basic2Items);
         const { getByText } = await render(template, input);
         expect(
-            getByText(input.items[0].renderBody.text).closest(
+            getByText(input.item[0].renderBody.text).closest(
                 ".fake-menu__menu--reverse",
             ),
         ).toMatchSnapshot();
@@ -30,7 +30,7 @@ describe("fake-menu", () => {
         const input = Object.assign({ fixWidth: true }, mock.basic2Items);
         const { getByText } = await render(template, input);
         expect(
-            getByText(input.items[0].renderBody.text).closest(
+            getByText(input.item[0].renderBody.text).closest(
                 ".fake-menu__menu--fix-width",
             ),
         ).toMatchSnapshot();
@@ -40,7 +40,7 @@ describe("fake-menu", () => {
         const input = mock.separator4Items;
         const { queryByText, getAllByRole } = await render(template, input);
         const separators = getAllByRole("separator");
-        input.items.forEach((item) => {
+        input.item.forEach((item) => {
             if (item.separator) {
                 const menuItemEl = separators.shift();
                 const textEl = queryByText(item.renderBody.text);
@@ -53,7 +53,7 @@ describe("fake-menu", () => {
     it("renders with aria-current=true", async () => {
         const input = mock.a11yCurrentTrue;
         const { getByText } = await render(template, input);
-        const item = input.items[0];
+        const item = input.item[0];
         const container = getByText(item.renderBody.text);
         expect(container.parentElement).toMatchSnapshot();
     });
@@ -64,7 +64,7 @@ describe("fake-menu", () => {
             input: {
                 type: "button",
             },
-            name: "items",
+            name: "item",
             multiple: true,
         },
     });

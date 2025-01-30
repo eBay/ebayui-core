@@ -13,7 +13,7 @@
     "@variant": {
         "enum": ["show-last", "show-range"]
     },
-    "@items <item>[]": {
+    "@item <item>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,

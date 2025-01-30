@@ -77,7 +77,7 @@ export const heading = Template.bind({});
 heading.args = {
     a11yHeadingText: "Current pages",
     a11yMenuButtonText: "menu",
-    items: [
+    item: [
         {
             href: "http://www.ebay.com/",
             renderBody: "eBay",

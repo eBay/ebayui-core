@@ -68,7 +68,7 @@ describe("menu-button", () => {
     ["radio", "checkbox"].forEach((type) => {
         [true, false].forEach((checked) => {
             it(`renders with type=${type} and checked=${checked}`, async () => {
-                await htmlSnap(Default, { type, items: [{ checked }] });
+                await htmlSnap(Default, { type, item: [{ checked }] });
             });
         });
     });
@@ -76,7 +76,7 @@ describe("menu-button", () => {
     testUtils.testPassThroughAttributes(Default);
     testUtils.testPassThroughAttributes(Default, {
         child: {
-            name: "items",
+            name: "item",
             multiple: true,
         },
     });
