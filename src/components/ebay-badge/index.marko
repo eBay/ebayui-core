@@ -2,7 +2,7 @@ import { processHtmlAttributes } from "../../common/html-attributes";
 import type { AttrClass } from "marko/tags-html";
 import type { WithNormalizedProps } from "../../global";
 
-static interface BadgeInput extends Marko.Input<"span"> {
+static interface BadgeInput extends Omit<Marko.HTML.Span, `on${string}`> {
     type?: "menu" | "icon";
     number?: number | string;
     class?: AttrClass;

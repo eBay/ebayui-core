@@ -18,16 +18,15 @@ export interface NavigationEvent {
     originalEvent: Event;
 }
 
-export interface Item
-    extends Omit<Marko.Input<"button">, "type" | `on${string}`> {
+export interface Item extends Omit<Marko.HTML.Button, "type" | `on${string}`> {
     type?: "previous" | "next" | "page";
     current?: boolean;
     href?: string;
     variant?: "link" | "button";
 }
 
-interface PaginationInput extends Omit<Marko.Input<"nav">, `on${string}`> {
-    items?: Marko.AttrTag<Item>;
+interface PaginationInput extends Omit<Marko.HTML.Nav, `on${string}`> {
+    item?: Marko.AttrTag<Item>;
     variant?: "show-range" | "show-last" | "overflow";
     "a11y-current-text"?: AttrString;
     "a11y-previous-text"?: AttrString;
@@ -184,7 +183,7 @@ class Pagination extends Marko.Component<Input, State> {
 
     _calculateMaxItems() {
         const { input, state } = this;
-        const items = input.items || [];
+        const items = input.item || [];
 
         if (!(items as Item[]).some((item) => !item.type)) {
             return;

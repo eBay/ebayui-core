@@ -164,7 +164,7 @@ exports[`listbox > passes through additional html attributes 2`] = `
 </div>
 `;
 
-exports[`listbox > passes through additional html attributes from child options 1`] = `
+exports[`listbox > passes through additional html attributes from child option 1`] = `
 <div
   class="listbox__option class1"
   data-passed-through="true"
@@ -200,7 +200,7 @@ exports[`listbox > passes through additional html attributes from child options 
 </div>
 `;
 
-exports[`listbox > passes through additional html attributes from child options 2`] = `
+exports[`listbox > passes through additional html attributes from child option 2`] = `
 <div
   class="listbox__option class1"
   data-passed-through="true"

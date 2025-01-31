@@ -1,7 +1,7 @@
 import { processHtmlAttributes } from "../../common/html-attributes"
 import type { WithNormalizedProps } from "../../global";
 
-static interface CtaButtonInput extends Marko.Input<"a"> {
+static interface CtaButtonInput extends Marko.HTML.A {
     size?: "default" | "large";
 }
 

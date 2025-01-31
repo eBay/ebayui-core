@@ -2,10 +2,10 @@ import type { WithNormalizedProps } from "../../global";
 import type { Input as TooltipBaseInput } from "../components/ebay-tooltip-base/component-browser";
 import type { Input as TooltipOverlayInput } from "../components/ebay-tooltip-overlay/component-browser";
 
-interface TourtipInput extends Omit<Marko.Input<"span">, `on${string}`> {
+interface TourtipInput extends Omit<Marko.HTML.Span, `on${string}`> {
     open?: boolean;
     "no-hover"?: TooltipBaseInput["noHover"];
-    host?: Marko.AttrTag<Marko.Input<"span">>;
+    host?: Marko.AttrTag<Marko.HTML.Span>;
     offset?: TooltipBaseInput["offset"];
     pointer?: TooltipBaseInput["pointer"];
     placement?: TooltipBaseInput["placement"];

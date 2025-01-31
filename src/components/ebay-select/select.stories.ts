@@ -95,7 +95,7 @@ export default {
 export const Floating = Template.bind({});
 Floating.args = {
     floatingLabel: "Option",
-    options: [
+    option: [
         {
             text: "Select an option",
             value: "",
@@ -138,7 +138,7 @@ ExternalLabel.parameters = {
 };
 
 ExternalLabel.args = {
-    options: [
+    option: [
         {
             text: "Select an option",
             value: "",

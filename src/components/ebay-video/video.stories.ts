@@ -52,21 +52,6 @@ export default {
                 'Either "inline", or "fullscreen". When player strats to play, will either play "inline" (default) or switch to "fullscreen"',
             control: { type: "text" },
         },
-        cdnUrl: {
-            description:
-                "The full url to point to where to download shaka. This is only used to override the default CDN path.",
-            control: { type: "text" },
-        },
-        cssUrl: {
-            control: { type: "text" },
-            description:
-                "The full url to point to where to download shaka css. This is only used to override the default CDN path.",
-        },
-        cdnVersion: {
-            control: { type: "text" },
-            description:
-                "If using the default CDN path, you can override what version of shaka to use.",
-        },
         a11yLoadText: {
             control: { type: "text" },
             description:
@@ -226,21 +211,21 @@ export default {
     },
 };
 
-export const Standard = Template.bind({});
-Standard.args = {
+export const Default = Template.bind({});
+Default.args = {
     width: "600",
     height: "400",
-    sources: [
+    source: [
         {
             src: "https://ir.ebaystatic.com/cr/v/c1/ebayui/video/v1/playlist.mpd",
             type: "dash",
         },
     ] as any,
 };
-Standard.parameters = {
+Default.parameters = {
     docs: {
         source: {
-            code: tagToString("ebay-video", Standard.args),
+            code: tagToString("ebay-video", Default.args),
         },
     },
 };
@@ -250,7 +235,7 @@ ios.storyName = "ios";
 ios.args = {
     width: "600",
     height: "400",
-    sources: [
+    source: [
         {
             src: "https://ir.ebaystatic.com/cr/v/c1/ebayui/video/v1/playlist.m3u8",
             type: "hls",
@@ -282,7 +267,7 @@ mp4.args = {
     height: "300",
     "a11y-load-text": "This video is loading now",
     "a11y-play-text": "Click to start this video",
-    sources: [
+    source: [
         {
             src: "https://ir.ebaystatic.com/cr/v/c1/ebayui/video/v1/video.mp4",
         },

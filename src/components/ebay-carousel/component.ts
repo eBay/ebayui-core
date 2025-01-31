@@ -14,7 +14,7 @@ const LEFT = -1;
 const RIGHT = 1;
 
 interface Item {
-    htmlAttributes?: Marko.Input<"li">;
+    htmlAttributes?: Marko.HTML.LI;
     key?: string;
     class?: AttrClass;
     style?: AttrStyle;
@@ -24,7 +24,7 @@ interface Item {
 }
 
 interface CarouselInput {
-    items?: Marko.AttrTag<Item>;
+    item?: Marko.AttrTag<Item>;
     gap?: number | string;
     index?: number | string;
     "items-per-slide"?: number | string;
@@ -426,7 +426,7 @@ class Carousel extends Marko.Component<Input, State> {
                 "a11yNextText",
                 "a11yPlayText",
                 "a11yPauseText",
-                "items",
+                "item",
                 "hiddenScrollbar",
             ]),
             classes: [
@@ -471,7 +471,7 @@ class Carousel extends Marko.Component<Input, State> {
             // Only allow autoplay option for discrete carousels.
             if (input.autoplay) {
                 const isSingleSlide =
-                    (input.items as Item[])?.length <= itemsPerSlide;
+                    (input.item as Item[])?.length <= itemsPerSlide;
                 state.autoplayInterval =
                     parseInt(input.autoplay as any, 10) || 4000;
                 state.classes.push("carousel__autoplay");
@@ -480,7 +480,7 @@ class Carousel extends Marko.Component<Input, State> {
             }
         }
 
-        state.items = ((input.items as Item[]) || []).map((item, i) => {
+        state.items = ((input.item as Item[]) || []).map((item, i) => {
             const isStartOfSlide = state.itemsPerSlide
                 ? i % state.itemsPerSlide === 0
                 : true;

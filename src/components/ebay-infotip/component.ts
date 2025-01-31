@@ -3,7 +3,7 @@ import type { WithNormalizedProps } from "../../global";
 import EbayTooltipBase from "../components/ebay-tooltip-base/component-browser";
 import type { Input as TooltipBaseInput } from "../components/ebay-tooltip-base/component-browser";
 
-interface InfotipInput extends Omit<Marko.Input<"span">, `on${string}`> {
+interface InfotipInput extends Omit<Marko.HTML.Span, `on${string}`> {
     open?: boolean;
     variant?: "modal" | "default";
     offset?: TooltipBaseInput["offset"];
@@ -12,7 +12,7 @@ interface InfotipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     disabled?: boolean;
     icon?: Marko.AttrTag<{ renderBody: Marko.Renderable }>;
     heading?: Marko.AttrTag<
-        Marko.Input<"span"> & {
+        Marko.HTML.Span & {
             as?: keyof Marko.NativeTags;
             renderBody?: Marko.Renderable;
         }
@@ -20,7 +20,7 @@ interface InfotipInput extends Omit<Marko.Input<"span">, `on${string}`> {
     "no-flip"?: TooltipBaseInput["no-flip"];
     "not-inline"?: TooltipBaseInput["not-inline"];
     "no-shift"?: TooltipBaseInput["no-shift"];
-    content: Marko.AttrTag<Marko.Input<"span">>;
+    content: Marko.AttrTag<Marko.HTML.Span>;
     "a11y-close-button-text"?: AttrString;
     "on-expand"?: () => void;
     "on-collapse"?: () => void;

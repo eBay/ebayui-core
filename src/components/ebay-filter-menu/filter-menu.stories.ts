@@ -157,7 +157,7 @@ export default {
 
 export const Standard = Template.bind({});
 Standard.args = {
-    items: [
+    item: [
         {
             value: "item 1",
             renderBody: `item 1`,
@@ -181,7 +181,7 @@ Standard.parameters = {
     docs: {
         source: {
             code: tagToString("ebay-filter-menu", Standard.args, {
-                items: "item",
+                item: "item",
             }),
         },
     },

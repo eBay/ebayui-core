@@ -1,4 +1,5 @@
 import Expander from "makeup-expander";
+import { DropdownUtil } from "../../common/dropdown";
 import * as eventUtils from "../../common/event-utils";
 import setupMenu, {
     MenuUtils,
@@ -19,12 +20,12 @@ export interface FilterMenuButtonEvent {
 
 interface FilterMenuButtonInput
     extends BaseMenuInput,
-        Omit<Marko.Input<"span">, `on${string}`> {
+        Omit<Marko.HTML.Span, `on${string}`> {
     text?: AttrString;
     "footer-text"?: AttrString;
     "a11y-footer-text"?: AttrString;
     footer?: WithNormalizedProps<
-        Omit<Marko.Input<"button">, `on${string}`> & {
+        Omit<Marko.HTML.Button, `on${string}`> & {
             "a11y-footer-text"?: AttrString;
         }
     >;
@@ -49,6 +50,7 @@ export interface Input extends WithNormalizedProps<FilterMenuButtonInput> {}
 
 export default class extends MenuUtils<Input, MenuState> {
     declare _expander: any;
+    declare dropdownUtil: DropdownUtil;
 
     onCreate() {
         setupMenu(this);
@@ -88,16 +90,18 @@ export default class extends MenuUtils<Input, MenuState> {
     }
 
     handleExpand({ originalEvent }: FilterMenuEvent) {
+        this.dropdownUtil.show();
         this._emitComponentEvent("expand", originalEvent);
     }
 
     handleCollapse({ originalEvent }: FilterMenuEvent) {
+        this.dropdownUtil.hide();
         (this.getEl("button") as HTMLElement).focus();
         this._emitComponentEvent("collapse", originalEvent);
     }
 
     onInput(input: Input) {
-        input.items = input.items || ([] as any);
+        input.item = input.item || ([] as any);
         this.state = this.getInputState(input);
     }
 
@@ -157,6 +161,14 @@ export default class extends MenuUtils<Input, MenuState> {
             autoCollapse: true,
             alwaysDoFocusManagement: true,
         });
+        this.dropdownUtil = new DropdownUtil(
+            this.getEl("button"),
+            this.getEl("menu"),
+            {
+                offset: 8
+            }
+        );
+
     }
 
     _cleanupMakeup() {
@@ -164,5 +176,6 @@ export default class extends MenuUtils<Input, MenuState> {
             this._expander.destroy();
             this._expander = undefined;
         }
+        this.dropdownUtil?.cleanup();
     }
 }

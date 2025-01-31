@@ -4,19 +4,19 @@ import type { Item } from './component';
 
 $ const {
     class: inputClass,
-    items: rawItems = [],
+    item: items = [],
     a11yCurrentText = 'Results Pagination - Page 1',
     a11yPreviousText = 'Previous page',
     a11yNextText = 'Next page',
 } = input;
 
 static var disabledItem: Item = { disabled: true };
-static var ignoredAttributes = ['items'];
+static var ignoredAttributes = ['item'];
 static var ignoredItemAttributes = ['current', 'disabled'];
 static function isItemHidden(index: number, range: {start: number, end: number, dotsIndex: number, leadingDotsIndex: number}) {
     return (index < range.start || index > range.end) && (range.dotsIndex !== index && range.leadingDotsIndex - 1 !== index);
 }
-$ const baseItems = [...rawItems];
+$ const baseItems = [...items];
 $ var lastItemIndex = baseItems.length - 1;
 $ var prevItem = (baseItems[0] && baseItems[0].type === 'previous' && baseItems[0]) || disabledItem;
 $ {
@@ -25,12 +25,12 @@ $ {
             baseItems[lastItemIndex].type === 'next' &&
             baseItems[lastItemIndex]) ||
         disabledItem;
-    var items = baseItems.slice(
+    var slicedItems = baseItems.slice(
         prevItem === disabledItem ? 0 : 1,
         nextItem === disabledItem ? undefined : lastItemIndex
     );
 }
-$ var range = component._getVisibleRange(items);
+$ var range = component._getVisibleRange(slicedItems);
 
 <nav
     ...processHtmlAttributes(input, ignoredAttributes)
@@ -57,7 +57,7 @@ $ var range = component._getVisibleRange(items);
     </>
 
     <ol.pagination__items key='items'>
-        <for|item, i| of=items>
+        <for|item, i| of=slicedItems>
             <if(range.dotsIndex === i || range.leadingDotsIndex === i)>
                 $ {
                     var hideDots = range.hideDots;
@@ -78,12 +78,12 @@ $ var range = component._getVisibleRange(items);
                                 collapseOnSelect
                                 on-select('handleMenuPageNumber')
                             >
-                                <for|item, j| of=items>
+                                <for|item, j| of=slicedItems>
                                     $ var visible = isLeading ? j < range.start : j > range.end;
                                     <if(isItemHidden(j, range) && visible)>
                                         <@item
                                             ...processHtmlAttributes(item, ignoredItemAttributes)
-                                            type=component.getItemTag(item) as (Marko.Input<"button">["type"])
+                                            type=component.getItemTag(item) as (Marko.HTML.Button["type"])
                                             data-page-number=j
                                         >
                                             <${item.renderBody}/>

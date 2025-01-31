@@ -2,7 +2,7 @@ import { processHtmlAttributes } from "../../common/html-attributes";
 import type { WithNormalizedProps } from "../../global";
 import type { AttrBoolean, AttrString } from "marko/tags-html";
 
-static interface ChipInput extends Omit<Marko.Input<"span">, `on${string}`> {
+static interface ChipInput extends Omit<Marko.HTML.Span, `on${string}`> {
     renderBody?: Marko.Body;
     disabled?: AttrBoolean;
     "a11y-delete-button-text"?: AttrString;

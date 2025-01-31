@@ -1,6 +1,5 @@
 {
     "template": "./index.marko",
-    "transformer": "../../common/transformers/menu-separator",
     "@*": {
         "targetProperty": null,
         "type": "expression"
@@ -29,7 +28,7 @@
     "@disabled": "boolean",
     "@collapseOnSelect": "boolean",
     "@variant": "string",
-    "@items <item>[]": {
+    "@item <item>[]": {
         "@*": {
             "targetProperty": null,
             "type": "expression"
@@ -48,12 +47,6 @@
         "@html-attributes": "expression",
         "@class": "string",
         "@style": "string"
-    },
-    "@separator <separator>[]": {
-        "@html-attributes": "expression",
-        "@class": "string",
-        "@style": "string",
-        "@separator": "boolean"
     },
     "description": "[view documentation](https://ebay.github.io/ebayui-core/?path=/story/buttons-ebay-fake-menu-button)"
 }

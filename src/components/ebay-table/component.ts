@@ -3,26 +3,28 @@ import { WithNormalizedProps } from "../../global";
 import { CheckboxEvent } from "../ebay-checkbox/component-browser";
 
 export type TableSort = "asc" | "desc" | "none";
-export interface TableHeader extends Omit<Marko.Input<"th">, `on${string}`> {
-    columnType?: "normal" | "numeric" | "row-header" | "layout" | "icon-action";
+
+export interface TableHeader extends Omit<Marko.HTML.TH, `on${string}`> {
+    "column-type"?: "normal" | "numeric" | "layout" | "icon-action";
+    "row-header"?: boolean;
     name?: string;
     sort?: TableSort | boolean;
     href?: AttrString;
     renderBody: Marko.Body;
 }
+
 export interface TableCell
-    extends Omit<Marko.Input<"td"> & Marko.Input<"th">, `on${string}`> {
-    renderBody: Marko.Body;
-}
-export interface TableRow extends Omit<Marko.Input<"tr">, `on${string}`> {
+    extends Omit<Marko.HTML.TD & Marko.HTML.TH, `on${string}`> {}
+
+export interface TableRow extends Omit<Marko.HTML.TR, `on${string}`> {
     name?: string;
     selected?: boolean;
-    cell: Marko.AttrTag<TableCell>;
+    cell?: Marko.AttrTag<TableCell>;
 }
-export interface TableInput extends Omit<Marko.Input<"div">, `on${string}`> {
-    header: Marko.AttrTag<TableHeader>;
+export interface TableInput extends Omit<Marko.HTML.Div, `on${string}`> {
+    header: Marko.AttrTag<WithNormalizedProps<TableHeader>>;
     mode?: "none" | "selection";
-    allSelected?: AttrTriState;
+    "all-selected"?: AttrTriState;
     row?: Marko.AttrTag<TableRow>;
     density?: "compact" | "relaxed" | "none";
     "a11y-select-all-text"?: string;
@@ -33,6 +35,7 @@ export interface TableInput extends Omit<Marko.Input<"div">, `on${string}`> {
     }) => void;
     "on-sort"?: (event: { sorted: Record<string, TableSort> }) => void;
 }
+
 export interface Input extends WithNormalizedProps<TableInput> {}
 
 interface State {

@@ -1,0 +1,30 @@
+export interface Input {
+    renderBody?: Marko.Body;
+}
+
+<ebay-drawer-dialog-deprecated
+    a11y-close-text="Close drawer"
+    open=state.open
+    on-close("closeDrawer")
+    on-expanded("emit", "expanded")
+    on-collapsed("emit", "collapsed")
+    on-open("emit", "open")
+    ...input>
+    <${input.renderBody}/>
+</ebay-drawer-dialog-deprecated>
+<ebay-button on-click("openDrawer")>Open drawer</ebay-button>
+class {
+    declare state: {
+        open: boolean;
+    };
+    onCreate() {
+        this.state = { open: false };
+    }
+    openDrawer() {
+        this.state.open = true;
+    }
+    closeDrawer() {
+        this.state.open = false;
+        this.emit('close', arguments);
+    }
+}

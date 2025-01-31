@@ -111,7 +111,7 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
     a11yText: "Toggle Button Group",
-    buttons: [
+    button: [
         { renderBody: "Button 1" },
         { renderBody: "Button 2" },
         { renderBody: "Button 3" },

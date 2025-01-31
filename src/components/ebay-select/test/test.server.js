@@ -15,7 +15,7 @@ describe("select", () => {
         expect(rootElement).toMatchSnapshot();
 
         expect(optionEls).toMatchSnapshot();
-        input.options.forEach((option, i) => {
+        input.option.forEach((option, i) => {
             const optionEl = optionEls[i];
             expect(optionEl).toMatchSnapshot();
             expect(optionEl).toMatchSnapshot();

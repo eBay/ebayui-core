@@ -5,14 +5,14 @@ $ const {
     class: inputClass,
     selectedIndex,
     activation,
-    tabs,
-    panels,
+    tab: tabs =[],
+    panel: panels = [],
     ...htmlInput
 } = input;
 
 <div ...processHtmlAttributes(htmlInput) class=['tabs', inputClass]>
     <div.tabs__items role='tablist' key='tabs'>
-        <for|tab, i| of=state.tabs>
+        <for|tab, i| of=state.tab>
             $ var isSelected = state.selectedIndex === i;
             <div
                 ...processHtmlAttributes(tab, itemAnchorIgnoredAttributes)
@@ -30,7 +30,7 @@ $ const {
         </for>
     </div>
     <div.tabs__content>
-        <for|panel, i| of=state.panels>
+        <for|panel, i| of=state.panel>
             $ var isSelected = state.selectedIndex === i;
             <div
                 ...processHtmlAttributes(panel)

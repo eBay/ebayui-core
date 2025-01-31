@@ -37,7 +37,6 @@ export default {
                 "attention",
                 "confirmation",
                 "information",
-                "celebration",
             ],
             type: "select",
         },
@@ -67,7 +66,7 @@ export default {
         title: {
             name: "@title",
             description:
-                "The title content to be displayed. Used mostly for celebration notice",
+                "The title content to be displayed.",
             table: {
                 category: "@attribute tags",
             },

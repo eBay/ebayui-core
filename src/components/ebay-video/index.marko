@@ -3,8 +3,7 @@ import { processHtmlAttributes } from "../../common/html-attributes"
 static const isBrowser = typeof window !== "undefined";
 
 $ const {
-    sources = [],
-    cdnUrl,
+    source: sources = [],
     thumbnail,
     playView,
     a11yPlayText = "Click to play",
@@ -37,7 +36,7 @@ $ const {
             no-controls
             poster=thumbnail
             ...processHtmlAttributes(htmlInput)>
-            <for|src| of=sources>
+                <for|src| of=sources>
                 <source ...src/>
             </for>
             <for|track| of=tracks>

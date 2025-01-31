@@ -1,7 +1,7 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 import type { WithNormalizedProps } from '../../global';
 
-static interface SignalInput extends Omit<Marko.Input<"span">, `on${string}`> {
+static interface SignalInput extends Omit<Marko.HTML.Span, `on${string}`> {
     status?: "trustworthy" | "recent" | "time-sensitive" | "neutral";
 }
 

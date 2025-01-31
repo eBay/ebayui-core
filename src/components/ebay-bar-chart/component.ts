@@ -29,10 +29,9 @@ interface SeriesItem
     group?: string;
 }
 
-interface BarChartInput
-    extends Omit<Marko.Input<"div">, `on${string}` | "title"> {
+interface BarChartInput extends Omit<Marko.HTML.Div, `on${string}` | "title"> {
     title: Highcharts.TitleOptions["text"];
-    description?: Highcharts.PlotSeriesOptions["description"];
+    description?: Highcharts.SeriesOptionsType["description"];
     "x-axis-label-format"?: Highcharts.XAxisLabelsOptions["format"];
     "x-axis-positioner"?: Highcharts.XAxisOptions["tickPositioner"];
     "y-axis-labels"?: Highcharts.YAxisLabelsOptions["format"][];
@@ -98,6 +97,7 @@ class BarChart extends Marko.Component<Input> {
             : [this.input.series];
         const stacked = this.input.stacked;
         const title = this.input.title;
+        
         // controls rounded corders and spacing at the bottom of data points
         if (stacked) {
             series[0].bottom = true; // set a variable on the first series so it renders rounder corners on the bottom of the bar
@@ -115,7 +115,9 @@ class BarChart extends Marko.Component<Input> {
                 s.bottom = true;
             });
         }
-        setSeriesColors(series);
+
+        // Cast series to Highcharts.SeriesBarOptions[] to avoid type errors
+        setSeriesColors(series as Highcharts.SeriesBarOptions[]);
 
         const config: Highcharts.Options = {
             title: {

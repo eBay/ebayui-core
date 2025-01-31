@@ -6,7 +6,7 @@ export interface CharacterCountEvent {
     inputAriaLive: Marko.AriaAttributes["aria-live"];
 }
 
-interface CharacterCountInput extends Omit<Marko.Input<"span">, `on${string}`> {
+interface CharacterCountInput extends Omit<Marko.HTML.Span, `on${string}`> {
     renderBody?: Marko.Body;
     value?: string | number;
     max: number;

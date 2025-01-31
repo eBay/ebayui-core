@@ -6,7 +6,7 @@ import * as eventUtils from "../../../common/event-utils";
 import transition from "../../../common/transition";
 import type { WithNormalizedProps } from "../../../global";
 
-interface DialogBaseInput extends Omit<Marko.Input<"div">, `on${string}`> {
+interface DialogBaseInput extends Omit<Marko.HTML.Div, `on${string}`> {
     "button-position"?: "right" | "left" | "bottom" | "hidden";
     "use-hidden-property"?: boolean;
     "base-el"?: string;
@@ -43,7 +43,7 @@ interface DialogBaseInput extends Omit<Marko.Input<"div">, `on${string}`> {
     "transition-el"?: "root" | "window";
     focus?: string;
     "prev-button"?: Marko.AttrTag<
-        Omit<Marko.Input<"button">, `on${string}`> &
+        Omit<Marko.HTML.Button, `on${string}`> &
             WithNormalizedProps<{
                 "a11y-text"?: AttrString;
             }>

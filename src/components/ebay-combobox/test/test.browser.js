@@ -93,7 +93,7 @@ describe("given the combobox with 3 items", () => {
                         "combobox__option--active",
                     );
                     expect(component.getByRole("combobox")).toHaveValue(
-                        Isolated.args.options[0].text,
+                        Isolated.args.option[0].text,
                     );
                 });
 
@@ -107,7 +107,7 @@ describe("given the combobox with 3 items", () => {
 
                     it("then it should correctly set value for the input", () => {
                         expect(component.getByRole("combobox").value).to.equal(
-                            Isolated.args.options[0].text,
+                            Isolated.args.option[0].text,
                         );
                     });
 
@@ -133,7 +133,7 @@ describe("given the combobox with 3 items", () => {
                             "combobox__option--active",
                         );
                         expect(component.getByRole("combobox")).toHaveValue(
-                            Isolated.args.options[1].text,
+                            Isolated.args.option[1].text,
                         );
                     });
                 });
@@ -150,7 +150,7 @@ describe("given the combobox with 3 items", () => {
 
                 it("then it should update the input", () => {
                     expect(component.getByRole("combobox")).toHaveValue(
-                        Isolated.args.options[1].text,
+                        Isolated.args.option[1].text,
                     );
                 });
 
@@ -189,8 +189,8 @@ describe("given the combobox with 3 items", () => {
 describe("given the combobox with 3 items and 2 selected and view all options", () => {
     beforeEach(async () => {
         component = await render(Isolated, {
-            value: Isolated.args.options[1].text,
-            viewAllOptions: true,
+            value: Isolated.args.option[1].text,
+            autocomplete: "none",
         });
     });
 
@@ -243,7 +243,7 @@ describe("given the combobox with 3 items and 2 selected and view all options", 
 describe("given the combobox with 6 items and view all options false", () => {
     beforeEach(async () => {
         component = await render(Isolated, {
-            value: Isolated.args.options[2].text,
+            value: Isolated.args.option[2].text,
             viewAllOptions: false,
         });
     });
@@ -363,7 +363,7 @@ describe("given the combobox with 3 items set to manual selection", () => {
 
                     it("then it should correctly set value for the input", () => {
                         expect(component.getByRole("combobox")).toHaveValue(
-                            Isolated.args.options[0].text,
+                            Isolated.args.option[0].text,
                         );
                     });
 
@@ -404,7 +404,7 @@ describe("given the combobox with 3 items set to manual selection", () => {
 
                 it("then it should update the input", () => {
                     expect(component.getByRole("combobox")).toHaveValue(
-                        Isolated.args.options[1].text,
+                        Isolated.args.option[1].text,
                     );
                 });
 
@@ -442,7 +442,7 @@ describe("given the combobox with 3 items set to manual selection", () => {
 
 describe("given the combobox starts with zero options", () => {
     beforeEach(async () => {
-        component = await render(Isolated, { options: [] });
+        component = await render(Isolated, { option: [] });
     });
 
     describe("when the input receives focus", () => {
@@ -550,7 +550,7 @@ describe("given the combobox starts with zero options", () => {
 
                     it("then it should correctly set value for the input", () => {
                         expect(component.getByRole("combobox").value).to.equal(
-                            Isolated.args.options[0].text,
+                            Isolated.args.option[0].text,
                         );
                     });
 
@@ -590,7 +590,7 @@ describe("given the combobox starts with zero options", () => {
 
                 it("then it should update the input", () => {
                     expect(component.getByRole("combobox")).toHaveValue(
-                        Isolated.args.options[1].text,
+                        Isolated.args.option[1].text,
                     );
                 });
             });

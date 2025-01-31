@@ -33,7 +33,7 @@ $ const isEducation = prefixClass === 'education-notice';
 >
     <if(icon !== 'none')>
         <${headerRoot || 'div'} class=`${prefixClass}__header` id:scoped='status'>
-            <if(status === 'confirmation' || status === 'celebration')>
+            <if(status === 'confirmation')>
                 <ebay-confirmation-filled-16-icon
                     a11y-text=a11yIconText || a11yText
                     a11y-variant='label'

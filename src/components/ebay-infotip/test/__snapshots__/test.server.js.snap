@@ -338,11 +338,6 @@ exports[`infotip modal > renders default 1`] = `
     [36m<div[39m
       [33mclass[39m=[32m"lightbox-dialog__window lightbox-dialog__window--animate"[39m
     [36m>[39m
-      [36m<button[39m
-        [33maria-label[39m=[32m"Maximize Lightbox Dialog"[39m
-        [33mclass[39m=[32m"lightbox-dialog__handle"[39m
-        [33mtype[39m=[32m"button"[39m
-      [36m/>[39m
       [36m<div[39m
         [33mclass[39m=[32m"lightbox-dialog__header"[39m
       [36m>[39m

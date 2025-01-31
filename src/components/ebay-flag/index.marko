@@ -1,6 +1,6 @@
 import type { WithNormalizedProps } from "../../global";
 static {
-    interface FlagInput extends Omit<Marko.Input<"span">, `on${string}`> {
+    interface FlagInput extends Omit<Marko.HTML.Span, `on${string}`> {
         flag?: string;
     }
 }

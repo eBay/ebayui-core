@@ -26,7 +26,9 @@ describe("given the details is in the default state", () => {
 
     it("should render with open false", () => {
         expect(
-            component.getByText(input.text).closest("details").open,
+            component
+                .getByText(input.summary.renderBody.text)
+                .closest("details").open,
         ).to.equal(false);
     });
 });
@@ -40,14 +42,16 @@ describe("given the details is in the open state", () => {
 
     it("should render with open false", () => {
         expect(
-            component.getByText(input.text).closest("details").open,
+            component
+                .getByText(input.summary.renderBody.text)
+                .closest("details").open,
         ).to.equal(true);
     });
 });
 
 describe("given the details is in the default state and click is triggered", () => {
     const input = mock.Default_Details;
-    const detailsText = input.text;
+    const detailsText = input.summary.renderBody.text;
 
     beforeEach(async () => {
         component = await render(template, input);
@@ -67,7 +71,7 @@ describe("given the details is in the default state and click is triggered", () 
 
 describe("given the details is in the open state and click is triggered", () => {
     const input = mock.Open_Details;
-    const detailsText = input.text;
+    const detailsText = input.summary.renderBody.text;
 
     beforeEach(async () => {
         component = await render(template, input);

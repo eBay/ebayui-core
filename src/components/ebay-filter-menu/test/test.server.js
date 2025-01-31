@@ -8,7 +8,7 @@ import { createRenderBody } from "../../../common/test-utils/shared";
 const { Standard } = composeStories(stories);
 
 const htmlSnap = snapshotHTML(__dirname);
-const items = [...Standard.args.items];
+const items = [...Standard.args.item];
 
 describe("filter-menu", () => {
     it("renders basic version", async () => {
@@ -56,7 +56,7 @@ describe("filter-menu", () => {
     testPassThroughAttributes(Standard);
     testPassThroughAttributes(Standard, {
         child: {
-            name: "items",
+            name: "item",
             multiple: true,
         },
     });

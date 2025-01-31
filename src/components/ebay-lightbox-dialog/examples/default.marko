@@ -35,8 +35,6 @@ class {
     open=state.open
     on-close("closeDialog")
     on-open("emit", "open")
-    on-expanded("emit", "expanded")
-    on-collapsed("emit", "collapsed")
     ...dialogBaseInput
 >
     <if(header && header.renderBody)>

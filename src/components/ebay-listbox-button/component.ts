@@ -1,13 +1,14 @@
 import Expander from "makeup-expander";
 import * as scrollKeyPreventer from "makeup-prevent-scroll-keys";
+import { DropdownUtil } from "../../common/dropdown";
 import type { Input as ListboxInput } from "../ebay-listbox/component";
 import type Listbox from "../ebay-listbox/component";
 import type { ChangeEvent } from "../ebay-listbox/component";
 import type { WithNormalizedProps } from "../../global";
 import type { AttrString } from "marko/tags-html";
 
-interface ListboxButtonInput extends Omit<Marko.Input<"div">, `on${string}`> {
-    options?: ListboxInput["options"];
+interface ListboxButtonInput extends Omit<Marko.HTML.Div, `on${string}`> {
+    option?: ListboxInput["option"];
     name?: ListboxInput["name"];
     "list-selection"?: ListboxInput["listSelection"];
     "prefix-id"?: string;
@@ -40,14 +41,17 @@ interface State {
 
 class ListboxButton extends Marko.Component<Input, State> {
     declare _expander: any;
+    declare dropdownUtil: DropdownUtil;
 
     handleExpand() {
         (this.getComponent("options") as Listbox).elementScroll();
+        this.dropdownUtil.show();
         this.emit("expand");
     }
 
     handleCollapse() {
         (this.getEl("button") as HTMLButtonElement).focus();
+        this.dropdownUtil.hide();
         this.emit("collapse");
     }
 
@@ -71,10 +75,10 @@ class ListboxButton extends Marko.Component<Input, State> {
     }
 
     onInput(input: Input) {
-        input.options = input.options || ([] as any);
+        input.option = input.option || ([] as any);
         this.state.selectedIndex = -1;
         let i = 0;
-        for (const option of input.options || []) {
+        for (const option of input.option || []) {
             if (option.selected) {
                 this.state.selectedIndex = i;
                 break;
@@ -106,7 +110,7 @@ class ListboxButton extends Marko.Component<Input, State> {
 
         // This `as any` is here for while `options` is coerced into an array from `marko-tag.json`.
         // After we move to the full `iterator` we can switch to `if (input.options && !input.disabled)`
-        if ((input.options as any)?.length && !input.disabled) {
+        if ((input.option as any)?.length && !input.disabled) {
             const container = this.getEl("container");
 
             this._expander = new Expander(container, {
@@ -122,6 +126,7 @@ class ListboxButton extends Marko.Component<Input, State> {
 
             scrollKeyPreventer.add(this.getEl("button"));
         }
+        this.dropdownUtil = new DropdownUtil(this.getEl("button"), this.getEl("options"))
     }
 
     _cleanupMakeup() {
@@ -129,6 +134,8 @@ class ListboxButton extends Marko.Component<Input, State> {
             this._expander.destroy();
             this._expander = undefined;
         }
+
+        this.dropdownUtil?.cleanup();
     }
 }
 

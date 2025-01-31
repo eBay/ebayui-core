@@ -18,7 +18,7 @@ $ const {
     priority: inputPriority,
     disabled,
     variant: inputVariant,
-    items,
+    item: items = [],
     label,
     prefixLabel,
     prefixId,
@@ -113,7 +113,6 @@ $ {
     <ebay-menu
         classPrefix="menu-button"
         type=type
-        reverse=(isOverflowVariant !== !!reverse) // Boolean XOR
         fixWidth=fixWidth
         tabindex=-1
         on-keydown("handleMenuKeydown")

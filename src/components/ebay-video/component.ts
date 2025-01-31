@@ -50,20 +50,17 @@ export interface VolumeEvent {
     muted: boolean;
 }
 
-interface VideoInput extends Omit<Marko.Input<"video">, `on${string}`> {
+interface VideoInput extends Omit<Marko.HTML.Video, `on${string}`> {
     "play-view"?: "fullscreen" | "inline";
     volume?: number;
     action?: "play" | "pause";
     "volume-slider"?: boolean;
-    tracks?: any[];
-    sources: Marko.AttrTag<Marko.Input<"source">>;
+    clip?: any[];
+    source: Marko.AttrTag<Marko.HTML.Source>;
     "report-text"?: AttrString;
     "spinner-timeout"?: number;
-    "cdn-url"?: string;
-    "css-url"?: string;
-    version?: string;
     thumbnail?: string;
-    track?: Marko.AttrTag<Marko.Input<"track">>;
+    track?: Marko.AttrTag<Marko.HTML.Track>;
     "error-text"?: AttrString;
     "a11y-play-text"?: AttrString;
     "a11y-load-text"?: AttrString;
@@ -93,7 +90,7 @@ class Video extends Marko.Component<Input, State> {
     declare ui: any;
     declare shaka: any;
 
-    isPlaylist(source: Marko.Input<"source"> & { src: string }) {
+    isPlaylist(source: Marko.HTML.Source & { src: string }) {
         const type = source.type && source.type.toLowerCase();
         const src = source.src;
         if (type === "dash" || type === "hls") {
@@ -208,7 +205,7 @@ class Video extends Marko.Component<Input, State> {
     }
 
     _addTextTracks() {
-        (this.input.tracks || []).forEach((track) => {
+        (this.input.clip || []).forEach((track) => {
             this.player.addTextTrack(track.src, track.srclang, track.kind);
         });
 
@@ -220,7 +217,7 @@ class Video extends Marko.Component<Input, State> {
 
     _loadSrc(index?: number) {
         const currentIndex = index || 0;
-        const sources = [...this.input.sources];
+        const sources = [...this.input.source];
         const src = sources[currentIndex];
         let nextIndex: number;
         if (src && sources.length > currentIndex + 1) {

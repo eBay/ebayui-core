@@ -55,7 +55,7 @@ export default {
                 },
             },
         },
-        messages: {
+        message: {
             control: {
                 type: "array",
             },
@@ -89,7 +89,7 @@ export const Default = buildExtensionTemplate(
 
 export const WithSingleMessage = Template.bind({});
 WithSingleMessage.args = {
-    messages: [{ renderBody: "We're processing your order" }] as any,
+    message: [{ renderBody: "We're processing your order" }] as any,
 };
 WithSingleMessage.parameters = {
     docs: {
@@ -107,12 +107,12 @@ export const WithMessages = buildExtensionTemplate(
     MessagesTemplateCode,
 );
 WithMessages.args = {
-    messages: exampleMessages,
+    message: exampleMessages,
 };
 
 export const WithLongMessage = Template.bind({});
 WithLongMessage.args = {
-    messages: [
+    message: [
         { renderBody: "Messages should be one line..." },
         {
             renderBody: "Sometimes that's hard to guarantee, though.",
@@ -137,7 +137,7 @@ export const WithCustomTiming = buildExtensionTemplate(
     CustomTimingTemplateCode,
 );
 WithCustomTiming.args = {
-    messages: [
+    message: [
         { renderBody: "Display for 2 seconds", duration: 2000 },
         { renderBody: "Display for 3 seconds", duration: 3000 },
         { renderBody: "Display for 4 seconds", duration: 4000 },
@@ -150,7 +150,7 @@ export const Localized = buildExtensionTemplate(
 );
 Localized.args = {
     a11yText: "Cargando...",
-    messages: [
+    message: [
         { renderBody: "Espera..." },
         { renderBody: "Estamos procesando tu pedido", duration: 2000 },
         { renderBody: "Sólo un momento más" },
@@ -163,5 +163,5 @@ export const MediumSize = buildExtensionTemplate(
 );
 MediumSize.args = {
     size: "medium",
-    messages: exampleMessages,
+    message: exampleMessages,
 };

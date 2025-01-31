@@ -29,7 +29,7 @@
         },
         "@html-attributes": "expression"
     },
-    "@options <option>[]": {
+    "@option <option>[]": {
         "attribute-groups": ["html-attributes"],
         "@*": {
             "targetProperty": null,

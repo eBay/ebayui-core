@@ -27,8 +27,8 @@ export interface Item extends MenuItem {
 
 interface MenuInput
     extends BaseMenuInput,
-        Omit<Marko.Input<"span">, `on${string}`> {
-    items?: Marko.AttrTag<Item>;
+        Omit<Marko.HTML.Span, `on${string}`> {
+    item?: Marko.AttrTag<Item>;
     "class-prefix"?: string;
     "typeahead-timeout-length"?: number;
     reverse?: boolean;

@@ -12,9 +12,9 @@ interface Message {
 }
 
 interface ProgressBarExpressiveInput
-    extends Omit<Marko.Input<"div">, `on${string}`> {
+    extends Omit<Marko.HTML.Div, `on${string}`> {
     "a11y-text"?: AttrString;
-    messages?: Marko.AttrTag<Message>;
+    message?: Marko.AttrTag<Message>;
     size?: "medium" | "large";
 }
 
@@ -46,7 +46,7 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
     }
 
     onInput(input: Input) {
-        this.initializeMessageRotation(input.messages);
+        this.initializeMessageRotation(input.message);
     }
 
     onDestroy() {
@@ -116,7 +116,7 @@ class ProgressBarExpressive extends Marko.Component<Input, State> {
     /**
      * Display a message and queue the next one
      */
-    showMessage(messageTags = this.input.messages, extraDelay = 0) {
+    showMessage(messageTags = this.input.message, extraDelay = 0) {
         const messages = [...(messageTags || [])];
         if (messageTags) {
             const messageCount = messages.length;

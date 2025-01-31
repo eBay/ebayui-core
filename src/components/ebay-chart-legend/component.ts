@@ -6,7 +6,7 @@ export interface LegendItem {
 }
 
 export interface ChartLegendInput {
-    items: LegendItem[];
+    item: LegendItem[];
 }
 
 export interface Input extends WithNormalizedProps<ChartLegendInput> {}

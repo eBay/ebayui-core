@@ -56,23 +56,6 @@ describe("page-notice", () => {
         expect(footer).toMatchSnapshot();
     });
 
-    it("renders with celebration", async () => {
-        const input = mock.Page_Celebration;
-        const { getByText, getByLabelText } = await render(template, input);
-        const content = getByText(input.renderBody.text);
-        expect(content).toMatchSnapshot();
-        expect(content.parentElement).toMatchSnapshot();
-        const status = getByLabelText(input.a11yText).parentElement;
-
-        const containerUsingLabel = status.closest(
-            `[aria-labelledBy="${status.id}"]`,
-        );
-        expect(containerUsingLabel).toMatchSnapshot();
-
-        const title = getByText(input.title.renderBody.text);
-        expect(title).toMatchSnapshot();
-    });
-
     testPassThroughAttributes(template, {
         input: mock.Page,
     });

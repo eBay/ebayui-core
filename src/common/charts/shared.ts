@@ -1,8 +1,8 @@
 export const chartFontFamily = '"Market Sans", Arial, sans-serif',
     backgroundColor = "var(--color-background-primary)",
     gridColor = "var(--color-data-viz-grid)",
-    labelsColor = "var(--color-data-viz-labels)",
-    legendColor = "var(--color-data-viz-legend)",
+    labelsColor = "var(--color-foreground-secondary)",
+    legendColor = "var(--color-foreground-primary)",
     legendInactiveColor = "var(--color-data-viz-legend-inactive)",
     legendHoverColor = "var(--color-data-viz-legend-hover)",
     tooltipBackgroundColor = "var(--color-background-primary)",
@@ -65,7 +65,7 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
     ],
     // function is used to set up the colors including lineColor(svg stroke) on each of the series objects
     // based on the length of the series array
-    setSeriesColors = function (series: Highcharts.PlotAreaOptions[]) {
+    setSeriesColors = function (series: Highcharts.SeriesOptions[]) {
         const strokeColorMapping = [
             chartPrimaryColor,
             chartSecondaryColor,
@@ -77,10 +77,17 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
         for (let i = 0; i < series.length; i++) {
             // Added a modulus in case the user passes in more than 5 series so it doesn't error out
             const color = strokeColorMapping[i % strokeColorMapping.length];
-            series[i].lineColor = color;
-            series[i].borderColor = color;
+            if (series[i].type === "bar") {
+                (series[i] as Highcharts.SeriesBarOptions).borderColor = color;
+                (series[i] as Highcharts.SeriesBarOptions).color = color;
+            }
+            else {
+                (series[i] as Highcharts.SeriesAreaOptions).lineColor = color;
+                (series[i] as Highcharts.SeriesAreaOptions).fillOpacity = 1;
+            }
         }
     },
+
     setDonutColors = function (series: any) {
         const colors = [
             { lineColor: chartPrimaryColor, borderColor: chartPrimaryColor },
@@ -110,4 +117,25 @@ export const chartFontFamily = '"Market Sans", Arial, sans-serif',
         });
 
         return colors.map((color: any) => color.lineColor);
+    },
+    setSeriesMarkerStyles = function (series: Highcharts.SeriesAreaOptions[]) {
+        series.forEach((s, i) => {
+            s.zIndex = series.length - i;
+            s.marker = {
+                symbol: "circle",
+                lineWidth: 1,
+                fillColor: "black",
+                lineColor: "white",
+                states: {
+                    hover: {
+                        animation: { duration: 0 },
+                        radius: 4,
+                        lineWidth: 2,
+                    },
+                    normal: {
+                        animation: false,
+                    },
+                },
+            };
+        });
     };

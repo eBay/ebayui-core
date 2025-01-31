@@ -2,13 +2,13 @@ import { processHtmlAttributes } from "../../common/html-attributes";
 $ const {
     class: inputClass,
     style,
-    items,
+    item: items = [],
     ...htmlInput
 } = input;
 
 <div style=style class=["list", inputClass] ...processHtmlAttributes(htmlInput)>
     <ul>
-        <for|item, i| of=items>
+        <for|item, i| of=items || []>
             $ const {
                 class: itemInputClass,
                 style: itemStyle,
@@ -38,12 +38,10 @@ $ const {
                         <if(leading)>
                             $ const {
                                 class: leadingInputClass,
-                                leadingStyle,
                                 ...leadingInput
                             } = leading;
                             <div
                                 class=["list__leading", leadingInputClass]
-                                style=leadingStyle
                                 ...processHtmlAttributes(leadingInput)
                             >
                                 <${leading}/>
@@ -55,12 +53,10 @@ $ const {
                         <if(trailing)>
                             $ const {
                                 class: trailingInputClass,
-                                trailingStyle,
                                 ...trailingInput
                             } = trailing;
                             <div
                                 class=["list__trailing", trailingInputClass]
-                                style=trailingStyle
                                 ...processHtmlAttributes(trailingInput)
                             >
                                 <${trailing}/>

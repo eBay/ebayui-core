@@ -8,6 +8,8 @@ import Combobox from "./index.marko";
 import type { Input } from "./component";
 import SearchFilteringTemplate from "./examples/search-filtering.marko";
 import SearchFilteringTemplateCode from "./examples/search-filtering.marko?raw";
+import ActionableButtonTemplate from "./examples/actionable-button.marko";
+import ActionableButtonTemplateCode from "./examples/actionable-button.marko?raw";
 import { Story } from "@storybook/marko";
 
 const Template: Story<Input> = (args) => ({
@@ -54,16 +56,6 @@ export default {
             control: { type: "text" },
             description:
                 "default is `automatic`; available values are `automatic`, `manual`. If set to automatic will automatically fill in the input with the currently highlighted item when using the up/down keys.",
-        },
-        viewAllOptions: {
-            type: "boolean",
-            control: { type: "boolean" },
-            description: "Filters listbox options based on user input",
-            table: {
-                defaultValue: {
-                    summary: "false",
-                },
-            },
         },
         "floating-label": {
             control: { type: "text" },
@@ -175,7 +167,7 @@ FloatingLabel.args = {
     name: "example1text",
     autocomplete: "list",
     value: "",
-    options: [
+    option: [
         { text: "August Campaign" },
         { text: "4th of July Sale (paused)" },
         { text: "Basic Offer" },
@@ -204,7 +196,7 @@ export const Isolated = Template.bind({});
 Isolated.args = {
     name: "example1text",
     autocomplete: "list",
-    options: [
+    option: [
         { text: "August Campaign", value: "1" },
         { text: "4th of July Sale (paused)", value: "2" },
         { text: "Basic Offer", value: "3" },
@@ -231,4 +223,9 @@ Isolated.parameters = {
 export const SearchFiltering = buildExtensionTemplate(
     SearchFilteringTemplate,
     SearchFilteringTemplateCode,
+);
+
+export const ActionableButton = buildExtensionTemplate(
+    ActionableButtonTemplate,
+    ActionableButtonTemplateCode,
 );

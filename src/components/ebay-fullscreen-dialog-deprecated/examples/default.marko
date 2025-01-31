@@ -1,0 +1,25 @@
+<ebay-fullscreen-dialog-deprecated
+    a11yCloseText='Close Dialog'
+    open=state.open
+    on-close('closeDialog')
+    on-open('emit', 'open')
+    ...input
+/>
+
+<ebay-button on-click('openDialog')>Open Dialog</ebay-button>
+class {
+    declare state: {
+        open: boolean;
+    }
+
+    onCreate() {
+        this.state = { open: false };
+    }
+    openDialog() {
+        this.state.open = true;
+    }
+    closeDialog() {
+        this.state.open = false;
+        this.emit('close');
+    }
+}

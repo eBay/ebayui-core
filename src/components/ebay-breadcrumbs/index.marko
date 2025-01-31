@@ -6,11 +6,11 @@ $ const {
     a11yHeadingTag,
     a11yMenuButtonText,
     class: inputClass,
-    items: attrTagItems,
+    item: attrTagItems = [],
     ...htmlInput
 } = input;
 
-$ const items = [...(attrTagItems || [])];
+$ const items = [...attrTagItems];
 
 $ var anyHref = (items || []).some((element) => element.href != null);
 <nav
@@ -38,7 +38,7 @@ $ var anyHref = (items || []).some((element) => element.href != null);
                     >
                         <for|i| of=state.hiddenIndex>
                             <@item
-                                type=(anyHref ? 'a' : 'button') as (Marko.Input<"button">["type"])
+                                type=(anyHref ? 'a' : 'button') as (Marko.HTML.Button["type"])
                                 ...processHtmlAttributes(items[i])
                             >
                                 <${items[i].renderBody}/>

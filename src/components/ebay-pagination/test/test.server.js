@@ -24,22 +24,22 @@ describe("pagination", () => {
         });
 
         it("renders empty version", async () => {
-            await htmlSnap(Links, { items: getPaginationItems(0, true, 3) });
+            await htmlSnap(Links, { item: getPaginationItems(0, true, 3) });
         });
 
         it("renders with a selected item", async () => {
-            await htmlSnap(Links, { items: getPaginationItems(15, true, 3) });
+            await htmlSnap(Links, { item: getPaginationItems(15, true, 3) });
         });
 
         it("renders with aria-disabled when navigation is disabled", async () => {
             await htmlSnap(Links, {
-                items: getPaginationItems(15, true, 3, true),
+                item: getPaginationItems(15, true, 3, true),
             });
         });
 
         it("renders with aria-disabled when navigation items missing", async () => {
             await htmlSnap(Links, {
-                items: getPaginationItems(15, true, 3, true, true),
+                item: getPaginationItems(15, true, 3, true, true),
             });
         });
     });
@@ -58,16 +58,16 @@ describe("pagination", () => {
         });
 
         it("renders empty button version", async () => {
-            await htmlSnap(Buttons, { items: getPaginationItems(0, false) });
+            await htmlSnap(Buttons, { item: getPaginationItems(0, false) });
         });
 
         it("renders button version", async () => {
-            await htmlSnap(Buttons, { items: getPaginationItems(15, false) });
+            await htmlSnap(Buttons, { item: getPaginationItems(15, false) });
         });
 
         it("renders button version selected items", async () => {
             await htmlSnap(Buttons, {
-                items: getPaginationItems(15, false, 3),
+                item: getPaginationItems(15, false, 3),
             });
         });
     });
@@ -84,7 +84,7 @@ describe("pagination", () => {
 describe("pagination-item", () => {
     testPassThroughAttributes(Links, {
         child: {
-            name: "items",
+            name: "item",
             multiple: true,
         },
     });

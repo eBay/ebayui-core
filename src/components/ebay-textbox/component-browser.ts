@@ -1,15 +1,19 @@
 import FloatingLabel from "makeup-floating-label";
 import type { WithNormalizedProps } from "../../global";
-import type { AttrString } from "marko/tags-html";
+import type {
+    AttrOnOff,
+    AttrString,
+    AttrStringOrNumber,
+} from "marko/tags-html";
 
 export interface TextboxEvent {
     originalEvent: Event;
     value: string;
 }
 
-interface TextboxInput extends Omit<Marko.Input<"textarea">, `on${string}`> {
+interface TextboxInput extends Omit<Marko.HTML.Input, `on${string}`> {
     multiline?: boolean;
-    type?: Marko.Input<"input">["type"];
+    type?: Marko.HTML.Input["type"];
     "input-size"?: "regular" | "large";
     fluid?: boolean;
     "opaque-label"?: boolean;
@@ -31,6 +35,10 @@ interface TextboxInput extends Omit<Marko.Input<"textarea">, `on${string}`> {
     "on-blur"?: (event: TextboxEvent) => void;
     "on-invalid"?: (event: TextboxEvent) => void;
     "on-button-click"?: (event: TextboxEvent) => void;
+    // Fields in textarea that aren't in input that we need to include
+    autocorrect?: AttrOnOff;
+    cols?: AttrStringOrNumber;
+    rows?: AttrStringOrNumber;
 }
 
 export interface Input extends WithNormalizedProps<TextboxInput> {}

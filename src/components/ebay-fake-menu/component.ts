@@ -23,9 +23,8 @@ export interface Item extends MenuItem {
 export interface Separator {}
 interface FakeMenuInput
     extends BaseMenuInput,
-        Omit<Marko.Input<"span">, `on${string}`> {
-    items?: Marko.AttrTag<Item>;
-    separator?: Marko.AttrTag<Separator>;
+        Omit<Marko.HTML.Span, `on${string}`> {
+    item?: Marko.AttrTag<Item>;
     "class-prefix"?: string;
     reverse?: boolean;
     "fix-width"?: boolean;
@@ -75,7 +74,7 @@ export default class extends MenuUtils<Input, MenuState> {
 
     onInput(input: Input) {
         this.items = [];
-        for (const item of input.items || []) {
+        for (const item of input.item || []) {
             if (!item.separator) {
                 this.items.push(item);
             }

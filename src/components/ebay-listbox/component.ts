@@ -13,17 +13,17 @@ export interface ChangeEvent {
     el: HTMLOptionElement;
 }
 
-export interface Option extends Omit<Marko.Input<"option">, `on${string}`> {
+export interface Option extends Omit<Marko.HTML.Option, `on${string}`> {
     disabled?: boolean;
     text?: AttrString;
     description?: Marko.AttrTag<{ renderBody?: Marko.Body }>;
     icon?: Marko.AttrTag<{ renderBody?: Marko.Body }>;
 }
 
-interface ListboxInput extends Omit<Marko.Input<"div">, `on${string}`> {
+interface ListboxInput extends Omit<Marko.HTML.Div, `on${string}`> {
     "list-selection"?: "auto" | "manual";
     "typeahead-timeout-length"?: number;
-    options?: Marko.AttrTag<Option>;
+    option?: Marko.AttrTag<Option>;
     name?: string;
     disabled?: boolean;
     "on-change"?: (event: ChangeEvent) => void;
@@ -52,7 +52,7 @@ class Listbox extends Marko.Component<Input, State> {
 
     handleChange(index: number, wasClicked: boolean) {
         if (this.state.selectedIndex !== index) {
-            const option = [...(this.input.options || [])][index];
+            const option = [...(this.input.option || [])][index];
             if (option.disabled) {
                 return;
             }
@@ -121,10 +121,10 @@ class Listbox extends Marko.Component<Input, State> {
 
     onInput(input: Input) {
         const { state } = this;
-        input.options = input.options || ([] as any);
+        input.option = input.option || ([] as any);
         state.selectedIndex = -1;
         let i = 0;
-        for (const option of input.options || []) {
+        for (const option of input.option || []) {
             if (option.selected) {
                 state.selectedIndex = i;
                 break;
@@ -154,9 +154,7 @@ class Listbox extends Marko.Component<Input, State> {
     _setupMakeup() {
         const { input, state } = this;
 
-        // This `as any` is here for while `options` is coerced into an array from `marko-tag.json`.
-        // After we move to the full `iterator` we can switch to `if (input.options && !input.disabled)`
-        if ((input.options as any)?.length && !input.disabled) {
+        if ((input.option as any)?.length && !input.disabled) {
             const container = this.getEl("options");
             const optionsContainer = this.getEl("options");
             this._activeDescendant = createLinear(
