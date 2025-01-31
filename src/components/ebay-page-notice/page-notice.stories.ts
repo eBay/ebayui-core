@@ -33,11 +33,7 @@ export default {
             },
 
             description: "The icon used and status of the notice",
-            options: [
-                "attention",
-                "confirmation",
-                "information",
-            ],
+            options: ["attention", "confirmation", "information"],
             type: "select",
         },
         icon: {
@@ -65,8 +61,7 @@ export default {
         },
         title: {
             name: "@title",
-            description:
-                "The title content to be displayed.",
+            description: "The title content to be displayed.",
             table: {
                 category: "@attribute tags",
             },

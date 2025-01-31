@@ -63,7 +63,8 @@ export default {
         },
         onToggle: {
             action: "on-toggle",
-            description: "Triggered on toggle of details to control auto-collapse",
+            description:
+                "Triggered on toggle of details to control auto-collapse",
             table: {
                 category: "Events",
                 defaultValue: {

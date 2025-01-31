@@ -25,7 +25,7 @@ declare const Highcharts: typeof HighchartsTypes;
 
 interface SeriesLineOptions extends Highcharts.PlotLineOptions {
     data: Highcharts.PointOptionsObject[];
-    type: "line",
+    type: "line";
 }
 
 interface LineChartInput extends Omit<Marko.HTML.Div, `on${string}` | "title"> {

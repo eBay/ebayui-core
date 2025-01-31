@@ -165,10 +165,9 @@ export default class extends MenuUtils<Input, MenuState> {
             this.getEl("button"),
             this.getEl("menu"),
             {
-                offset: 8
-            }
+                offset: 8,
+            },
         );
-
     }
 
     _cleanupMakeup() {
