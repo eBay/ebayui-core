@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 15.0.1
+
+### Patch Changes
+
+- [#2420](https://github.com/eBay/ebayui-core/pull/2420) [`9b3c7a8`](https://github.com/eBay/ebayui-core/commit/9b3c7a802cc571402b7950969cd9506f4a8c9fcc) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Downgrade shaka-player to prevent autoplay bug
+
 ## 15.0.0
 
 ### Major Changes
