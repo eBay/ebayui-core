@@ -37,6 +37,9 @@ $ var displayIcon = Boolean(!multiline && hasIcon);
 $ var prefixId = prefixText && component.getElId("prefix");
 $ var postfixId = postfixText && component.getElId("postfix");
 $ var defaultTag = fluid ? "div" : "span";
+// Since prefix doesn't work with floating label, we need to disable it
+// In floating label static, where its always floated, we allow prefix
+$ var disablePrefix = !!floatingLabel && !floatingLabelStatic;
 
 <${floatingLabel && defaultTag} class=["floating-label", isLarge && "floating-label--large", opaqueLabel && "floating-label--opaque"]>
     <if(floatingLabel)>
@@ -62,10 +65,10 @@ $ var defaultTag = fluid ? "div" : "span";
             fluid && "textbox--fluid",
             inputClass,
         ]>
-        <if(displayIcon && prefixIcon)>
+        <if(displayIcon && prefixIcon && !disablePrefix)>
             <${prefixIcon}/>
         </if>
-        <if(prefixText)>
+        <if(prefixText && !disablePrefix)>
             <span id=prefixId ...prefixText>
                 <${prefixText} />
             </span>
