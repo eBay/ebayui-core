@@ -97,14 +97,16 @@ export default {
         },
         prefixIcon: {
             name: "@prefix-icon",
-            description: "An `<ebay-{name}-icon>` to show as the prefix icon. Cannot be used with floating-label.",
+            description:
+                "An `<ebay-{name}-icon>` to show as the prefix icon. Cannot be used with floating-label.",
             table: {
                 category: "@attribute tags",
             },
         },
         postfixIcon: {
             name: "@postfix-icon",
-            description: "An `<ebay-{name}-icon>` to show as the postfix icon. Cannot be used with floating-label.",
+            description:
+                "An `<ebay-{name}-icon>` to show as the postfix icon. Cannot be used with floating-label.",
             table: {
                 category: "@attribute tags",
             },
