@@ -1,0 +1,10 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "15.0.1"
+  },
+  "changesets": [
+    "gold-walls-think"
+  ]
+}

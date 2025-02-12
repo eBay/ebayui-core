@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 15.1.0-next.0
+
+### Minor Changes
+
+- [#2426](https://github.com/eBay/ebayui-core/pull/2426) [`ac954a8`](https://github.com/eBay/ebayui-core/commit/ac954a8789de769487fba9d1414de57bc3b8f3c9) Thanks [@agliga](https://github.com/agliga)! - feat(textbox): added check to show prefix label only if floating is not set
+
 ## 15.0.1
 
 ### Patch Changes
