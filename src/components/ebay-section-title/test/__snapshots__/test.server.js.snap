@@ -83,9 +83,7 @@ exports[`section-title > renders icon and see all 1`] = `
       [33mclass[39m=[32m"section-title__cta"[39m
     [36m>[39m
       [36m<a[39m
-        [33maria-hidden[39m=[32m"true"[39m
         [33mhref[39m=[32m"https://www.ebay.com"[39m
-        [33mtabindex[39m=[32m"-1"[39m
       [36m>[39m
         [36m<span[39m
           [33mclass[39m=[32m"section-title__cta-text"[39m
@@ -157,9 +155,7 @@ exports[`section-title > renders icon and see all and no subtitle 1`] = `
       [33mclass[39m=[32m"section-title__cta"[39m
     [36m>[39m
       [36m<a[39m
-        [33maria-hidden[39m=[32m"true"[39m
         [33mhref[39m=[32m"https://www.ebay.com"[39m
-        [33mtabindex[39m=[32m"-1"[39m
       [36m>[39m
         [36m<span[39m
           [33mclass[39m=[32m"section-title__cta-text"[39m
@@ -196,9 +192,7 @@ exports[`section-title > renders with cta custom text 1`] = `
       [33mclass[39m=[32m"section-title__cta"[39m
     [36m>[39m
       [36m<a[39m
-        [33maria-hidden[39m=[32m"true"[39m
         [33mhref[39m=[32m"www.ebay.com"[39m
-        [33mtabindex[39m=[32m"-1"[39m
       [36m>[39m
         [36m<span[39m
           [33mclass[39m=[32m"section-title__cta-text"[39m
