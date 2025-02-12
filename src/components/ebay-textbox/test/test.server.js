@@ -49,6 +49,10 @@ describe("ebay-textbox", () => {
         await htmlSnap(PrefixIcon);
     });
 
+    it("renders a textbox element with floating label and without prefix icon", async () => {
+        await htmlSnap(PrefixIcon, { floatingLabel: "test label" });
+    });
+
     it("renders a textarea element with postfix icon", async () => {
         await htmlSnap(PostfixIcon);
     });
