@@ -7,6 +7,9 @@ import avatar from "./index.marko";
 import Readme from "./README.md";
 import imageTemplate from "./examples/image.marko";
 import imageTemplateCode from "./examples/image.marko?raw";
+import autoImageTemplate from "./examples/with-auto-placement.marko";
+import autoImageTemplateCode from "./examples/with-auto-placement.marko?raw";
+
 import { Story } from "@storybook/marko";
 import type { Input } from "./index.marko";
 
@@ -37,12 +40,7 @@ export default {
                 "magenta",
                 "pink",
             ],
-            table: {
-                defaultValue: {
-                    summary: "teal",
-                },
-            },
-            type: { category: "Options" },
+            type: "select",
             description:
                 "The color to color the background. This can be only used in the non icon/image case. This is used simply as an override to the username hash",
         },
@@ -53,14 +51,23 @@ export default {
                     summary: "48",
                 },
             },
-            type: { category: "Options" },
-
+            type: "select",
             description:
                 "The pixel size of the avatar. Can only be specific sizes",
         },
         username: {
             description:
                 "The username to display. If there is no body, then this will deternmine what the content is. If there is no username passed, then user is signed out. Based on the username, the icon will change colors and show the first letter if there is no user profile pic.",
+        },
+        imagePlacement: {
+            options: ["cover", "fit", "auto"],
+            table: {
+                defaultValue: {
+                    summary: "cover",
+                },
+            },
+            type: "select",
+            description: "The way the image is placed in the avatar. Covers fills the enite area, and fit ties to show the whole picture. Auto picks between cover and fit based on the image aspect ratio (3:4, 4:3, 1:1 use cover, everything else uses fit)",
         },
         a11yText: {
             control: { type: "text" },
@@ -74,6 +81,7 @@ export const Default = Template.bind({});
 Default.args = {
     a11yText: "Signed in - as Elizabeth",
     username: "Elizabeth",
+    color: "teal",
 };
 
 Default.parameters = {
@@ -92,6 +100,17 @@ export const WithImage = buildExtensionTemplate(
         username: "Doggy",
     },
 );
+
+export const WithAutoPlacement = buildExtensionTemplate(
+    autoImageTemplate,
+    autoImageTemplateCode,
+    {
+        imagePlacement: "auto",
+        a11yText: "Signed in - as Doggy",
+        username: "Doggy",
+    },
+);
+
 
 export const SignedOut = Template.bind({});
 SignedOut.args = {

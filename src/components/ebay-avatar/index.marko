@@ -1,23 +1,10 @@
 import { processHtmlAttributes } from "../../common/html-attributes";
 import { getColorForText } from "./util";
-import type { WithNormalizedProps } from "../../global";
-import type { AttrString } from "marko/tags-html";
-
-static type Size = 32 | 40 | 48 | 56 | 64 | 96 | 128;
-
-static interface AvatarInput extends Omit<Marko.HTML.Div, `on${string}`> {
-    username?: string;
-    color?: string;
-    "a11y-text"?: AttrString;
-    size?: Size | `${Size}`;
-    img?: Marko.AttrTag<Omit<Marko.HTML.Img, `on${string}`>>;
-}
-
-export interface Input extends WithNormalizedProps<AvatarInput> {}
 
 $ const {
     a11yText,
     class: inputClass,
+    imagePlacement = "cover",
     size,
     color,
     img,
@@ -32,13 +19,14 @@ $ const {
     aria-label=a11yText
     class=[
         "avatar",
+        state.imagePlacement === "fit" && "avatar--fit",
         inputClass,
         size && `avatar--${size}`,
-        `avatar--${getColorForText(username, color)}`,
+        color && !img && `avatar--${getColorForText(username, color)}`,
     ]
 >
     <if(img)>
-        <img ...img>
+        <img key="img" ...img>
     </if>
 
     <else-if(renderBody)>
