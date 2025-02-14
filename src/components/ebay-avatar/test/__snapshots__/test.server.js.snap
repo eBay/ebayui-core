@@ -28,18 +28,15 @@ exports[`avatar > renders signed out 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
     [33maria-label[39m=[32m"Signed out"[39m
-    [33mclass[39m=[32m"avatar avatar--teal"[39m
+    [33mclass[39m=[32m"avatar"[39m
     [33mrole[39m=[32m"img"[39m
   [36m>[39m
     [36m<svg[39m
       [33maria-hidden[39m=[32m"true"[39m
       [33mclass[39m=[32m"icon icon--avatar-signed-out"[39m
-      [33mdata-marko-key[39m=[32m"@svg s0-3-0"[39m
       [33mfocusable[39m=[32m"false"[39m
     [36m>[39m
-      [36m<defs[39m
-        [33mdata-marko-key[39m=[32m"@defs s0-3-0"[39m
-      [36m>[39m
+      [36m<defs>[39m
         [36m<symbol[39m
           [33mid[39m=[32m"icon-avatar-signed-out"[39m
           [33mviewBox[39m=[32m"0 0 40 40"[39m
@@ -86,7 +83,7 @@ exports[`avatar > renders with doggy as username 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
     [33maria-label[39m=[32m"Signed in - as Elizabeth"[39m
-    [33mclass[39m=[32m"avatar avatar--magenta"[39m
+    [33mclass[39m=[32m"avatar avatar--teal"[39m
     [33mrole[39m=[32m"img"[39m
   [36m>[39m
     [0mD[0m
@@ -98,7 +95,7 @@ exports[`avatar > renders with image 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
     [33maria-label[39m=[32m"Signed in - as Doggy"[39m
-    [33mclass[39m=[32m"avatar avatar--magenta"[39m
+    [33mclass[39m=[32m"avatar"[39m
     [33mrole[39m=[32m"img"[39m
   [36m>[39m
     [36m<img[39m
@@ -113,7 +110,7 @@ exports[`avatar > renders with robert as username 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
     [33maria-label[39m=[32m"Signed in - as Elizabeth"[39m
-    [33mclass[39m=[32m"avatar avatar--magenta"[39m
+    [33mclass[39m=[32m"avatar avatar--teal"[39m
     [33mrole[39m=[32m"img"[39m
   [36m>[39m
     [0mR[0m
@@ -125,7 +122,7 @@ exports[`avatar > renders with test as usernames 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
     [33maria-label[39m=[32m"Signed in - as Elizabeth"[39m
-    [33mclass[39m=[32m"avatar avatar--green"[39m
+    [33mclass[39m=[32m"avatar avatar--teal"[39m
     [33mrole[39m=[32m"img"[39m
   [36m>[39m
     [0mT[0m
