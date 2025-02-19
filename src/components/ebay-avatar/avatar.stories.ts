@@ -59,16 +59,6 @@ export default {
             description:
                 "The username to display. If there is no body, then this will deternmine what the content is. If there is no username passed, then user is signed out. Based on the username, the icon will change colors and show the first letter if there is no user profile pic.",
         },
-        imagePlacement: {
-            options: ["cover", "fit", "auto"],
-            table: {
-                defaultValue: {
-                    summary: "cover",
-                },
-            },
-            type: "select",
-            description: "The way the image is placed in the avatar. Covers fills the enite area, and fit ties to show the whole picture. Auto picks between cover and fit based on the image aspect ratio (3:4, 4:3, 1:1 use cover, everything else uses fit)",
-        },
         a11yText: {
             control: { type: "text" },
             description:
@@ -105,12 +95,10 @@ export const WithAutoPlacement = buildExtensionTemplate(
     autoImageTemplate,
     autoImageTemplateCode,
     {
-        imagePlacement: "auto",
         a11yText: "Signed in - as Doggy",
         username: "Doggy",
     },
 );
-
 
 export const SignedOut = Template.bind({});
 SignedOut.args = {

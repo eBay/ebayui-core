@@ -4,7 +4,6 @@ import { getColorForText } from "./util";
 $ const {
     a11yText,
     class: inputClass,
-    imagePlacement = "cover",
     size,
     color,
     img,
@@ -26,7 +25,7 @@ $ const {
     ]
 >
     <if(img)>
-        <img key="img" ...img>
+        <img onLoad("handleImageLoad") ...img>
     </if>
 
     <else-if(renderBody)>
