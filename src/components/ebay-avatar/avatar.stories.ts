@@ -64,6 +64,11 @@ export default {
             description:
                 'The label to describe the users state as well as their user name. Usually in the format of "Signed in as Bob" or "Signed out"',
         },
+        knownAspectRatio: {
+            control: { type: "number" },
+            description:
+                "Optional, as aspect ratio will be calculated when the image loads on the client. This can be passed to help prevent a flash of incorrectly styled content before the image loads",
+        },
     },
 };
 

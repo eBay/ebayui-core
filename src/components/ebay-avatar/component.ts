@@ -15,14 +15,20 @@ interface AvatarInput extends Omit<Marko.HTML.Div, `on${string}`> {
     "a11y-text"?: AttrString;
     size?: Size | `${Size}`;
     img?: Marko.AttrTag<Omit<Marko.HTML.Img, `on${string}`>>;
+    "known-aspect-ratio"?: number;
 }
 
 export interface Input extends WithNormalizedProps<AvatarInput> {}
 
 class Avatar extends Marko.Component<Input, State> {
-    onCreate() {
+    onCreate(input: Input) {
         this.state = {
-            imagePlacement: "cover",
+            imagePlacement:
+                input.knownAspectRatio &&
+                (input.knownAspectRatio < 3 / 4 ||
+                    input.knownAspectRatio > 4 / 3)
+                    ? "fit"
+                    : "cover",
         };
     }
     handleImageLoad(_event: Event, el: HTMLImageElement) {
