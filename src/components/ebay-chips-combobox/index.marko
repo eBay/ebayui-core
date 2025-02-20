@@ -35,10 +35,6 @@ $ const {
             </for>
         </ul>
     </if>
-    /**
-     * This needs to be extracted because Marko 4 has trouble parsing arrow functions as attribute values
-     */
-    $ const getDropdownEl = () => component.getEl("root") as HTMLElement;
     <ebay-combobox
         class="chips-combobox__combobox"
         onKeydown("handleKeydown")
@@ -46,7 +42,7 @@ $ const {
         onExpand("emit", "expand")
         onCollapse("emit", "collapse")
         disabled=disabled
-        dropdown-element=getDropdownEl
+        dropdown-element=component.getDropdownEl()
         ...comboboxInput
         autocomplete="list"
     >
