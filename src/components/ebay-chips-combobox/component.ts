@@ -69,4 +69,8 @@ export default class Combobox extends Marko.Component<Input, State> {
             selected: this.state.selected,
         } satisfies ChipsComboboxEvent);
     }
+
+    getDropdownEl() {
+        return () => this.getEl("root") as HTMLElement;
+    }
 }
