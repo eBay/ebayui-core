@@ -21,7 +21,7 @@ $ const {
         state.imagePlacement === "fit" && "avatar--fit",
         inputClass,
         size && `avatar--${size}`,
-        color && !img && `avatar--${getColorForText(username, color)}`,
+        username && !img && `avatar--${getColorForText(username, color)}`,
     ]
 >
     <if(img)>
