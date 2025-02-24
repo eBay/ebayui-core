@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 15.0.2
+
+### Patch Changes
+
+- [#2436](https://github.com/eBay/ebayui-core/pull/2436) [`7460452`](https://github.com/eBay/ebayui-core/commit/74604526f5a1e64916a1d7eacd18fe833abd0321) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Fix arrow function for Marko 4
+
 ## 15.0.1
 
 ### Patch Changes
