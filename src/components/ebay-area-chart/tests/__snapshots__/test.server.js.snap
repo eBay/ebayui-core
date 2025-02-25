@@ -60,7 +60,7 @@ exports[`section-title > renders with x-axis label format 1`] = `
     [33mtooltip-title-formatter[39m=[32m"tooltipTitleFormatter(value, dateFormat) {
     if (typeof value !== \\"number\\") {
       return value;
-    }
+    };
     return dateFormat(\\"%A\\", value);
   }"[39m
   [36m>[39m
