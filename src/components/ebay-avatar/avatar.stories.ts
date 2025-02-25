@@ -7,6 +7,9 @@ import avatar from "./index.marko";
 import Readme from "./README.md";
 import imageTemplate from "./examples/image.marko";
 import imageTemplateCode from "./examples/image.marko?raw";
+import autoImageTemplate from "./examples/with-auto-placement.marko";
+import autoImageTemplateCode from "./examples/with-auto-placement.marko?raw";
+
 import { Story } from "@storybook/marko";
 import type { Input } from "./index.marko";
 
@@ -37,12 +40,7 @@ export default {
                 "magenta",
                 "pink",
             ],
-            table: {
-                defaultValue: {
-                    summary: "teal",
-                },
-            },
-            type: { category: "Options" },
+            type: "select",
             description:
                 "The color to color the background. This can be only used in the non icon/image case. This is used simply as an override to the username hash",
         },
@@ -53,8 +51,7 @@ export default {
                     summary: "48",
                 },
             },
-            type: { category: "Options" },
-
+            type: "select",
             description:
                 "The pixel size of the avatar. Can only be specific sizes",
         },
@@ -67,6 +64,11 @@ export default {
             description:
                 'The label to describe the users state as well as their user name. Usually in the format of "Signed in as Bob" or "Signed out"',
         },
+        knownAspectRatio: {
+            control: { type: "number" },
+            description:
+                "Optional, as aspect ratio will be calculated when the image loads on the client. This can be passed to help prevent a flash of incorrectly styled content before the image loads",
+        },
     },
 };
 
@@ -74,6 +76,7 @@ export const Default = Template.bind({});
 Default.args = {
     a11yText: "Signed in - as Elizabeth",
     username: "Elizabeth",
+    color: "teal",
 };
 
 Default.parameters = {
@@ -87,6 +90,15 @@ Default.parameters = {
 export const WithImage = buildExtensionTemplate(
     imageTemplate,
     imageTemplateCode,
+    {
+        a11yText: "Signed in - as Doggy",
+        username: "Doggy",
+    },
+);
+
+export const WithAutoPlacement = buildExtensionTemplate(
+    autoImageTemplate,
+    autoImageTemplateCode,
     {
         a11yText: "Signed in - as Doggy",
         username: "Doggy",
