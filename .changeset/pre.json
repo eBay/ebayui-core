@@ -1,0 +1,12 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "15.0.1"
+  },
+  "changesets": [
+    "clever-rivers-compete",
+    "gold-walls-think",
+    "wild-boats-film"
+  ]
+}
