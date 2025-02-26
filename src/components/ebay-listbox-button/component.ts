@@ -16,6 +16,7 @@ interface ListboxButtonInput extends Omit<Marko.HTML.Div, `on${string}`> {
     variant?: "standard" | "form";
     truncate?: boolean;
     fluid?: boolean;
+    strategy?: "fixed" | "absolute";
     borderless?: boolean;
     "floating-label"?: AttrString;
     disabled?: boolean;
@@ -129,6 +130,9 @@ class ListboxButton extends Marko.Component<Input, State> {
         this.dropdownUtil = new DropdownUtil(
             this.getEl("button"),
             this.getEl("options"),
+            {
+                strategy: input.strategy,
+            }
         );
     }
 

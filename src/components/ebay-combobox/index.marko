@@ -8,6 +8,7 @@ $ const {
     style,
     borderless,
     autocomplete,
+    strategy,
     option: options = [],
     dropdownElement,
     floatingLabel,
@@ -92,7 +93,7 @@ $ var id = inputId || component.getElId("input");
         </if>
     </span>
     <if(component._hasVisibleOptions())>
-        <div key="listbox" role="listbox" class="combobox__listbox">
+        <div key="listbox" role="listbox" class=["combobox__listbox", strategy === "fixed" && "combobox__listbox--fixed"]>
             <for|option| of=component._getVisibleOptions()>
                 $ const { text, value, class: optionClass, ...htmlOption } = option;
                 $ var isSelected = (

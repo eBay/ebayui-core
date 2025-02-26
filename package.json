@@ -100,7 +100,7 @@
         "@commitlint/cli": "^19",
         "@commitlint/config-conventional": "^19",
         "@ebay/browserslist-config": "^2.10.0",
-        "@ebay/skin": "~19.1.0",
+        "@ebay/skin": "~19.1.1",
         "@marko/compiler": "^5.39.12",
         "@marko/prettyprint": "^3.0.1",
         "@marko/testing-library": "^6",
@@ -145,7 +145,7 @@
         "vitest": "^3.0.7"
     },
     "peerDependencies": {
-        "@ebay/skin": "~19.0.0",
+        "@ebay/skin": "~19.1.1",
         "marko": "^4.27.0 || ^5.31.12"
     },
     "publishConfig": {

@@ -19,6 +19,7 @@ $ const {
     listSelection,
     variant,
     hasError,
+    strategy,
     split = "none",
     a11yIconPrefixText,
     ariaDescribedby: describedby,
@@ -111,7 +112,7 @@ $ var isForm = variant === "form";
     </button>
     <ebay-listbox
         key="options"
-        class="listbox-button__listbox"
+        class=["listbox-button__listbox", strategy === "fixed" && "listbox-button__listbox--fixed"]
         name=name
         tabindex=-1
         listSelection=listSelection

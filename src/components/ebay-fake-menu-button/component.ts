@@ -25,6 +25,7 @@ interface FakeMenuButtonInput extends Omit<Marko.HTML.Span, `on${string}`> {
     "text-align"?: "center";
     type?: FakeMenuInput["type"];
     reverse?: boolean;
+    strategy?: "absolute" | "fixed";
     "fix-width"?: boolean;
     item?: Marko.AttrTag<FakeMenuItem>;
     "collapse-on-select"?: boolean;
@@ -138,6 +139,7 @@ class FakeMenuButton extends Marko.Component<Input> {
             this.getEl("content"),
             {
                 reverse: this.input.reverse,
+                strategy: this.input.strategy,
             },
         );
     }

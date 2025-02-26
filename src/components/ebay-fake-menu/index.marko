@@ -6,6 +6,7 @@ $ const {
     classPrefix,
     type,
     reverse,
+    fixed,
     fixWidth,
     item: items = [],
     ...htmlInput
@@ -21,6 +22,7 @@ $ var separatorMap = component.getSeparatorMap(input);
             ? `${baseClass}__menu`
             : "fake-menu",
         reverse && `${baseClass}__menu--reverse`,
+        fixed && `${baseClass}__menu--fixed`,
         fixWidth && `${baseClass}__menu--fix-width`,
         inputClass
     ]

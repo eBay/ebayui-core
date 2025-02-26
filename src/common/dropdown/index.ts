@@ -9,6 +9,7 @@ import {
 
 interface DropdownUtilOptions {
     reverse?: boolean;
+    strategy?: "absolute" | "fixed";
     offset?: number;
 }
 
@@ -39,7 +40,9 @@ export class DropdownUtil {
     update() {
         computePosition(this.host, this.overlay, {
             placement: this.options.reverse ? "bottom-end" : "bottom-start",
-            middleware: [offset(this.options.offset ?? 4), flip(), shift()],
+            strategy: this.options.strategy ?? "fixed",
+            middleware: [offset(this.options.offset ?? 4), flip({
+            }), shift()],
         }).then(({ x, y }) => {
             Object.assign(this.overlay.style, {
                 left: `${x}px`,

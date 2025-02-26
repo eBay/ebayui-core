@@ -28,6 +28,7 @@ interface FakeMenuInput
     "class-prefix"?: string;
     reverse?: boolean;
     "fix-width"?: boolean;
+    fixed?: boolean;
     "on-keydown"?: (event: MenuEvent) => void;
     "on-select"?: (event: MenuEvent) => void;
 }

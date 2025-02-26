@@ -21,6 +21,10 @@ describe("menu-button", () => {
         await htmlSnap(Default, { fixWidth: true });
     });
 
+    it("renders with fixed strategy", async () => {
+        await htmlSnap(Default, { strategy: "fixed" });
+    });
+
     it("renders with borderless=true", async () => {
         await htmlSnap(Default, { borderless: true });
     });

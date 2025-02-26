@@ -43,6 +43,7 @@ interface MenuButtonInput
     icon?: Marko.AttrTag<{ renderBody?: Marko.Body }>;
     text?: AttrString;
     reverse?: boolean;
+    strategy?: "absolute" | "fixed";
     "fix-width"?: boolean;
     "on-expand"?: (event: MenuButtonEvent) => void;
     "on-collapse"?: (event: MenuButtonEvent) => void;
@@ -235,6 +236,7 @@ export default class extends MenuUtils<Input, MenuState> {
             this.getEl("content"),
             {
                 reverse: this.input.reverse,
+                strategy: this.input.strategy,
             },
         );
     }

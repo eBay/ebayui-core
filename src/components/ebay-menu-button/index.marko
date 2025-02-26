@@ -11,6 +11,7 @@ $ const {
     a11yText,
     noToggleIcon,
     reverse,
+    strategy,
     fixWidth,
     borderless,
     size,
@@ -66,7 +67,7 @@ $ {
     onMousedown("handleMousedown")>
     <${tagName}
         class=[
-            `menu-button__button`
+            `menu-button__button`,
         ]
         size=size
         priority=priority as ButtonInput["priority"]
@@ -112,6 +113,7 @@ $ {
     </>
     <ebay-menu
         classPrefix="menu-button"
+        fixed=strategy === "fixed"
         type=type
         fixWidth=fixWidth
         tabindex=-1

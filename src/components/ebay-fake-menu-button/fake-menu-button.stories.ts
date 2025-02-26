@@ -107,6 +107,17 @@ export default {
             description:
                 "for link that looks like a menu-item. If not set for fake type, will also disable the item",
         },
+        strategy: {
+            control: { type: "select" },
+            options: ["absolute", "fixed"],
+            table: {
+                defaultValue: {
+                    summary: "absolute",
+                },
+            },
+
+            description: "Swap between fixed and absolute positioning strategy. Use fixed when dropdown is in contained in an overflow and needs to be visible as you scroll the screen.",
+        },
         type: {
             control: { type: "text" },
             description: 'Set to "button" for fake menu-item `<button>`',

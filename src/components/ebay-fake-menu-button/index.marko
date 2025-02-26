@@ -15,6 +15,7 @@ $ const {
     borderless,
     size,
     priority: inputPriority,
+    strategy,
     disabled,
     variant: inputVariant,
     item: items = [],
@@ -57,7 +58,7 @@ $ {
     onMousedown("handleMousedown")>
     <${tagName}
         class=[
-            `fake-menu-button__button`
+            `fake-menu-button__button`,
         ]
         size=size
         borderless=borderless
@@ -101,6 +102,7 @@ $ {
         classPrefix="fake-menu-button"
         type=type
         reverse=(isOverflowVariant ? !reverse : reverse)
+        fixed=strategy === "fixed"
         fixWidth=fixWidth
         tabindex=-1
         on-keydown("handleMenuKeydown")

@@ -6,6 +6,7 @@ $ const {
     classPrefix,
     type,
     reverse,
+    fixed,
     fixWidth,
     item: items = [],
     ariaLabel,
@@ -25,6 +26,7 @@ $ var separatorMap = component.getSeparatorMap(input);
             ? `${baseClass}__menu`
             : "menu",
         reverse && `${baseClass}__menu--reverse`,
+        fixed && `${baseClass}__menu--fixed`,
         fixWidth && `${baseClass}__menu--fix-width`,
         inputClass
     ]

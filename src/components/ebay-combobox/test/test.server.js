@@ -18,6 +18,10 @@ describe("combobox", () => {
         await htmlSnap(Isolated, { option: [] });
     });
 
+    it("renders with fixed strategy", async () => {
+        await htmlSnap(Isolated, { strategy: "fixed" });
+    });
+
     it("renders with second item selected", async () => {
         await htmlSnap(Isolated, { value: Isolated.args.option[2].text });
     });

@@ -20,6 +20,10 @@ describe("listbox", () => {
         await htmlSnap(Default, { truncate: true });
     });
 
+    it("renders with strategy=fixed", async () => {
+        await htmlSnap(Default, { strategy: "fixed" });
+    });
+
     it("renders with second item selected", async () => {
         await htmlSnap(Default, { selected: 1 });
     });

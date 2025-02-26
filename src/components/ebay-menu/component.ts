@@ -32,6 +32,7 @@ interface MenuInput
     "class-prefix"?: string;
     "typeahead-timeout-length"?: number;
     reverse?: boolean;
+    fixed?: boolean;
     "fix-width"?: boolean;
     renderBody?: Marko.Body;
     "on-keydown"?: (event: MenuEvent) => void;

@@ -17,6 +17,11 @@ describe("menu-button", () => {
         await htmlSnap(template, input);
     });
 
+    it("renders with fixed strategy", async () => {
+        const input = Object.assign({ strategy: "fixed" }, mock.basic2Items);
+        await htmlSnap(template, input);
+    });
+
     it("renders with fix-width=true", async () => {
         const input = Object.assign({ fixWidth: true }, mock.basic2Items);
         await htmlSnap(template, input);

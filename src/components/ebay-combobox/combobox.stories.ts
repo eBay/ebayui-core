@@ -90,7 +90,16 @@ export default {
             description:
                 "If true, the option will always be shown even if it does not match the filter",
         },
-
+        strategy: {
+            control: { type: "select" },
+            options: ["absolute", "fixed"],
+            table: {
+                defaultValue: {
+                    summary: "absolute",
+                },
+            },
+            description: "Swap between fixed and absolute positioning strategy. Use fixed when dropdown is in contained in an overflow and needs to be visible as you scroll the screen.",
+        },
         onCollapse: {
             action: "on-collapse",
             table: {
