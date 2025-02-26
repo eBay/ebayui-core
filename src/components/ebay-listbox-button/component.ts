@@ -132,7 +132,7 @@ class ListboxButton extends Marko.Component<Input, State> {
             this.getEl("options"),
             {
                 strategy: input.strategy,
-            }
+            },
         );
     }
 

@@ -322,7 +322,7 @@ export default class Combobox extends Marko.Component<Input, State> {
             this.getEl("listbox"),
             {
                 strategy: this.input.strategy,
-            }
+            },
         );
         if (this.isExpanded()) {
             this.dropdownUtil.show();
