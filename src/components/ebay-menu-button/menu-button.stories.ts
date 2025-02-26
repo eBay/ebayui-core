@@ -92,7 +92,8 @@ export default {
                 },
             },
 
-            description: "Swap between fixed and absolute positioning strategy. Use fixed when dropdown is in contained in an overflow and needs to be visible as you scroll the screen.",
+            description:
+                "Swap between fixed and absolute positioning strategy. Use fixed when dropdown is in contained in an overflow and needs to be visible as you scroll the screen.",
         },
         checked: {
             description:

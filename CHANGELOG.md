@@ -1,5 +1,19 @@
 # eBayUI-Core Changelog
 
+## 15.1.0
+
+### Minor Changes
+
+- [#2433](https://github.com/eBay/ebayui-core/pull/2433) [`f82f058`](https://github.com/eBay/ebayui-core/commit/f82f058e140b5adae3694ff1fb0717f21ee0b8ba) Thanks [@agliga](https://github.com/agliga)! - feat(avatar): added image position option
+
+- [#2426](https://github.com/eBay/ebayui-core/pull/2426) [`ac954a8`](https://github.com/eBay/ebayui-core/commit/ac954a8789de769487fba9d1414de57bc3b8f3c9) Thanks [@agliga](https://github.com/agliga)! - feat(textbox): added check to show prefix label only if floating is not set
+
+- [`79efea5`](https://github.com/eBay/ebayui-core/commit/79efea5456b42b41fdcaa3db11201737b1e35a49) Thanks [@agliga](https://github.com/agliga)! - feat(dropdowns): added fixed strategy option
+
+### Patch Changes
+
+- [#2429](https://github.com/eBay/ebayui-core/pull/2429) [`d929e04`](https://github.com/eBay/ebayui-core/commit/d929e04aba285749d89d81a5453059ab62c10e52) Thanks [@agliga](https://github.com/agliga)! - fix(section-title): removed tabindex=-1 and aria-hidden from anchor tag
+
 ## 15.0.2
 
 ### Patch Changes
