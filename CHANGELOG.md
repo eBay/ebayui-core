@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 15.1.1
+
+### Patch Changes
+
+- [`34de91d`](https://github.com/eBay/ebayui-core/commit/34de91d94cfff6301fe31561a648e54cf443d940) Thanks [@agliga](https://github.com/agliga)! - chore: updated makeup-active-descendant to fix a problem with combobox jumping
+
 ## 15.1.0
 
 ### Minor Changes
