@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 15.1.2
+
+### Patch Changes
+
+- [`fbd39e8`](https://github.com/eBay/ebayui-core/commit/fbd39e8ced1dcea4a0def9c6db3889e1de63042c) Thanks [@agliga](https://github.com/agliga)! - feat(charts): removed less dependency
+
 ## 15.1.1
 
 ### Patch Changes
