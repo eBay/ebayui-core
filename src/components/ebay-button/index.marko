@@ -10,9 +10,8 @@ export interface ButtonEvent<T extends Event> {
     originalEvent: T;
 }
 
-export interface ButtonInput extends Omit<Marko.HTML.Button, `on${string}`> {
+export interface ButtonInput extends Omit<Marko.HTML.Button, `on${string}` | "type">, Omit<Marko.HTML.A, `on${string}`> {
     href?: string;
-    target?: string;
     size?: (typeof validSizes)[number];
     priority?: "primary" | "secondary" | "tertiary" | "none";
     variant?: "standard" | "destructive" | "form";
