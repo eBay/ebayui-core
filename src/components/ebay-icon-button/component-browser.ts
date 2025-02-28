@@ -6,6 +6,7 @@ import type { Input as ButtonInput } from "../ebay-button/index.marko";
 interface IconButtonInput extends Omit<Marko.HTML.Button, `on${string}`> {
     "badge-number"?: number | string;
     href?: string;
+    target?: string;
     transparent?: boolean;
     priority?: "primary" | "secondary" | "tertiary" | "none";
     size?: "small" | "large";
