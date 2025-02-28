@@ -84,7 +84,7 @@ describe("given tabs with manual activation", () => {
     describe("when the first heading is activated via keybaord action button", () => {
         beforeEach(async () => {
             await pressKey(component.getAllByRole("tab")[0], {
-                key: "(Space character)",
+                key: " ",
                 keyCode: 32,
             });
         });
@@ -97,7 +97,7 @@ describe("given tabs with manual activation", () => {
     describe("when the second tab is activated via keyboard action button", () => {
         beforeEach(async () => {
             await pressKey(component.getAllByRole("tab")[1], {
-                key: "(Space character)",
+                key: " ",
                 keyCode: 32,
             });
         });

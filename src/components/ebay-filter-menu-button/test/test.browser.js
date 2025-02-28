@@ -225,7 +225,7 @@ describe("given the menu is in the expanded state", () => {
     describe("when an item is checked via the keyboard", () => {
         beforeEach(async () => {
             await pressKey(firstItem, {
-                key: "(Space character)",
+                key: " ",
                 keyCode: 32,
             });
         });

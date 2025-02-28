@@ -218,7 +218,7 @@ describe("given the listbox is in an expanded state with manual list-selection",
                 keyCode: 40,
             });
             await pressKey(component.getAllByRole("listbox").find(isVisible), {
-                key: "(Space character)",
+                key: " ",
                 keyCode: 32,
             });
         });
