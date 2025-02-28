@@ -1,0 +1,11 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "15.1.2"
+  },
+  "changesets": [
+    "brave-goats-remain",
+    "seven-hounds-hide"
+  ]
+}

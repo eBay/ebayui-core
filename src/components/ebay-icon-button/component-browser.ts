@@ -3,7 +3,9 @@ import * as eventUtils from "../../common/event-utils";
 import type { WithNormalizedProps } from "../../global";
 import type { Input as ButtonInput } from "../ebay-button/index.marko";
 
-interface IconButtonInput extends Omit<Marko.HTML.Button, `on${string}` | "type">, Omit<Marko.HTML.A, `on${string}`> {
+interface IconButtonInput
+    extends Omit<Marko.HTML.Button, `on${string}` | "type">,
+        Omit<Marko.HTML.A, `on${string}`> {
     "badge-number"?: number | string;
     href?: string;
     transparent?: boolean;
