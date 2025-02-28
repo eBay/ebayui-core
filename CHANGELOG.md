@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 15.1.3
+
+### Patch Changes
+
+- [`101334e`](https://github.com/eBay/ebayui-core/commit/101334e94412c53f7e14886c64a216bb3cb50388) Thanks [@agliga](https://github.com/agliga)! - fix(dropdown): removed flip from middleware
+
 ## 15.1.2
 
 ### Patch Changes
