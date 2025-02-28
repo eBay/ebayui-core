@@ -66,7 +66,7 @@ function handleTextInput(e: KeyboardEvent, callback: () => any) {
         "Alt",
         "Meta",
         "Control",
-        "CapsLock"
+        "CapsLock",
     ];
     handleNotKeydown(keys, e, callback);
 }
