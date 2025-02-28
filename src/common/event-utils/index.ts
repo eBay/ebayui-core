@@ -1,13 +1,9 @@
-function checkModifiers(e: KeyboardEvent): boolean {
-    return e.ctrlKey || e.altKey || e.metaKey || e.shiftKey;
-}
-
 function handleKeydown(
     keyCodes: string[],
     e: KeyboardEvent,
     callback: () => any,
 ) {
-    const keyCode = e.key
+    const keyCode = e.key;
     if (keyCodes.indexOf(keyCode) !== -1) {
         callback();
     }
@@ -20,7 +16,7 @@ function handleNotKeydown(
     callback: () => any,
 ) {
     const keyCode = e.key;
-    if (keyCodes.indexOf(keyCode) === -1 && !checkModifiers(e)) {
+    if (keyCodes.indexOf(keyCode) === -1) {
         callback();
     }
 }
@@ -48,7 +44,11 @@ function handleLeftRightArrowsKeydown(e: KeyboardEvent, callback: () => any) {
 }
 
 function handleArrowsKeydown(e: KeyboardEvent, callback: () => any) {
-    handleKeydown(["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"], e, callback);
+    handleKeydown(
+        ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"],
+        e,
+        callback,
+    );
 }
 
 // only fire for character input, not modifier/meta keys (enter, escape, backspace, tab, etc.)
@@ -61,7 +61,12 @@ function handleTextInput(e: KeyboardEvent, callback: () => any) {
         "ArrowUp",
         "ArrowDown",
         "ArrowLeft",
-        "ArrowRight"
+        "ArrowRight",
+        "Shift",
+        "Alt",
+        "Meta",
+        "Control",
+        "CapsLock"
     ];
     handleNotKeydown(keys, e, callback);
 }
