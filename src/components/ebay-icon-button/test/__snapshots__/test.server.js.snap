@@ -338,7 +338,7 @@ exports[`ebay-icon-button > renders fake version 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<a[39m
     [33maria-label[39m=[32m"fake button"[39m
-    [33mclass[39m=[32m"icon-btn"[39m
+    [33mclass[39m=[32m"icon-link"[39m
     [33mdata-ebayui[39m=[32m""[39m
     [33mhref[39m=[32m"#"[39m
   [36m>[39m

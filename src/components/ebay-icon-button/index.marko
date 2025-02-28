@@ -29,7 +29,12 @@ $ const {
 } = input;
 
 $ (input as any).toJSON = toJSON;
-$ const tagType = href ? "a" : "button";
+$ let tagType = "button";
+$ let baseClassName = "icon-btn";
+$ if(href) {
+    tagType = "a";
+    baseClassName = "icon-link";
+}
 
 <${tagType}
     ...processHtmlAttributes(htmlInput)
@@ -41,12 +46,12 @@ $ const tagType = href ? "a" : "button";
     href=href
     class=[
         inputClass,
-        'icon-btn',
-        badgeNumber && `icon-btn--badged`,
-        transparent && 'icon-btn--transparent',
+        baseClassName,
+        badgeNumber && `${baseClassName}--badged`,
+        transparent && `${baseClassName}--transparent`,
         (validPriorities.includes(priority) &&
-        `icon-btn--${priority}`),
-        size && VALID_SIZES.includes(size) && `icon-btn--${size}`
+        `${baseClassName}--${priority}`),
+        size && VALID_SIZES.includes(size) && `${baseClassName}--${size}`
     ]
     data-ebayui=true
     type=(tagType === "button" && (type || "button"))
