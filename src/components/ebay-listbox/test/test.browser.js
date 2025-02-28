@@ -140,7 +140,7 @@ describe("given the listbox with manual selection", () => {
                 keyCode: 40,
             });
             await pressKey(component.getAllByRole("listbox").find(isVisible), {
-                key: "(Space character)",
+                key: " ",
                 keyCode: 32,
             });
         });
@@ -205,7 +205,7 @@ describe("given the listbox with disabled option", () => {
                 keyCode: 40,
             });
             await pressKey(component.getAllByRole("listbox").find(isVisible), {
-                key: "(Space character)",
+                key: " ",
                 keyCode: 32,
             });
         });

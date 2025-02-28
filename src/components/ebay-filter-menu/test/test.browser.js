@@ -97,7 +97,7 @@ describe("given the menu is in the default state", () => {
     describe("when an item is checked via the keyboard", () => {
         beforeEach(async () => {
             await pressKey(firstItem, {
-                key: "(Space character)",
+                key: " ",
                 keyCode: 32,
             });
         });
@@ -312,7 +312,7 @@ describe("given the menu is in the radio state", () => {
     describe("when an item is checked via the keyboard", () => {
         beforeEach(async () => {
             await pressKey(firstItem, {
-                key: "(Space character)",
+                key: " ",
                 keyCode: 32,
             });
         });
@@ -406,7 +406,7 @@ describe("given the menu item is disabled", () => {
     describe("when the current item is pressed with space", () => {
         beforeEach(async () => {
             await pressKey(firstItem, {
-                key: "(Space character)",
+                key: " ",
                 keyCode: 32,
             });
         });
@@ -419,7 +419,7 @@ describe("given the menu item is disabled", () => {
     describe("when the second item is pressed with space", () => {
         beforeEach(async () => {
             await pressKey(secondItem, {
-                key: "(Space character)",
+                key: " ",
                 keyCode: 32,
             });
         });

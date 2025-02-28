@@ -11,58 +11,58 @@ const handleLeftRightArrowsKeydown = eventUtils.handleLeftRightArrowsKeydown;
 const preventDefaultIfHijax = eventUtils.preventDefaultIfHijax;
 
 describe("handleActionKeydown()", () => {
-    [{ keyCode: 13 }, { keyCode: 32 }].forEach((event) => {
-        it(`calls callback for keyCode=${event.keyCode}`, () => {
+    [{ key: " " }, { key: "Enter" }].forEach((event) => {
+        it(`calls callback for key=${event.key}`, () => {
             const callback = vi.fn();
             handleActionKeydown(event, callback);
             expect(callback).toBeCalledTimes(1);
         });
     });
 
-    it("doesn't call callback for other keyCode", () => {
+    it("doesn't call callback for other key", () => {
         const callback = vi.fn();
-        handleActionKeydown({ keyCode: 1 }, callback);
+        handleActionKeydown({ key: "A" }, callback);
         expect(callback).toBeCalledTimes(0);
     });
 });
 
 describe("handleEscapeKeydown()", () => {
-    const escapeKeyCode = 27;
-    it(`calls callback for keyCode=${escapeKeyCode}`, () => {
+    const escapeKey = "Escape";
+    it(`calls callback for key=${escapeKey}`, () => {
         const callback = vi.fn();
-        handleEscapeKeydown({ keyCode: escapeKeyCode }, callback);
+        handleEscapeKeydown({ key: escapeKey }, callback);
         expect(callback).toBeCalledTimes(1);
     });
 });
 
 describe("handleUpDownArrowsKeydown()", () => {
-    [{ keyCode: 38 }, { keyCode: 40 }].forEach((event) => {
-        it(`calls callback for keyCode=${event.keyCode}`, () => {
+    [{ key: "ArrowUp" }, { key: "ArrowDown" }].forEach((event) => {
+        it(`calls callback for key=${event.key}`, () => {
             const callback = vi.fn();
             handleUpDownArrowsKeydown(event, callback);
             expect(callback).toBeCalledTimes(1);
         });
     });
 
-    it("doesn't call callback for other keyCode", () => {
+    it("doesn't call callback for other key", () => {
         const callback = vi.fn();
-        handleUpDownArrowsKeydown({ keyCode: 1 }, callback);
+        handleUpDownArrowsKeydown({ key: "A" }, callback);
         expect(callback).toBeCalledTimes(0);
     });
 });
 
 describe("handleLeftRightArrowsKeydown()", () => {
-    [{ keyCode: 37 }, { keyCode: 39 }].forEach((event) => {
-        it(`calls callback for keyCode=${event.keyCode}`, () => {
+    [{ key: "ArrowLeft" }, { key: "ArrowRight" }].forEach((event) => {
+        it(`calls callback for key=${event.key}`, () => {
             const callback = vi.fn();
             handleLeftRightArrowsKeydown(event, callback);
             expect(callback).toBeCalledTimes(1);
         });
     });
 
-    it("doesn't call callback for other keyCode", () => {
+    it("doesn't call callback for other key", () => {
         const callback = vi.fn();
-        handleLeftRightArrowsKeydown({ keyCode: 1 }, callback);
+        handleLeftRightArrowsKeydown({ key: "A" }, callback);
         expect(callback).toBeCalledTimes(0);
     });
 });

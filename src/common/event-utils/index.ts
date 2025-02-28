@@ -1,9 +1,9 @@
 function handleKeydown(
-    keyCodes: number[],
+    keyCodes: string[],
     e: KeyboardEvent,
     callback: () => any,
 ) {
-    const keyCode = e.charCode || e.keyCode;
+    const keyCode = e.key;
     if (keyCodes.indexOf(keyCode) !== -1) {
         callback();
     }
@@ -11,11 +11,11 @@ function handleKeydown(
 
 // inverse of found keys
 function handleNotKeydown(
-    keyCodes: number[],
+    keyCodes: string[],
     e: KeyboardEvent,
     callback: () => any,
 ) {
-    const keyCode = e.charCode || e.keyCode;
+    const keyCode = e.key;
     if (keyCodes.indexOf(keyCode) === -1) {
         callback();
     }
@@ -23,45 +23,50 @@ function handleNotKeydown(
 
 // enter key
 function handleEnterKeydown(e: KeyboardEvent, callback: () => any) {
-    handleKeydown([13], e, callback);
+    handleKeydown(["Enter"], e, callback);
 }
 
 // space and enter keys
 function handleActionKeydown(e: KeyboardEvent, callback: () => any) {
-    handleKeydown([32, 13], e, callback);
+    handleKeydown(["Enter", " "], e, callback);
 }
 
 function handleEscapeKeydown(e: KeyboardEvent, callback: () => any) {
-    handleKeydown([27], e, callback);
+    handleKeydown(["Escape"], e, callback);
 }
 
 function handleUpDownArrowsKeydown(e: KeyboardEvent, callback: () => any) {
-    handleKeydown([38, 40], e, callback);
+    handleKeydown(["ArrowUp", "ArrowDown"], e, callback);
 }
 
 function handleLeftRightArrowsKeydown(e: KeyboardEvent, callback: () => any) {
-    handleKeydown([37, 39], e, callback);
+    handleKeydown(["ArrowLeft", "ArrowRight"], e, callback);
 }
 
 function handleArrowsKeydown(e: KeyboardEvent, callback: () => any) {
-    handleKeydown([37, 38, 39, 40], e, callback);
+    handleKeydown(
+        ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"],
+        e,
+        callback,
+    );
 }
 
 // only fire for character input, not modifier/meta keys (enter, escape, backspace, tab, etc.)
 function handleTextInput(e: KeyboardEvent, callback: () => any) {
     const keys = [
-        9, // tab
-        13, // enter key
-        16, // shift
-        17, // control
-        18, // alt
-        20, // caps lock
-        27, // escape
-        37, // left arrow
-        38, // up arrow
-        39, // right arrow
-        40, // down arrow
-        91, // "meta" key (Mac "command" key)
+        "Tab",
+        "Enter",
+        "Shift",
+        "Escape",
+        "ArrowUp",
+        "ArrowDown",
+        "ArrowLeft",
+        "ArrowRight",
+        "Shift",
+        "Alt",
+        "Meta",
+        "Control",
+        "CapsLock"
     ];
     handleNotKeydown(keys, e, callback);
 }
