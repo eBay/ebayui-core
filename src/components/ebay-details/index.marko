@@ -9,7 +9,6 @@ $ const {
     size,
     summary,
     renderBody,
-    layout,
     as: inputAs,
     ...htmlInput
 } = input;
@@ -31,17 +30,11 @@ $ (input as any).toJSON = noop;
         ]>
             <span class="details__label"><${summary.renderBody}/></span>
             <span class="details__icon" hidden>
-                <if(layout === "accordion")>
-                    <ebay-add-16-icon class="details__expand"/>
-                    <ebay-remove-16-icon class="details__collapse"/>
-                </if>
-                <else>
-                    <ebay-chevron-down-16-icon/>
-                </else>
+                <ebay-chevron-down-16-icon/>
             </span>
         </summary>
     </if>
-    <${inputAs || "div"} class=layout === "accordion" && "details__content">
+    <${inputAs || "div"} class="details__content">
         <${renderBody}/>
     </>
 </details>
