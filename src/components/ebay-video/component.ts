@@ -4,6 +4,12 @@ import type { WithNormalizedProps } from "../../global";
 import { getElements } from "./elements";
 const DEFAULT_SPINNER_TIMEOUT = 2000;
 
+declare global {
+    interface Window {
+        shaka: any;
+    }
+}
+
 const eventList = [
     "abort",
     "canplay",
@@ -29,14 +35,14 @@ const videoConfig = {
     addSeekBar: true,
     controlPanelElements: [
         "play_pause",
-        "time_and_duration",
+        "current_time",
         "spacer",
-        "mute",
+        "total_time",
+        "captions",
+        "mute_popover",
         "report",
-        "fullscreen",
-        "overflow_menu",
+        "fullscreen_button",
     ],
-    overflowMenuButtons: ["captions"],
 };
 
 export interface PlayPauseEvent {
@@ -58,6 +64,10 @@ interface VideoInput extends Omit<Marko.HTML.Video, `on${string}`> {
     clip?: any[];
     source: Marko.AttrTag<Marko.HTML.Source>;
     "report-text"?: AttrString;
+    "mute-text"?: AttrString;
+    "unmute-text"?: AttrString;
+    "fullscreen-text"?: AttrString;
+    "exit-fullscreen-text"?: AttrString;
     "spinner-timeout"?: number;
     thumbnail?: string;
     track?: Marko.AttrTag<Marko.HTML.Track>;
@@ -79,13 +89,15 @@ interface State {
     isLoaded: boolean;
     volumeSlider: boolean;
     action: "play" | "pause" | "";
-    showLoading: boolean;
 }
 
 class Video extends Marko.Component<Input, State> {
     declare video: HTMLVideoElement;
     declare root: HTMLElement;
     declare containerEl: HTMLElement;
+    declare spacer: HTMLElement;
+    declare rangeContainer: HTMLElement;
+    declare buttonPanel: HTMLElement;
     declare player: any;
     declare ui: any;
     declare shaka: any;
@@ -111,6 +123,23 @@ class Video extends Marko.Component<Input, State> {
         }
     }
 
+    alignSeekbar() {
+        if (this.el) {
+            this.buttonPanel = this.el.querySelector<HTMLElement>(
+                ".shaka-controls-button-panel",
+            )!;
+            this.spacer = this.buttonPanel.querySelector(".shaka-spacer")!;
+            this.rangeContainer = this.el.querySelector<HTMLElement>(
+                ".shaka-range-container",
+            )!;
+        }
+        const buttonPanelRect = this.buttonPanel.getBoundingClientRect();
+        const spacerRect = this.spacer.getBoundingClientRect();
+
+        this.rangeContainer.style.marginRight = `${buttonPanelRect.right - spacerRect.right}px`;
+        this.rangeContainer.style.marginLeft = `${spacerRect.left - buttonPanelRect.left}px`;
+    }
+
     handlePause(originalEvent: Event) {
         // On IOS, the controls force showing up if the video exist fullscreen while playing.
         // This forces the controls to always hide
@@ -121,6 +150,7 @@ class Video extends Marko.Component<Input, State> {
 
     handlePlaying(originalEvent: Event) {
         this.showControls();
+        this.alignSeekbar();
 
         if (this.input.playView === "fullscreen") {
             this.video.requestFullscreen();
@@ -197,7 +227,6 @@ class Video extends Marko.Component<Input, State> {
         this.state = {
             volumeSlider: false,
             action: "",
-            showLoading: false,
             isLoaded: true,
             failed: false,
             played: false,
@@ -248,7 +277,8 @@ class Video extends Marko.Component<Input, State> {
     }
 
     _attach() {
-        const { Report, TextSelection } = getElements(this);
+        const { Report, CurrentTime, TotalTime, MuteButton, FullscreenButton, TextSelection } =
+            getElements(this);
         // eslint-disable-next-line no-undef,new-cap
         this.ui = new this.shaka.ui.Overlay(
             this.player,
@@ -264,9 +294,30 @@ class Video extends Marko.Component<Input, State> {
         }
 
         // eslint-disable-next-line no-undef,new-cap
+        this.shaka.ui.Controls.registerElement("report", new Report.Factory());
+
+        // eslint-disable-next-line no-undef,new-cap
         this.shaka.ui.Controls.registerElement(
-            "report",
-            new Report.Factory(this.input.reportText),
+            "current_time",
+            new CurrentTime.Factory(),
+        );
+
+        // eslint-disable-next-line no-undef,new-cap
+        this.shaka.ui.Controls.registerElement(
+            "total_time",
+            new TotalTime.Factory(),
+        );
+
+        // eslint-disable-next-line no-undef,new-cap
+        this.shaka.ui.Controls.registerElement(
+            "mute_popover",
+            new MuteButton.Factory(),
+        );
+
+        // eslint-disable-next-line no-undef,new-cap
+        this.shaka.ui.Controls.registerElement(
+            "fullscreen_button",
+            new FullscreenButton.Factory(),
         );
 
         // eslint-disable-next-line no-undef,new-cap
@@ -317,7 +368,7 @@ class Video extends Marko.Component<Input, State> {
         this.video = this.root.querySelector("video")!;
         this.containerEl = this.root.querySelector(".video-player__container")!;
         this.video.volume = this.input.volume || 1;
-        this.video.muted = this.input.muted || false;
+        this.video.muted = this.input.muted !== false;
 
         this.subscribeTo(this.video)
             .on("playing", this.handlePlaying.bind(this))
@@ -345,10 +396,12 @@ class Video extends Marko.Component<Input, State> {
         shakaLoad()
             .then((shaka: any) => {
                 this.shaka = shaka.default || shaka;
+                window.shaka = this.shaka; // Set global object for some components to access
 
                 this.handleSuccess();
             })
             .catch((e: Error) => {
+                console.log(e);
                 this.handleError(e);
             });
     }

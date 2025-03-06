@@ -213,7 +213,7 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    width: "600",
+    width: "700",
     height: "400",
     source: [
         {
@@ -233,7 +233,7 @@ Default.parameters = {
 export const ios = Template.bind({});
 ios.storyName = "ios";
 ios.args = {
-    width: "600",
+    width: "700",
     height: "400",
     source: [
         {
