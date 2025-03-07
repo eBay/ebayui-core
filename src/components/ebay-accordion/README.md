@@ -3,7 +3,7 @@
         ebay-accordion
     </span>
     <span style="font-weight: normal; font-size: medium; margin-bottom: -15px;">
-        DS v1.0.0
+        DS v1.1
     </span>
 </h1>
 
