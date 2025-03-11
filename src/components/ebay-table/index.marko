@@ -7,17 +7,22 @@ $ const {
     header: headers,
     row: rows,
     allSelected,
+    a11yLoadingText,
     a11ySelectAllText,
     a11ySelectRowText,
     mode = "none",
+    bodyState = "none",
     ...divInput
 } = input;
+
+$ const isLoading = bodyState === "loading";
 
 <div
     ...processHtmlAttributes(divInput)
     class=[
         "table",
         mode === "selection" && "table--mode-selection",
+        isLoading && "table--loading-state",
         density &&
             validDensity.includes(density) &&
             `table--density-${density}`,
@@ -32,6 +37,7 @@ $ const {
                 <if(mode === "selection")>
                     <th class="table-cell">
                         <ebay-tri-state-checkbox
+                            disabled=isLoading
                             aria-label=(a11ySelectAllText ?? "Select all rows")
                             checked=state.allSelected
                             on-change("headerSelect")
@@ -78,6 +84,7 @@ $ const {
                             };
                         }
                         <${href ? "a" : sortOrder ? "button" : null}
+                            disabled=isLoading
                             ...sortEleAttr
                             on-click(href ? undefined : "sortColumn", name)
                         >
@@ -99,7 +106,7 @@ $ const {
                 </for>
             </tr>
         </thead>
-        <tbody>
+        <tbody key="tbody">
             <for|row, rowIndex| of=rows || []>
                 $ const {
                     cell: cells,
@@ -111,6 +118,7 @@ $ const {
                     <if(mode === "selection")>
                         <th scope="row" class="table__cell">
                             <ebay-checkbox
+                                disabled=isLoading
                                 aria-label=(a11ySelectRowText ?? "Select row")
                                 checked=(state.selected[name])
                                 on-change("rowSelect", name)
@@ -151,4 +159,7 @@ $ const {
             </for>
         </tbody>
     </table>
+    <if(isLoading)>
+        <ebay-progress-bar-expressive a11y-text=a11yLoadingText || "Loading..." />
+    </if>
 </div>

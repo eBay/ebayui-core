@@ -1,3 +1,4 @@
+import focusables from "makeup-focusables";
 import { AttrString, AttrTriState } from "marko/tags-html";
 import { WithNormalizedProps } from "../../global";
 import { CheckboxEvent } from "../ebay-checkbox/component-browser";
@@ -24,9 +25,11 @@ export interface TableRow extends Omit<Marko.HTML.TR, `on${string}`> {
 export interface TableInput extends Omit<Marko.HTML.Div, `on${string}`> {
     header: Marko.AttrTag<WithNormalizedProps<TableHeader>>;
     mode?: "none" | "selection";
+    "body-state"?: "loading" | "none";
     "all-selected"?: AttrTriState;
     row?: Marko.AttrTag<TableRow>;
     density?: "compact" | "relaxed" | "none";
+    "a11y-loading-text"?: string;
     "a11y-select-all-text"?: string;
     "a11y-select-row-text"?: string;
     "on-select"?: (event: {
@@ -45,6 +48,9 @@ interface State {
 }
 
 export default class EbayTable extends Marko.Component<Input, State> {
+    declare disabledItems: Map<HTMLElement, boolean>;
+    declare tbody: HTMLElement;
+
     onCreate() {
         this.state = {
             selected: {},
@@ -53,10 +59,20 @@ export default class EbayTable extends Marko.Component<Input, State> {
         };
     }
 
+    onMount() {
+        this.disabledItems = new Map();
+        this.tbody = this.getEl("tbody");
+        this.setLoading();
+    }
+
     onInput(input: Input) {
         this.state.selected = this.getSelectedRowStateFromInput(input);
         this.state.allSelected = this.getAllSelectedState(input);
         this.state.sorted = this.getSortedColStateFromInput(input);
+    }
+
+    onUpdate() {
+        this.setLoading();
     }
 
     getSelectedRowStateFromInput(input: Input) {
@@ -127,6 +143,28 @@ export default class EbayTable extends Marko.Component<Input, State> {
         this.emit("select", {
             selected: this.state.selected,
         });
+    }
+
+    setLoading() {
+        if (this.input.bodyState === "loading") {
+            if (this.tbody) {
+                requestAnimationFrame(() => {
+                    focusables(this.tbody).forEach((focusable: HTMLElement) => {
+                        if (!focusable.getAttribute("disabled")) {
+                            focusable.setAttribute("disabled", "true");
+                            focusable.setAttribute("tabindex", "-1");
+                            this.disabledItems.set(focusable, true);
+                        }
+                    });
+                });
+            }
+        } else {
+            for (const [focusable] of this.disabledItems) {
+                focusable.removeAttribute("disabled");
+                focusable.removeAttribute("tabindex");
+            }
+            this.disabledItems.clear();
+        }
     }
 
     sortColumn(name: string) {
