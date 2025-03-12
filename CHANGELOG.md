@@ -1,5 +1,17 @@
 # eBayUI-Core Changelog
 
+## 15.2.0-next.0
+
+### Minor Changes
+
+- [#2451](https://github.com/eBay/ebayui-core/pull/2451) [`9559cae`](https://github.com/eBay/ebayui-core/commit/9559cae4d39efba2a21597266437450448812613) Thanks [@saiponnada](https://github.com/saiponnada)! - feat(accordion): update expansion icon
+
+- [#2446](https://github.com/eBay/ebayui-core/pull/2446) [`9bd9d23`](https://github.com/eBay/ebayui-core/commit/9bd9d23be6d1fc0c52d748d8ddbbfa3b6bd23561) Thanks [@agliga](https://github.com/agliga)! - fix(event-utils): updated to use key
+
+### Patch Changes
+
+- [#2445](https://github.com/eBay/ebayui-core/pull/2445) [`876dff4`](https://github.com/eBay/ebayui-core/commit/876dff44bfc1f3e4fda6bdfdc39577c51c71110c) Thanks [@agliga](https://github.com/agliga)! - fix(icon-btn): added swap to icon-link for href and target support
+
 ## 15.1.2
 
 ### Patch Changes
