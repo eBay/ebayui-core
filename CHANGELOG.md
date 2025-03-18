@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 15.1.4
+
+### Patch Changes
+
+- [#2455](https://github.com/eBay/ebayui-core/pull/2455) [`7c4b564`](https://github.com/eBay/ebayui-core/commit/7c4b564d132ddea8e4d027336b9b69a0cb733997) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Fix hydration for accordion
+
 ## 15.1.3
 
 ### Patch Changes
