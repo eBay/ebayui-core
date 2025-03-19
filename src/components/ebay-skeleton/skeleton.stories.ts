@@ -85,7 +85,7 @@ export default {
 export const Default = Template.bind({});
 Default.args = {
     style: "width: 220px",
-    renderBody: `<div role="img" aria-label="Loading" class="skeleton__textbox" />` as any,
+    renderBody: `<div class="skeleton__textbox" />` as any,
 };
 Default.parameters = {
     docs: {
