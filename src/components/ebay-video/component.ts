@@ -64,10 +64,10 @@ interface VideoInput extends Omit<Marko.HTML.Video, `on${string}`> {
     clip?: any[];
     source: Marko.AttrTag<Marko.HTML.Source>;
     "report-text"?: AttrString;
-    "mute-text"?: AttrString;
-    "unmute-text"?: AttrString;
-    "fullscreen-text"?: AttrString;
-    "exit-fullscreen-text"?: AttrString;
+    "a11y-mute-text"?: AttrString;
+    "a11y-unmute-text"?: AttrString;
+    "a11y-fullscreen-text"?: AttrString;
+    "a11y-exit-fullscreen-text"?: AttrString;
     "spinner-timeout"?: number;
     thumbnail?: string;
     track?: Marko.AttrTag<Marko.HTML.Track>;
@@ -95,9 +95,6 @@ class Video extends Marko.Component<Input, State> {
     declare video: HTMLVideoElement;
     declare root: HTMLElement;
     declare containerEl: HTMLElement;
-    declare spacer: HTMLElement;
-    declare rangeContainer: HTMLElement;
-    declare buttonPanel: HTMLElement;
     declare player: any;
     declare ui: any;
     declare shaka: any;
@@ -125,19 +122,19 @@ class Video extends Marko.Component<Input, State> {
 
     alignSeekbar() {
         if (this.el) {
-            this.buttonPanel = this.el.querySelector<HTMLElement>(
+            const buttonPanel = this.el.querySelector<HTMLElement>(
                 ".shaka-controls-button-panel",
             )!;
-            this.spacer = this.buttonPanel.querySelector(".shaka-spacer")!;
-            this.rangeContainer = this.el.querySelector<HTMLElement>(
+            const spacer = buttonPanel.querySelector(".shaka-spacer")!;
+            const rangeContainer = this.el.querySelector<HTMLElement>(
                 ".shaka-range-container",
             )!;
-        }
-        const buttonPanelRect = this.buttonPanel.getBoundingClientRect();
-        const spacerRect = this.spacer.getBoundingClientRect();
+            const buttonPanelRect = buttonPanel.getBoundingClientRect();
+            const spacerRect = spacer.getBoundingClientRect();
 
-        this.rangeContainer.style.marginRight = `${buttonPanelRect.right - spacerRect.right}px`;
-        this.rangeContainer.style.marginLeft = `${spacerRect.left - buttonPanelRect.left}px`;
+            rangeContainer.style.marginRight = `${buttonPanelRect.right - spacerRect.right}px`;
+            rangeContainer.style.marginLeft = `${spacerRect.left - buttonPanelRect.left}px`;
+        }
     }
 
     handlePause(originalEvent: Event) {
@@ -277,8 +274,14 @@ class Video extends Marko.Component<Input, State> {
     }
 
     _attach() {
-        const { Report, CurrentTime, TotalTime, MuteButton, FullscreenButton, TextSelection } =
-            getElements(this);
+        const {
+            Report,
+            CurrentTime,
+            TotalTime,
+            MuteButton,
+            FullscreenButton,
+            TextSelection,
+        } = getElements(this);
         // eslint-disable-next-line no-undef,new-cap
         this.ui = new this.shaka.ui.Overlay(
             this.player,

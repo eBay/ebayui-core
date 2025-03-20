@@ -62,6 +62,26 @@ export default {
             description:
                 'The accessibility text for the play button. Default is "Click to play"',
         },
+        a11yMuteText: {
+            control: { type: "text" },
+            description:
+                'The accessibility text for mute video. Default is "Mute"',
+        },
+        a11yUnmuteText: {
+            control: { type: "text" },
+            description:
+                'The accessibility text for unmute video. Default is "Unmute"',
+        },
+        a11yFullscreenText: {
+            control: { type: "text" },
+            description:
+                'The accessibility text for enter fullscreen. Default is "Enter Fullscreen"',
+        },
+        a11yExitFullscreenText: {
+            control: { type: "text" },
+            description:
+                'The accessibility text for enter fullscreen. Default is "Exit Fullscreen"',
+        },
         errorText: {
             control: { type: "text" },
             description:
