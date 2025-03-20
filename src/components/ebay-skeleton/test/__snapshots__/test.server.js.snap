@@ -23,9 +23,7 @@ exports[`skeleton > renders default skeleton 1`] = `
     [33mstyle[39m=[32m"width: 220px"[39m
   [36m>[39m
     [36m<div[39m
-      [33maria-label[39m=[32m"Loading"[39m
       [33mclass[39m=[32m"skeleton__textbox"[39m
-      [33mrole[39m=[32m"img"[39m
     [36m/>[39m
   [36m</div>[39m
 [36m</DocumentFragment>[39m"
