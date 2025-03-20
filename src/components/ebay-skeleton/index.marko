@@ -9,7 +9,7 @@ static interface SkeletonInput extends Omit<Marko.HTML.Div, `on${string}`> {
 export interface Input extends WithNormalizedProps<SkeletonInput> {}
 
 $ const {
-    a11yText = "Loading...",
+    a11yText = "Loading",
     class: inputClass,
     ...htmlInput
 } = input;

@@ -25,6 +25,8 @@ import withContentTemplate from "./examples/withContent.marko";
 import withContentCode from "./examples/withContent.marko?raw";
 import compositeTemplate from "./examples/composite.marko";
 import compositeCode from "./examples/composite.marko?raw";
+import groupedTileTemplate from "./examples/grouped-tile.marko";
+import groupedTileCode from "./examples/grouped-tile.marko?raw";
 import { Story } from "@storybook/marko";
 
 const Template: Story<Input> = (args) => ({
@@ -124,3 +126,5 @@ export const withContent = buildExtensionTemplate(
     withContentTemplate,
     withContentCode,
 );
+
+export const GroupedTile = buildExtensionTemplate(groupedTileTemplate, groupedTileCode);
