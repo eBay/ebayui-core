@@ -87,7 +87,7 @@ export default {
             description:
                 'The content for error when an either the library or video cannot load. Default is "An error has occurred"',
         },
-        reportText: {
+        a11yReportText: {
             control: { type: "text" },
             description: 'The text for report button. Default is "Report"',
         },

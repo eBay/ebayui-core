@@ -63,7 +63,11 @@ interface VideoInput extends Omit<Marko.HTML.Video, `on${string}`> {
     "volume-slider"?: boolean;
     clip?: any[];
     source: Marko.AttrTag<Marko.HTML.Source>;
+    /**
+     * @deprecated Use `a11y-report-text` instead
+     */
     "report-text"?: AttrString;
+    "a11y-report-text"?: AttrString;
     "a11y-mute-text"?: AttrString;
     "a11y-unmute-text"?: AttrString;
     "a11y-fullscreen-text"?: AttrString;

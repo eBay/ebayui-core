@@ -9,6 +9,7 @@ $ const {
     a11yPlayText = "Click to play",
     a11yLoadText = "Loading",
     reportText,
+    a11yReportText,
     a11yMuteText,
     a11yUnmuteText,
     a11yFullscreenText,
@@ -70,7 +71,7 @@ $ const styleSize = {
     </div>
     <div style="display:none">
         <ebay-play-filled-64-colored-icon key="play-icon"/>
-        <ebay-flag-16-icon a11y-text=(reportText || "Report") key="flag-icon"/>
+        <ebay-flag-16-icon a11y-text=(a11yReportText || reportText || "Report") key="flag-icon"/>
         <ebay-audio-off-16-icon key="audio-off-icon" a11y-text=(a11yUnmuteText || "Unmute")/>
         <ebay-audio-high-16-icon key="audio-high-icon" a11y-text=(a11yMuteText ||"Mute")/>
         <ebay-expand-16-icon key="expand-icon" a11y-text=(a11yFullscreenText || "Enter fullscreen")/>

@@ -55,7 +55,8 @@ function getElements(self: EbayVideo) {
     const Report = class extends self.shaka.ui.Element {
         constructor(parent: HTMLElement, controls: any) {
             super(parent, controls);
-            if (!self.input.reportText) {
+
+            if (!self.input.reportText || !self.input.a11yReportText) {
                 return;
             }
 
@@ -249,6 +250,7 @@ function getElements(self: EbayVideo) {
                 const showHour = seekRangeSize >= 3600;
                 this.setValue_(buildTimeString(seekRangeSize, showHour));
             }
+            this.currentTime_.disabled = true;
         }
 
         /**
