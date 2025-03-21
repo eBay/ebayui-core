@@ -9,6 +9,11 @@ $ const {
     a11yPlayText = "Click to play",
     a11yLoadText = "Loading",
     reportText,
+    a11yReportText,
+    a11yMuteText,
+    a11yUnmuteText,
+    a11yFullscreenText,
+    a11yExitFullscreenText,
     errorText,
     volume,
     muted,
@@ -19,7 +24,13 @@ $ const {
     ...htmlInput
 } = input;
 
-<div key="root" class=["video-player", !state.played && thumbnail !== "" && "video-player--poster"]>
+$ const styleSize = {
+    width: `${width}px`,
+    height: `${height}px`
+};
+
+<div key="root" class=["video-player", !state.played && thumbnail !== "" && "video-player--poster"] style=styleSize>
+
     <if(isBrowser && !width)>
         <subscribe
             to=window
@@ -28,10 +39,7 @@ $ const {
     <div
         class="video-player__container"
         no-update
-        style={
-            width: `${width}px`,
-            height: `${height}px`
-        }>
+        style=styleSize>
         <video
             no-controls
             poster=thumbnail
@@ -58,17 +66,15 @@ $ const {
         class=[
             "video-player__overlay",
             state.isLoaded && "video-player__overlay--hidden"
-        ]
-        on-click("_loadVideo")>
-        <if(!state.showLoading)>
-            <ebay-play-filled-64-colored-icon a11y-text=a11yPlayText/>
-        </if>
-        <else>
-            <ebay-progress-spinner a11yText=a11yLoadText/>
-        </else>
+        ]>
+        <ebay-progress-spinner a11yText=a11yLoadText/>
     </div>
     <div style="display:none">
         <ebay-play-filled-64-colored-icon key="play-icon"/>
-        <ebay-flag-24-icon key="flag-icon"/>
+        <ebay-flag-16-icon a11y-text=(a11yReportText || reportText || "Report") key="flag-icon"/>
+        <ebay-audio-off-16-icon key="audio-off-icon" a11y-text=(a11yUnmuteText || "Unmute")/>
+        <ebay-audio-high-16-icon key="audio-high-icon" a11y-text=(a11yMuteText ||"Mute")/>
+        <ebay-expand-16-icon key="expand-icon" a11y-text=(a11yFullscreenText || "Enter fullscreen")/>
+        <ebay-contract-16-icon key="contract-icon" a11y-text=(a11yExitFullscreenText || "Exit fullscreen")/>
     </div>
 </div>

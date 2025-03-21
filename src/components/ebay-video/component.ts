@@ -4,6 +4,12 @@ import type { WithNormalizedProps } from "../../global";
 import { getElements } from "./elements";
 const DEFAULT_SPINNER_TIMEOUT = 2000;
 
+declare global {
+    interface Window {
+        shaka: any;
+    }
+}
+
 const eventList = [
     "abort",
     "canplay",
@@ -29,14 +35,14 @@ const videoConfig = {
     addSeekBar: true,
     controlPanelElements: [
         "play_pause",
-        "time_and_duration",
+        "current_time",
         "spacer",
-        "mute",
+        "total_time",
+        "captions",
+        "mute_popover",
         "report",
-        "fullscreen",
-        "overflow_menu",
+        "fullscreen_button",
     ],
-    overflowMenuButtons: ["captions"],
 };
 
 export interface PlayPauseEvent {
@@ -57,7 +63,15 @@ interface VideoInput extends Omit<Marko.HTML.Video, `on${string}`> {
     "volume-slider"?: boolean;
     clip?: any[];
     source: Marko.AttrTag<Marko.HTML.Source>;
+    /**
+     * @deprecated Use `a11y-report-text` instead
+     */
     "report-text"?: AttrString;
+    "a11y-report-text"?: AttrString;
+    "a11y-mute-text"?: AttrString;
+    "a11y-unmute-text"?: AttrString;
+    "a11y-fullscreen-text"?: AttrString;
+    "a11y-exit-fullscreen-text"?: AttrString;
     "spinner-timeout"?: number;
     thumbnail?: string;
     track?: Marko.AttrTag<Marko.HTML.Track>;
@@ -79,7 +93,6 @@ interface State {
     isLoaded: boolean;
     volumeSlider: boolean;
     action: "play" | "pause" | "";
-    showLoading: boolean;
 }
 
 class Video extends Marko.Component<Input, State> {
@@ -108,6 +121,24 @@ class Video extends Marko.Component<Input, State> {
         if (!this.input.width && this.video) {
             const { width: containerWidth } = this.root.getBoundingClientRect();
             this.containerEl.setAttribute("width", containerWidth.toString());
+            this.alignSeekbar();
+        }
+    }
+
+    alignSeekbar() {
+        if (this.el) {
+            const buttonPanel = this.el.querySelector<HTMLElement>(
+                ".shaka-controls-button-panel",
+            )!;
+            const spacer = buttonPanel.querySelector(".shaka-spacer")!;
+            const rangeContainer = this.el.querySelector<HTMLElement>(
+                ".shaka-range-container",
+            )!;
+            const buttonPanelRect = buttonPanel.getBoundingClientRect();
+            const spacerRect = spacer.getBoundingClientRect();
+
+            rangeContainer.style.marginRight = `${buttonPanelRect.right - spacerRect.right}px`;
+            rangeContainer.style.marginLeft = `${spacerRect.left - buttonPanelRect.left}px`;
         }
     }
 
@@ -117,10 +148,12 @@ class Video extends Marko.Component<Input, State> {
         this.video.controls = false;
 
         this.emit("pause", { originalEvent, player: this.player });
+        this.alignSeekbar();
     }
 
     handlePlaying(originalEvent: Event) {
         this.showControls();
+        this.alignSeekbar();
 
         if (this.input.playView === "fullscreen") {
             this.video.requestFullscreen();
@@ -197,7 +230,6 @@ class Video extends Marko.Component<Input, State> {
         this.state = {
             volumeSlider: false,
             action: "",
-            showLoading: false,
             isLoaded: true,
             failed: false,
             played: false,
@@ -248,7 +280,14 @@ class Video extends Marko.Component<Input, State> {
     }
 
     _attach() {
-        const { Report, TextSelection } = getElements(this);
+        const {
+            Report,
+            CurrentTime,
+            TotalTime,
+            MuteButton,
+            FullscreenButton,
+            TextSelection,
+        } = getElements(this);
         // eslint-disable-next-line no-undef,new-cap
         this.ui = new this.shaka.ui.Overlay(
             this.player,
@@ -264,9 +303,30 @@ class Video extends Marko.Component<Input, State> {
         }
 
         // eslint-disable-next-line no-undef,new-cap
+        this.shaka.ui.Controls.registerElement("report", new Report.Factory());
+
+        // eslint-disable-next-line no-undef,new-cap
         this.shaka.ui.Controls.registerElement(
-            "report",
-            new Report.Factory(this.input.reportText),
+            "current_time",
+            new CurrentTime.Factory(),
+        );
+
+        // eslint-disable-next-line no-undef,new-cap
+        this.shaka.ui.Controls.registerElement(
+            "total_time",
+            new TotalTime.Factory(),
+        );
+
+        // eslint-disable-next-line no-undef,new-cap
+        this.shaka.ui.Controls.registerElement(
+            "mute_popover",
+            new MuteButton.Factory(),
+        );
+
+        // eslint-disable-next-line no-undef,new-cap
+        this.shaka.ui.Controls.registerElement(
+            "fullscreen_button",
+            new FullscreenButton.Factory(),
         );
 
         // eslint-disable-next-line no-undef,new-cap
@@ -317,7 +377,7 @@ class Video extends Marko.Component<Input, State> {
         this.video = this.root.querySelector("video")!;
         this.containerEl = this.root.querySelector(".video-player__container")!;
         this.video.volume = this.input.volume || 1;
-        this.video.muted = this.input.muted || false;
+        this.video.muted = this.input.muted !== false;
 
         this.subscribeTo(this.video)
             .on("playing", this.handlePlaying.bind(this))
@@ -345,10 +405,12 @@ class Video extends Marko.Component<Input, State> {
         shakaLoad()
             .then((shaka: any) => {
                 this.shaka = shaka.default || shaka;
+                window.shaka = this.shaka; // Set global object for some components to access
 
                 this.handleSuccess();
             })
             .catch((e: Error) => {
+                console.log(e);
                 this.handleError(e);
             });
     }
