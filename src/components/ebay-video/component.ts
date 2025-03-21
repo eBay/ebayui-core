@@ -121,6 +121,7 @@ class Video extends Marko.Component<Input, State> {
         if (!this.input.width && this.video) {
             const { width: containerWidth } = this.root.getBoundingClientRect();
             this.containerEl.setAttribute("width", containerWidth.toString());
+            this.alignSeekbar();
         }
     }
 
@@ -147,6 +148,7 @@ class Video extends Marko.Component<Input, State> {
         this.video.controls = false;
 
         this.emit("pause", { originalEvent, player: this.player });
+        this.alignSeekbar();
     }
 
     handlePlaying(originalEvent: Event) {

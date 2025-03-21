@@ -105,6 +105,7 @@ function getElements(self: EbayVideo) {
             /** @type {!HTMLButtonElement} */
             this.currentTime_ = document.createElement("button");
             this.currentTime_.classList.add("shaka-current-time");
+            this.currentTime_.disabled = true;
             this.setValue_("0:00");
             this.parent.appendChild(this.currentTime_);
             this.eventManager.listen(this.currentTime_, "click", () => {
@@ -147,7 +148,6 @@ function getElements(self: EbayVideo) {
                 this.setValue_(
                     this.localization.resolve(self.shaka.ui.Locales.Ids.LIVE),
                 );
-                this.currentTime_.disabled = true;
             } else if (this.player.isLive()) {
                 // The amount of time we are behind the live edge.
                 const behindLive = Math.floor(seekRange.end - displayTime);
@@ -162,21 +162,18 @@ function getElements(self: EbayVideo) {
                     this.setValue_(
                         "- " + buildTimeString(displayTime, showHour),
                     );
-                    this.currentTime_.disabled = false;
                 } else {
                     this.setValue_(
                         this.localization.resolve(
                             self.shaka.ui.Locales.Ids.LIVE,
                         ),
                     );
-                    this.currentTime_.disabled = true;
                 }
             } else {
                 const showHour = seekRangeSize >= 3600;
                 const currentTime = Math.max(0, displayTime - seekRange.start);
                 let value = buildTimeString(currentTime, showHour);
                 this.setValue_(value);
-                this.currentTime_.disabled = true;
             }
         }
         /**
@@ -217,6 +214,7 @@ function getElements(self: EbayVideo) {
             /** @type {!HTMLButtonElement} */
             this.currentTime_ = document.createElement("button");
             this.currentTime_.classList.add("shaka-current-time");
+            this.currentTime_.disabled = true;
             this.parent.appendChild(this.currentTime_);
             this.eventManager.listen(
                 this.controls,
@@ -250,7 +248,6 @@ function getElements(self: EbayVideo) {
                 const showHour = seekRangeSize >= 3600;
                 this.setValue_(buildTimeString(seekRangeSize, showHour));
             }
-            this.currentTime_.disabled = true;
         }
 
         /**
