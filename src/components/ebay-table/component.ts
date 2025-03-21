@@ -48,8 +48,9 @@ interface State {
 }
 
 export default class EbayTable extends Marko.Component<Input, State> {
-    declare disabledItems: Map<HTMLElement, boolean>;
+    declare disabledItems: Set<HTMLElement>;
     declare tbody: HTMLElement;
+    declare animationFrame: number;
 
     onCreate() {
         this.state = {
@@ -60,7 +61,7 @@ export default class EbayTable extends Marko.Component<Input, State> {
     }
 
     onMount() {
-        this.disabledItems = new Map();
+        this.disabledItems = new Set();
         this.tbody = this.getEl("tbody");
         this.setLoading();
     }
@@ -73,6 +74,16 @@ export default class EbayTable extends Marko.Component<Input, State> {
 
     onUpdate() {
         this.setLoading();
+    }
+
+    onRender() {
+        if (typeof window !== "undefined") {
+            cancelAnimationFrame(this.animationFrame);
+        }
+    }
+
+    onDestroy() {
+        cancelAnimationFrame(this.animationFrame);
     }
 
     getSelectedRowStateFromInput(input: Input) {
@@ -148,18 +159,16 @@ export default class EbayTable extends Marko.Component<Input, State> {
     setLoading() {
         if (this.input.bodyState === "loading") {
             if (this.tbody) {
-                requestAnimationFrame(() => {
+                this.animationFrame = requestAnimationFrame(() => {
                     focusables(this.tbody).forEach((focusable: HTMLElement) => {
-                        if (!focusable.getAttribute("disabled")) {
-                            focusable.setAttribute("disabled", "true");
-                            focusable.setAttribute("tabindex", "-1");
-                            this.disabledItems.set(focusable, true);
-                        }
+                        focusable.setAttribute("disabled", "true");
+                        focusable.setAttribute("tabindex", "-1");
+                        this.disabledItems.add(focusable);
                     });
                 });
             }
         } else {
-            for (const [focusable] of this.disabledItems) {
+            for (const [focusable] of this.disabledItems.entries()) {
                 focusable.removeAttribute("disabled");
                 focusable.removeAttribute("tabindex");
             }
