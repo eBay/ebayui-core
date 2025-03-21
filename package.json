@@ -100,7 +100,7 @@
         "@commitlint/cli": "^19",
         "@commitlint/config-conventional": "^19",
         "@ebay/browserslist-config": "^2.10.0",
-        "@ebay/skin": "~19.1.1",
+        "@ebay/skin": "~19.1.2",
         "@marko/compiler": "^5.39.12",
         "@marko/prettyprint": "^3.0.1",
         "@marko/testing-library": "^6",
