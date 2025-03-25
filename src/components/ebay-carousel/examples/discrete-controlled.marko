@@ -1,4 +1,5 @@
 import type { Input as CarouselInput } from "<ebay-carousel>";
+import type { Input as TextboxInput } from "<ebay-textbox>";
 
 export interface Input {
     items: number;
@@ -22,6 +23,9 @@ class {
     }
     onMove: CarouselInput["on-move"] = ({visibleIndexes}) => {
         this.state.index = visibleIndexes[0];
+    }
+    handleChange: TextboxInput["on-input-change"] = ({ value }) => {
+        this.state.index = +value;
     }
 }
 
@@ -55,3 +59,5 @@ class {
     <@item style={ width: "400px" } class="demo2-card">Card 9</@item>
     <@item style={ width: "400px" } class="demo2-card">Card 10</@item>
 </ebay-carousel>
+
+<ebay-textbox type="number" value=0 onInput-change("handleChange")/>

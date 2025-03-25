@@ -13,6 +13,8 @@ import preserveTabindexTemplate from "./examples/preserve-tabindex.marko";
 import preserveTabindexTemplateCode from "./examples/preserve-tabindex.marko?raw";
 import variableSizesTemplate from "./examples/variable-sizes.marko";
 import variableSizesTemplateCode from "./examples/variable-sizes.marko?raw";
+import controlledTemplate from "./examples/discrete-controlled.marko";
+import controlledTemplateCode from "./examples/discrete-controlled.marko?raw";
 
 export default {
     title: "navigation & disclosure/ebay-carousel",
@@ -226,4 +228,9 @@ export const preserveTabindex = buildExtensionTemplate(
 export const variableSizes = buildExtensionTemplate(
     variableSizesTemplate,
     variableSizesTemplateCode,
+);
+
+export const controlled = buildExtensionTemplate(
+    controlledTemplate,
+    controlledTemplateCode,
 );
