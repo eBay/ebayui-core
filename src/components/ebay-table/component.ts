@@ -161,7 +161,19 @@ export default class EbayTable extends Marko.Component<Input, State> {
             if (this.tbody) {
                 this.animationFrame = requestAnimationFrame(() => {
                     focusables(this.tbody).forEach((focusable: HTMLElement) => {
-                        focusable.setAttribute("disabled", "true");
+                        if (focusable.tagName === "A") {
+                            focusable.setAttribute(
+                                "data-href",
+                                focusable.getAttribute("href") || "",
+                            );
+                            focusable.removeAttribute("href");
+                        } else {
+                            focusable.setAttribute("disabled", "true");
+                        }
+                        focusable.setAttribute(
+                            "data-tabindex",
+                            focusable.getAttribute("tabindex") || "",
+                        );
                         focusable.setAttribute("tabindex", "-1");
                         this.disabledItems.add(focusable);
                     });
@@ -169,8 +181,24 @@ export default class EbayTable extends Marko.Component<Input, State> {
             }
         } else {
             for (const [focusable] of this.disabledItems.entries()) {
-                focusable.removeAttribute("disabled");
-                focusable.removeAttribute("tabindex");
+                if (focusable.tagName === "A") {
+                    focusable.setAttribute(
+                        "href",
+                        focusable.getAttribute("data-href") || "",
+                    );
+                    focusable.removeAttribute("data-href");
+                } else {
+                    focusable.setAttribute("disabled", "true");
+                }
+
+                if (focusable.getAttribute("data-tabindex") !== null) {
+                    focusable.setAttribute(
+                        "tabindex",
+                        focusable.getAttribute("tabindex") || "",
+                    );
+                } else {
+                    focusable.removeAttribute("tabindex");
+                }
             }
             this.disabledItems.clear();
         }

@@ -77,14 +77,18 @@ $ const isLoading = bodyState === "loading";
                     >
                         $ let sortEleAttr = {};
                         $ if (href) {
-                            sortEleAttr = { href };
+                            if (isLoading) {
+                                sortEleAttr = { };
+                            } else {
+                                sortEleAttr = { href };
+                            }
                         } else if (sortOrder) {
                             sortEleAttr = {
-                                type: "button"
+                                type: "button",
+                                disabled: isLoading,
                             };
                         }
                         <${href ? "a" : sortOrder ? "button" : null}
-                            disabled=isLoading
                             ...sortEleAttr
                             on-click(href ? undefined : "sortColumn", name)
                         >
