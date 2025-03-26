@@ -62,12 +62,32 @@ export default {
             description:
                 'The accessibility text for the play button. Default is "Click to play"',
         },
+        a11yMuteText: {
+            control: { type: "text" },
+            description:
+                'The accessibility text for mute video. Default is "Mute"',
+        },
+        a11yUnmuteText: {
+            control: { type: "text" },
+            description:
+                'The accessibility text for unmute video. Default is "Unmute"',
+        },
+        a11yFullscreenText: {
+            control: { type: "text" },
+            description:
+                'The accessibility text for enter fullscreen. Default is "Enter Fullscreen"',
+        },
+        a11yExitFullscreenText: {
+            control: { type: "text" },
+            description:
+                'The accessibility text for enter fullscreen. Default is "Exit Fullscreen"',
+        },
         errorText: {
             control: { type: "text" },
             description:
                 'The content for error when an either the library or video cannot load. Default is "An error has occurred"',
         },
-        reportText: {
+        a11yReportText: {
             control: { type: "text" },
             description: 'The text for report button. Default is "Report"',
         },
@@ -213,7 +233,7 @@ export default {
 
 export const Default = Template.bind({});
 Default.args = {
-    width: "600",
+    width: "700",
     height: "400",
     source: [
         {
@@ -233,7 +253,7 @@ Default.parameters = {
 export const ios = Template.bind({});
 ios.storyName = "ios";
 ios.args = {
-    width: "600",
+    width: "700",
     height: "400",
     source: [
         {
