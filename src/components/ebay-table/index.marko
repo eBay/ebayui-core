@@ -29,7 +29,8 @@ $ const isLoading = bodyState === "loading";
         divClass,
     ]
     role="group"
-    tabindex="0"
+    tabindex=isLoading ? "-1" :"0"
+    inert=isLoading
 >
     <table>
         <thead>

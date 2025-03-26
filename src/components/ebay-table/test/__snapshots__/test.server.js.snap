@@ -1850,8 +1850,9 @@ exports[`ebay-table > renders with anchors loading 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
     [33mclass[39m=[32m"table table--loading-state"[39m
+    [33minert[39m=[32m""[39m
     [33mrole[39m=[32m"group"[39m
-    [33mtabindex[39m=[32m"0"[39m
+    [33mtabindex[39m=[32m"-1"[39m
   [36m>[39m
     [36m<table>[39m
       [36m<thead>[39m
@@ -2019,16 +2020,16 @@ exports[`ebay-table > renders with anchors loading 1`] = `
           [36m</th>[39m
           [36m<th[39m
             [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
-          [36m>[39m
-            [36m<button[39..."
+          [36m>..."
 `;
 
 exports[`ebay-table > renders with columns client side loading 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
     [33mclass[39m=[32m"table table--loading-state"[39m
+    [33minert[39m=[32m""[39m
     [33mrole[39m=[32m"group"[39m
-    [33mtabindex[39m=[32m"0"[39m
+    [33mtabindex[39m=[32m"-1"[39m
   [36m>[39m
     [36m<table>[39m
       [36m<thead>[39m
@@ -2220,16 +2221,16 @@ exports[`ebay-table > renders with columns client side loading 1`] = `
             [33mclass[39m=[32m"table-cell"[39m
           [36m>[39m
             [36m<a[39m
-              [33mhref[39m=[32m"https://ebay.com"[39m
-         ..."
+              [33mhref[39m=[32..."
 `;
 
 exports[`ebay-table > renders with loading state 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
     [33mclass[39m=[32m"table table--loading-state"[39m
+    [33minert[39m=[32m""[39m
     [33mrole[39m=[32m"group"[39m
-    [33mtabindex[39m=[32m"0"[39m
+    [33mtabindex[39m=[32m"-1"[39m
   [36m>[39m
     [36m<table>[39m
       [36m<thead>[39m
@@ -2438,6 +2439,5 @@ exports[`ebay-table > renders with loading state 1`] = `
             [0m345[0m
           [36m</td>[39m
           [36m<td[39m
-            [33mclass[39m=[32m"table-cell"[39m
-  ..."
+            [33mcl..."
 `;
