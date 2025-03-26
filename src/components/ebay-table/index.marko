@@ -29,10 +29,10 @@ $ const isLoading = bodyState === "loading";
         divClass,
     ]
     role="group"
-    tabindex=isLoading ? "-1" :"0"
+    tabindex="0"
     inert=isLoading
 >
-    <table>
+    <table aria-hidden=isLoading && "true">
         <thead>
             <tr>
                 <if(mode === "selection")>
@@ -164,7 +164,9 @@ $ const isLoading = bodyState === "loading";
             </for>
         </tbody>
     </table>
-    <if(isLoading)>
-        <ebay-progress-bar-expressive a11y-text=a11yLoadingText || "Loading..." />
-    </if>
+    <div role="status">
+        <if(isLoading)>
+            <ebay-progress-bar-expressive a11y-text=a11yLoadingText || "Loading..." />
+        </if>
+    </div>
 </div>
