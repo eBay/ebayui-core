@@ -773,7 +773,6 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
       [36m</tbody>[39m
     [36m</table>[39m
     [36m<div[39m
-      [33maria-live[39m=[32m"polite"[39m
       [33mrole[39m=[32m"status"[39m
     [36m/>[39m
   [36m</div>[39m
@@ -1146,7 +1145,6 @@ exports[`ebay-table > renders Default 1`] = `
       [36m</tbody>[39m
     [36m</table>[39m
     [36m<div[39m
-      [33maria-live[39m=[32m"polite"[39m
       [33mrole[39m=[32m"status"[39m
     [36m/>[39m
   [36m</div>[39m
@@ -1672,7 +1670,6 @@ exports[`ebay-table > renders TableDensity 1`] = `
       [36m</tbody>[39m
     [36m</table>[39m
     [36m<div[39m
-      [33maria-live[39m=[32m"polite"[39m
       [33mrole[39m=[32m"status"[39m
     [36m/>[39m
   [36m</div>[39m
