@@ -127,4 +127,7 @@ export const withContent = buildExtensionTemplate(
     withContentCode,
 );
 
-export const GroupedTile = buildExtensionTemplate(groupedTileTemplate, groupedTileCode);
+export const GroupedTile = buildExtensionTemplate(
+    groupedTileTemplate,
+    groupedTileCode,
+);
