@@ -40,7 +40,7 @@ describe("given sortable table with Seller column is sorted in ascending order (
                   focusable="false"
                 >
                   <use
-                    href="#icon-sort-up-12"
+                    href="#icon-sort-down-12"
                   />
                 </svg>
                 
