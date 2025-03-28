@@ -205,7 +205,7 @@ exports[`education-notice > renders with dismiss 1`] = `
       [36m</h2>[39m
       [36m<button[39m
         [33maria-label[39m=[32m"Dismiss Notice"[39m
-        [33mclass[39m=[32m"fake-link education-notice__dismiss icon-btn icon-btn--small"[39m
+        [33mclass[39m=[32m"education-notice__dismiss icon-btn icon-btn--small"[39m
         [33mdata-ebayui[39m=[32m""[39m
         [33mtype[39m=[32m"button"[39m
       [36m>[39m
