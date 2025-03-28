@@ -391,10 +391,9 @@ function getElements(self: EbayVideo) {
          * @private
          */
         updateIcon_() {
-            const icon =
-                this.controls.isFullScreenEnabled()
-                    ? this.exitFullscreenIcon
-                    : this.fullscreenIcon;
+            const icon = this.controls.isFullScreenEnabled()
+                ? this.exitFullscreenIcon
+                : this.fullscreenIcon;
             this.button_.childNodes[0].replaceWith(icon);
         }
     };

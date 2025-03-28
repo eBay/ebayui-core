@@ -1,5 +1,25 @@
 # eBayUI-Core Changelog
 
+## 15.2.0
+
+### Minor Changes
+
+- [#2451](https://github.com/eBay/ebayui-core/pull/2451) [`9559cae`](https://github.com/eBay/ebayui-core/commit/9559cae4d39efba2a21597266437450448812613) Thanks [@saiponnada](https://github.com/saiponnada)! - feat(accordion): update expansion icon
+
+- [#2452](https://github.com/eBay/ebayui-core/pull/2452) [`74fcd1f`](https://github.com/eBay/ebayui-core/commit/74fcd1fcdf48f7edc20c3b8ac6968d9608d50640) Thanks [@agliga](https://github.com/agliga)! - feat(video): updated to match new specs
+
+- [#2453](https://github.com/eBay/ebayui-core/pull/2453) [`54351d9`](https://github.com/eBay/ebayui-core/commit/54351d9e260937adb30a4a9ca7e676c507dab171) Thanks [@agliga](https://github.com/agliga)! - feat(table): added loading body state
+
+- [#2454](https://github.com/eBay/ebayui-core/pull/2454) [`9f857cb`](https://github.com/eBay/ebayui-core/commit/9f857cbd05f9d2b588af26906e799c8b0ef56edd) Thanks [@saiponnada](https://github.com/saiponnada)! - feat(skeleton): added example for grouped skeletons
+
+- [#2446](https://github.com/eBay/ebayui-core/pull/2446) [`9bd9d23`](https://github.com/eBay/ebayui-core/commit/9bd9d23be6d1fc0c52d748d8ddbbfa3b6bd23561) Thanks [@agliga](https://github.com/agliga)! - fix(event-utils): updated to use key
+
+### Patch Changes
+
+- [#2445](https://github.com/eBay/ebayui-core/pull/2445) [`876dff4`](https://github.com/eBay/ebayui-core/commit/876dff44bfc1f3e4fda6bdfdc39577c51c71110c) Thanks [@agliga](https://github.com/agliga)! - fix(icon-btn): added swap to icon-link for href and target support
+
+- [#2465](https://github.com/eBay/ebayui-core/pull/2465) [`46423cb`](https://github.com/eBay/ebayui-core/commit/46423cb9e671f2d8e79d2d6315592b7aa73c7837) Thanks [@LuLaValva](https://github.com/LuLaValva)! - Fix carousel scrolling bug
+
 ## 15.1.4
 
 ### Patch Changes
