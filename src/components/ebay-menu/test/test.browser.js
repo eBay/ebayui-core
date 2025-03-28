@@ -218,7 +218,7 @@ describe("given the menu has radio items", () => {
     describe("when an action button is pressed on an item", () => {
         beforeEach(async () => {
             await pressKey(firstItem, {
-                key: "(Space character)",
+                key: " ",
                 keyCode: 32,
             });
         });

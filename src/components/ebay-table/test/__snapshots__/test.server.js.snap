@@ -26,16 +26,16 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
               [36m>[39m
                 [36m<defs>[39m
                   [36m<symbol[39m
-                    [33mid[39m=[32m"icon-sort-down-12"[39m
+                    [33mid[39m=[32m"icon-sort-up-12"[39m
                     [33mviewBox[39m=[32m"0 0 12 12"[39m
                   [36m>[39m
                     [36m<path[39m
-                      [33md[39m=[32m"m6.523 10.789 4.27-4.287a.717.717 0 0 0-.003-1.011.71.71 0 0 0-1.007.003L6.729 8.567V1.715A.713.713 0 0 0 6.017 1a.713.713 0 0 0-.711.715v6.852L2.252 5.494a.71.71 0 0 0-1.232.298.716.716 0 0 0 .229.71l4.27 4.287a.71.71 0 0 0 1.004 0Z"[39m
+                      [33md[39m=[32m"m5.477 1.21-4.27 4.288A.717.717 0 0 0 1.21 6.51a.71.71 0 0 0 1.007-.003l3.054-3.073v6.852a.713.713 0 1 0 1.423 0V3.433l3.054 3.073a.71.71 0 0 0 1.232-.298.716.716 0 0 0-.229-.71l-4.27-4.287a.71.71 0 0 0-1.004 0Z"[39m
                     [36m/>[39m
                   [36m</symbol>[39m
                 [36m</defs>[39m
                 [36m<use[39m
-                  [33mhref[39m=[32m"#icon-sort-down-12"[39m
+                  [33mhref[39m=[32m"#icon-sort-up-12"[39m
                 [36m/>[39m
               [36m</svg>[39m
             [36m</button>[39m
@@ -176,7 +176,8 @@ exports[`ebay-table > renders ColumnSorting 1`] = `
                 [33maria-hidden[39m=[32m"true"[39m
                 [33mclass[39m=[32m"icon icon--12"[39m
                 [33mfocusable[39m=[32m"false"[39m
-              [..."
+              [36m>[39m
+                ..."
 `;
 
 exports[`ebay-table > renders ColumnSortingClientSide 1`] = `
@@ -408,16 +409,16 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
               [36m>[39m
                 [36m<defs>[39m
                   [36m<symbol[39m
-                    [33mid[39m=[32m"icon-sort-down-12"[39m
+                    [33mid[39m=[32m"icon-sort-up-12"[39m
                     [33mviewBox[39m=[32m"0 0 12 12"[39m
                   [36m>[39m
                     [36m<path[39m
-                      [33md[39m=[32m"m6.523 10.789 4.27-4.287a.717.717 0 0 0-.003-1.011.71.71 0 0 0-1.007.003L6.729 8.567V1.715A.713.713 0 0 0 6.017 1a.713.713 0 0 0-.711.715v6.852L2.252 5.494a.71.71 0 0 0-1.232.298.716.716 0 0 0 .229.71l4.27 4.287a.71.71 0 0 0 1.004 0Z"[39m
+                      [33md[39m=[32m"m5.477 1.21-4.27 4.288A.717.717 0 0 0 1.21 6.51a.71.71 0 0 0 1.007-.003l3.054-3.073v6.852a.713.713 0 1 0 1.423 0V3.433l3.054 3.073a.71.71 0 0 0 1.232-.298.716.716 0 0 0-.229-.71l-4.27-4.287a.71.71 0 0 0-1.004 0Z"[39m
                     [36m/>[39m
                   [36m</symbol>[39m
                 [36m</defs>[39m
                 [36m<use[39m
-                  [33mhref[39m=[32m"#icon-sort-down-12"[39m
+                  [33mhref[39m=[32m"#icon-sort-up-12"[39m
                 [36m/>[39m
               [36m</svg>[39m
             [36m</a>[39m
@@ -772,6 +773,9 @@ exports[`ebay-table > renders ColumnSortingWithLink 1`] = `
         [36m</tr>[39m
       [36m</tbody>[39m
     [36m</table>[39m
+    [36m<div[39m
+      [33mrole[39m=[32m"status"[39m
+    [36m/>[39m
   [36m</div>[39m
 [36m</DocumentFragment>[39m"
 `;
@@ -1141,6 +1145,9 @@ exports[`ebay-table > renders Default 1`] = `
         [36m</tr>[39m
       [36m</tbody>[39m
     [36m</table>[39m
+    [36m<div[39m
+      [33mrole[39m=[32m"status"[39m
+    [36m/>[39m
   [36m</div>[39m
 [36m</DocumentFragment>[39m"
 `;
@@ -1663,6 +1670,9 @@ exports[`ebay-table > renders TableDensity 1`] = `
         [36m</tr>[39m
       [36m</tbody>[39m
     [36m</table>[39m
+    [36m<div[39m
+      [33mrole[39m=[32m"status"[39m
+    [36m/>[39m
   [36m</div>[39m
 [36m</DocumentFragment>[39m"
 `;
@@ -1758,7 +1768,7 @@ exports[`ebay-table > renders TableWithActions 1`] = `
               [33mclass[39m=[32m"select select--borderless"[39m
             [36m>[39m
               [36m<select[39m
-                [33mid[39m=[32m"s0-0-18[2[0]]-1[0]-select"[39m
+                [33mid[39m=[32m"s0-0-17[2[0]]-1[0]-select"[39m
               [36m>[39m
                 [36m<option[39m
                   [33mtext[39m=[32m"New"[39m
@@ -1819,11 +1829,11 @@ exports[`ebay-table > renders TableWithActions 1`] = `
                   [36m<svg[39m
                     [33maria-hidden[39m=[32m"true"[39m
                     [33mclass[39m=[32m"icon icon--24"[39m
-                    [33mdata-marko-key[39m=[32m"@svg s0-0-18[3[0]]-2[0]-4-0"[39m
+                    [33mdata-marko-key[39m=[32m"@svg s0-0-17[3[0]]-2[0]-4-0"[39m
                     [33mfocusable[39m=[32m"false"[39m
                   [36m>[39m
                     [36m<defs[39m
-                      [33mdata-marko-key[39m=[32m"@defs s0-0-18[3[0]]-2[0]-4-0"[39m
+                      [33mdata-marko-key[39m=[32m"@defs s0-0-17[3[0]]-2[0]-4-0"[39m
                     [36m>[39m
                       [36m<symbol[39m
                         [33mid[39m=[32m"icon-arrow-right-24"[39m
@@ -1843,5 +1853,602 @@ exports[`ebay-table > renders TableWithActions 1`] = `
               [36m<button[39m
                 [33mclass[39m=[32m"icon-btn"[39m
                 [33mdata-ebayui[39m=[32m""[39m
-                [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-18[3[0]]-3[0] false\\",\\"onkeydown\\":\\"handleKeydown s0-0-18[3[0]]-3[0] false\\",\\"onfocus\\":\\"handleFocus s0-0-18[3[0]]-3[0] false\\",\\"onblur\\":\\"handleBlur s0-0-18[3[0]]-3[0] ..."
+                [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-17[3[0]]-3[0] false\\",\\"onkeydown\\":\\"handleKeydown s0-0-17[3[0]]-3[0] false\\",\\"onfocus\\":\\"handleFocus s0-0-17[3[0]]-3[0] false\\",\\"onblur\\":\\"handleBlur s0-0-17[3[0]]-3[0] ..."
+`;
+
+exports[`ebay-table > renders with anchors loading 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"table table--loading-state"[39m
+    [33mrole[39m=[32m"group"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m>[39m
+    [36m<table[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33minert[39m=[32m""[39m
+    [36m>[39m
+      [36m<thead>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33maria-sort[39m=[32m"ascending"[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mSeller[0m
+              [0m [0m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon icon--12"[39m
+                [33mfocusable[39m=[32m"false"[39m
+              [36m>[39m
+                [36m<defs>[39m
+                  [36m<symbol[39m
+                    [33mid[39m=[32m"icon-sort-up-12"[39m
+                    [33mviewBox[39m=[32m"0 0 12 12"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"m5.477 1.21-4.27 4.288A.717.717 0 0 0 1.21 6.51a.71.71 0 0 0 1.007-.003l3.054-3.073v6.852a.713.713 0 1 0 1.423 0V3.433l3.054 3.073a.71.71 0 0 0 1.232-.298.716.716 0 0 0-.229-.71l-4.27-4.287a.71.71 0 0 0-1.004 0Z"[39m
+                    [36m/>[39m
+                  [36m</symbol>[39m
+                [36m</defs>[39m
+                [36m<use[39m
+                  [33mhref[39m=[32m"#icon-sort-up-12"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mItem[0m
+              [0m [0m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon icon--12"[39m
+                [33mfocusable[39m=[32m"false"[39m
+              [36m>[39m
+                [36m<defs>[39m
+                  [36m<symbol[39m
+                    [33mid[39m=[32m"icon-sort-12"[39m
+                    [33mviewBox[39m=[32m"0 0 12 12"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M2.75 1a.75.75 0 0 1 .75.75v6.527l.69-.775a.75.75 0 1 1 1.12.996L3.32 10.74a.752.752 0 0 1-1.137 0L.188 8.5a.75.75 0 1 1 1.122-.997l.69.774V1.75A.75.75 0 0 1 2.75 1Zm5.06 3.498a.75.75 0 1 1-1.12-.996L8.68 1.26a.752.752 0 0 1 1.137 0L11.81 3.5a.75.75 0 1 1-1.12.997L10 3.723v6.527a.75.75 0 0 1-1.5 0V3.723l-.69.775Z"[39m
+                    [36m/>[39m
+                  [36m</symbol>[39m
+                [36m</defs>[39m
+                [36m<use[39m
+                  [33mhref[39m=[32m"#icon-sort-12"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mStatus[0m
+              [0m [0m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon icon--12"[39m
+                [33mfocusable[39m=[32m"false"[39m
+              [36m>[39m
+                [36m<use[39m
+                  [33mhref[39m=[32m"#icon-sort-12"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mList Price[0m
+              [0m [0m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon icon--12"[39m
+                [33mfocusable[39m=[32m"false"[39m
+              [36m>[39m
+                [36m<use[39m
+                  [33mhref[39m=[32m"#icon-sort-12"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mQuantity Available[0m
+              [0m [0m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon icon--12"[39m
+                [33mfocusable[39m=[32m"false"[39m
+              [36m>[39m
+                [36m<use[39m
+                  [33mhref[39m=[32m"#icon-sort-12"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mOrders[0m
+              [0m [0m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon icon--12"[39m
+                [33mfocusable[39m=[32m"false"[39m
+              [36m>[39m
+                [36m<use[39m
+                  [33mhref[39m=[32m"#icon-sort-12"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mWatchers[0m
+              [0m [0m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon icon--12"[39m
+                [33mfocusable[39m=[32m"false"[39m
+              [36m>[39m
+                [36m<use[39m
+                  [33mhref[39m=[32m"#icon-sort-12"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-c..."
+`;
+
+exports[`ebay-table > renders with columns client side loading 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"table table--loading-state"[39m
+    [33mrole[39m=[32m"group"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m>[39m
+    [36m<table[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33minert[39m=[32m""[39m
+    [36m>[39m
+      [36m<thead>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mSeller[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mItem[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mStatus[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mList Price[0m
+              [0m [0m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon icon--12"[39m
+                [33mfocusable[39m=[32m"false"[39m
+              [36m>[39m
+                [36m<defs>[39m
+                  [36m<symbol[39m
+                    [33mid[39m=[32m"icon-sort-12"[39m
+                    [33mviewBox[39m=[32m"0 0 12 12"[39m
+                  [36m>[39m
+                    [36m<path[39m
+                      [33md[39m=[32m"M2.75 1a.75.75 0 0 1 .75.75v6.527l.69-.775a.75.75 0 1 1 1.12.996L3.32 10.74a.752.752 0 0 1-1.137 0L.188 8.5a.75.75 0 1 1 1.122-.997l.69.774V1.75A.75.75 0 0 1 2.75 1Zm5.06 3.498a.75.75 0 1 1-1.12-.996L8.68 1.26a.752.752 0 0 1 1.137 0L11.81 3.5a.75.75 0 1 1-1.12.997L10 3.723v6.527a.75.75 0 0 1-1.5 0V3.723l-.69.775Z"[39m
+                    [36m/>[39m
+                  [36m</symbol>[39m
+                [36m</defs>[39m
+                [36m<use[39m
+                  [33mhref[39m=[32m"#icon-sort-12"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33mdisabled[39m=[32m""[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mQuantity Available[0m
+              [0m [0m
+              [36m<svg[39m
+                [33maria-hidden[39m=[32m"true"[39m
+                [33mclass[39m=[32m"icon icon--12"[39m
+                [33mfocusable[39m=[32m"false"[39m
+              [36m>[39m
+                [36m<use[39m
+                  [33mhref[39m=[32m"#icon-sort-12"[39m
+                [36m/>[39m
+              [36m</svg>[39m
+            [36m</button>[39m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mOrders[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0mWatchers[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0mProtection[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mShipping[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mDelivery[0m
+          [36m</th>[39m
+        [36m</tr>[39m
+      [36m</thead>[39m
+      [36m<tbody>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mNintendo[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mNintendo Switch Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--recent"[39m
+            [36m>[39m
+              [0mReady to Ship[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m$287.96[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m300[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m95[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m$17.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0m4/1 - 4/5[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mNintendo[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mNintendo SNES Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--recent"[39m
+            [36m>[39m
+              [0mReady to Ship[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m$89.85[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m45[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[3..."
+`;
+
+exports[`ebay-table > renders with loading state 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"table table--loading-state"[39m
+    [33mrole[39m=[32m"group"[39m
+    [33mtabindex[39m=[32m"0"[39m
+  [36m>[39m
+    [36m<table[39m
+      [33maria-hidden[39m=[32m"true"[39m
+      [33minert[39m=[32m""[39m
+    [36m>[39m
+      [36m<thead>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mSeller[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mItem[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mStatus[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0mList Price[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0mQuantity Available[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mOrders[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0mWatchers[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0mProtection[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mShipping[0m
+          [36m</th>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mDelivery[0m
+          [36m</th>[39m
+        [36m</tr>[39m
+      [36m</thead>[39m
+      [36m<tbody>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mNintendo[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mNintendo Switch Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--recent"[39m
+            [36m>[39m
+              [0mReady to Ship[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m$287.96[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m300[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m95[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m$17.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0m4/1 - 4/5[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mNintendo[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mNintendo SNES Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--recent"[39m
+            [36m>[39m
+              [0mReady to Ship[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m$89.85[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m45[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mhref[39m=[32m"https://ebay.com"[39m
+            [36m>[39m
+              [0m00-10542-89507[0m
+            [36m</a>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m5[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m$18.95[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mFREE[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0m4/11 - 4/15[0m
+          [36m</td>[39m
+        [36m</tr>[39m
+        [36m<tr>[39m
+          [36m<th[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mMicrosoft[0m
+          [36m</th>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [0mMicrosoft XBOX 360 Brand New Gaming System with Four Controllers[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"signal signal--time-sensitive"[39m
+            [36m>[39m
+              [0mBackorder[0m
+            [36m</span>[39m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m$499.99[0m
+          [36m</td>[39m
+          [36m<td[39m
+            [33mclass[39m=[32m"table-cell table-cell--numeric"[39m
+          [36m>[39m
+            [0m345[0m
+        ..."
 `;

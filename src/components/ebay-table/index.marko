@@ -7,17 +7,22 @@ $ const {
     header: headers,
     row: rows,
     allSelected,
+    a11yLoadingText,
     a11ySelectAllText,
     a11ySelectRowText,
     mode = "none",
+    bodyState = "none",
     ...divInput
 } = input;
+
+$ const isLoading = bodyState === "loading";
 
 <div
     ...processHtmlAttributes(divInput)
     class=[
         "table",
         mode === "selection" && "table--mode-selection",
+        isLoading && "table--loading-state",
         density &&
             validDensity.includes(density) &&
             `table--density-${density}`,
@@ -26,12 +31,13 @@ $ const {
     role="group"
     tabindex="0"
 >
-    <table>
+    <table aria-hidden=isLoading && "true" inert=isLoading>
         <thead>
             <tr>
                 <if(mode === "selection")>
                     <th class="table-cell">
                         <ebay-tri-state-checkbox
+                            disabled=isLoading
                             aria-label=(a11ySelectAllText ?? "Select all rows")
                             checked=state.allSelected
                             on-change("headerSelect")
@@ -71,10 +77,15 @@ $ const {
                     >
                         $ let sortEleAttr = {};
                         $ if (href) {
-                            sortEleAttr = { href };
+                            if (isLoading) {
+                                sortEleAttr = { };
+                            } else {
+                                sortEleAttr = { href };
+                            }
                         } else if (sortOrder) {
                             sortEleAttr = {
-                                type: "button"
+                                type: "button",
+                                disabled: isLoading,
                             };
                         }
                         <${href ? "a" : sortOrder ? "button" : null}
@@ -85,10 +96,10 @@ $ const {
                             <if(sortOrder)>
                                 ${" "}
                                 <if(sortOrder === "asc")>
-                                    <ebay-sort-down-12-icon/>
+                                    <ebay-sort-up-12-icon/>
                                 </if>
                                 <else-if(sortOrder === "desc")>
-                                    <ebay-sort-up-12-icon/>
+                                    <ebay-sort-down-12-icon/>
                                 </else-if>
                                 <else>
                                     <ebay-sort-12-icon/>
@@ -99,7 +110,7 @@ $ const {
                 </for>
             </tr>
         </thead>
-        <tbody>
+        <tbody key="tbody">
             <for|row, rowIndex| of=rows || []>
                 $ const {
                     cell: cells,
@@ -111,6 +122,7 @@ $ const {
                     <if(mode === "selection")>
                         <th scope="row" class="table__cell">
                             <ebay-checkbox
+                                disabled=isLoading
                                 aria-label=(a11ySelectRowText ?? "Select row")
                                 checked=(state.selected[name])
                                 on-change("rowSelect", name)
@@ -151,4 +163,9 @@ $ const {
             </for>
         </tbody>
     </table>
+    <div role="status">
+        <if(isLoading)>
+            <ebay-progress-bar-expressive a11y-text=a11yLoadingText || "Loading..." />
+        </if>
+    </div>
 </div>

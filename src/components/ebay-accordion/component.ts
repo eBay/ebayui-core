@@ -7,7 +7,7 @@ export interface AccordionInput extends Omit<Marko.Input<"ul">, `on${string}`> {
     "auto-collapse"?: AttrBoolean;
     "a11y-role-description"?: AttrString;
     details?: Marko.AttrTag<
-        Omit<DetailsInput, "size" | "alignment" | "layout" | `on${string}`>
+        Omit<DetailsInput, "size" | "alignment" | `on${string}`>
     >;
     "on-toggle"?: (event: { originalEvent: Event; open: boolean }) => void;
     "on-click"?: (event: { originalEvent: MouseEvent }) => void;

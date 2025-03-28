@@ -35,6 +35,11 @@ export default {
             description: "table mode",
             options: ["selection", "none"],
         },
+        bodyState: {
+            control: { type: "select" },
+            description: "table state",
+            options: ["loading", "none"],
+        },
         allSelected: {
             control: { type: "select" },
             description: "Select all tri-state checkbox state",
@@ -110,6 +115,27 @@ export default {
             description: "cell attribute tags",
             table: {
                 category: "@row attribute tags",
+            },
+        },
+        a11yLoadingText: {
+            description: "Text for progress bar expressive when table is in loading body state",
+            table: {
+                category: "a11y",
+                defaultValue: {
+                    summary: "Loading...",
+                }
+            },
+        },
+        a11ySelectAllText: {
+            description: "Text for selecting all rows. Used with select mode",
+            table: {
+                category: "a11y",
+            },
+        },
+        a11ySelectRowText: {
+            description: "Text for selecting a row. Used with select mode",
+            table: {
+                category: "a11y",
             },
         },
         onSelect: {

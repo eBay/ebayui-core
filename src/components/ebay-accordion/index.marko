@@ -20,7 +20,6 @@ $ const {
             <ebay-details
                 ...item
                 open= item.open || (autoCollapse && index === state.index)
-                layout="accordion"
                 on-toggle("handleToggle", index)
                 on-click("emit", "click")
             >

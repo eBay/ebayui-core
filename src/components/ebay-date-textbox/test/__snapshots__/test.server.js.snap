@@ -156,6 +156,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m1[0m
                     [36m</button>[39m
@@ -163,6 +164,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m2[0m
                     [36m</button>[39m
@@ -170,6 +172,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m3[0m
                     [36m</button>[39m
@@ -177,6 +180,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m4[0m
                     [36m</button>[39m
@@ -184,6 +188,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m5[0m
                     [36m</button>[39m
@@ -191,6 +196,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m6[0m
                     [36m</button>[39m
@@ -200,6 +206,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m7[0m
                     [36m</button>[39m
@@ -207,6 +214,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m8[0m
                     [36m</button>[39m
@@ -214,6 +222,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m9[0m
                     [36m</button>[39m
@@ -221,6 +230,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m10[0m
                     [36m</button>[39m
@@ -228,6 +238,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m11[0m
                     [36m</button>[39m
@@ -235,6 +246,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m12[0m
                     [36m</button>[39m
@@ -242,6 +254,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m13[0m
                     [36m</button>[39m
@@ -251,6 +264,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m14[0m
                     [36m</button>[39m
@@ -258,6 +272,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m15[0m
                     [36m</button>[39m
@@ -265,6 +280,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m16[0m
                     [36m</button>[39m
@@ -272,6 +288,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m17[0m
                     [36m</button>[39m
@@ -279,6 +296,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m18[0m
                     [36m</button>[39m
@@ -286,6 +304,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m19[0m
                     [36m</button>[39m
@@ -293,6 +312,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m20[0m
                     [36m</button>[39m
@@ -302,6 +322,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m21[0m
                     [36m</button>[39m
@@ -309,6 +330,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m22[0m
                     [36m</button>[39m
@@ -316,6 +338,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m23[0m
                     [36m</button>[39m
@@ -323,6 +346,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m24[0m
                     [36m</button>[39m
@@ -330,6 +354,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m25[0m
                     [36m</button>[39m
@@ -337,6 +362,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m26[0m
                     [36m</button>[39m
@@ -347,6 +373,7 @@ exports[`date-textbox > renders defaults 1`] = `
                     [36m<button[39m
                       [33maria-label[39m=[32m"27 - selected"[39m
                       [33maria-pressed[39m=[32m"true"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m27[0m
                     [36m</button>[39m
@@ -356,6 +383,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m28[0m
                     [36m</button>[39m
@@ -363,6 +391,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m29[0m
                     [36m</button>[39m
@@ -370,6 +399,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m30[0m
                     [36m</button>[39m
@@ -377,6 +407,7 @@ exports[`date-textbox > renders defaults 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m31[0m
                     [36m</button>[39m
@@ -580,6 +611,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m1[0m
                     [36m</button>[39m
@@ -587,6 +619,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m2[0m
                     [36m</button>[39m
@@ -594,6 +627,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m3[0m
                     [36m</button>[39m
@@ -601,6 +635,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m4[0m
                     [36m</button>[39m
@@ -608,6 +643,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m5[0m
                     [36m</button>[39m
@@ -615,6 +651,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m6[0m
                     [36m</button>[39m
@@ -624,6 +661,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m7[0m
                     [36m</button>[39m
@@ -631,6 +669,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m8[0m
                     [36m</button>[39m
@@ -638,6 +677,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m9[0m
                     [36m</button>[39m
@@ -645,6 +685,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m10[0m
                     [36m</button>[39m
@@ -652,6 +693,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m11[0m
                     [36m</button>[39m
@@ -659,6 +701,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m12[0m
                     [36m</button>[39m
@@ -666,6 +709,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m13[0m
                     [36m</button>[39m
@@ -675,6 +719,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m14[0m
                     [36m</button>[39m
@@ -682,6 +727,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m15[0m
                     [36m</button>[39m
@@ -689,6 +735,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m16[0m
                     [36m</button>[39m
@@ -696,6 +743,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m17[0m
                     [36m</button>[39m
@@ -703,6 +751,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m18[0m
                     [36m</button>[39m
@@ -710,6 +759,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m19[0m
                     [36m</button>[39m
@@ -717,6 +767,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m20[0m
                     [36m</button>[39m
@@ -726,6 +777,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m21[0m
                     [36m</button>[39m
@@ -733,6 +785,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m22[0m
                     [36m</button>[39m
@@ -740,6 +793,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m23[0m
                     [36m</button>[39m
@@ -747,6 +801,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m24[0m
                     [36m</button>[39m
@@ -754,6 +809,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m25[0m
                     [36m</button>[39m
@@ -761,6 +817,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m26[0m
                     [36m</button>[39m
@@ -771,6 +828,7 @@ exports[`date-textbox > renders localized 1`] = `
                     [36m<button[39m
                       [33maria-label[39m=[32m"27 - Geselekteerde"[39m
                       [33maria-pressed[39m=[32m"true"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m27[0m
                     [36m</button>[39m
@@ -780,6 +838,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m28[0m
                     [36m</button>[39m
@@ -787,6 +846,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m29[0m
                     [36m</button>[39m
@@ -794,6 +854,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m30[0m
                     [36m</button>[39m
@@ -801,6 +862,7 @@ exports[`date-textbox > renders localized 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m31[0m
                     [36m</button>[39m
@@ -972,6 +1034,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m1[0m
                     [36m</button>[39m
@@ -979,6 +1042,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m2[0m
                     [36m</button>[39m
@@ -986,6 +1050,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m3[0m
                     [36m</button>[39m
@@ -993,6 +1058,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m4[0m
                     [36m</button>[39m
@@ -1000,6 +1066,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m5[0m
                     [36m</button>[39m
@@ -1007,6 +1074,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m6[0m
                     [36m</button>[39m
@@ -1016,6 +1084,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m7[0m
                     [36m</button>[39m
@@ -1023,6 +1092,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m8[0m
                     [36m</button>[39m
@@ -1030,6 +1100,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m9[0m
                     [36m</button>[39m
@@ -1037,6 +1108,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m10[0m
                     [36m</button>[39m
@@ -1044,6 +1116,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m11[0m
                     [36m</button>[39m
@@ -1051,6 +1124,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m12[0m
                     [36m</button>[39m
@@ -1058,6 +1132,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m13[0m
                     [36m</button>[39m
@@ -1067,6 +1142,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m14[0m
                     [36m</button>[39m
@@ -1074,6 +1150,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m15[0m
                     [36m</button>[39m
@@ -1081,6 +1158,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m16[0m
                     [36m</button>[39m
@@ -1088,6 +1166,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m17[0m
                     [36m</button>[39m
@@ -1095,6 +1174,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m18[0m
                     [36m</button>[39m
@@ -1102,6 +1182,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m19[0m
                     [36m</button>[39m
@@ -1109,6 +1190,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m20[0m
                     [36m</button>[39m
@@ -1118,6 +1200,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m21[0m
                     [36m</button>[39m
@@ -1125,6 +1208,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m22[0m
                     [36m</button>[39m
@@ -1132,6 +1216,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m23[0m
                     [36m</button>[39m
@@ -1139,6 +1224,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m24[0m
                     [36m</button>[39m
@@ -1146,6 +1232,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m25[0m
                     [36m</button>[39m
@@ -1153,6 +1240,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m26[0m
                     [36m</button>[39m
@@ -1163,6 +1251,7 @@ exports[`date-textbox > renders with clear 1`] = `
                     [36m<button[39m
                       [33maria-label[39m=[32m"27 - selected"[39m
                       [33maria-pressed[39m=[32m"true"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m27[0m
                     [36m</button>[39m
@@ -1172,6 +1261,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m28[0m
                     [36m</button>[39m
@@ -1179,6 +1269,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m29[0m
                     [36m</button>[39m
@@ -1186,6 +1277,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m30[0m
                     [36m</button>[39m
@@ -1193,6 +1285,7 @@ exports[`date-textbox > renders with clear 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m31[0m
                     [36m</button>[39m
@@ -1371,6 +1464,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m1[0m
                     [36m</button>[39m
@@ -1378,6 +1472,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m2[0m
                     [36m</button>[39m
@@ -1385,6 +1480,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m3[0m
                     [36m</button>[39m
@@ -1392,6 +1488,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m4[0m
                     [36m</button>[39m
@@ -1399,6 +1496,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m5[0m
                     [36m</button>[39m
@@ -1406,6 +1504,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m6[0m
                     [36m</button>[39m
@@ -1415,6 +1514,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m7[0m
                     [36m</button>[39m
@@ -1422,6 +1522,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m8[0m
                     [36m</button>[39m
@@ -1429,6 +1530,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m9[0m
                     [36m</button>[39m
@@ -1436,6 +1538,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m10[0m
                     [36m</button>[39m
@@ -1443,6 +1546,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m11[0m
                     [36m</button>[39m
@@ -1450,6 +1554,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m12[0m
                     [36m</button>[39m
@@ -1457,6 +1562,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m13[0m
                     [36m</button>[39m
@@ -1466,6 +1572,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m14[0m
                     [36m</button>[39m
@@ -1473,6 +1580,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m15[0m
                     [36m</button>[39m
@@ -1480,6 +1588,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m16[0m
                     [36m</button>[39m
@@ -1487,6 +1596,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m17[0m
                     [36m</button>[39m
@@ -1494,6 +1604,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m18[0m
                     [36m</button>[39m
@@ -1501,6 +1612,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m19[0m
                     [36m</button>[39m
@@ -1508,6 +1620,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m20[0m
                     [36m</button>[39m
@@ -1517,6 +1630,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m21[0m
                     [36m</button>[39m
@@ -1524,6 +1638,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m22[0m
                     [36m</button>[39m
@@ -1531,6 +1646,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m23[0m
                     [36m</button>[39m
@@ -1538,6 +1654,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m24[0m
                     [36m</button>[39m
@@ -1545,6 +1662,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m25[0m
                     [36m</button>[39m
@@ -1552,6 +1670,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m26[0m
                     [36m</button>[39m
@@ -1559,6 +1678,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33maria-current[39m=[32m"date"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m27[0m
                     [36m</button>[39m
@@ -1568,6 +1688,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m28[0m
                     [36m</button>[39m
@@ -1575,6 +1696,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m29[0m
                     [36m</button>[39m
@@ -1582,6 +1704,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m30[0m
                     [36m</button>[39m
@@ -1589,6 +1712,7 @@ exports[`date-textbox > renders with custom today 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m31[0m
                     [36m</button>[39m
@@ -1760,6 +1884,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m1[0m
                     [36m</button>[39m
@@ -1767,6 +1892,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m2[0m
                     [36m</button>[39m
@@ -1774,6 +1900,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m3[0m
                     [36m</button>[39m
@@ -1781,6 +1908,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m4[0m
                     [36m</button>[39m
@@ -1788,6 +1916,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m5[0m
                     [36m</button>[39m
@@ -1795,6 +1924,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m6[0m
                     [36m</button>[39m
@@ -1804,6 +1934,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m7[0m
                     [36m</button>[39m
@@ -1811,6 +1942,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m8[0m
                     [36m</button>[39m
@@ -1818,6 +1950,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m9[0m
                     [36m</button>[39m
@@ -1825,6 +1958,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m10[0m
                     [36m</button>[39m
@@ -1832,6 +1966,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m11[0m
                     [36m</button>[39m
@@ -1839,6 +1974,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m12[0m
                     [36m</button>[39m
@@ -1846,6 +1982,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m13[0m
                     [36m</button>[39m
@@ -1855,6 +1992,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m14[0m
                     [36m</button>[39m
@@ -1862,6 +2000,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m15[0m
                     [36m</button>[39m
@@ -1869,6 +2008,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m16[0m
                     [36m</button>[39m
@@ -1876,6 +2016,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m17[0m
                     [36m</button>[39m
@@ -1883,6 +2024,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m18[0m
                     [36m</button>[39m
@@ -1890,6 +2032,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m19[0m
                     [36m</button>[39m
@@ -1897,6 +2040,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m20[0m
                     [36m</button>[39m
@@ -1906,6 +2050,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m21[0m
                     [36m</button>[39m
@@ -1913,6 +2058,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m22[0m
                     [36m</button>[39m
@@ -1920,6 +2066,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m23[0m
                     [36m</button>[39m
@@ -1927,6 +2074,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m24[0m
                     [36m</button>[39m
@@ -1934,6 +2082,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m25[0m
                     [36m</button>[39m
@@ -1941,6 +2090,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m26[0m
                     [36m</button>[39m
@@ -1951,6 +2101,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                     [36m<button[39m
                       [33maria-label[39m=[32m"27 - selected"[39m
                       [33maria-pressed[39m=[32m"true"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m27[0m
                     [36m</button>[39m
@@ -1960,6 +2111,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m28[0m
                     [36m</button>[39m
@@ -1967,6 +2119,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m29[0m
                     [36m</button>[39m
@@ -1974,6 +2127,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m30[0m
                     [36m</button>[39m
@@ -1981,6 +2135,7 @@ exports[`date-textbox > renders with floating label 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m31[0m
                     [36m</button>[39m
@@ -2152,6 +2307,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m1[0m
                     [36m</button>[39m
@@ -2159,6 +2315,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m2[0m
                     [36m</button>[39m
@@ -2166,6 +2323,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m3[0m
                     [36m</button>[39m
@@ -2173,6 +2331,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m4[0m
                     [36m</button>[39m
@@ -2180,6 +2339,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m5[0m
                     [36m</button>[39m
@@ -2187,6 +2347,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m6[0m
                     [36m</button>[39m
@@ -2196,6 +2357,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m7[0m
                     [36m</button>[39m
@@ -2203,6 +2365,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m8[0m
                     [36m</button>[39m
@@ -2210,6 +2373,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m9[0m
                     [36m</button>[39m
@@ -2217,6 +2381,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m10[0m
                     [36m</button>[39m
@@ -2224,6 +2389,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m11[0m
                     [36m</button>[39m
@@ -2231,6 +2397,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m12[0m
                     [36m</button>[39m
@@ -2238,6 +2405,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m13[0m
                     [36m</button>[39m
@@ -2247,6 +2415,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m14[0m
                     [36m</button>[39m
@@ -2254,6 +2423,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m15[0m
                     [36m</button>[39m
@@ -2261,6 +2431,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m16[0m
                     [36m</button>[39m
@@ -2268,6 +2439,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m17[0m
                     [36m</button>[39m
@@ -2275,6 +2447,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m18[0m
                     [36m</button>[39m
@@ -2282,6 +2455,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m19[0m
                     [36m</button>[39m
@@ -2289,6 +2463,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m20[0m
                     [36m</button>[39m
@@ -2298,6 +2473,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m21[0m
                     [36m</button>[39m
@@ -2305,6 +2481,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m22[0m
                     [36m</button>[39m
@@ -2312,6 +2489,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m23[0m
                     [36m</button>[39m
@@ -2319,6 +2497,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m24[0m
                     [36m</button>[39m
@@ -2326,6 +2505,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m25[0m
                     [36m</button>[39m
@@ -2333,6 +2513,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m26[0m
                     [36m</button>[39m
@@ -2343,6 +2524,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                     [36m<button[39m
                       [33maria-label[39m=[32m"27 - selected"[39m
                       [33maria-pressed[39m=[32m"true"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m27[0m
                     [36m</button>[39m
@@ -2352,6 +2534,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m28[0m
                     [36m</button>[39m
@@ -2359,6 +2542,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m29[0m
                     [36m</button>[39m
@@ -2366,6 +2550,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m30[0m
                     [36m</button>[39m
@@ -2373,6 +2558,7 @@ exports[`date-textbox > renders with floating label array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m31[0m
                     [36m</button>[39m
@@ -2544,6 +2730,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m1[0m
                     [36m</button>[39m
@@ -2551,6 +2738,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m2[0m
                     [36m</button>[39m
@@ -2558,6 +2746,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m3[0m
                     [36m</button>[39m
@@ -2565,6 +2754,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m4[0m
                     [36m</button>[39m
@@ -2572,6 +2762,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m5[0m
                     [36m</button>[39m
@@ -2579,6 +2770,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m6[0m
                     [36m</button>[39m
@@ -2588,6 +2780,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m7[0m
                     [36m</button>[39m
@@ -2595,6 +2788,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m8[0m
                     [36m</button>[39m
@@ -2602,6 +2796,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m9[0m
                     [36m</button>[39m
@@ -2609,6 +2804,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m10[0m
                     [36m</button>[39m
@@ -2616,6 +2812,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m11[0m
                     [36m</button>[39m
@@ -2623,6 +2820,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m12[0m
                     [36m</button>[39m
@@ -2630,6 +2828,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m13[0m
                     [36m</button>[39m
@@ -2639,6 +2838,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m14[0m
                     [36m</button>[39m
@@ -2646,6 +2846,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m15[0m
                     [36m</button>[39m
@@ -2653,6 +2854,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m16[0m
                     [36m</button>[39m
@@ -2660,6 +2862,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m17[0m
                     [36m</button>[39m
@@ -2667,6 +2870,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m18[0m
                     [36m</button>[39m
@@ -2674,6 +2878,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m19[0m
                     [36m</button>[39m
@@ -2681,6 +2886,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m20[0m
                     [36m</button>[39m
@@ -2690,6 +2896,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m21[0m
                     [36m</button>[39m
@@ -2697,6 +2904,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m22[0m
                     [36m</button>[39m
@@ -2704,6 +2912,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m23[0m
                     [36m</button>[39m
@@ -2711,6 +2920,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m24[0m
                     [36m</button>[39m
@@ -2718,6 +2928,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m25[0m
                     [36m</button>[39m
@@ -2725,6 +2936,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m26[0m
                     [36m</button>[39m
@@ -2735,6 +2947,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                     [36m<button[39m
                       [33maria-label[39m=[32m"27 - selected"[39m
                       [33maria-pressed[39m=[32m"true"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m27[0m
                     [36m</button>[39m
@@ -2744,6 +2957,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m28[0m
                     [36m</button>[39m
@@ -2751,6 +2965,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m29[0m
                     [36m</button>[39m
@@ -2758,6 +2973,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m30[0m
                     [36m</button>[39m
@@ -2765,6 +2981,7 @@ exports[`date-textbox > renders with floating label array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m31[0m
                     [36m</button>[39m
@@ -2936,6 +3153,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m1[0m
                     [36m</button>[39m
@@ -2943,6 +3161,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m2[0m
                     [36m</button>[39m
@@ -2950,6 +3169,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m3[0m
                     [36m</button>[39m
@@ -2957,6 +3177,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m4[0m
                     [36m</button>[39m
@@ -2964,6 +3185,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m5[0m
                     [36m</button>[39m
@@ -2971,6 +3193,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m6[0m
                     [36m</button>[39m
@@ -2980,6 +3203,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m7[0m
                     [36m</button>[39m
@@ -2987,6 +3211,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m8[0m
                     [36m</button>[39m
@@ -2994,6 +3219,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m9[0m
                     [36m</button>[39m
@@ -3001,6 +3227,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m10[0m
                     [36m</button>[39m
@@ -3008,6 +3235,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m11[0m
                     [36m</button>[39m
@@ -3015,6 +3243,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m12[0m
                     [36m</button>[39m
@@ -3022,6 +3251,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m13[0m
                     [36m</button>[39m
@@ -3031,6 +3261,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m14[0m
                     [36m</button>[39m
@@ -3038,6 +3269,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m15[0m
                     [36m</button>[39m
@@ -3045,6 +3277,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m16[0m
                     [36m</button>[39m
@@ -3052,6 +3285,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m17[0m
                     [36m</button>[39m
@@ -3059,6 +3293,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m18[0m
                     [36m</button>[39m
@@ -3066,6 +3301,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m19[0m
                     [36m</button>[39m
@@ -3073,6 +3309,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m20[0m
                     [36m</button>[39m
@@ -3082,6 +3319,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m21[0m
                     [36m</button>[39m
@@ -3089,6 +3327,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m22[0m
                     [36m</button>[39m
@@ -3096,6 +3335,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m23[0m
                     [36m</button>[39m
@@ -3103,6 +3343,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m24[0m
                     [36m</button>[39m
@@ -3110,6 +3351,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m25[0m
                     [36m</button>[39m
@@ -3117,6 +3359,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m26[0m
                     [36m</button>[39m
@@ -3127,6 +3370,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                     [36m<button[39m
                       [33maria-label[39m=[32m"27 - selected"[39m
                       [33maria-pressed[39m=[32m"true"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m27[0m
                     [36m</button>[39m
@@ -3136,6 +3380,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m28[0m
                     [36m</button>[39m
@@ -3143,6 +3388,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m29[0m
                     [36m</button>[39m
@@ -3150,6 +3396,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m30[0m
                     [36m</button>[39m
@@ -3157,6 +3404,7 @@ exports[`date-textbox > renders with placeholder 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m31[0m
                     [36m</button>[39m
@@ -3328,6 +3576,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m1[0m
                     [36m</button>[39m
@@ -3335,6 +3584,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m2[0m
                     [36m</button>[39m
@@ -3342,6 +3592,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m3[0m
                     [36m</button>[39m
@@ -3349,6 +3600,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m4[0m
                     [36m</button>[39m
@@ -3356,6 +3608,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m5[0m
                     [36m</button>[39m
@@ -3363,6 +3616,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m6[0m
                     [36m</button>[39m
@@ -3372,6 +3626,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m7[0m
                     [36m</button>[39m
@@ -3379,6 +3634,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m8[0m
                     [36m</button>[39m
@@ -3386,6 +3642,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m9[0m
                     [36m</button>[39m
@@ -3393,6 +3650,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m10[0m
                     [36m</button>[39m
@@ -3400,6 +3658,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m11[0m
                     [36m</button>[39m
@@ -3407,6 +3666,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m12[0m
                     [36m</button>[39m
@@ -3414,6 +3674,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m13[0m
                     [36m</button>[39m
@@ -3423,6 +3684,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m14[0m
                     [36m</button>[39m
@@ -3430,6 +3692,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m15[0m
                     [36m</button>[39m
@@ -3437,6 +3700,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m16[0m
                     [36m</button>[39m
@@ -3444,6 +3708,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m17[0m
                     [36m</button>[39m
@@ -3451,6 +3716,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m18[0m
                     [36m</button>[39m
@@ -3458,6 +3724,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m19[0m
                     [36m</button>[39m
@@ -3465,6 +3732,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m20[0m
                     [36m</button>[39m
@@ -3474,6 +3742,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m21[0m
                     [36m</button>[39m
@@ -3481,6 +3750,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m22[0m
                     [36m</button>[39m
@@ -3488,6 +3758,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m23[0m
                     [36m</button>[39m
@@ -3495,6 +3766,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m24[0m
                     [36m</button>[39m
@@ -3502,6 +3774,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m25[0m
                     [36m</button>[39m
@@ -3509,6 +3782,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m26[0m
                     [36m</button>[39m
@@ -3519,6 +3793,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                     [36m<button[39m
                       [33maria-label[39m=[32m"27 - selected"[39m
                       [33maria-pressed[39m=[32m"true"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m27[0m
                     [36m</button>[39m
@@ -3528,6 +3803,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m28[0m
                     [36m</button>[39m
@@ -3535,6 +3811,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m29[0m
                     [36m</button>[39m
@@ -3542,6 +3819,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m30[0m
                     [36m</button>[39m
@@ -3549,6 +3827,7 @@ exports[`date-textbox > renders with placeholder array with ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m31[0m
                     [36m</button>[39m
@@ -3720,6 +3999,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m1[0m
                     [36m</button>[39m
@@ -3727,6 +4007,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m2[0m
                     [36m</button>[39m
@@ -3734,6 +4015,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m3[0m
                     [36m</button>[39m
@@ -3741,6 +4023,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m4[0m
                     [36m</button>[39m
@@ -3748,6 +4031,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m5[0m
                     [36m</button>[39m
@@ -3755,6 +4039,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m6[0m
                     [36m</button>[39m
@@ -3764,6 +4049,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m7[0m
                     [36m</button>[39m
@@ -3771,6 +4057,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m8[0m
                     [36m</button>[39m
@@ -3778,6 +4065,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m9[0m
                     [36m</button>[39m
@@ -3785,6 +4073,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m10[0m
                     [36m</button>[39m
@@ -3792,6 +4081,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m11[0m
                     [36m</button>[39m
@@ -3799,6 +4089,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m12[0m
                     [36m</button>[39m
@@ -3806,6 +4097,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m13[0m
                     [36m</button>[39m
@@ -3815,6 +4107,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m14[0m
                     [36m</button>[39m
@@ -3822,6 +4115,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m15[0m
                     [36m</button>[39m
@@ -3829,6 +4123,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m16[0m
                     [36m</button>[39m
@@ -3836,6 +4131,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m17[0m
                     [36m</button>[39m
@@ -3843,6 +4139,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m18[0m
                     [36m</button>[39m
@@ -3850,6 +4147,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m19[0m
                     [36m</button>[39m
@@ -3857,6 +4155,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m20[0m
                     [36m</button>[39m
@@ -3866,6 +4165,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m21[0m
                     [36m</button>[39m
@@ -3873,6 +4173,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m22[0m
                     [36m</button>[39m
@@ -3880,6 +4181,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m23[0m
                     [36m</button>[39m
@@ -3887,6 +4189,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m24[0m
                     [36m</button>[39m
@@ -3894,6 +4197,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m25[0m
                     [36m</button>[39m
@@ -3901,6 +4205,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m26[0m
                     [36m</button>[39m
@@ -3911,6 +4216,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                     [36m<button[39m
                       [33maria-label[39m=[32m"27 - selected"[39m
                       [33maria-pressed[39m=[32m"true"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m27[0m
                     [36m</button>[39m
@@ -3920,6 +4226,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m28[0m
                     [36m</button>[39m
@@ -3927,6 +4234,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m29[0m
                     [36m</button>[39m
@@ -3934,6 +4242,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m30[0m
                     [36m</button>[39m
@@ -3941,6 +4250,7 @@ exports[`date-textbox > renders with placeholder array without ranged 1`] = `
                   [36m<td>[39m
                     [36m<button[39m
                       [33mtabindex[39m=[32m"-1"[39m
+                      [33mtype[39m=[32m"button"[39m
                     [36m>[39m
                       [0m31[0m
                     [36m</button>[39m

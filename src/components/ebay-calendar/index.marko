@@ -96,6 +96,7 @@ $ var monthDates = [...Array(numMonths)].map((_, i) => component.getMonthDate(st
                                         }>
                                         <if(interactive)>
                                             <button
+                                                type="button"
                                                 key=dayISO
                                                 disabled=isDisabled
                                                 aria-label=(a11yTexts.length > 1) && `${day}${a11yTexts.join(a11ySeparator)}`

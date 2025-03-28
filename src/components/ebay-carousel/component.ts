@@ -498,6 +498,7 @@ class Carousel extends Marko.Component<Input, State> {
             };
         });
 
+        this.skipScrolling = this.state && this.state.index === state.index;
         this.state = state;
     }
 

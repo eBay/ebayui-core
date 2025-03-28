@@ -7,7 +7,7 @@
     </span>
 </h1>
 
-## ebay-video (_ALPHA_, some APIs might change)
+## ebay-video
 
 Video player. Supports either MPD or M3U8 playlist formats.
 Natively uses dash.js player under the hood. Loads it async after the video player is loaded on the page.
