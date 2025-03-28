@@ -118,12 +118,13 @@ export default {
             },
         },
         a11yLoadingText: {
-            description: "Text for progress bar expressive when table is in loading body state",
+            description:
+                "Text for progress bar expressive when table is in loading body state",
             table: {
                 category: "a11y",
                 defaultValue: {
                     summary: "Loading...",
-                }
+                },
             },
         },
         a11ySelectAllText: {
