@@ -83,7 +83,7 @@
         "makeup-roving-tabindex": "~0.7.3",
         "makeup-screenreader-trap": "~0.5.3",
         "makeup-typeahead": "^0.3.3",
-        "shaka-player": "4.14.4"
+        "shaka-player": "4.14.5"
     },
     "devDependencies": {
         "@babel/cli": "^7.27.0",
@@ -115,9 +115,9 @@
         "@storybook/marko": "~9.0.3",
         "@storybook/marko-vite": "^2.0.4",
         "@storybook/mdx2-csf": "^1.1.0",
-        "@vitest/browser": "^3.0.9",
-        "@vitest/coverage-istanbul": "^3.0.9",
-        "@vitest/ui": "^3.0.9",
+        "@vitest/browser": "^3.1.1",
+        "@vitest/coverage-istanbul": "^3.1.1",
+        "@vitest/ui": "^3.1.1",
         "babel-plugin-add-module-exports": "^1.0.4",
         "cheerio": "^1.0.0",
         "cldr-dates-full": "^47.0.0",
@@ -132,7 +132,7 @@
         "libphonenumber-js": "^1.12.6",
         "lint-staged": "^15.5.0",
         "lintspaces-cli": "^1.0.0",
-        "marko": "5.37.20",
+        "marko": "^5.37.25",
         "playwright": "^1.51.1",
         "postcss-less": "^6.0.0",
         "prettier": "^3.5.3",
@@ -142,7 +142,7 @@
         "stylelint": "^16.17.0",
         "stylelint-config-standard": "^37",
         "stylelint-prettier": "^5",
-        "vitest": "^3.0.9"
+        "vitest": "^3.1.1"
     },
     "peerDependencies": {
         "@ebay/skin": "~19.2.0",
