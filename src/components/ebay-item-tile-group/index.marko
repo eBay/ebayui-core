@@ -1,0 +1,35 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+import type { WithNormalizedProps } from '../../global';
+import type { ItemTileInput, ItemTileLayout } from "../ebay-item-tile/index.marko"
+import type { LayoutOptions } from "../ebay-layout-grid/index.marko"
+
+class {}
+
+static interface ItemTileGroupInput extends Omit<Marko.HTML.Div, `on${string}`> {
+    layout?: ItemTileLayout;
+    item?: Marko.AttrTag<ItemTileInput>;
+    columns?: LayoutOptions;
+    "on-action"?: () => void;
+}
+
+export interface Input extends WithNormalizedProps<ItemTileGroupInput> {}
+
+$ const {
+    class: inputClass,
+    item: items = [],
+    columns,
+    layout,
+    ...htmlInput
+} = input;
+
+<ebay-layout-grid class="item-tile-group"
+    columns=columns
+    ...processHtmlAttributes(htmlInput)
+>
+    <for|item, i| of=items>
+        <@item>
+            <ebay-item-tile on-action("emit", "action", i) layout=layout ...item/>
+        </@item>
+
+    </for>
+</ebay-layout-grid>
