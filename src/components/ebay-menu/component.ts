@@ -208,7 +208,7 @@ export default class extends MenuUtils<Input, MenuState> {
 
         this.rovingTabindex = createLinear(this.contentEl, "div", {
             index: this.tabindexPosition,
-            autoReset: null,
+            autoReset: "interactive",
         });
 
         scrollKeyPreventer.add(this.contentEl);
