@@ -4,12 +4,16 @@ import type { FilePreviewCardFile } from '../ebay-file-preview-card/component';
 
 export type ItemTileLayout = "gallery" | "list";
 
+export interface ItemTileDescription extends Omit<Marko.HTML.P, `on${string}`> {
+    as?: string;
+};
+
 export interface ItemTileInput extends Omit<Marko.HTML.Div, 'title' | `on${string}`> {
     layout?: ItemTileLayout;
     supertitle?: Marko.AttrTag<Marko.Renderable>;
     title?: Marko.AttrTag<Marko.Renderable>;
     subtitle?: Marko.AttrTag<Marko.Renderable>;
-    description?: Marko.AttrTag<Marko.Renderable>;
+    description?: Marko.AttrTag<ItemTileDescription>;
     href?: string;
     file?: FilePreviewCardFile;
     action?: Marko.AttrTag<Marko.HTML.Button>;
@@ -65,8 +69,12 @@ $ const {
             </div>
         </if>
         <if(description)>
-            <div class="item-tile__section-tertiary" ...processHtmlAttributes(description)>
-                <${description}/>
+            <div class="item-tile__section-tertiary">
+                <for|desc, i| of=description>
+                    <${desc.as || 'p'} ...desc>
+                        <${desc}/>
+                    </>
+                </for>
             </div>
         </if>
     </div>
