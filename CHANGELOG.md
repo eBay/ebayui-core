@@ -1,5 +1,11 @@
 # eBayUI-Core Changelog
 
+## 15.3.0-next.0
+
+### Minor Changes
+
+- [#2476](https://github.com/eBay/ebayui-core/pull/2476) [`6980584`](https://github.com/eBay/ebayui-core/commit/6980584e12609e99a9718ce0a1a6139932e1425d) Thanks [@saiponnada](https://github.com/saiponnada)! - fix(listbox-button, menu-button): content collapse on button re focus
+
 ## 15.2.0
 
 ### Minor Changes
