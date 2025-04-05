@@ -123,6 +123,7 @@ class ListboxButton extends Marko.Component<Input, State> {
                 hostSelector: ".listbox-button__control",
                 expandedClass: "listbox-button--expanded",
                 focusManagement: "content",
+                collapseOnHostReFocus: true,
             });
 
             scrollKeyPreventer.add(this.getEl("button"));
