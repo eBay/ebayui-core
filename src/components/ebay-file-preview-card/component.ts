@@ -13,20 +13,23 @@ export type FilePreviewCardMenuAction = {
     label: string;
 };
 
+export type FilePreviewCardFile =
+    | File
+    | {
+          name: string;
+          type?: File["type"];
+          src?: string;
+      };
 interface FilePreviewCardInput extends Omit<Marko.HTML.Div, `on${string}`> {
     "a11y-cancel-upload-text"?: AttrString;
     "delete-text"?: AttrString;
     as?: keyof Marko.NativeTags;
-    file?:
-        | File
-        | {
-              name: string;
-              type?: File["type"];
-              src?: string;
-          };
+    file?: FilePreviewCardFile;
     status?: "uploading";
+    href?: string;
     "info-text"?: AttrString;
     "menu-actions"?: FilePreviewCardMenuAction[];
+    action?: Marko.AttrTag<Marko.HTML.Button>;
     "see-more"?: number;
     "a11y-see-more-text"?: AttrString;
     "footer-title"?: AttrString;
@@ -34,6 +37,7 @@ interface FilePreviewCardInput extends Omit<Marko.HTML.Div, `on${string}`> {
     "on-menu-action"?: (name: string, event: MenuButtonEvent) => void;
     "on-see-more"?: () => void;
     "on-delete"?: () => void;
+    "on-action"?: () => void;
     "on-cancel"?: () => void;
 }
 

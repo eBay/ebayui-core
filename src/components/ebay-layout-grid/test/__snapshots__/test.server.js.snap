@@ -1,0 +1,197 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ebay-layout-grid > renders default 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"layout-grid"[39m
+    [33mdata-columns-lg[39m=[32m"6"[39m
+    [33mdata-columns-md[39m=[32m"4"[39m
+    [33mdata-columns-min[39m=[32m"1"[39m
+    [33mdata-columns-sm[39m=[32m"3"[39m
+    [33mdata-columns-xl[39m=[32m"8"[39m
+    [33mdata-columns-xl2[39m=[32m"10"[39m
+    [33mdata-columns-xl3[39m=[32m"12"[39m
+    [33mdata-columns-xl4[39m=[32m"14"[39m
+    [33mdata-columns-xs[39m=[32m"2"[39m
+  [36m>[39m
+    [36m<ul>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[0]-1 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[0]-1 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[0]-1 false\\",\\"onblur\\":\\"handleBlur s0-0-3[0]-1 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 1[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[1]-2 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[1]-2 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[1]-2 false\\",\\"onblur\\":\\"handleBlur s0-0-3[1]-2 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 2[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[2]-3 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[2]-3 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[2]-3 false\\",\\"onblur\\":\\"handleBlur s0-0-3[2]-3 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 3[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[3]-4 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[3]-4 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[3]-4 false\\",\\"onblur\\":\\"handleBlur s0-0-3[3]-4 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 4[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[4]-5 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[4]-5 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[4]-5 false\\",\\"onblur\\":\\"handleBlur s0-0-3[4]-5 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 5[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[5]-6 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[5]-6 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[5]-6 false\\",\\"onblur\\":\\"handleBlur s0-0-3[5]-6 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 6[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[6]-7 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[6]-7 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[6]-7 false\\",\\"onblur\\":\\"handleBlur s0-0-3[6]-7 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 7[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[7]-8 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[7]-8 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[7]-8 false\\",\\"onblur\\":\\"handleBlur s0-0-3[7]-8 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 8[0m
+        [36m</button>[39m
+      [36m</li>[39m
+    [36m</ul>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;
+
+exports[`ebay-layout-grid > renders with custom columns 1`] = `
+"[36m<DocumentFragment>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"layout-grid"[39m
+    [33mdata-columns-lg[39m=[32m"8"[39m
+    [33mdata-columns-md[39m=[32m"6"[39m
+    [33mdata-columns-min[39m=[32m"2"[39m
+    [33mdata-columns-sm[39m=[32m"4"[39m
+    [33mdata-columns-xs[39m=[32m"3"[39m
+  [36m>[39m
+    [36m<ul>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[0]-1 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[0]-1 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[0]-1 false\\",\\"onblur\\":\\"handleBlur s0-0-3[0]-1 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 1[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[1]-2 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[1]-2 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[1]-2 false\\",\\"onblur\\":\\"handleBlur s0-0-3[1]-2 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 2[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[2]-3 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[2]-3 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[2]-3 false\\",\\"onblur\\":\\"handleBlur s0-0-3[2]-3 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 3[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[3]-4 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[3]-4 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[3]-4 false\\",\\"onblur\\":\\"handleBlur s0-0-3[3]-4 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 4[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[4]-5 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[4]-5 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[4]-5 false\\",\\"onblur\\":\\"handleBlur s0-0-3[4]-5 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 5[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[5]-6 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[5]-6 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[5]-6 false\\",\\"onblur\\":\\"handleBlur s0-0-3[5]-6 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 6[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[6]-7 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[6]-7 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[6]-7 false\\",\\"onblur\\":\\"handleBlur s0-0-3[6]-7 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 7[0m
+        [36m</button>[39m
+      [36m</li>[39m
+      [36m<li>[39m
+        [36m<button[39m
+          [33mclass[39m=[32m"btn btn--fluid btn--secondary"[39m
+          [33mdata-ebayui[39m=[32m""[39m
+          [33mdata-marko[39m=[32m"{\\"onclick\\":\\"handleClick s0-0-3[7]-8 false\\",\\"onkeydown\\":\\"handleKeydown s0-0-3[7]-8 false\\",\\"onfocus\\":\\"handleFocus s0-0-3[7]-8 false\\",\\"onblur\\":\\"handleBlur s0-0-3[7]-8 false\\"}"[39m
+          [33mtype[39m=[32m"button"[39m
+        [36m>[39m
+          [0mButton 8[0m
+        [36m</button>[39m
+      [36m</li>[39m
+    [36m</ul>[39m
+  [36m</div>[39m
+[36m</DocumentFragment>[39m"
+`;

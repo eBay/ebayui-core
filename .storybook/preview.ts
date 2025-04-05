@@ -18,6 +18,7 @@ export const parameters = {
                 "dialogs",
                 "form input",
                 "graphics & icons",
+                "layout",
                 "media",
                 "navigation & disclosure",
                 "notices & tips",
