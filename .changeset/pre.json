@@ -1,0 +1,12 @@
+{
+  "mode": "pre",
+  "tag": "next",
+  "initialVersions": {
+    "@ebay/ebayui-core": "15.2.0"
+  },
+  "changesets": [
+    "fruity-lines-lose",
+    "slow-pets-melt",
+    "wise-ravens-wink"
+  ]
+}

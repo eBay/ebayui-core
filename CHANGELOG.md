@@ -1,5 +1,15 @@
 # eBayUI-Core Changelog
 
+## 15.3.0-next.0
+
+### Minor Changes
+
+- [#2476](https://github.com/eBay/ebayui-core/pull/2476) [`6980584`](https://github.com/eBay/ebayui-core/commit/6980584e12609e99a9718ce0a1a6139932e1425d) Thanks [@saiponnada](https://github.com/saiponnada)! - fix(listbox-button, menu-button): content collapse on button re focus
+
+- [#2474](https://github.com/eBay/ebayui-core/pull/2474) [`ef18727`](https://github.com/eBay/ebayui-core/commit/ef18727900a72a4ca5769405ccc72cba37f683aa) Thanks [@agliga](https://github.com/agliga)! - feat: added item-tile, item-tile-group, and layout-grid
+
+- [#2477](https://github.com/eBay/ebayui-core/pull/2477) [`60b3299`](https://github.com/eBay/ebayui-core/commit/60b32995ad1e58650787b6608ae54886b075b303) Thanks [@github-actions](https://github.com/apps/github-actions)! - fix(ccd): hide when min and max are not set
+
 ## 15.2.0
 
 ### Minor Changes

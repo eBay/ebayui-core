@@ -68,7 +68,7 @@ export default {
         description: {
             name: "@description",
             description:
-                "The description element of the item-tile. This is to render a description below the title in tertiary element. Defaults to <p> tag (use \"as\" attribute to change).",
+                'The description element of the item-tile. This is to render a description below the title in tertiary element. Defaults to <p> tag (use "as" attribute to change).',
             table: {
                 category: "@attribute tags",
             },
