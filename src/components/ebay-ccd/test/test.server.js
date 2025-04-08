@@ -38,5 +38,25 @@ describe("ccd", () => {
         });
     });
 
+    it("renders with no min and max", async () => {
+        await htmlSnap(Default, { min: null, max: null });
+    });
+
+    it("renders with no min and max but with charger included", async () => {
+        await htmlSnap(Default, {
+            min: null,
+            max: null,
+            chargerIcon: "included",
+        });
+    });
+
+    it("renders with no min and max but with no charger included", async () => {
+        await htmlSnap(Default, {
+            min: null,
+            max: null,
+            chargerIcon: "not-included",
+        });
+    });
+
     testPassThroughAttributes(Default);
 });

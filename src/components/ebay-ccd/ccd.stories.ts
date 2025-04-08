@@ -18,15 +18,15 @@ export default {
     argTypes: {
         max: {
             control: { type: "text" },
-            description: "The maximum range",
+            description: "The maximum range. If min and max are both not set, then will not show the charger label.",
         },
         min: {
             control: { type: "text" },
-            description: "The minimum range",
+            description: "The minimum range. If min and max are both not set, then will not show the charger label.",
         },
         chargerIcon: {
             control: { type: "select" },
-            options: [undefined, "included", "not-included"],
+            options: ['none', "included", "not-included"],
             description:
                 "Toggles the charger icon visible or if its included or not",
             table: {

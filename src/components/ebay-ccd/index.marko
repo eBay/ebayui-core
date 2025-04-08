@@ -27,18 +27,23 @@ $ const {
 } = input;
 $ (input as any).toJSON = noop;
 
-$ const hasFastCharging = secondaryType === "usbpd";
+$ {
+     const hasFastCharging = secondaryType === "usbpd";
+     const a11yCharger = `${
+        chargerIcon
+            ? `Charger ${chargerIcon === "included" ? "" : "not "}included.`
+            : ""
+        } `.trim();
+    const a11yFigure = min || max ? `${min} - ${max} ${a11yUnits}. ${hasFastCharging ? secondaryText : ""}` : ''.trim();
+    const a11yCombined = `${a11yCharger} ${a11yFigure}`.trim();
+}
 
 <div
     ...processHtmlAttributes(htmlInput)
     role="figure"
     style=style
-    aria-label=a11yText || `${
-        chargerIcon
-            ? `Charger ${chargerIcon === "included" ? "" : "not "} included.`
-            : ""
-        } ${min} - ${max} ${a11yUnits}. ${hasFastCharging ? secondaryText : ""}`
-    class=["ccd", inputClass]
+    aria-label=a11yText || a11yCombined
+        class=["ccd", inputClass]
 >
     <if(chargerIcon === "included")>
         <ebay-ccd-charger-included-icon class="ccd__charger-icon"/>
@@ -46,14 +51,16 @@ $ const hasFastCharging = secondaryType === "usbpd";
     <else-if(chargerIcon === "not-included")>
         <ebay-ccd-charger-not-included-icon class="ccd__charger-icon"/>
     </else-if>
-    <div class="ccd__description-figure">
-        <ebay-ccd-top-icon class="ccd__top-icon"/>
-        <div class="ccd__body">
-            <div>${min} - ${max}</div>
-            <div>${units}</div>
-            <if(hasFastCharging)>
-                <div>${secondaryText}</div>
-            </if>
+    <if (min || max)>
+        <div class="ccd__description-figure">
+            <ebay-ccd-top-icon class="ccd__top-icon"/>
+            <div class="ccd__body">
+                <div>${min} - ${max}</div>
+                <div>${units}</div>
+                <if(hasFastCharging)>
+                    <div>${secondaryText}</div>
+                </if>
+            </div>
         </div>
-    </div>
+    </if>
 </div>
