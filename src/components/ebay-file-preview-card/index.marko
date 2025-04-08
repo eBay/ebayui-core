@@ -1,3 +1,4 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
 $ const {
     a11yCancelUploadText,
     deleteText,
@@ -9,6 +10,8 @@ $ const {
     a11ySeeMoreText,
     footerTitle,
     footerSubtitle,
+    action,
+    href,
     as: cardEl = "div",
     ...htmlInput
 } = input;
@@ -31,28 +34,30 @@ $ file.type = type;
 
 <${cardEl} class="file-preview-card" ...htmlInput>
     <div class="file-preview-card__body">
-        <if(status === "uploading")>
-            <ebay-progress-spinner
-                class="file-preview-card__asset"
-                size="large"
-            />
-        </if>
-        <else-if(file.type === "image")>
-            <img
-                class={
-                    "file-preview-card__asset": true,
-                    "file-preview-card__asset--fade": seeMore !== undefined,
-                }
-                src=file.src
-                alt=file.name
-            >
-        </else-if>
-        <else-if(file.type === "video")>
-            <video class="file-preview-card__asset" src=file.src/>
-        </else-if>
-        <else>
-            <ebay-file-24-icon class="file-preview-card__asset"/>
-        </else>
+        <${href ? "a" : null} href=href>
+            <if(status === "uploading")>
+                <ebay-progress-spinner
+                    class="file-preview-card__asset"
+                    size="large"
+                />
+            </if>
+            <else-if(file.type === "image")>
+                <img
+                    class={
+                        "file-preview-card__asset": true,
+                        "file-preview-card__asset--fade": seeMore !== undefined,
+                    }
+                    src=file.src
+                    alt=file.name
+                >
+            </else-if>
+            <else-if(file.type === "video")>
+                <video class="file-preview-card__asset" src=file.src/>
+            </else-if>
+            <else>
+                <ebay-file-24-icon class="file-preview-card__asset"/>
+            </else>
+        </>
         <if(seeMore)>
             <button
                 type="button"
@@ -90,7 +95,15 @@ $ file.type = type;
                         </for>
                     </ebay-menu-button>
                 </if>
-                <else>
+                <else-if(action)>
+                    <ebay-icon-button
+                        class="file-preview-card__action"
+                        onClick("emit", "action")
+                        ...processHtmlAttributes(action)>
+                        <${action} />
+                    </ebay-icon-button>
+                </else-if>
+                <else-if(deleteText)>
                     <ebay-icon-button
                         class="file-preview-card__action"
                         aria-label=deleteText
@@ -98,7 +111,7 @@ $ file.type = type;
                     >
                         <ebay-delete-16-icon/>
                     </ebay-icon-button>
-                </else>
+                </else-if>
             </else>
             <if(file.type !== "image")>
                 <div class="file-preview-card__info">

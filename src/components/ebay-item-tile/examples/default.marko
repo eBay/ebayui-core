@@ -1,0 +1,34 @@
+class {}
+<ebay-item-tile on-action("emit", "action") href="https://ebay.com"
+        file={
+            name: "file-name.jpg",
+            type: "image/jpeg",
+            src: "https://ir.ebaystatic.com/cr/v/c01/skin/docs/tb-real-square-pic.jpg",
+          }
+          ...input
+>
+    <@action aria-label="Add to watchlist">
+        <ebay-heart-16-icon/>
+    </@action>
+    <@supertitle>
+      <ebay-signal status="time-sensitive">
+        Time Sensitive
+      </ebay-signal>
+    </@supertitle>
+      <@title>
+          Apple iPhone 11 Pro Max
+      </@title>
+      <@subtitle>
+          256GB Space Gray
+      </@subtitle>
+    <@description class="price">
+        $29.99
+        <span class="clipped"> Was: </span>
+        <s class="list-price"> $68.99 </s>
+    </@description>
+    <@description>
+          <a href="https://ebay.com"> Buy it now </a>
+    </@description>
+    <@description>Free shipping</@description>
+    <@description>Sponsored</@description>
+</ebay-item-tile>

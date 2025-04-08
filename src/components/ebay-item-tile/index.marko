@@ -1,0 +1,81 @@
+import { processHtmlAttributes } from "../../common/html-attributes";
+import type { WithNormalizedProps } from '../../global';
+import type { FilePreviewCardFile } from '../ebay-file-preview-card/component';
+
+export type ItemTileLayout = "gallery" | "list";
+
+export interface ItemTileDescription extends Omit<Marko.HTML.P, `on${string}`> {
+    as?: string;
+};
+
+export interface ItemTileInput extends Omit<Marko.HTML.Div, 'title' | `on${string}`> {
+    layout?: ItemTileLayout;
+    supertitle?: Marko.AttrTag<Marko.Renderable>;
+    title?: Marko.AttrTag<Marko.Renderable>;
+    subtitle?: Marko.AttrTag<Marko.Renderable>;
+    description?: Marko.AttrTag<ItemTileDescription>;
+    href?: string;
+    file?: FilePreviewCardFile;
+    action?: Marko.AttrTag<Marko.HTML.Button>;
+    "on-action"?: () => void;
+}
+
+export interface Input extends WithNormalizedProps<ItemTileInput> {}
+
+class {}
+
+$ const {
+    class: inputClass,
+    file,
+    supertitle,
+    title,
+    subtitle,
+    description,
+    href,
+    action,
+    layout,
+    ...htmlInput
+} = input;
+
+<div class=["item-tile", layout === "list" && 'item-tile--list-view',  inputClass] ...processHtmlAttributes(htmlInput)>
+    <if(file)>
+        <div class="item-tile__header">
+            <ebay-file-preview-card
+                onAction("emit", "action")
+                action=action
+                file=file
+                href=href>
+            </ebay-file-preview-card>
+        </div>
+    </if>
+    <div class="item-tile__body">
+        <if(supertitle)>
+            <div class="item-tile__section-primary" ...processHtmlAttributes(supertitle)>
+                <${supertitle}/>
+            </div>
+        </if>
+        <if(title || subtitle)>
+            <div class="item-tile__section-secondary">
+                <if(title)>
+                    <a href=href class="item-tile__title" ...processHtmlAttributes(title)>
+                        <${title}/>
+                    </a>
+                </if>
+                <if(subtitle)>
+                    <div class="item-tile__subtitle" ...processHtmlAttributes(subtitle)>
+                        <${subtitle}/>
+                    </div>
+                </if>
+            </div>
+        </if>
+        <if(description)>
+            <div class="item-tile__section-tertiary">
+                <for|desc, i| of=description>
+                    <${desc.as || 'p'} ...desc>
+                        <${desc}/>
+                    </>
+                </for>
+            </div>
+        </if>
+    </div>
+</div>

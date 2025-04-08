@@ -9,6 +9,10 @@
 
 Preview card for files, primarily used alongside `ebay-file-preview-card-group` and `ebay-file-input`.
 
+## Compatibility
+
+This component only works on Marko 5 and later.
+
 ## Examples and Documentation
 
 - [Storybook](https://ebay.github.io/ebayui-core/?path=/story/media-ebay-file-preview-card)
