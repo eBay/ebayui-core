@@ -19,7 +19,8 @@ $ const {
     ...htmlInput
 } = input;
 
-<ebay-layout-grid class="item-tile-group"
+<ebay-layout-grid class=["item-tile-group",
+    layout === "list" && 'item-tile-group--list-view', inputClass]
     ...processHtmlAttributes(htmlInput)
 >
     <for|item, i| of=items>

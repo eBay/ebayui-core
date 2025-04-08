@@ -159,7 +159,7 @@ exports[`ebay-item-tile-group > renders default 1`] = `
 exports[`ebay-item-tile-group > renders with layout=list 1`] = `
 "[36m<DocumentFragment>[39m
   [36m<div[39m
-    [33mclass[39m=[32m"layout-grid item-tile-group"[39m
+    [33mclass[39m=[32m"layout-grid item-tile-group item-tile-group--list-view"[39m
   [36m>[39m
     [36m<ul>[39m
       [36m<li>[39m
@@ -308,6 +308,5 @@ exports[`ebay-item-tile-group > renders with layout=list 1`] = `
                     [33mclass[39m=[32m"icon icon--16"[39m
                     [33mfocusable[39m=[32m"false"[39m
                   [36m>[39m
-                    [36m<use[39m
-                 ..."
+                    [36m..."
 `;
