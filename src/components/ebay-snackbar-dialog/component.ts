@@ -35,7 +35,12 @@ class SnackbarDialog extends Marko.Component<Input, State> {
     }
 
     onInput(input: Input) {
-        this.state = { open: input.open || this.state.open || false };
+        this.state = {
+            open:
+                typeof input.open === "boolean"
+                    ? input.open
+                    : this.state.open || false,
+        };
     }
 
     onMount() {
